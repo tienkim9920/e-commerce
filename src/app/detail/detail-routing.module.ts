@@ -4,7 +4,7 @@ import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
   {
-    path: '', component: IndexComponent
+    path: 'detail', component: IndexComponent
   },
 ];
 
@@ -12,4 +12,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class DetailRoutingModule { }
+
