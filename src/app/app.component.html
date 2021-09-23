@@ -1,9 +1,269 @@
-<div class="header">
-  Đây là Header
+<div class="main-header">
+  <div class="header-laptop">
+    <div class="layout-header-laptop container">
+      <div *ngIf="auth === 'client'" class="group-header-top d-flex justify-content-end">
+        <div class="header-profile">
+          <i class="fa fa-user-circle-o p-1"></i>
+          <span>Nguyễn Kim Tiền</span>
+        </div>
+      </div>
+      <div *ngIf="auth === 'shop'" class="group-header-top d-flex justify-content-end">
+        <div class="header-notification">
+          <div>
+            <i class="fa fa-bell-o p-1"></i>
+            <span>Thông Báo</span>
+          </div>
+          <div class="sub-notification">
+            <!-- <div class="text-center">
+                <div class="bg-cart-empty"></div>
+                <span>Chưa có sản phẩm</span>
+              </div> -->
+            <div class="pt-2 pb-3">
+              Thông báo mới nhận
+            </div>
+            <div class="hover-sub-notification active">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Áo Tay</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="view-all">
+              Xem tất cả
+            </div>
+          </div>
+        </div>
+        <div class="header-profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-user-circle-o p-1"></i>
+          <span>Young Green</span>
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Quản lý thông tin</a>
+          </li>
+          <li><a class="dropdown-item" href="#"><i class="fa fa-comment icon-profile"></i>&nbsp;&nbsp;Tin nhắn</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa fa-mail-forward icon-profile"></i>&nbsp;&nbsp;Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!auth" class="group-header-top d-flex justify-content-end">
+        <div class="header-profile">
+          <i class="fa fa-user-circle-o p-1"></i>
+          <span>Đăng Nhập</span>
+        </div>
+      </div>
+      <div class="group-header-mid d-flex justify-content-between">
+        <div class="logo-header d-flex">
+          <img class="image-logo-header" src="../assets/logo.png" alt="">
+          <h3 class="h3-logo-header">Social</h3>
+        </div>
+        <div class="search-header">
+          <div class="width-search-header">
+            <input class="input-search-header" type="text" placeholder="Tìm kiếm sản phẩm mà bạn mong muốn!">
+            <div class="icon-search-header">
+              <i class="fa fa-search"></i>
+            </div>
+          </div>
+        </div>
+        <div class="nav-option cart-header">
+
+          <div class="padding-cart-header">
+            <i class="fa fa-cart-arrow-down" style="font-size: 30px;"></i>
+            <span class="count-cart">0</span>
+            <span style="font-size: .8rem; margin-left: .2rem;">Giỏ hàng</span>
+          </div>
+
+          <div class="sub-menu">
+            <!-- <div class="text-center">
+                <div class="bg-cart-empty"></div>
+                <span>Chưa có sản phẩm</span>
+              </div> -->
+            
+            <div class="pt-2 pb-3">
+              Sản phẩm mới mua
+            </div>
+            <div class="hover-sub-notification active">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                <span>Giá: 70000</span>, <span>size: Lớn</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                <span>Giá: 70000</span>, <span>size: Lớn</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                <span>Giá: 70000</span>, <span>size: Lớn</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                <span>Giá: 70000</span>, <span>size: Lớn</span>
+              </div>
+            </div>
+            <div class="view-all">
+              Xem tất cả
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-laptop">
+    <div class="layout-nav-laptop container">
+      <div class="nav-link">
+        <a [routerLink]="['/']" [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}"
+          class="a-nav-link">Trang chủ</a>
+      </div>
+      <div class="nav-link">
+        <a [routerLink]="['/dashboard']" [routerLinkActive]="['active-link']" class="a-nav-link">Danh mục sản phẩm</a>
+      </div>
+      <div class="nav-link">
+        <a class="a-nav-link" href="#">Sản phẩm mới</a>
+      </div>
+      <div class="nav-link">
+        <a class="a-nav-link" href="#">Vòng quay may mắn</a>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <router-outlet></router-outlet>
 
 <div class="footer">
-  Đây là footer
+  <div class="layout-footer container">
+    <div class="gioithieu mr-auto">
+      <h4 class="footer-title">Giới thiệu</h4>
+      <span>Nắm bắt được xu hướng mua hàng online nên chúng tôi đã có mặt ở đây nhằm phục vụ cho mọi người có thể tiện
+        lợi mua hàng ở mọi lúc mọi nơi.</span>
+      <br>
+      <div class="pt-3">
+        <img style="width: 180px;" src="//theme.hstatic.net/200000232135/1000682292/14/logo_bct.png?v=274"
+          alt="Bộ Công Thương">
+      </div>
+    </div>
+    <div class="lienket mr-auto">
+      <h4 class="footer-title">Liên kết</h4>
+      <li>Trang chủ</li>
+      <li>Danh mục</li>
+      <li>Sản phẩm mới</li>
+      <li>Vòng quay may mắn</li>
+    </div>
+    <div class="lienhe mr-auto">
+      <h4 class="footer-title">Thông tin liên hệ</h4>
+      <li><i class="fa fa-map-marker" style="font-size: 20px;"></i> 828 Sư Vạn Hạnh, Phường 13, Quận 10, Hồ Chí Minh.
+      </li>
+      <li><i class="fa fa-phone" style="font-size: 20px;"></i> (+84) 763.557.366</li>
+      <li><i class="fa fa-location-arrow" style="font-size: 20px;"></i> tienkim9920@gmail.com</li>
+    </div>
+    <div class="fanpage mr-auto">
+      <h4 class="footer-title">Fanpage</h4>
+      <div class="logo-header d-flex">
+        <img class="image-logo-header" src="../assets/logo.png" alt="">
+        <h3 class="h3-logo-header">Social</h3>
+      </div>
+    </div>
+  </div>
+
+  <div id="accordionExample" class="layout-footer-responsive container">
+    <div class="gioithieu">
+      <div class="group-footer" data-bs-toggle="collapse" data-bs-target="#gioithieu" aria-expanded="true"
+        aria-controls="gioithieu">
+        <h4 class="footer-title">Giới thiệu</h4>
+        <i class="fa fa-plus mt-1" style="font-size:22px"></i>
+      </div>
+      <div id="gioithieu" class="collapse" data-bs-parent="#accordionExample">
+        <div class="p-2">
+          <span>Nắm bắt được xu hướng mua hàng online nên chúng tôi đã có mặt ở đây nhằm phục vụ cho mọi người có thể
+            tiện
+            lợi mua hàng ở mọi lúc mọi nơi.</span>
+          <br>
+          <div class="pt-3">
+            <img style="width: 180px;" src="//theme.hstatic.net/200000232135/1000682292/14/logo_bct.png?v=274"
+              alt="Bộ Công Thương">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lienket pt-3">
+      <div class="group-footer" data-bs-toggle="collapse" data-bs-target="#lienket" aria-expanded="true"
+        aria-controls="lienket">
+        <h4 class="footer-title">Liên kết</h4>
+        <i class="fa fa-plus mt-1" style="font-size:22px"></i>
+      </div>
+      <div id="lienket" class="collapse" data-bs-parent="#accordionExample">
+        <div class="p-2">
+          <li>Trang chủ</li>
+          <li>Danh mục</li>
+          <li>Sản phẩm mới</li>
+          <li>Vòng quay may mắn</li>
+        </div>
+      </div>
+    </div>
+    <div class="lienhe pt-3">
+      <div class="group-footer" data-bs-toggle="collapse" data-bs-target="#lienhe" aria-expanded="true"
+        aria-controls="lienhe">
+        <h4 class="footer-title">Thông tin liên hệ</h4>
+        <i class="fa fa-plus mt-1" style="font-size:22px"></i>
+      </div>
+      <div id="lienhe" class="collapse" data-bs-parent="#accordionExample">
+        <div class="p-2">
+          <li><i class="fa fa-map-marker" style="font-size: 20px;"></i> 828 Sư Vạn Hạnh, Phường 13, Quận 10, Hồ Chí
+            Minh.</li>
+          <li><i class="fa fa-phone" style="font-size: 20px;"></i> (+84) 763.557.366</li>
+          <li><i class="fa fa-location-arrow" style="font-size: 20px;"></i> tienkim9920@gmail.com</li>
+        </div>
+      </div>
+    </div>
+    <div class="fanpage pt-3">
+      <div class="group-footer" data-bs-toggle="collapse" data-bs-target="#fanpage" aria-expanded="true"
+        aria-controls="fanpage">
+        <h4 class="footer-title">Fanpage</h4>
+        <i class="fa fa-plus mt-1" style="font-size:22px"></i>
+      </div>
+      <div id="fanpage" class="collapse" data-bs-parent="#accordionExample">
+        <div class="logo-header d-flex mt-2">
+          <img class="image-logo-header" src="../assets/logo.png" alt="">
+          <h3 class="h3-logo-header">Social</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="copyright">
+  <div class="container" style="border-top: 1px solid #f1f1f1; padding: 1.3rem;">
+    <a style="font-weight: 300 !important;" target="_blank">Copyright © 2021 Social. Powered by Nguyễn Kim Tiền, Nguyễn
+      Quốc Toàn, Bùi Thế Minh Hiếu</a>
+  </div>
 </div>
