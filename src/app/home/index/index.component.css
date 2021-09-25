@@ -2,3 +2,156 @@
 .layout-home{
     padding: 12rem 0 2rem 0;
 }
+
+.section-banner{
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 10px;
+}
+
+.carousel{
+    /* border-radius: 3px !important; */
+    overflow: hidden;
+}
+
+.section-banner-right{
+    background-image: url(../../../assets/bg5.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    /* border-radius: 3px !important; */
+}
+
+.section-danhmuc{
+    margin-top: 1.5rem;
+    width: 100%;
+    background-color: #fff;
+    /* border-radius: 5px; */
+    box-shadow: .5px .5px 5px #e4e4e4;
+}
+
+.h4-danhmuc{
+    padding: 1rem 1rem .5rem 1rem;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.list-danhmuc-product{
+    border-top: 1px solid #f1f1f1;
+}
+
+.image-category-danhmuc{
+    width: 70px;
+    height: 70px;
+}
+
+.category-danhmuc{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.category-danhmuc-detail{
+    border-right: 1px solid #f1f1f1;
+    padding: 1.5rem 0;
+    text-decoration: none;
+    color: #323232;
+    cursor: pointer;
+}
+
+.category-danhmuc-detail:hover .image-category-danhmuc{
+    transform: scale(1.3);
+    transition: all .5s ease-in-out;
+}
+
+.section-flash-sale{
+    margin-top: 1.5rem;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: .5px .5px 5px #e4e4e4;
+}
+
+.h4-flash-sale{
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.list-flash-sale{
+    position: relative;
+}
+
+.group-flash-sale{
+    overflow-x: auto;
+    display: flex;
+}
+
+.flash-sale-detail{
+    padding: .5rem 0;
+    text-decoration: none;
+    color: #323232;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.image-flash-sale{
+    width: 250px;
+    height: 250px;
+}
+
+.next-flash-sale{
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    left: 98.5%;
+    padding: .5rem .6rem .2rem .8rem;
+    background-color: #fff;
+    box-shadow: .5px .5px 7px #9c9c9c;
+    border-radius: 50px;
+    transition: all .2s ease-in-out;
+}
+
+.next-flash-sale:hover{
+    transform: scale(1.4);
+}
+
+.prev-flash-sale{
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    left: -1.5%;
+    padding: .5rem .8rem .2rem .6rem;
+    background-color: #fff;
+    box-shadow: .5px .5px 7px #9c9c9c;
+    border-radius: 50px;
+    transition: all .2s ease-in-out;
+}
+
+.prev-flash-sale:hover{
+    transform: scale(1.4);
+}
+
+.icon-scoll{
+    font-size: 24px !important;
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+}
+  
+
+@media only screen and (max-width: 600px){
+    .layout-home{
+        padding: 6rem 0 2rem 0 !important;
+    }
+
+    .section-banner{
+        grid-template-columns: auto !important;
+        gap: 10px;
+    }
+
+    .section-banner-right{
+        display: none !important;
+    }
+
+}

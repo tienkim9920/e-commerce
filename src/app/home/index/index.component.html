@@ -1,6 +1,178 @@
 <div class="layout-home container">
-    <p>home works!</p>
+    <div class="section-banner">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../../../assets/bg1.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../../../assets/bg2.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../../../assets/bg3.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../../../assets/bg4.png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="section-banner-right">
 
-    <a routerLink="/detail">Heroes</a><br>
-    <a routerLink="/dashboard">Dashboard</a>
+        </div>
+    </div>
+
+    <div class="section-danhmuc">
+        <h4 class="h4-danhmuc">Danh Mục</h4>
+        <div class="list-danhmuc-product">
+            <div class="category-danhmuc">
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/tshirt.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/phone.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/watch.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/camera.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/toy.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/electronic.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/laptop.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="category-danhmuc-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-category-danhmuc" src="../../../assets/toy.png" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-flash-sale">
+        <div class="d-flex justify-content-between" style="padding: 1rem;">
+            <h4 class="h4-flash-sale">
+                Flash 
+                <img style="width: 25px;" src="https://frontend.tikicdn.com/_desktop-next/static/img/dealFlashIcon.svg" alt="">
+                Sale
+            </h4>
+            <a class="mt-1" style="text-decoration: none;">Xem tất cả ></a>
+        </div>
+        <div class="list-flash-sale">
+            <div class="group-flash-sale" #widgetsContent>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Áo thun freesize thương hiệu YG</div>
+                    <div class="d-flex justify-content-between">
+                        <div>70000</div>
+                        <div>30 like</div>
+                    </div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+                <a class="flash-sale-detail">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                </a>
+            </div>
+            <div *ngIf="scroll" class="next-flash-sale" (click)="scrollRight()">
+                <i class="fa fa-chevron-right icon-scoll"></i>
+            </div>
+            <div *ngIf="!scroll" class="prev-flash-sale" (click)="scrollLeft()">
+                <i class="fa fa-chevron-left icon-scoll"></i>
+            </div>
+        </div>
+    </div>
 </div>
