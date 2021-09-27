@@ -1,7 +1,8 @@
 
 .main-header{
     box-shadow: .5px .5px 6px #a5a5a5;
-    position: fixed;
+    /* position: fixed;
+    top: 0; */
     width: 100%;
     display: block;
     z-index: 999;
@@ -53,11 +54,6 @@
     outline: none;
     box-shadow: .5px .5px 6px #a5a5a5;
     border-radius: 50px;
-}
-
-.width-search-header{
-    width: 100%;
-    position: relative;
 }
 
 .icon-search-header{
@@ -138,6 +134,58 @@
     border-radius: 50px;
 }
 
+.width-search-header{
+    width: 100%;
+    position: relative;
+}
+
+.items-search{
+    height: 280px;
+    overflow-y: scroll;
+}
+
+.spinner-border{
+    position: absolute;
+    top: 42.5%;
+    left: 45%;
+}
+
+/* Sub Search */
+.sub-search{
+    width: 500px;
+    height: 300px;
+    background-color: #fff;
+    padding: .4rem .8rem;
+    position: absolute;
+    top: 3rem;
+    right: 0%;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    color: #323232;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform : translate(230px, -170px) scale(0);
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.sub-search::after{
+    content: "";
+    position: absolute;
+    top: -1.25rem;
+    left: 90%;
+    border-width: 10px 18px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+}
+
+.sub-search.active{
+    opacity: 1;
+    visibility: visible;
+    transform : translate(0px, 0px) scale(1);
+}
+
+
 /* Sub menu for notification */
 .header-notification > .sub-notification{
     width: 400px;
@@ -191,17 +239,6 @@
 
 .hover-sub-notification:hover{
     background-color: #f1f1f1;
-}
-
-.view-all{
-    text-align: center;
-    padding: .5rem;
-    transition: all .2s ease-in-out;
-}
-
-.view-all:hover{
-    background-color: #1A94FF;
-    color: #fff;
 }
 
 /* Sub menu for cart */
@@ -326,6 +363,28 @@ li{
 .layout-header-mobile{
     display: flex;
     justify-content: space-between;
+}
+
+.direct-top{
+    cursor: pointer;
+    position: fixed;
+    top: 90%;
+    left: 95%;
+}
+
+.fix-icon-direct{
+    padding: .4rem .7rem .8rem .7rem; 
+    background-color: #1A94FF; 
+    border-radius: 4px;
+    font-size: 35px; 
+    color: #fff;
+    box-shadow: .5px .5px 4px #c4c4c4;
+    transition: all .3s ease-in-out;
+    transform: scale(1);
+}
+
+.fix-icon-direct:hover{
+    transform: scale(1.1);
 }
 
 @media only screen and (max-width: 600px){

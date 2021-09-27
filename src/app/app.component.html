@@ -1,5 +1,5 @@
 <div class="main-header">
-  <div class="header-laptop">
+  <div class="header-laptop" id="header-search">
     <div class="layout-header-laptop container">
       <div *ngIf="auth === 'client'" class="group-header-top d-flex justify-content-end">
         <div class="header-profile">
@@ -77,11 +77,54 @@
           <img class="image-logo-header" src="../assets/logo.png" alt="">
           <h3 class="h3-logo-header">Social</h3>
         </div>
-        <div class="search-header">
+        <div class="search-header" #searchEffect>
           <div class="width-search-header">
-            <input class="input-search-header" type="text" placeholder="Tìm kiếm sản phẩm mà bạn mong muốn!">
+            <input class="input-search-header" type="text" placeholder="Tìm kiếm sản phẩm mà bạn mong muốn!"
+              [(ngModel)]="search" (ngModelChange)='searchChange($event)'>
             <div class="icon-search-header">
               <i class="fa fa-search"></i>
+            </div>
+            <div [ngClass]="subSearch ? 'sub-search active' : 'sub-search'">
+              <div *ngIf='!listSearch' class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div *ngIf='listSearch' class="items-search">
+                <div class="hover-sub-notification">
+                  <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                  <div class="content-sub-notification">
+                    <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                    <span>Giá: 70000</span>, <span>size: Lớn</span>
+                  </div>
+                </div>
+                <div class="hover-sub-notification">
+                  <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                  <div class="content-sub-notification">
+                    <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                    <span>Giá: 70000</span>, <span>size: Lớn</span>
+                  </div>
+                </div>
+                <div class="hover-sub-notification active">
+                  <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                  <div class="content-sub-notification">
+                    <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                    <span>Giá: 70000</span>, <span>size: Lớn</span>
+                  </div>
+                </div>
+                <div class="hover-sub-notification">
+                  <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                  <div class="content-sub-notification">
+                    <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                    <span>Giá: 70000</span>, <span>size: Lớn</span>
+                  </div>
+                </div>
+                <div class="hover-sub-notification">
+                  <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                  <div class="content-sub-notification">
+                    <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
+                    <span>Giá: 70000</span>, <span>size: Lớn</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -98,7 +141,7 @@
                 <div class="bg-cart-empty"></div>
                 <span>Chưa có sản phẩm</span>
               </div> -->
-            
+
             <div class="pt-2 pb-3">
               Sản phẩm mới mua
             </div>
@@ -139,7 +182,7 @@
       </div>
     </div>
   </div>
-  <div class="nav-laptop">
+  <div class="nav-laptop" #sticky>
     <div class="layout-nav-laptop container">
       <div class="nav-link">
         <a [routerLink]="['/']" [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}"
@@ -181,7 +224,8 @@
             <h2 class="h3-logo-header">Social</h2>
           </div>
         </h5>
-        <button type="button" class="btn-close" style="background-color: #fff;" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close" style="background-color: #fff;" data-bs-dismiss="offcanvas"
+          aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <div class="name-nav-mobile">
@@ -205,10 +249,14 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 
 <router-outlet></router-outlet>
+
+<div class="direct-top">
+  <a href="#header-search"><i class="fa fa-chevron-up fix-icon-direct"></i></a>
+</div>
 
 <div class="footer">
   <div class="layout-footer container">

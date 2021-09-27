@@ -4,3 +4,38 @@ body{
     font-family: 'Raleway', sans-serif; 
     background-color: #f1f1f1;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+.view-all{
+    text-align: center;
+    padding: .5rem;
+    transition: all .2s ease-in-out;
+}
+
+.view-all:hover{
+    background-color: #1A94FF;
+    color: #fff;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    animation: showNavbar .7s;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%) !important;
+}
+
+@keyframes showNavbar {
+    0%{
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
