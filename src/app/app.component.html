@@ -1,5 +1,5 @@
 <div class="main-header">
-  <div class="header-laptop" id="header-search">
+  <div class="header-laptop">
     <div class="layout-header-laptop container">
       <div *ngIf="auth === 'client'" class="group-header-top d-flex justify-content-end">
         <div class="header-profile">
@@ -255,7 +255,7 @@
 <router-outlet></router-outlet>
 
 <div class="direct-top">
-  <a href="#header-search"><i class="fa fa-chevron-up fix-icon-direct"></i></a>
+  <a (click)="onScrollTop()"><i class="fa fa-chevron-up fix-icon-direct"></i></a>
 </div>
 
 <div class="footer">

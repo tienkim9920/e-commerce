@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { pipe, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 
 @Component({
@@ -22,6 +22,7 @@ export class AppComponent {
   listSearch: any = null
 
   constructor() {
+    // debounce search
     this.searchUpdate.pipe(
       debounceTime(500),
       distinctUntilChanged())
@@ -42,7 +43,13 @@ export class AppComponent {
     }
 
     this.subSearch = true
+    
+    // debounce search
     this.searchUpdate.next(value);
+  }
+
+  onScrollTop(){
+    window.scroll(0,0)
   }
 
   ngAfterContentChecked(){
