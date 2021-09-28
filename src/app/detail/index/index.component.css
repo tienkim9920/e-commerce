@@ -110,3 +110,59 @@
 .btn-addcart:hover{
     background-color: #197bd1;
 }
+
+.layout-section-information-shop{
+    padding: 2rem;
+    margin: 2rem auto;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+}
+
+.padding-infor-shop{
+    padding: .3rem .8rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.padding-infor-shop:last-child{
+    margin-left: .6rem;
+}
+
+.padding-infor-shop:hover{
+    background-color: #1A94FF;
+    color: #fff;
+    border: 1px solid #1A94FF;
+}
+
+.image-infor-shop{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    border: 1px solid #e2e2e2;
+}
+
+.detail-infor-shop{
+    padding: 0 2rem;
+    display: flex;
+    color: gray;
+    border-left: 1px solid #e2e2e2;
+}
+
+.layout-comment-product{
+    margin: 2rem auto;
+    background-color: #fff;
+}
+
+.title-comment-product{
+    display: flex;
+    justify-content: center;
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 2rem;
+}
+
+.group-list-comment{
+    padding: 0 3rem 3rem 3rem;
+}
