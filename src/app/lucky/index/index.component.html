@@ -2,7 +2,8 @@
     <div class="grid-layout-lucky">
         <div class="lucky">
             <div>
-                <button id="spin" (click)="startLucky()">Spin</button>
+                <button class="spin" *ngIf="spin === 1" (click)="startLucky()">Quay</button>
+                <button class="spin active" *ngIf="spin === 0" (click)="resetLucky()">Lại</button>
                 <span class="arrow"></span>
                 <div class="lucky-implement" #lucky>
                     <div class="one" data-cell>1</div>
@@ -17,7 +18,58 @@
             </div>
         </div>
         <div class="award-lucky">
-
+            <div class="header-award-lucky">
+                <div>Lưu ý: Mỗi lần quay sẽ mất 500 điểm</div>
+                <div>Bạn có {{ 500 }} điểm</div>
+            </div>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Ticket</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Maria Anders</td>
+                            <td>Germany</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Maria Anders</td>
+                            <td>Germany</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Maria Anders</td>
+                            <td>Germany</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Maria Anders</td>
+                            <td>Germany</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Maria Anders</td>
+                            <td>Germany</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="position-fixed top-0 end-0" style="margin-top: 4rem;">
+            <div id="liveToast" [ngClass]="showToast ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <strong class="me-auto">Thông báo</strong>
+              </div>
+              <div class="toast-body">
+                Bạn đã nhận được Ticket.
+              </div>
+            </div>
         </div>
     </div>
 </div>

@@ -13,6 +13,10 @@ export class IndexComponent implements OnInit {
 
   index: any
 
+  spin: any = 1
+
+  showToast: any = false
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,8 +25,10 @@ export class IndexComponent implements OnInit {
 
   startLucky(){
 
+    this.spin = 2
+
     // Random number
-    this.number = Math.ceil(Math.random() * (6480 - 2160) + 2160);
+    this.number = Math.ceil(Math.random() * (3240 - 1080) + 1080);
     console.log(this.number)
 
     // Số vòng chia lấy phần nguyên
@@ -39,24 +45,45 @@ export class IndexComponent implements OnInit {
     
     const checkIndex = duVong - (duVitri * 45)
 
+    // Xoay
     this.lucky.nativeElement.style.transform = "rotate(-" + this.number + "deg)";
 
     if (checkIndex > 22.5){
 
       setTimeout(() => {
         console.log(duVitri + 2)
-        this.number = 0
+        this.spin = 0
+        this.showToast = true
       }, 5000)
+
+      setTimeout(() => {
+        this.showToast = false
+      }, 9000)
 
     }else{
 
       setTimeout(() => {
         console.log(duVitri + 1)
-        this.number = 0
+        this.spin = 0
+        this.showToast = true
       }, 5000)
+
+      setTimeout(() => {
+        this.showToast = false
+      }, 9000)
       
     }
 
+  }
+
+  resetLucky(){
+    this.spin = 2
+    this.number = 0
+    this.lucky.nativeElement.style.transform = "rotate(" + this.number + "deg)";
+
+    setTimeout(() => {
+      this.spin = 1
+    }, 5000)
   }
 
 }
