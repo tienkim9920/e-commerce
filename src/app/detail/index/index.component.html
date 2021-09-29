@@ -33,16 +33,21 @@
                     Kích thước: &nbsp; <span style="font-family: 'Nunito Sans', sans-serif;">{{ size }}</span>
                 </div>
                 <div class="d-flex mt-2">
-                    <div [ngClass]="size === 'S' ? 'padding-size active' : 'padding-size'" (click)="changeSize('S')">S</div>
-                    <div [ngClass]="size === 'M' ? 'padding-size active' : 'padding-size'" (click)="changeSize('M')">M</div>
-                    <div [ngClass]="size === 'L' ? 'padding-size active' : 'padding-size'" (click)="changeSize('L')">L</div>
-                    <div [ngClass]="size === 'XL' ? 'padding-size active' : 'padding-size'" (click)="changeSize('XL')">XL</div>
+                    <div [ngClass]="size === 'S' ? 'padding-size active' : 'padding-size'" (click)="changeSize('S')">S
+                    </div>
+                    <div [ngClass]="size === 'M' ? 'padding-size active' : 'padding-size'" (click)="changeSize('M')">M
+                    </div>
+                    <div [ngClass]="size === 'L' ? 'padding-size active' : 'padding-size'" (click)="changeSize('L')">L
+                    </div>
+                    <div [ngClass]="size === 'XL' ? 'padding-size active' : 'padding-size'" (click)="changeSize('XL')">
+                        XL</div>
                 </div>
             </div>
             <div class="quality pt-3">
                 <div>Số lượng:</div>
                 <div class="mt-2">
-                    <input class="input-detail-quality" type="number" max="10" min="1" value="{{ count }}" [(ngModel)]="count">
+                    <input class="input-detail-quality" type="number" max="10" min="1" value="{{ count }}"
+                        [(ngModel)]="count">
                 </div>
             </div>
             <div class="description pt-4">
@@ -50,7 +55,9 @@
                     Mô tả sản phẩm:
                 </div>
                 <div class="mt-2" style="font-family: 'Nunito Sans', sans-serif;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet hic ratione dolorem voluptatem maxime fuga in nihil autem. Culpa libero id vitae. Dolorem soluta iste exercitationem praesentium, aliquid culpa suscipit?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet hic ratione dolorem voluptatem maxime
+                    fuga in nihil autem. Culpa libero id vitae. Dolorem soluta iste exercitationem praesentium, aliquid
+                    culpa suscipit?
                 </div>
             </div>
             <div class="btn-addcart mt-3">
@@ -58,13 +65,12 @@
             </div>
             <div class="count-detail-like mt-3">
                 <div>
-                    Số lượt thích: &nbsp; 
+                    Số lượt thích: &nbsp;
                     <span *ngIf="like" style="font-family: 'Nunito Sans', sans-serif;">Bạn đã thích</span>
                     <span *ngIf="!like" style="font-family: 'Nunito Sans', sans-serif;">Bạn chưa thích</span>
                 </div>
                 <div>
-                    <i  (click)="statusLike()" 
-                        [ngClass]="like ? 'fa fa-heart text-danger' : 'fa fa-heart-o text-danger'" 
+                    <i (click)="statusLike()" [ngClass]="like ? 'fa fa-heart text-danger' : 'fa fa-heart-o text-danger'"
                         style="font-size: 28px; cursor: pointer;"></i>
                     &nbsp;
                     <span style="font-family: 'Nunito Sans', sans-serif; font-size: 20px;">30 lượt</span>
@@ -95,15 +101,18 @@
     <div class="detail-infor-shop">
         <div class="mt-2 ms-5">
             <div>Đánh giá: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">16</span></div>
-            <div class="mt-4">Sản phẩm: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">123</span></div>
+            <div class="mt-4">Sản phẩm: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">123</span>
+            </div>
         </div>
         <div class="mt-2 ms-5">
             <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">99%</span></div>
-            <div class="mt-4">Thời gian phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">Trong vài giờ</span></div>
+            <div class="mt-4">Thời gian phản hồi: <span
+                    style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">Trong vài giờ</span></div>
         </div>
         <div class="mt-2 ms-5">
             <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">14 tháng</span></div>
-            <div class="mt-4">Người theo dõi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">26</span></div>
+            <div class="mt-4">Người theo dõi: <span
+                    style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">26</span></div>
         </div>
     </div>
 </div>
@@ -136,6 +145,54 @@
                 <i class="fa fa-star-o"></i>
             </div>
             <div>12/09/2021</div>
+        </div>
+        <div class="mt-4">
+            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Nguyen Kim Tien</div>
+            <div>Sản phẩm này thật là tuyệt. Đáng đồng tiền bát gạo!</div>
+            <div style="color: #1A94FF;">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <div>12/09/2021</div>
+        </div>
+    </div>
+
+    <div class="btn-write-comment" data-bs-toggle="modal" data-bs-target="#write-comment">
+        <div>Viết Bình Luận</div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="write-comment" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Đánh Giá Sản Phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div>Chọn sao: </div>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Vui lòng chọn sao cho sản phẩm</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="3">4</option>
+                            <option value="3">5</option>
+                        </select>
+                    </div>
+                    <div class="mt-4">
+                        <label for="exampleFormControlTextarea1" class="form-label">Viết bình luận:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Gửi Bình Luận</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
