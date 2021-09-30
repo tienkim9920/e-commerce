@@ -24,7 +24,7 @@ html {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 9999;
     animation: showNavbar .7s;
     box-shadow: 0 0 5px rgb(0 0 0 / 20%) !important;
 }

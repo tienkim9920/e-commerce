@@ -6,6 +6,7 @@
     width: 100%;
     display: block;
     z-index: 999;
+
 }
 
 .header-laptop{
@@ -251,7 +252,7 @@
     right: 8%;
     box-shadow: 0 0 5px rgb(0 0 0 / 20%) !important;
     color: #323232;
-    opacity: 0;
+    opacity: 0; 
     visibility: hidden;
     transform : translate(200px, -200px) scale(0);
     z-index: 999;
@@ -352,6 +353,7 @@ li{
 .main-header-mobile{
     box-shadow: .5px .5px 6px #a5a5a5;
     position: fixed;
+    top: 0;
     width: 100%;
     display: none;
     background-color: #1A94FF;

@@ -12,6 +12,9 @@
     background-color: #fff;
 }
 
+
+
+/* Vòng quay may mắn */
 .lucky{
     position: relative;
     display: flex;
@@ -120,6 +123,10 @@
 	background-color: #e2e2e2;
 	color: gray;
 }
+/* Vòng quay may mắn */
+
+
+
 
 .header-award-lucky{
 	font-family: 'Nunito Sans', sans-serif;
@@ -194,5 +201,35 @@ table th {
 	100%{
 		transform: translateX(0px);
 		opacity: 1;
+	}
+}
+
+@media only screen and (max-width: 600px){
+
+	.layout-lucky{
+		margin: 4rem auto 3rem auto;
+	}
+
+	.grid-layout-lucky{
+		grid-template-columns: 1fr;
+		margin-top: 5rem;
+	}
+
+	.lucky-implement{
+		width:350px;
+		height:350px;
+	}
+	
+	.lucky-implement div{
+		width:135px;
+		left:93px;
+	}
+
+	.lucky{
+		padding: 2rem 0;
+	}
+
+	.arrow{
+		top: 0%;
 	}
 }
