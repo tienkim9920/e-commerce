@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DetailRoutingModule } from './detail-routing.module';
+import { ManageRoutingModule } from './manage-routing.module';
 import { IndexComponent } from './index/index.component';
 
 
@@ -11,7 +11,7 @@ import { IndexComponent } from './index/index.component';
   ],
   imports: [
     CommonModule,
-    DetailRoutingModule
+    ManageRoutingModule
   ]
 })
-export class DetailModule { }
+export class ManageModule { }
