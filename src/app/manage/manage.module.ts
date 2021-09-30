@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
-import { DetailRoutingModule } from './detail-routing.module';
+import { ManageRoutingModule } from './manage-routing.module';
 import { IndexComponent } from './index/index.component';
-
 
 @NgModule({
   declarations: [
@@ -11,8 +9,7 @@ import { IndexComponent } from './index/index.component';
   ],
   imports: [
     CommonModule,
-    DetailRoutingModule,
-    FormsModule
+    ManageRoutingModule
   ]
 })
-export class DetailModule { }
+export class ManageModule { }
