@@ -12,6 +12,9 @@ const routes: Routes = [
   {
     path: '', loadChildren: () => import('./manage/manage.module').then(m => m.ManageModule)
   },
+  {
+    path: '', loadChildren: () => import('./lucky/lucky.module').then(m => m.LuckyModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,221 @@
+
+.layout-detail-product{
+    background-color: #fff;
+    margin: 2rem auto;
+}
+
+.group-detail-product-image{
+    cursor: pointer;
+    margin: auto auto;
+}
+
+.grid-detail-product{
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: .75fr 1.25fr;
+    gap: 10px;
+}
+
+.product-image-show img{
+    width: 423px;
+    height: 423px;
+}
+
+.product-image-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    padding: 1rem 0;
+}
+
+.item-product-image-list{
+    margin: auto auto;
+}
+
+.item-product-image-list.active{
+    border: 4px solid #1A94FF;
+}
+
+.item-product-image-list img{
+    width: 95px;
+    height: 95px;
+}
+
+.group-detail-product-content{
+    padding: 0 2rem;
+}
+
+.price-product-detail{
+    color: #1A94FF;
+    font-size: 2.2rem;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.price-del-detail{
+    margin: 1.1rem 0 0 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+}
+
+.percent-discount{
+    background-image: url(../../../assets/img_discount.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    margin: .8rem 0 0 1rem;
+    color: #1A94FF;
+    padding: .1rem .3rem 0 .3rem;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.padding-size{
+    padding: .2rem .8rem;
+    margin: .2rem .5rem;
+    border: 1px solid #f1f1ff;
+    font-family: 'Nunito Sans', sans-serif;
+    cursor: pointer;
+}
+
+.padding-size.active{
+    border: 1px solid #1A94FF;
+    color: #1A94FF;
+}
+
+.padding-size:first-child{
+    margin-left: 0rem !important;
+}
+
+.padding-size:last-child{
+    padding: .2rem .6rem;
+}
+
+.input-detail-quality{
+    width: 100px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #e2e2e2;
+    outline: none;
+}
+
+.btn-addcart{
+    display: flex;
+    justify-content: center;
+    width: 250px;
+    background-color: #1A94FF;
+    padding: .6rem 1.4rem;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-addcart:hover{
+    background-color: #197bd1;
+}
+
+.layout-section-information-shop{
+    padding: 2rem;
+    margin: 2rem auto;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+}
+
+.padding-infor-shop{
+    padding: .3rem .8rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.padding-infor-shop:last-child{
+    margin-left: .6rem;
+}
+
+.padding-infor-shop:hover{
+    background-color: #1A94FF;
+    color: #fff;
+    border: 1px solid #1A94FF;
+}
+
+.image-infor-shop{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    border: 1px solid #e2e2e2;
+}
+
+.detail-infor-shop{
+    padding: 0 2rem;
+    display: flex;
+    color: gray;
+    border-left: 1px solid #e2e2e2;
+}
+
+.layout-comment-product{
+    margin: 0 auto 2rem auto;
+    background-color: #fff;
+    padding: 2rem;
+}
+
+.title-comment-product{
+    display: flex;
+    justify-content: center;
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 0rem 2rem 2rem 2rem;
+}
+
+.group-list-comment{
+    padding: 0 3rem 3rem 3rem;
+    height: 20rem;
+    overflow-y: scroll;
+}
+
+.btn-write-comment{
+    margin: 2rem 0 0 3rem;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    padding: .6em 1.4rem;
+    background-color: #1A94FF;
+    font-family: 'Nunito Sans', sans-serif;
+    color: #fff;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    border-radius: 2px;
+}
+
+.btn-write-comment:hover{
+    background-color: #197bd1;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: gray; 
+    border-radius: 10px;
+}
+
+.form-select{
+    background-color: #ECEFF8;
+    color: #323232;
+    border: none !important;
+    border-radius: 1px !important;
+}
+
+.form-select option{
+    background-color: #fff;
+}
+
+.modal-footer{
+    border-top: none !important;
+}
