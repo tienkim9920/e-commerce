@@ -1,0 +1,81 @@
+
+.grid-checkout-information{
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.checkout-information{
+    padding: 0 3rem;
+    color: gray;
+}
+
+.checkout-list-product{
+    background-color: #ebebeb;
+    height: 400px;
+    padding: 1rem 2rem;
+}
+
+.input-information{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #fafafa;
+    padding: .4rem .6rem;
+}
+
+.btn-checkout-information{
+    background-color: #1A94FF;
+    color: #fafafa;
+    padding: .5rem 1.3rem;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: .5px .5px 6px #f1f1f1;
+}
+
+.btn-checkout-information:hover{
+    background-color: #1a84e0;
+}
+
+.head-information-list{
+    display: grid;
+    grid-template-columns: .5fr 2.25fr .75fr .5fr 1fr;
+    border-bottom: 2px solid #b8b8b8;
+}
+
+.title-header-infor-list{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.grid-body-infor-list{
+    display: grid;
+    grid-template-columns: .5fr 2.25fr .75fr .5fr 1fr;
+    padding: 1rem 0;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.title-body-infor-list{
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px){
+    .grid-checkout-information{
+        grid-template-columns: 1fr;
+    }
+
+    .title-header-infor-list{
+        font-size: 1rem;
+    }
+
+    .checkout-list-product{
+        padding: 1rem 1rem;
+    }
+
+    .checkout-information{
+        padding: 1rem 1rem;
+    }
+}

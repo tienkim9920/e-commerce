@@ -5,6 +5,7 @@ import { CheckoutRoutingModule } from './checkout-routing.module';
 import { IndexComponent } from './index/index.component';
 import { MapComponent } from './map/map.component';
 import { InformationComponent } from './information/information.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { InformationComponent } from './information/information.component';
   ],
   imports: [
     CommonModule,
-    CheckoutRoutingModule
+    CheckoutRoutingModule,
+    NgxPayPalModule
   ]
 })
 export class CheckoutModule { }

@@ -55,6 +55,11 @@
     box-shadow: .5px .5px 6px #f1f1f1;
 }
 
+.order-button-payment a{
+    color: #fff;
+    text-decoration: none;
+}
+
 #result{
     margin-top: 1.7rem;
     font-family: 'Nunito Sans', sans-serif;

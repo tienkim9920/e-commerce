@@ -1,2 +1,60 @@
-<div>component Information</div>
-<a [routerLink]="['/checkout']">go to map</a>
+
+<div class="grid-checkout-information">
+    <div class="checkout-information">
+        <div class="mt-3">
+            <div>Họ và tên:</div>
+            <div class="mt-1">
+                <input class="input-information" type="text" placeholder="Vui lòng nhập họ tên!">
+            </div>
+        </div>
+        <div class="mt-3">
+            <div>Email:</div>
+            <div class="mt-1">
+                <input class="input-information" type="text" placeholder="Vui lòng nhập email!">
+            </div>
+        </div>
+        <div class="mt-3">
+            <div>Số điện thoại:</div>
+            <div class="mt-1">
+                <input class="input-information" type="text" placeholder="Vui lòng nhập số điện thoại!">
+            </div>
+        </div>
+        <div class="mt-3">
+            <div>Thanh toán trực tuyến:</div>
+            <h5 class="mt-2" style="font-family: 'Nunito Sans', sans-serif; cursor: pointer;" 
+                data-bs-toggle="collapse" href="#paypal">Paypal</h5>
+            <div class="collapse" id="paypal" >
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+        </div>
+        <div class="btn-checkout-information mt-4">
+            <div>Tiến Hành Thanh Toán</div>
+        </div>
+    </div>
+    <div class="checkout-list-product">
+        <div class="head-information-list">
+            <div class="title-header-infor-list">STT</div>
+            <div class="title-header-infor-list">Tên sản phẩm</div>
+            <div class="title-header-infor-list">Số lượng</div>
+            <div class="title-header-infor-list">Size</div>
+            <div class="title-header-infor-list">Giá Tiền</div>
+        </div>
+        <div class="body-information-list">
+            <div class="grid-body-infor-list">
+                <div class="title-body-infor-list">1</div>
+                <div class="title-body-infor-list">Áo thun Young Green Basic</div>
+                <div class="title-body-infor-list">2</div>
+                <div class="title-body-infor-list">L</div>
+                <div class="title-body-infor-list">70000</div>
+            </div>
+            <div class="grid-body-infor-list">
+                <div class="title-body-infor-list">1</div>
+                <div class="title-body-infor-list">Áo thun Young Green Basic</div>
+                <div class="title-body-infor-list">2</div>
+                <div class="title-body-infor-list">L</div>
+                <div class="title-body-infor-list">70000</div>
+            </div>
+        </div>
+    </div>
+</div>
+
