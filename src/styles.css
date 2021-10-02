@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-body{
-    font-family: 'Raleway', sans-serif; 
+body {
+    font-family: 'Raleway', sans-serif;
     background-color: #f1f1f1;
 }
 
@@ -9,13 +9,13 @@ html {
     scroll-behavior: smooth;
 }
 
-.view-all{
+.view-all {
     text-align: center;
     padding: .5rem;
     transition: all .2s ease-in-out;
 }
 
-.view-all:hover{
+.view-all:hover {
     background-color: #1A94FF;
     color: #fff;
 }
@@ -29,6 +29,7 @@ html {
     box-shadow: 0 0 5px rgb(0 0 0 / 20%) !important;
 }
 
+
 /* Modal */
 
 .modal.show .modal-dialog {
@@ -39,7 +40,7 @@ html {
     animation: fadeOut .5s ease;
 }
 
-.modal{
+.modal {
     top: 15%;
 }
 
@@ -51,6 +52,7 @@ html {
         transform: scale(0);
     }
 }
+
 @keyframes fadeIn {
     0% {
         transform: scale(0);
@@ -59,15 +61,35 @@ html {
         transform: scale(1);
     }
 }
+
+
 /* Modal */
 
 @keyframes showNavbar {
-    0%{
+    0% {
         transform: translateY(-20px);
         opacity: 0;
     }
-    100%{
+    100% {
         transform: translateY(0px);
         opacity: 1;
     }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.font-title {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
 }

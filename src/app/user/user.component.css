@@ -1,0 +1,40 @@
+.layout-profile {
+    margin: 0 auto;
+}
+
+.section-profile {
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 5px 4px 0 rgb(0 0 0 / 10%);
+}
+
+.section-right,
+.section-left {
+    padding: 0px 0px;
+}
+
+.login-title {
+    line-height: 15px;
+    font-size: 14px;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: rgba(0, 0, 0, .87);
+    transition: color .1s cubic-bezier(.4, 0, .2, 1);
+}
+
+.login-title:hover {
+    color: #1274ca;
+}
+
+
+/* .section-right {
+  border-left: 5px solid rgb(247, 247, 247);
+} */
+
+.section-left {
+    border-right: 5px solid rgb(247, 247, 247);
+}
+
+.active-link {
+    color: #1274ca;
+}
