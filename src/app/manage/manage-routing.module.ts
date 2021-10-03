@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
-  { path: 'manage', component: IndexComponent }
+  { path: '', component: IndexComponent }
 ];
 
 @NgModule({

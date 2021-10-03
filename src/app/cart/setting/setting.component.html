@@ -1,0 +1,25 @@
+
+<div class="layout-setting-cart container">
+    <div class="body-setting-cart">
+        <div class="width-body-setting-cart">
+            <div class="share-link">
+                <div class="mt-2" style="font-size: 1.3rem;">Link Share:</div>
+                <input type="text" value="TKNSHOSDC" disabled>
+                <div 
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="right" 
+                    title="This is copy"
+                    (click)="copyMessage('TKNSHOSDC')">
+                    <i class="copy-link fa fa-check" style="font-size: 24px; color: #1A94FF;"></i>
+                </div>
+            </div>
+            <div class="setting-status-share">
+                <div style="font-size: 1.3rem;">Trạng thái hoạt động</div>
+                <label class="switch">
+                    <input type="checkbox" [checked]="status" (change)="changeStatus()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

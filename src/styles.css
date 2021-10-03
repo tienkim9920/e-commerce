@@ -40,7 +40,11 @@ html {
 }
 
 .modal{
-    top: 15%;
+    top: 13%;
+}
+
+.modal-title{
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 @keyframes fadeOut {
@@ -68,6 +72,28 @@ html {
     }
     100%{
         transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes showLayout {
+	0%{
+		transform: scale(0);
+		opacity: 0;
+	}
+	100%{
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes moveShowLeft {
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px);
         opacity: 1;
     }
 }

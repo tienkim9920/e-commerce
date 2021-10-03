@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  currentItem = 'Hé lô';
-
   constructor() { }
 
   ngOnInit(): void {
-    window.scroll(0, 0)
+  }
+
+  handlerOrder(){
+    window.location.href = '/checkout/map'
   }
 
 }

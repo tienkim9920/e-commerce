@@ -1,6 +1,7 @@
 
 .layout-lucky{
     margin: 3rem auto;
+	animation: showLayout .5s;
 }
 
 .grid-layout-lucky{
@@ -29,8 +30,14 @@
 	border:15px solid #fff;
 	position: relative;
 	overflow: hidden;
-	transition: 5s;
+	/* transition: 5s; */
 	box-shadow: .5px .5px 6px #e2e2e2;
+}
+
+.detail-ticket-lucky{
+	font-size: .9rem;
+	font-family: 'Nunito Sans', sans-serif;
+	transform: rotate(90deg);
 }
 
 .lucky-implement div{
@@ -190,7 +197,7 @@ table th {
 }
 
 .toast.show{
-	animation: moveIn .5s;
+	animation: moveIn 1s;
 }
 
 @keyframes moveIn {

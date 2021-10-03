@@ -130,7 +130,7 @@
         </div>
         <div class="nav-option cart-header">
 
-          <div class="padding-cart-header">
+          <div class="padding-cart-header" [routerLink]="['/cart']">
             <i class="fa fa-cart-arrow-down" style="font-size: 30px;"></i>
             <span class="count-cart">0</span>
             <span style="font-size: .8rem; margin-left: .2rem;">Giỏ hàng</span>
@@ -173,7 +173,7 @@
                 <span>Giá: 70000</span>, <span>size: Lớn</span>
               </div>
             </div>
-            <div class="view-all">
+            <div class="view-all" [routerLink]="['/cart']">
               Xem tất cả
             </div>
           </div>
@@ -195,7 +195,7 @@
         <a class="a-nav-link" href="#">Sản phẩm mới</a>
       </div>
       <div class="nav-link">
-        <a [routerLink]="['/lucky']" class="a-nav-link">Vòng quay may mắn</a>
+        <a [routerLink]="['/lucky']" [routerLinkActive]="['active-link']" class="a-nav-link">Vòng quay may mắn</a>
       </div>
     </div>
   </div>
@@ -208,7 +208,7 @@
       <h3 class="h3-logo-header">Social</h3>
     </div>
     <div class="d-flex mt-2">
-      <div class="padding-cart-header">
+      <div class="padding-cart-header" [routerLink]="['/cart']">
         <i class="fa fa-cart-arrow-down" style="font-size: 30px;"></i>
         <span class="count-cart">0</span>
       </div>

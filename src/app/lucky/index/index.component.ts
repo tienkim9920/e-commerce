@@ -28,7 +28,7 @@ export class IndexComponent implements OnInit {
     this.spin = 2
 
     // Random number
-    this.number = Math.ceil(Math.random() * (3240 - 1080) + 1080);
+    this.number = Math.ceil(Math.random() * (6480 - 3240) + 3240);
     console.log(this.number)
 
     // Số vòng chia lấy phần nguyên
@@ -46,7 +46,13 @@ export class IndexComponent implements OnInit {
     const checkIndex = duVong - (duVitri * 45)
 
     // Xoay
+    this.lucky.nativeElement.style.transition = "10s";
     this.lucky.nativeElement.style.transform = "rotate(-" + this.number + "deg)";
+
+    let audio = new Audio();
+    audio.src = "../../assets/audio.mp3";
+    audio.load();
+    audio.play();
 
     if (checkIndex > 22.5){
 
@@ -54,11 +60,11 @@ export class IndexComponent implements OnInit {
         console.log(duVitri + 2)
         this.spin = 0
         this.showToast = true
-      }, 5000)
+      }, 10000)
 
       setTimeout(() => {
         this.showToast = false
-      }, 9000)
+      }, 14000)
 
     }else{
 
@@ -66,24 +72,24 @@ export class IndexComponent implements OnInit {
         console.log(duVitri + 1)
         this.spin = 0
         this.showToast = true
-      }, 5000)
+      }, 10000)
 
       setTimeout(() => {
         this.showToast = false
-      }, 9000)
+      }, 14000)
       
     }
 
   }
 
   resetLucky(){
+    
     this.spin = 2
     this.number = 0
     this.lucky.nativeElement.style.transform = "rotate(" + this.number + "deg)";
+    this.lucky.nativeElement.style.transition = "0s";
+    this.spin = 1
 
-    setTimeout(() => {
-      this.spin = 1
-    }, 5000)
   }
 
 }

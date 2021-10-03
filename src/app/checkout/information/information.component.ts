@@ -65,4 +65,7 @@ export class InformationComponent implements OnInit {
     };
   }
 
+  handlerPrev(){
+    window.location.href = '/checkout/map'
+  }
 }
