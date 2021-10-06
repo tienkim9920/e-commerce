@@ -1,7 +1,7 @@
 
 .layout-setting-cart{
     margin: 4rem auto;
-    animation: moveShowLeft 1s;
+    animation: showLayout 1s;
 }
 
 .body-setting-cart{

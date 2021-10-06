@@ -115,7 +115,15 @@ tbody tr td{
 .group-order-cart{
     margin: 3rem auto 0 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.body-order-coupon{
+    display: flex;
+    background-color: #fff;
+    width: 500px;
+    padding: 2rem;
+    box-shadow: .5px .5px 5px #e2e2e2;
 }
 
 .body-order-cart{
@@ -123,6 +131,14 @@ tbody tr td{
     width: 500px;
     padding: 1rem 2rem;
     box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.input-order-coupon{
+    padding: .4rem .6rem;
+    width: 65%;
+    outline: none;
+    border: none;
+    background-color: #f1f1f1;
 }
 
 .h4-order-cart{
@@ -151,6 +167,7 @@ tbody tr td{
     cursor: pointer;
     transition: all .3s ease-in-out;
     border-radius: 2px;
+    text-decoration: none;
 }
 
 .btn-order-cart:hover{

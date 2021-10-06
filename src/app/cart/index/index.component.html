@@ -40,8 +40,8 @@
     <div class="group-another-cart">
         <div class="header-cart">
             <div class="name-header-cart mt-1">Giỏ hàng giao dịch</div>
-            <div class="padding-icon-cart">
-                <i [routerLink]="['/cart/setting']" class="fa fa-gear icon-profile" style="font-size: 28px;"></i>
+            <div [routerLink]="['/cart/setting']" class="padding-icon-cart">
+                <i class="fa fa-gear icon-profile" style="font-size: 28px;"></i>
             </div>
         </div>
         <div class="body-cart">
@@ -134,6 +134,16 @@
     </div>
 
     <div class="group-order-cart">
+        <div>
+            <div class="body-order-coupon">
+                <input class="input-order-coupon" type="text" placeholder="Nhập mã giảm giá">
+                &nbsp;
+                &nbsp;
+                <div style="margin-top: .4rem;">
+                    <a class="btn-order-cart">Áp dụng</a>
+                </div>
+            </div>
+        </div>
         <div class="body-order-cart">
             <h4 class="h4-order-cart">Tiến hành thanh toán</h4>
             <div class="detail-order-cart">

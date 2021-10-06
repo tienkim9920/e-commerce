@@ -87,14 +87,14 @@
             <div>YG Shop</div>
             <div style="color: gray;">Online 2 giờ trước</div>
             <div class="d-flex mt-1">
-                <div class="padding-infor-shop">
+                <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
                     <i class="fa fa-comments"></i>
                     Chat Ngay
                 </div>
-                <div class="padding-infor-shop">
+                <a [routerLink]="['/shop', 123]" class="padding-infor-shop">
                     <i class="fa fa-institution"></i>
                     Xem Shop
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -108,14 +108,34 @@
         <div class="margin-infor-shop">
             <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">99%</span></div>
             <br>
-            <div>Phản hồi: <span
-                    style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">Trong vài giờ</span></div>
+            <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">Trong vài giờ</span>
+            </div>
         </div>
         <div class="margin-infor-shop">
             <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">14 tháng</span></div>
             <br>
-            <div>Người theo dõi: <span
-                    style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">26</span></div>
+            <div>Người theo dõi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">26</span></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="chat-shop" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nhắn tin cho Shop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-4">
+                        <label for="exampleFormControlTextarea1" class="form-label">Nhập tin nhắn ở đây:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Gửi Tin Nhắn</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
