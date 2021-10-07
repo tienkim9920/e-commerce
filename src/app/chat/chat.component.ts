@@ -52,4 +52,8 @@ export class ChatComponent implements OnInit {
     this.message = ''
   }
 
+  onEnter(){
+    this.sendMessage()
+  }
+
 }

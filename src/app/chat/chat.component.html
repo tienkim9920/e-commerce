@@ -20,6 +20,55 @@
                         <div style="font-size: .8rem;">Online 4 phút trước</div>
                     </div>
                 </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
                 
             </div>
             <div class="list-messages">
@@ -43,7 +92,11 @@
                 </div>
                 <div class="footer-message">
                     <div class="w-100" style="margin-top: .8rem;">
-                        <input [(ngModel)]="message" value="message" class="input-send-message" type="text" placeholder="Nhập tin nhắn ở đây!">
+                        <input 
+                            [(ngModel)]="message" 
+                            value="message" class="input-send-message" type="text" 
+                            placeholder="Nhập tin nhắn ở đây!"
+                            (keyup.enter)="onEnter()">
                     </div>
                     <div *ngIf="message" class="btn-send-message" (click)="sendMessage()">
                         <i class="fa fa-send active"></i>

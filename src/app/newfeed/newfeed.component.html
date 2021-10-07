@@ -1,0 +1,90 @@
+
+<div class="layout-newfeed container">
+    <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollUpDistance]="1.5"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScrollDown()"
+    >
+    <div class="group-product-shop" *ngFor="let item of listNewFeed">
+        <div class="header-newfeed">
+            <div><img class="image-newfeed-header" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt=""></div>
+            <div class="mt-1 ms-2">
+                <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Shop Young Green</div>
+                <div style="font-size: .9rem;">Ngày 19/11/2021</div>
+            </div>
+        </div>
+        <div class="body-newfeed">
+            <div class="pb-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At laudantium earum error, dignissimos vitae nisi modi placeat odit explicabo animi quaerat est nostrum minus autem officia eum nulla corporis cupiditate?</div>
+            <div class="hover-detail">
+                <img class="image-newfeed-body" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                <div class="title-new-product">
+                    Mới nhất
+                </div>
+                <div [routerLink]="['/detail', 123]">
+                    <i class="fa fa-eye icon-eye"></i>
+                </div>
+            </div>
+            <div class="newfeed-react">
+                <div>
+                    <i class="fa fa-heart text-danger"
+                    style="font-size: 22px; cursor: pointer;"></i>
+                    <span class="ms-1" style="font-family: 'Nunito Sans', sans-serif; font-size: 17px;">30 lượt</span>
+                </div>
+                <div class="ms-4">
+                    <i class="fa fa-comments-o"
+                    style="font-size: 22px; cursor: pointer; color: #323232;"></i>
+                    <span class="ms-1" style="font-family: 'Nunito Sans', sans-serif; font-size: 17px;">30 lượt</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between pt-3">
+            <div>Sản phẩm: {{ item.product }}</div>
+            <div>Giá: {{ item.price }}</div>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <div class="group-product-shop">
+            <div class="header-newfeed">
+                <div class="effect-skeleton" style="width: 58px; height: 55px; border-radius: 50%; background-color: #e2e2e2;">
+                    <div class="shimmer-wrapper">
+                        <div class="shimmer"></div>
+                    </div>
+                </div>
+                <div class="mt-3 ms-2">
+                    <div class="effect-skeleton" style="background-color: #e2e2e2; width: 100px; height: 12px; border-radius: 20px;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                    <div class="effect-skeleton" style="background-color: #e2e2e2; width: 70px; height: 8px; border-radius: 20px; margin-top: .5rem;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="effect-skeleton" style="background-color: #e2e2e2; width: 100%; height: 100px; margin-top: 1rem;">
+                <div class="shimmer-wrapper">
+                    <div class="shimmer"></div>
+                </div>
+            </div>
+            <div class="newfeed-react">
+                <div class="effect-skeleton" style="background-color: #e2e2e2; width: 100px; height: 12px; border-radius: 20px;">
+                    <div class="shimmer-wrapper">
+                        <div class="shimmer"></div>
+                    </div>
+                </div>
+                <div class="effect-skeleton ms-4" style="background-color: #e2e2e2; width: 100px; height: 12px; border-radius: 20px;">
+                    <div class="shimmer-wrapper">
+                        <div class="shimmer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</div>

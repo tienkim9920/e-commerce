@@ -27,7 +27,12 @@ const routes: Routes = [
   { 
     path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule) 
   },
-  { path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) }
+  { 
+    path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) 
+  },
+  { 
+    path: 'newfeed', loadChildren: () => import('./newfeed/newfeed.module').then(m => m.NewfeedModule) 
+  }
 ];
 
 @NgModule({
