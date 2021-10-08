@@ -1,0 +1,130 @@
+
+.layout-setting-cart{
+    margin: 4rem auto;
+    animation: showLayout 1s;
+}
+
+.body-setting-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.width-body-setting-cart{
+    padding: 3rem 2rem;
+    width: 600px;
+    background-color: #fff;
+    box-shadow: .5px .5px 6px #e2e2e2;
+    border-radius: 4px;
+}
+
+.share-link{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.share-link input{
+    width: 65%;
+    background-color: #F8F9FA;
+    border: none;
+    outline: none;
+    padding: .3rem .8rem;
+}
+
+.copy-link{
+    padding: .5rem .6rem;
+    background-color: #F8F9FA;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.setting-status-share{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+
+
+/* Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+  }
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 600px){
+
+    .layout-setting-cart{
+        margin: 8.5rem auto 4rem auto;
+    }
+
+    .share-link{
+        display: block;
+    }
+    
+    .copy-link{
+        margin-top: 1rem;
+    }
+
+    .share-link input{
+        margin-top: 1rem;
+    }
+}

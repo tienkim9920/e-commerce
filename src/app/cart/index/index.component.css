@@ -1,0 +1,279 @@
+
+.layout-cart{
+    margin: 4rem auto;
+}
+
+.group-my-cart{
+    margin: auto auto;
+    background-color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.group-another-cart{
+    margin: 3rem auto 0 auto;
+    background-color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.header-cart{
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.name-header-cart{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.padding-icon-cart{
+    padding: .5rem .8rem .4rem .8rem;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.padding-icon-cart:hover{
+    background-color: #e2e2e2;
+}
+
+.body-cart{
+    padding: 2rem;
+    width: 100%;
+}
+
+table{
+    width: 100%;
+}
+
+thead{
+    background-color: #F8F9FA;
+}
+
+thead tr th{
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+tbody tr{
+    border-bottom: 1px solid #f1f1f1;
+}
+
+tbody tr td{
+    text-align: center;
+    padding: 1rem 2rem;
+}
+
+.img-body-cart{
+    width: 65px;
+}
+
+.input-count-cart{
+    padding: .2rem .5rem;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.group-ticket-cart{
+    margin: 3rem auto 0 auto;
+    background-color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.icon-ticket{
+    width: 75px;
+    height: 75px;
+}
+
+.body-ticket-cart{
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-body-ticket{
+    font-size: 1.2rem;
+    font-family: 'Nunito Sans', sans-serif;
+    margin-top: 1rem;
+}
+
+.center-body-ticket{
+    margin-top: .7rem;
+    margin-left: 1rem;
+}
+
+.center-body-ticket div:first-child{
+    font-size: 1.1rem;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.group-order-cart{
+    margin: 3rem auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.body-order-coupon{
+    display: flex;
+    background-color: #fff;
+    width: 500px;
+    padding: 2rem;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.body-order-cart{
+    background-color: #fff;
+    width: 500px;
+    padding: 1rem 2rem;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.input-order-coupon{
+    padding: .4rem .6rem;
+    width: 65%;
+    outline: none;
+    border: none;
+    background-color: #f1f1f1;
+}
+
+.h4-order-cart{
+    padding: .5rem 1rem;
+    background-color: #F8F9FA;
+    font-family: 'Nunito Sans', sans-serif;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.detail-order-cart{
+    display: flex;
+    justify-content: space-between;
+    padding: .7rem 1rem;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.btn-order-cart{
+    margin-top: 1rem;
+    text-align: center;
+    padding: .5rem 2rem;
+    background-color: #1A94FF;
+    font-size: 1.1rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.btn-order-cart:hover{
+    background-color: #1a84e0;
+}
+
+.btn-click-ticket{
+    padding: .5rem 4rem;
+    background-color: #1A94FF;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-click-ticket:hover{
+    background-color: #1a84e0;
+}
+
+.list-order-ticket{
+    overflow-y: scroll;
+    height: 300px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #b6b6b6; 
+    border-radius: 10px;
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #b6b6b6; 
+    border-radius: 10px;
+}
+
+
+.warning-info-ticket{
+    background-color: #FEF7E7;
+    color: gray;
+    font-size: .95rem;
+    padding: .5rem 1rem;
+}
+
+.box-order-ticket{
+    display: flex;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    border: 1px solid #f1f1f1;
+    cursor: pointer;
+    box-shadow: .5px .5px 5px #e2e2e2;
+    transition: all .3s ease-in-out;
+}
+
+.box-order-ticket:hover{
+    border-left: 13px solid #1A94FF;
+}
+
+.ticket{
+    color: #fff;
+    padding: .2rem .6rem;
+    width: 100%;
+    font-size: .95rem;
+}
+
+.ticket.active{
+    background-color: #1A94FF;
+}
+
+.ticket.unactive{
+    background-color: #df3a3a;
+}
+
+@media only screen and (max-width: 600px){
+    .layout-cart{
+        margin: 7rem auto 4rem auto;
+    }
+
+    .body-cart {
+        padding: 1rem 0;
+        display: block;
+        position: relative;
+        overflow-x: auto;
+    }
+
+    .header-cart{
+        padding: 1rem;
+    }
+
+    thead tr th{
+        padding: 1rem;
+    }
+    
+    tbody tr td{
+        padding: 1rem;
+    }
+
+    .left-body-ticket{
+        margin-top: 0rem;
+    }
+
+    .body-ticket-cart{
+        padding: 1rem;
+        display: block;
+    }
+}

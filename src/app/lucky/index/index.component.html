@@ -6,14 +6,14 @@
                 <button class="spin active" *ngIf="spin === 0" (click)="resetLucky()">Lại</button>
                 <span class="arrow"></span>
                 <div class="lucky-implement" #lucky>
-                    <div class="one" data-cell>1</div>
-                    <div class="two" data-cell>2</div>
-                    <div class="three" data-cell>3</div>
-                    <div class="four" data-cell>4</div>
-                    <div class="five" data-cell>5</div>
-                    <div class="six" data-cell>6</div>
-                    <div class="seven" data-cell>7</div>
-                    <div class="eight" data-cell>8</div>
+                    <div class="one"><span class="detail-ticket-lucky">Giảm Giá 10%</span></div>
+                    <div class="two"><span class="detail-ticket-lucky">Giảm Giá 20%</span></div>
+                    <div class="three"><span class="detail-ticket-lucky">Giảm Giá 30%</span></div>
+                    <div class="four"><span class="detail-ticket-lucky">Giảm Giá 10%</span></div>
+                    <div class="five"><span class="detail-ticket-lucky">Giảm Giá 5%</span></div>
+                    <div class="six"><span class="detail-ticket-lucky">Giảm Giá 5%</span></div>
+                    <div class="seven"><span class="detail-ticket-lucky">Giảm Giá 5%</span></div>
+                    <div class="eight"><span class="detail-ticket-lucky">Giảm Giá 50%</span></div>
                 </div>
             </div>
         </div>
@@ -47,61 +47,11 @@
                             <td>Maria Anders</td>
                             <td>Germany</td>
                         </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="position-fixed top-0 end-0" style="margin-top: 4rem;">
+        <div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
             <div id="liveToast" [ngClass]="showToast ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="toast-header">
                 <strong class="me-auto">Thông báo</strong>

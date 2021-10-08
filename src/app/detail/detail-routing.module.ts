@@ -4,7 +4,7 @@ import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
   {
-    path: 'detail/:id', component: IndexComponent
+    path: ':id', component: IndexComponent
   },
 ];
 

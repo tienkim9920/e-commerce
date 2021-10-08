@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './manages.component.html',
   styleUrls: ['./manages.component.css']
 })
+
 export class ManagesComponent implements OnInit {
 
   @ViewChild('sticky', { read: ElementRef }) sticky!: ElementRef<any>;

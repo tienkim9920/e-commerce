@@ -1,0 +1,128 @@
+
+.title-shop{
+    padding: 2rem 0 .7rem 0;
+    font-size: 2rem;
+    border-bottom: 4px solid #1A94FF;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.layout-chung-shop{
+    background-color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.layout-shop{
+    margin: 4rem auto;
+    /* animation: showNavbar .5s; */
+}
+
+.section-information-shop{
+    padding: 2rem;
+    margin: 0 auto 2rem auto;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+}
+
+.padding-infor-shop{
+    padding: .3rem .8rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    text-decoration: none;
+    color: #323232;
+}
+
+.padding-infor-shop:hover{
+    background-color: #1A94FF;
+    color: #fff;
+    border: 1px solid #1A94FF;
+}
+
+.image-infor-shop{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    border: 1px solid #e2e2e2;
+}
+
+.detail-infor-shop{
+    padding: 0 2rem;
+    display: flex;
+    color: gray;
+    border-left: 1px solid #e2e2e2;
+}
+
+.margin-infor-shop{
+    margin-top: .5rem;
+    margin-left: 2rem;
+}
+
+.section-coupon-shop{
+    margin: auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.box-coupon-shop{
+    margin: auto;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: .5px .5px 5px #e2e2e2;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+}
+
+.box-coupon-shop:hover{
+    transform: translateY(-7px);
+}
+
+h6{
+    padding: 1rem;
+    text-align: center;
+    background-color: #1A94FF;
+    color: #fff;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.image-coupon{
+    width: 250px;
+    height: auto;
+    filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 1px 3px);
+}
+
+@media only screen and (max-width: 600px){
+    .layout-shop{
+        margin: 8rem auto 4rem auto;
+    }
+
+    .section-information-shop{
+        display: block;
+    }
+
+    .detail-infor-shop{
+        border-left: none;
+    }
+    
+    .detail-infor-shop{
+        padding: 0;
+    }
+
+    .detail-infor-shop{
+        display: block;
+        margin-top: 2rem;
+    }
+
+    .margin-infor-shop{
+        margin-left: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .padding-infor-shop{
+        padding: .3rem;
+    }
+
+}

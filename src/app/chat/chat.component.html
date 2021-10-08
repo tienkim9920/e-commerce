@@ -1,0 +1,111 @@
+
+<div class="layout-chat container">
+    <div class="group-chat">
+        <div class="title-chat">
+            <h6><i class="fa fa-bell-o"></i> Tất cả tin nhắn</h6>
+        </div>
+        <div class="grid-chat">
+            <div class="list-chats">
+                <div class="box-chats active">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                <div class="box-chats">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>  
+                
+            </div>
+            <div class="list-messages">
+                <div class="header-list-message">
+                    <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
+                        <div style="font-size: .8rem;">Online 4 phút trước</div>
+                    </div>
+                </div>
+                <div class="body-list-message" #scrollbottom>
+                    <div *ngFor="let item of listMessage">
+                        <div [ngClass]="item.category === 'send' ? 'group-message-send' : 'group-message-receive'">
+                            <div class="message">
+                                <div [ngClass]="item.category === 'send' ? 'message-send' : 'message-receive'">
+                                    {{ item.message }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-message">
+                    <div class="w-100" style="margin-top: .8rem;">
+                        <input 
+                            [(ngModel)]="message" 
+                            value="message" class="input-send-message" type="text" 
+                            placeholder="Nhập tin nhắn ở đây!"
+                            (keyup.enter)="onEnter()">
+                    </div>
+                    <div *ngIf="message" class="btn-send-message" (click)="sendMessage()">
+                        <i class="fa fa-send active"></i>
+                    </div>
+                    <div *ngIf="!message" class="btn-send-message">
+                        <i class="fa fa-send unactive"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
