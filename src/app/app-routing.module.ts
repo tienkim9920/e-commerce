@@ -10,9 +10,6 @@ const routes: Routes = [
     path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'manage', loadChildren: () => import('./manage/manage.module').then(m => m.ManageModule)
-  },
-  {
     path: 'lucky', loadChildren: () => import('./lucky/lucky.module').then(m => m.LuckyModule)
   },
   {
