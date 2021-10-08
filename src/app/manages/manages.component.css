@@ -1,0 +1,167 @@
+*{
+  box-sizing: inherit;
+}
+
+html{
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Responsive */
+
+.grid__full-width{
+  width: 100%;
+}
+
+.grid__row{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -12px;
+  margin-right: -12px;
+  justify-content: space-between;
+}
+
+/* Animation */
+
+@keyframes fadeIn {
+  0%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 1;
+  }
+}
+
+@keyframes growth {
+  from{
+      transform: scale(var(--growth-from));
+  }
+  to{
+      transform: scale(var(--growth-to));
+  }
+}
+
+/* Main css */
+
+
+.app__container{
+  background-color: #F5F5F5;
+
+}
+
+/* Side bar */
+
+::-webkit-scrollbar{
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: rgb(160, 160, 160);
+  border-radius: 6px;
+}
+
+.grid__column-sidebar{
+  width: 19%;
+  border-radius: 2px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.sidebar{
+  width: 100%;
+  background-color: white;
+  outline: none;
+  border-radius: 2px;
+  margin-top: 16px;
+}
+
+.sidebar-menu{
+  padding: 8px 18px;
+}
+
+.sidebar-menu-box{
+  list-style: none;
+  cursor: pointer;
+}
+
+.sidebar-menu-item{
+  width: 100%;
+  list-style: none;
+  padding: 8px 0 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-menu-item-font{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-menu-item-icon{
+  margin-right: 8px;
+  color: #999999;
+  width: 16px;
+}
+
+.sidebar-menu-item-label{
+  color: #999999;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sidebar-menu-item-icon-dropdown{
+  font-size: 18px;
+  color: #999999;
+  margin-left: 8px;
+}
+
+/* .collapse{
+  padding: 0 0 0 25px;
+} */
+
+.sidebar-submenu{
+  padding: 2px 12px 8px 25px;
+}
+
+.sidebar-submenu-item{
+  list-style: none;
+}
+
+.sidebar-submenu-item-link{
+  position: relative;
+  text-decoration: none;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 6px 0px;
+  display: block;
+  transition: right linear 0.1s;
+  right: 0;
+}
+
+.sidebar-submenu-item-link:hover{
+  color: #1A94FF;
+  right: -4px;
+}
+
+.sidebar-submenu-item-link-active{
+  color: #1A94FF;
+  right: -4px;
+}
+
+/* Grid content right */
+
+.grid__column-content{
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 80%;
+  float: right;
+}
+
+.content-wrapper{
+  margin-top: 16px;
+}

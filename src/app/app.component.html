@@ -130,11 +130,13 @@
         </div>
         <div class="nav-option cart-header">
 
-          <div class="padding-cart-header">
-            <i class="fa fa-cart-arrow-down" style="font-size: 30px;"></i>
-            <span class="count-cart">0</span>
-            <span style="font-size: .8rem; margin-left: .2rem;">Giỏ hàng</span>
-          </div>
+          <a class="wrap-link-cart-header" [routerLink]="['/cart']">
+            <div class="padding-cart-header">
+              <i class="fa fa-cart-arrow-down" style="font-size: 30px;"></i>
+              <span class="count-cart">0</span>
+              <span style="font-size: .8rem; margin-left: .2rem;">Giỏ hàng</span>
+            </div>
+          </a>
 
           <div class="sub-menu">
             <!-- <div class="text-center">
@@ -174,7 +176,7 @@
               </div>
             </div>
             <div class="view-all">
-              Xem tất cả
+              <a class="link-sub-notification" [routerLink]="['/cart']">Xem tất cả</a>
             </div>
           </div>
 
@@ -196,6 +198,9 @@
       </div>
       <div class="nav-link">
         <a [routerLink]="['/lucky']" class="a-nav-link">Vòng quay may mắn</a>
+      </div>
+      <div class="nav-link">
+        <a [routerLink]="['/manages/product/list/all']" class="a-nav-link">Shop của bạn</a>
       </div>
     </div>
   </div>

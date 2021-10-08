@@ -10,13 +10,13 @@ const routes: Routes = [
     path: '', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: '', loadChildren: () => import('./manage/manage.module').then(m => m.ManageModule)
-  },
-  {
     path: '', loadChildren: () => import('./lucky/lucky.module').then(m => m.LuckyModule)
   },
   {
     path: '', loadChildren: () => import('./detail/detail.module').then(m => m.DetailModule)
+  },
+  {
+    path: 'manages', loadChildren: () => import('./manages/manages.module').then(m => m.ManagesModule)
   },
 ];
 

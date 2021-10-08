@@ -1,0 +1,19 @@
+<div class="tabs">
+  <div class="tabs__tab" [routerLink]="['/manages/product/list/all']"  [routerLinkActive]="['tabs__tab-active']" [routerLinkActiveOptions]="{exact: true}">
+    <a class="tabs__tab-link">Tất cả</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/product/list/onsale']"  [routerLinkActive]="['tabs__tab-active']">
+    <a class="tabs__tab-link">Đang bán</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/product/list/offsale']"  [routerLinkActive]="['tabs__tab-active']">
+    <a class="tabs__tab-link">Giảm giá</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/product/list/outsale']"  [routerLinkActive]="['tabs__tab-active']">
+    <a class="tabs__tab-link">Hết hàng</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/product/list/hiddensale']"  [routerLinkActive]="['tabs__tab-active']">
+    <a class="tabs__tab-link">Đã ẩn</a>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

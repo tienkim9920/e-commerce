@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: 'app-manages',
+  templateUrl: './manages.component.html',
+  styleUrls: ['./manages.component.css']
 })
-export class IndexComponent implements OnInit {
+export class ManagesComponent implements OnInit {
+
+  @ViewChild('sticky', { read: ElementRef }) sticky!: ElementRef<any>;
 
   id: any
 

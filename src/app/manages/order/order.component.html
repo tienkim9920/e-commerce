@@ -1,0 +1,19 @@
+<div class="tabs">
+  <div class="tabs__tab" [routerLink]="['/manages/order/all']"  [routerLinkActive]="['tabs__tab-active']" [routerLinkActiveOptions]="{exact: true}">
+    <a class="tabs__tab-link">Tất cả</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/order/pending']"  [routerLinkActive]="['tabs__tab-active']" [routerLinkActiveOptions]="{exact: true}">
+    <a class="tabs__tab-link">Chờ xác nhận</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/order/shipping']"  [routerLinkActive]="['tabs__tab-active']" [routerLinkActiveOptions]="{exact: true}">
+    <a class="tabs__tab-link">Đang giao</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/order/completed']"  [routerLinkActive]="['tabs__tab-active']" [routerLinkActiveOptions]="{exact: true}">
+    <a class="tabs__tab-link">Đã giao</a>
+  </div>
+  <div class="tabs__tab" [routerLink]="['/manages/order/cancel']"  [routerLinkActive]="['tabs__tab-active']" [routerLinkActiveOptions]="{exact: true}">
+    <a class="tabs__tab-link">Đã hủy</a>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
