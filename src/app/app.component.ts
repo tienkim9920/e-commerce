@@ -43,7 +43,7 @@ export class AppComponent {
     }
 
     this.subSearch = true
-    
+
     // debounce search
     this.searchUpdate.next(value);
   }

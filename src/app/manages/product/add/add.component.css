@@ -1,0 +1,165 @@
+.product-content-title{
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.previous a{
+  color: #999999;
+  text-decoration: none;
+}
+
+.previous a:hover{
+  color: black;
+}
+
+.product-edit-wrapper{
+  background-color: white;
+}
+
+.product-grid{
+  width: 1000px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.product-grid__row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* col left  */
+
+.product-grid__col-left{
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 67%;
+}
+
+.product-edit__heading{
+  margin: 16px 0px;
+}
+
+.product-edit__heading-label{
+  color: #999999;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.product-edit__section{
+  position: relative;
+}
+
+.product-edit__btn{
+  position: absolute;
+  right: 24px;
+  background-color: #1A94FF;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+.product-edit__info{
+  padding: 10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-edit__item{
+  width: 50%;
+  padding-right: 24px;
+}
+
+.product-edit__item-label{
+  display: block;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #999999;
+  font-weight: 600;
+}
+.product-edit__item-input{
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  margin-bottom: 24px;
+  border-radius: 3px;
+}
+
+.product-edit__item-select{
+  height: 34.8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+
+}
+
+
+/* col right */
+
+.product-grid__col-right{
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 33%;
+}
+
+.product-file__section{
+
+}
+
+.product-file__info{
+  padding: 10px 0px;
+}
+
+.product-file__item{
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+.product-file__item-label{
+  display: block;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #999999;
+  font-weight: 600;
+}
+
+.product-file__upload{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(242, 244, 245);
+  padding: 10px;
+}
+
+.product-file__upload-img{
+  width: 50%;
+}
+
+.product-file__upload-btn{
+  display: none;
+}
+
+.product-file__upload-btn-label{
+  border: none;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 8px 16px;
+  margin: 8px 0;
+  outline: none;
+  background-color: #1A94FF;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.product-file__upload-label{
+  font-weight: 600;
+  color: #999999;
+  font-size: 14px;
+}
+
+

@@ -1,0 +1,123 @@
+<div class="app__container">
+  <div class="grid container">
+      <div class="grid__row">
+          <div class="grid__column-sidebar" #sticky>
+            <nav class="sidebar">
+              <ul class="sidebar-menu">
+
+                <li class="sidebar-menu-box">
+                  <div class="sidebar-menu-item" data-bs-toggle="collapse" data-bs-target="#qlsp" aria-expanded="true"
+                  aria-controls="qlsp">
+                    <div class="sidebar-menu-item-font">
+                      <i class="sidebar-menu-item-icon fa fa-shopping-bag"></i>
+                      <span class="sidebar-menu-item-label">Quản lý sản phẩm</span>
+                    </div>
+                    <i class="sidebar-menu-item-icon-dropdown fa fa-angle-down"></i>
+                  </div>
+                  <ul id="qlsp" class="sidebar-submenu collapse show" data-bs-parent="#accordionExample">
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/product/list/all']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Tất cả sản phẩm</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link"  [routerLink]="['/manages/product/add']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Thêm sản phẩm</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link"  [routerLink]="['/manages/product/category']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Loại sản phẩm</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link"  [routerLink]="['/manages/product/addcategory']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Thêm loại sản phẩm</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-menu-box">
+                  <div class="sidebar-menu-item" data-bs-toggle="collapse" data-bs-target="#qldh" aria-expanded="true"
+                  aria-controls="qldh">
+                    <div class="sidebar-menu-item-font">
+                      <i class="sidebar-menu-item-icon fa fa-truck"></i>
+                      <span class="sidebar-menu-item-label">Quản lý đơn hàng</span>
+                    </div>
+                    <i class="sidebar-menu-item-icon-dropdown fa fa-angle-down"></i>
+                  </div>
+                  <ul id="qldh" class="sidebar-submenu collapse show" data-bs-parent="#accordionExample">
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/order/all']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Tất cả đơn hàng</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/order/cancel']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Đơn hủy</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-menu-box">
+                  <div class="sidebar-menu-item" data-bs-toggle="collapse" data-bs-target="#qlbh" aria-expanded="true"
+                  aria-controls="qlbh">
+                    <div class="sidebar-menu-item-font">
+                      <i class="sidebar-menu-item-icon fa fa-bar-chart"></i>
+                      <span class="sidebar-menu-item-label">Quản lý bán hàng</span>
+                    </div>
+                    <i class="sidebar-menu-item-icon-dropdown fa fa-angle-down"></i>
+                  </div>
+                  <ul id="qlbh" class="sidebar-submenu collapse show" data-bs-parent="#accordionExample">
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/datacenter/statistic']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Thống kê dữ liệu</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/datacenter/coupon']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Mã giảm giá</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-menu-box">
+                  <div class="sidebar-menu-item" data-bs-toggle="collapse" data-bs-target="#qls" aria-expanded="true"
+                  aria-controls="qls">
+                    <div class="sidebar-menu-item-font">
+                      <i class="sidebar-menu-item-icon fa fa-building"></i>
+                      <span class="sidebar-menu-item-label">Quản lý shop</span>
+                    </div>
+                    <i class="sidebar-menu-item-icon-dropdown fa fa-angle-down"></i>
+                  </div>
+                  <ul id="qls" class="sidebar-submenu collapse show" data-bs-parent="#accordionExample">
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/setting/rating']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Đánh giá</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/setting/profile']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Hồ sơ</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                      <a class="sidebar-submenu-item-link" [routerLink]="['/manages/message']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Tin nhắn</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-menu-box">
+                  <div class="sidebar-menu-item" data-bs-toggle="collapse" data-bs-target="#tls" aria-expanded="true"
+                  aria-controls="tls">
+                    <div class="sidebar-menu-item-font">
+                      <i class="sidebar-menu-item-icon fa fa-cog"></i>
+                      <span class="sidebar-menu-item-label">Thiết lập shop</span>
+                    </div>
+                    <i class="sidebar-menu-item-icon-dropdown fa fa-angle-down"></i>
+                  </div>
+                  <ul id="tls" class="sidebar-submenu collapse show" data-bs-parent="#accordionExample">
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/setting/address']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Địa chỉ</a>
+                    </li>
+                    <li class="sidebar-submenu-item">
+                        <a class="sidebar-submenu-item-link" [routerLink]="['/manages/setting/account']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Tài khoản</a>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid__column-content">
+            <div class="content-wrapper">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>

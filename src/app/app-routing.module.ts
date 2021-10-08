@@ -7,13 +7,13 @@ const routes: Routes = [
     path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'detail', loadChildren: () => import('./detail/detail.module').then(m => m.DetailModule)
+  },
+  {
     path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
     path: 'lucky', loadChildren: () => import('./lucky/lucky.module').then(m => m.LuckyModule)
-  },
-  {
-    path: 'detail', loadChildren: () => import('./detail/detail.module').then(m => m.DetailModule)
   },
   {
     path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule)
@@ -21,15 +21,18 @@ const routes: Routes = [
   {
     path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
   },
-  { 
-    path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule) 
+  {
+    path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
   },
-  { 
-    path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) 
+  {
+    path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
   },
-  { 
-    path: 'newfeed', loadChildren: () => import('./newfeed/newfeed.module').then(m => m.NewfeedModule) 
-  }
+  {
+    path: 'manages', loadChildren: () => import('./manages/manages.module').then(m => m.ManagesModule)
+  },
+  {
+    path: 'newfeed', loadChildren: () => import('./newfeed/newfeed.module').then(m => m.NewfeedModule)
+  },
 ];
 
 @NgModule({

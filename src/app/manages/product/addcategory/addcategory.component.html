@@ -1,0 +1,117 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb product-content-title">
+    <li class="breadcrumb-item previous"><a [routerLink]="['/manages/product/category']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Loại sản phẩm</a></li>
+    <li class="breadcrumb-item" aria-current="page">Thêm loại sản phẩm</li>
+  </ol>
+</nav>
+
+<div class="product-edit-wrapper">
+  <div class="product-grid">
+    <div class="product-grid__row">
+      <div class="product-grid__col-left">
+        <div class="product-edit__heading">
+          <p class="product-edit__heading-label">
+            Thông tin sản phẩm
+          </p>
+        </div>
+        <div class="product-edit__section">
+          <div class="product-edit__info">
+
+            <div class="product-edit__item">
+              <label for="product-name" class="product-edit__item-label">
+                Tên sản phẩm
+              </label>
+              <input type="text" id="product-name" class="product-edit__item-input" placeholder="Nhập tên sản phẩm">
+            </div>
+
+            <div class="product-edit__item">
+              <label for="product-price" class="product-edit__item-label">
+                Giá sản phẩm
+              </label>
+              <input type="text" id="product-price"  class="product-edit__item-input" placeholder="Nhập sản phẩm">
+            </div>
+
+            <div class="product-edit__item">
+              <label for="product-quantity" class="product-edit__item-label">
+                Số lượng sản phẩm
+              </label>
+              <input type="number" id="product-quantity"  class="product-edit__item-input" placeholder="Số lượng của sản phẩm">
+            </div>
+
+            <div class="product-edit__item">
+              <label for="product-desc" class="product-edit__item-label">
+                Mô tả sản phẩm
+              </label>
+              <input type="text" id="product-desc"  class="product-edit__item-input" placeholder="Mô tả sản phẩm">
+            </div>
+
+            <div class="product-edit__item">
+              <label class="product-edit__item-label">
+                Loại sản phẩm
+              </label>
+              <select class="form-select product-edit__item-select" aria-label="Default select example">
+                <option selected>Chọn loại sản phẩm</option>
+                <option value="1">Áo</option>
+                <option value="2">Quần</option>
+                <option value="3">Phụ kiện</option>
+              </select>
+            </div>
+
+            <div class="product-edit__item">
+              <label class="product-edit__item-label">
+                Giới tính
+              </label>
+              <select class="form-select product-edit__item-select" aria-label="Default select example">
+                <option selected>Chọn giới tính</option>
+                <option value="1">Nam</option>
+                <option value="2">Nữ</option>
+                <option value="3">Unisex</option>
+              </select>
+            </div>
+
+          </div>
+
+          <button type="button" class="btn product-edit__btn" id="">Thêm sản phẩm</button>
+
+        </div>
+      </div>
+
+      <div class="product-grid__col-right">
+        <div class="product-edit__heading">
+          <p class="product-edit__heading-label">
+            File mô tả
+          </p>
+        </div>
+        <div class="product-file__section">
+          <div class="product-file__info">
+
+            <div class="product-file__item">
+              <label class="product-file__item-label">
+                Hình ảnh sản phẩm
+              </label>
+              <div class="product-file__upload">
+                <img src="https://sirv.sirv.com/website/img/ico_1_up.svg" alt="" class="product-file__upload-img">
+                <input type="file" id="file-image" class="product-file__upload-btn" placeholder="Tải hình ảnh">
+                <label for="file-image" class="product-file__upload-btn-label">Tải hình ảnh</label>
+                <label for="file-image" class="product-file__upload-label">Chọn hình ảnh từ trong máy</label>
+              </div>
+            </div>
+
+            <div class="product-file__item">
+              <label class="product-file__item-label">
+                Video sản phẩm
+              </label>
+              <div class="product-file__upload">
+                <img src="https://sirv.sirv.com/website/img/ico_1_up.svg" alt="" class="product-file__upload-img">
+                <input type="file" id="file-video" class="product-file__upload-btn" placeholder="Tải video">
+                <label for="file-video" class="product-file__upload-btn-label">Tải video</label>
+                <label for="file-video" class="product-file__upload-label">Chọn video từ trong máy</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
