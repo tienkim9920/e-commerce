@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-body{
-    font-family: 'Raleway', sans-serif; 
+body {
+    font-family: 'Raleway', sans-serif;
     background-color: #f1f1f1;
 }
 
@@ -9,13 +9,13 @@ html {
     scroll-behavior: smooth;
 }
 
-.view-all{
+.view-all {
     text-align: center;
     padding: .5rem;
     transition: all .2s ease-in-out;
 }
 
-.view-all:hover{
+.view-all:hover {
     background-color: #1A94FF;
     color: #fff;
 }
@@ -40,11 +40,11 @@ html {
     animation: fadeOut .5s ease;
 }
 
-.modal{
+.modal {
     top: 13%;
 }
 
-.modal-title{
+.modal-title {
     font-family: 'Nunito Sans', sans-serif;
 }
 
@@ -56,6 +56,7 @@ html {
         transform: scale(0);
     }
 }
+
 @keyframes fadeIn {
     0% {
         transform: scale(0);
@@ -64,36 +65,38 @@ html {
         transform: scale(1);
     }
 }
+
+
 /* Modal */
 
 @keyframes showNavbar {
-    0%{
+    0% {
         transform: translateY(-20px);
         opacity: 0;
     }
-    100%{
+    100% {
         transform: translateY(0px);
         opacity: 1;
     }
 }
 
 @keyframes showLayout {
-	0%{
-		transform: scale(0);
-		opacity: 0;
-	}
-	100%{
-		transform: scale(1);
-		opacity: 1;
-	}
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 @keyframes moveShowLeft {
-    0%{
+    0% {
         transform: translateX(100px);
         opacity: 0;
     }
-    100%{
+    100% {
         transform: translateX(0px);
         opacity: 1;
     }
@@ -101,13 +104,14 @@ html {
 
 
 /* Css Home */
-.group-grid-product-home{
+
+.group-grid-product-home {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     /* gap: 5px; */
 }
 
-.title-discount{
+.title-discount {
     padding: .3rem;
     background-color: #ffae00;
     position: absolute;
@@ -117,7 +121,7 @@ html {
     text-align: center;
 }
 
-.title-discount::after{
+.title-discount::after {
     content: '';
     position: absolute;
     top: 3.56rem;
@@ -127,7 +131,7 @@ html {
     border-color: #ffae00 transparent transparent transparent;
 }
 
-.title-new-product{
+.title-new-product {
     padding: .3rem;
     background-color: #1A94FF;
     position: absolute;
@@ -138,7 +142,7 @@ html {
     text-align: center;
 }
 
-.title-new-product::after{
+.title-new-product::after {
     content: '';
     position: absolute;
     top: 3.56rem;
@@ -148,16 +152,16 @@ html {
     border-color: #1A94FF transparent transparent transparent;
 }
 
-.image-flash-sale{
+.image-flash-sale {
     width: 250px;
     height: 250px;
 }
 
-.section-home-product{
+.section-home-product {
     padding-top: 3rem;
 }
 
-.list-product-home{
+.list-product-home {
     position: relative;
     padding: .5rem 0;
     text-decoration: none;
@@ -170,12 +174,12 @@ html {
     box-shadow: .5px .5px 6px #e4e4e4;
 }
 
-.list-product-home:hover{
+.list-product-home:hover {
     transform: translateY(-7px);
     color: #323232;
 }
 
-.title-home-product{
+.title-home-product {
     background-color: #fff;
     padding: 1rem 2rem;
     font-size: 1.5rem;
@@ -184,14 +188,14 @@ html {
     box-shadow: .5px .5px 6px #e4e4e4;
 }
 
-.btn-xemthem-home{
+.btn-xemthem-home {
     margin: 3rem 0 2rem 0;
     display: flex;
     justify-content: center;
     cursor: pointer;
 }
 
-.view-continue{
+.view-continue {
     background-color: #1A94FF;
     color: #fff;
     padding: .5rem 6rem;
@@ -199,6 +203,24 @@ html {
     border-radius: 5px;
 }
 
-.view-continue:hover{
+.view-continue:hover {
     background-color: #1274c9;
+}
+
+.font-title {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

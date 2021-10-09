@@ -1,0 +1,5 @@
+.section-content:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    transition: all .5s ease-in;
+}

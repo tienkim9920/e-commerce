@@ -1,0 +1,66 @@
+.layout-search {
+    margin: 0 auto;
+}
+
+.section-search {
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 5px 4px 0 rgb(0 0 0 / 10%);
+}
+
+.mat-h1,
+.mat-headline,
+.mat-typography h1 {
+    margin: 0px;
+    line-height: 20px;
+    display: block;
+    color: rgb(36, 36, 36);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.section-right,
+.section-left {
+    padding: 0px 0px;
+}
+
+.section-right {
+    border-left: 3px solid rgb(247, 247, 247);
+}
+
+.section-item {
+    border-bottom: 3px solid rgb(247, 247, 247);
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.example-right-align {
+    -moz-appearance: textfield;
+}
+
+.btn-otp {
+    color: white;
+    cursor: pointer;
+    background-color: #3c71bb;
+    background-image: linear-gradient(315deg, #6a93cb 10%, #3c71bb 80%);
+    transition: all .4s ease-in-out;
+    opacity: 0.8;
+}
+
+.btn-otp:hover {
+    opacity: 1;
+    background-color: #3f51b5;
+}
+
+.mat-tab-body-content {
+    overflow: hidden;
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #1274ca;
+}
