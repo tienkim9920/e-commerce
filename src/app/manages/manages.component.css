@@ -48,7 +48,6 @@ html{
 
 .app__container{
   background-color: #F5F5F5;
-
 }
 
 /* Side bar */
@@ -160,6 +159,7 @@ html{
   padding-right: 12px;
   width: 80%;
   float: right;
+  animation: showNavbar .5s;
 }
 
 .content-wrapper{

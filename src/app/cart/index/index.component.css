@@ -23,6 +23,7 @@
 }
 
 .name-header-cart{
+    padding: .9rem 0 .6rem 0;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -119,7 +120,6 @@ tbody tr td{
 }
 
 .body-order-coupon{
-    display: flex;
     background-color: #fff;
     width: 500px;
     padding: 2rem;
@@ -135,13 +135,14 @@ tbody tr td{
 
 .input-order-coupon{
     padding: .4rem .6rem;
-    width: 65%;
+    width: 100%;
     outline: none;
     border: none;
     background-color: #f1f1f1;
 }
 
 .h4-order-cart{
+    font-size: 1.3rem;
     padding: .5rem 1rem;
     background-color: #F8F9FA;
     font-family: 'Nunito Sans', sans-serif;
@@ -160,7 +161,7 @@ tbody tr td{
 .btn-order-cart{
     margin-top: 1rem;
     text-align: center;
-    padding: .5rem 2rem;
+    padding: .7rem 2rem;
     background-color: #1A94FF;
     font-size: 1.1rem;
     color: #fff;
@@ -275,5 +276,26 @@ tbody tr td{
     .body-ticket-cart{
         padding: 1rem;
         display: block;
+    }
+
+    .group-order-cart{
+        display: block;
+    }
+
+    .body-order-coupon{
+        width: 100%;
+    }
+
+    .body-order-cart{
+        margin-top: 3rem;
+        width: 100%;
+    }
+
+    .btn-order-cart{
+        width: 100%;
+    }
+
+    .input-order-coupon{
+        width: 100%;
     }
 }

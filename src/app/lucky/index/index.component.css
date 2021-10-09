@@ -93,7 +93,7 @@
 
 .arrow{
 	position: absolute;
-	top: -7.5%;
+	top: 7.5%;
 	left: 50%;
 	transform: translateX(-50%);
 	color: #fff;
@@ -102,7 +102,7 @@
 
 .arrow::before{
 	content:"\1F817";
-	font-size: 100px;
+	font-size: 90px;
 }
 
 .spin{
@@ -236,7 +236,15 @@ table th {
 		padding: 2rem 0;
 	}
 
+	.arrow::before{
+		font-size: 70px !important;
+	}
+
 	.arrow{
-		top: 0%;
+		top: 15%;
+	}
+
+	.detail-ticket-lucky{
+		font-size: .7rem;
 	}
 }

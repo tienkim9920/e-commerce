@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif !important;
     background-color: #f1f1f1;
 }
 
@@ -33,11 +33,11 @@ html {
 /* Modal */
 
 .modal.show .modal-dialog {
-    animation: fadeIn .5s ease;
+    animation: fadeIn .5s ease !important;
 }
 
 .modal-dialog {
-    animation: fadeOut .5s ease;
+    animation: fadeOut .5s ease !important;
 }
 
 .modal {
@@ -45,7 +45,9 @@ html {
 }
 
 .modal-title {
-    font-family: 'Nunito Sans', sans-serif;
+    margin-top: 1rem !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 1.2rem !important;
 }
 
 @keyframes fadeOut {
@@ -124,7 +126,7 @@ html {
 .title-discount::after {
     content: '';
     position: absolute;
-    top: 3.56rem;
+    top: 3.05rem;
     left: -1.5%;
     border-width: 15px 25px;
     border-style: solid;
@@ -145,7 +147,7 @@ html {
 .title-new-product::after {
     content: '';
     position: absolute;
-    top: 3.56rem;
+    top: 3.05rem;
     left: -1.5%;
     border-width: 15px 25px;
     border-style: solid;
@@ -215,12 +217,6 @@ a {
     text-decoration: none;
 }
 
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+h3{
+    font-size: 1.5rem !important;
 }

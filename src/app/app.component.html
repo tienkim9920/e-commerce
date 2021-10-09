@@ -59,7 +59,7 @@
           <span>Young Green</span>
         </div>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Quản lý thông tin</a>
+          <li><a class="dropdown-item" [routerLink]="['/manages/product/list/all']"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Quản lý thông tin</a>
           </li>
           <li><a class="dropdown-item" [routerLink]="['/chat', 123]"><i class="fa fa-comment icon-profile"></i>&nbsp;&nbsp;Tin nhắn</a></li>
           <li><a class="dropdown-item" href="#"><i class="fa fa-mail-forward icon-profile"></i>&nbsp;&nbsp;Đăng xuất</a>
@@ -189,16 +189,13 @@
           class="a-nav-link">Trang chủ</a>
       </div>
       <div class="nav-link">
-        <a [routerLink]="['/dashboard']" [routerLinkActive]="['active-link']" class="a-nav-link">Danh mục sản phẩm</a>
+        <a [routerLink]="['/search']" [routerLinkActive]="['active-link']" class="a-nav-link">Danh mục sản phẩm</a>
       </div>
       <div class="nav-link">
         <a [routerLink]="['/newfeed']" [routerLinkActive]="['active-link']" class="a-nav-link">Sản phẩm mới</a>
       </div>
       <div class="nav-link">
         <a [routerLink]="['/lucky']" [routerLinkActive]="['active-link']" class="a-nav-link">Vòng quay may mắn</a>
-      </div>
-      <div class="nav-link">
-        <a [routerLink]="['/manages/product/list/all']" class="a-nav-link">Shop của bạn</a>
       </div>
     </div>
   </div>
@@ -219,7 +216,7 @@
         <i class="fa fa-bars" style="font-size: 30px; margin-top: .2rem;"></i>
       </div>
     </div>
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="navMobile">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="navMobile" style="z-index: 999999;">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasExampleLabel">
           <div class="logo-header d-flex">

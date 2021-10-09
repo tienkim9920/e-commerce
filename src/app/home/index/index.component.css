@@ -37,6 +37,7 @@
     padding: 1rem 1rem .5rem 1rem;
     font-style: italic;
     letter-spacing: 1px;
+    font-size: 1.5rem;
 }
 
 .list-danhmuc-product{
@@ -76,6 +77,7 @@
 .h4-flash-sale{
     font-style: italic;
     letter-spacing: 1px;
+    font-size: 1.5rem;
 }
 
 .list-flash-sale{
@@ -145,6 +147,10 @@
 
 ::-webkit-scrollbar {
     width: 1px;
+}
+
+.title-home-product{
+    font-style: italic;
 }
 
 @media only screen and (max-width: 600px){

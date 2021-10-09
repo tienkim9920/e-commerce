@@ -2,6 +2,7 @@
 .layout-newfeed{
     margin: 4rem auto;
     width: 40%;
+    animation: showNavbar .5s;
 }
 
 .image-newfeed-header{
