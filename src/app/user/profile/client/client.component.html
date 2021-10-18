@@ -1,20 +1,20 @@
 <div class="container my-3 layout-index">
     <div class="text-center">
-        <h1>Thông tin tài khoản</h1>
+        <h1 class="p-4">Giỏ hàng chia sẻ</h1>
         <div class="form-name">
             <form>
                 <div class="mb-4 row">
                     <div class="col-4 col-lg-3 text-right">
-                        <label for="email" class="mr-3 lbl-info">Email:</label>
+                        <label for="email" class="mt-2 lbl-info">Giới hạn số tiền:</label>
                     </div>
                     <div class="col-8">
-                        <input type="text" disabled class="form-control w-75" id="email" value="email@example.com">
+                        <input type="text" class="form-control w-75">
                     </div>
                 </div>
 
                 <div class="mb-4 row">
                     <div class="col-4 col-lg-3  text-right">
-                        <label for="name" class="mr-3 lbl-info">Họ và tên:</label>
+                        <label for="name" class="mt-2 lbl-info">Link giỏ hàng:</label>
                     </div>
                     <div class="col-8">
                         <input type="text" class="form-control w-75" id="name">
@@ -23,18 +23,22 @@
 
                 <div class="mb-4 row">
                     <div class="col-4 col-lg-3  text-right">
-                        <label for="nameShop" class="mr-3 lbl-info">Ảnh Đại Diện:</label>
+                        <label for="name" class="mt-2 lbl-info">Trạng thái giỏ hàng:</label>
                     </div>
-                    <div class="col-8">
-                        <input type="file" class="form-control w-75" id="nameShop">
+                    <div class="col-6 mt-2 d-flex justify-content-between">
+                        <div class="d-flex text-success">
+                            <div class="bg-success" style="width: 15px; height: 15px; border-radius: 50%;"></div> &nbsp;
+                            Đang hoạt động
+                        </div>
+                        <div [routerLink]="['/cart/setting']" style="cursor: alias; color: #1A94FF;">Thay đổi</div>
                     </div>
                 </div>
 
                 <div class="mb-4 row">
-                    <div class="col-4 col-lg-3 ">
+                    <div class="col-4 col-lg-3">
                     </div>
                     <div>
-                        <button mat-raised-button color="primary">Lưu</button>
+                        <button class="btn btn-primary">Lưu lại</button>
                     </div>
                 </div>
 

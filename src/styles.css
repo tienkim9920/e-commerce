@@ -33,11 +33,11 @@ html {
 /* Modal */
 
 .modal.show .modal-dialog {
-    animation: fadeIn .5s ease !important;
+    animation: fadeIn .3s ease !important;
 }
 
 .modal-dialog {
-    animation: fadeOut .5s ease !important;
+    animation: fadeOut .3s ease-out !important;
 }
 
 .modal {
@@ -48,6 +48,32 @@ html {
     margin-top: 1rem !important;
     font-family: 'Nunito Sans', sans-serif !important;
     font-size: 1.2rem !important;
+}
+
+/* Toast */
+
+.toast-header{
+	background-color: #1A94FF;
+	color: #fff;
+}
+
+.toast-body{
+	background-color: #fff;
+}
+
+.toast.show{
+	animation: moveIn 1s;
+}
+
+@keyframes moveIn {
+	0%{
+		transform: translateX(300px);
+		opacity: 0;
+	}
+	100%{
+		transform: translateX(0px);
+		opacity: 1;
+	}
 }
 
 @keyframes fadeOut {
@@ -219,4 +245,19 @@ a {
 
 h3{
     font-size: 1.5rem !important;
+}
+
+.ticket{
+    color: #fff;
+    padding: .2rem .6rem;
+    width: 100%;
+    font-size: .95rem;
+}
+
+.ticket.active{
+    background-color: #1A94FF;
+}
+
+.ticket.unactive{
+    background-color: #df3a3a;
 }

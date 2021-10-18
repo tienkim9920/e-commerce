@@ -330,3 +330,17 @@
 
     </div>
 </div>
+
+<div *ngFor="let item of user.ticket">
+    <div>{{ item.tickId }}</div>
+</div>
+
+<div>{{ user.name }} </div>
+
+<a class="btn btn-primary" (click)="handlerTicket()">Thêm Ticket</a>
+
+<div *ngFor="let item of user.coupon">
+    <div>{{ item.coupId }}</div>
+</div>
+
+<a class="btn btn-success" (click)="handlerCoupon()">Thêm Coupon</a>

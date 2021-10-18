@@ -1,0 +1,90 @@
+<div class="content-product">
+    <div class="content-product-header">
+      <div class="content-product__tab dropdown">
+        <div id="menuOrderClient" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="content-product__tab-icon fa fa-filter"></i>
+          <span class="content-product__tab-label">{{ filterOrder }}</span>
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="menuOrderClient">
+          <li><a class="dropdown-item" (click)="handlerFilter('Tất cả sản phẩm')">Tất cả đơn hàng</a></li>
+          <li><a class="dropdown-item" (click)="handlerFilter('Đang xử lý')">Đang xử lý</a></li>
+          <li><a class="dropdown-item" (click)="handlerFilter('Đã xác nhận')">Đã xác nhận</a></li>
+          <li><a class="dropdown-item" (click)="handlerFilter('Đang vận chuyển')">Đang vận chuyển</a></li>
+          <li><a class="dropdown-item" (click)="handlerFilter('Đã giao thành công')">Đã giao thành công</a></li>
+          <li><a class="dropdown-item" (click)="handlerFilter('Đã hủy')">Đã hủy</a></li>
+        </ul>
+
+      </div>
+  
+      <div class="content-product__search">
+        <div class="content-product__search-input-wrap">
+            <input type="text" class="content-product__search-input" placeholder="Tìm kiếm sản phẩm ...">
+            <!-- content-product-search-history -->
+  
+            <div class="content-product__search-history">
+                <h3 class="content-product__search-history-heading">Lịch sử tìm kiếm</h3>
+                <ul class="content-product__search-history-list">
+                    <li class="content-product__search-history-item">
+                        <a href="">Áo khoác hàng hiệu</a>
+                    </li>
+                    <li class="content-product__search-history-item">
+                        <a href="">Quần jean cao cấp</a>
+                    </li>
+                    <li class="content-product__search-history-item">
+                        <a href="">Đồng hồ Rolex</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+  
+        <button class="content-product__search-btn">
+            <i class="content-product__search-btn-icon fa fa-search"></i>
+        </button>
+  
+      </div>
+    </div>
+    
+    <div class="content-product-wrap-table">
+      <table class="content-product-table">
+        <thead>
+          <th>STT</th>
+          <th>Mã hóa đơn</th>
+          <th>Tổng tiền</th>
+          <th>Tình trạng</th>
+          <th>Thanh Toán</th>
+          <th>Ngày đặt hàng</th>
+          <th>Xem</th>
+        </thead>
+        <tbody>
+  
+          <tr>
+            <td data-label="#">1</td>
+            <td data-label="Hình ảnh">
+              123123123213
+            </td>
+            <td data-label="Mã sản phẩm">001</td>
+            <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
+            <td data-label="Loại sản phẩm">Áo Thun</td>
+            <td data-label="Giá thành">350.000vnd</td>
+  
+            <td data-label="Action">
+              <div class="content-product-table-action">
+                <button [routerLink]="['/user/order/detail', 123]" class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
+              </div>
+            </td>
+          </tr>
+
+  
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="content-product-page-controller">
+      <a class="prev">&#10094;</a>
+      <div class="dot active">1</div>
+      <div class="dot">2</div>
+      <div class="dot">3</div>
+      <a class="next">&#10095;</a>
+    </div>
+  </div>
+  

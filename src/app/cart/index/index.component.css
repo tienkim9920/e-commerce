@@ -230,21 +230,6 @@ tbody tr td{
     border-left: 13px solid #1A94FF;
 }
 
-.ticket{
-    color: #fff;
-    padding: .2rem .6rem;
-    width: 100%;
-    font-size: .95rem;
-}
-
-.ticket.active{
-    background-color: #1A94FF;
-}
-
-.ticket.unactive{
-    background-color: #df3a3a;
-}
-
 @media only screen and (max-width: 600px){
     .layout-cart{
         margin: 7rem auto 4rem auto;

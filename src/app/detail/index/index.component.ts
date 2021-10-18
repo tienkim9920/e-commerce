@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../cart.service'
 
 @Component({
   selector: 'app-index',
@@ -7,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
+
+  showToast: boolean = false
 
   id: any
 
@@ -16,7 +19,7 @@ export class IndexComponent implements OnInit {
 
   like: any = false
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
@@ -31,6 +34,28 @@ export class IndexComponent implements OnInit {
 
   statusLike(){
     this.like = !this.like
+  }
+
+  addCart(){
+
+    this.showToast = true
+
+    const data = {
+      productId: "1235",
+      name: "Áo thun Basic",
+      image: 'https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn',
+      price: '70000',
+      size: 'M',
+      count: 1
+    }
+
+    this.cartService.addProduct(data)
+    this.cartService.TotalPayment()
+
+    setTimeout(() => {
+      this.showToast = false
+    }, 3000)
+
   }
 
 }

@@ -8,8 +8,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class VoucherComponent implements OnInit {
   links = [
-    {name: 'Hồ sơ', path: '/user/voucher'},
-    {name: 'Thay đổi mật khẩu', path: '/user/profile/changepassword'}
+    {
+      name: 'Ticket', path: '/user/voucher/ticket'
+    },
+    {
+      name: 'Coupon', path: '/user/voucher/coupon'
+    },
   ];
   constructor() { }
 

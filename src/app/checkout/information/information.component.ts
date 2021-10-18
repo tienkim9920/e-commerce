@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import * as CryptoJS from 'crypto-js';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

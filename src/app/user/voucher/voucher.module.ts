@@ -6,14 +6,16 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { VoucherRoutingModule } from './voucher-routing.module';
 import { VoucherComponent } from './voucher.component';
 
-import { ListVoucherComponent } from './list-voucher/list-voucher.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TicketComponent } from './ticket/ticket.component';
+import { CouponComponent } from './coupon/coupon.component';
 
 
 @NgModule({
   declarations: [
     VoucherComponent,
-    ListVoucherComponent
+    TicketComponent,
+    CouponComponent
   ],
   imports: [
     CommonModule,

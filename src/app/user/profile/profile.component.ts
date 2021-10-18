@@ -7,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   links = [
-    {name: 'Hồ sơ', path: '/user/profile'},
-    {name: 'Thay đổi mật khẩu', path: '/user/profile/changepassword'}
+    {
+      name: 'Hồ sơ', path: '/user/profile'
+    },
+    {
+      name: 'Thay đổi mật khẩu', path: '/user/profile/changepassword'
+    },
+    {
+      name: 'Giỏ hàng chia sẻ', path: '/user/profile/client'
+    }
   ];
 
   constructor() { }
