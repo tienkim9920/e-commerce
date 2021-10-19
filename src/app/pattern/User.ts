@@ -13,7 +13,7 @@ class User {
     score: any
     ticket: any = []
     coupon: any = []
-    
+
     constructor (_id: any){
         this._id = _id
     }
@@ -37,8 +37,8 @@ class User {
         this.email = data.email
         this.password = data.password
         this.name = data.name
-        this.image = data.image 
-        this.score = data.score 
+        this.image = data.image
+        this.score = data.score
     }
 
     async postTicket(ticket: Ticket){
