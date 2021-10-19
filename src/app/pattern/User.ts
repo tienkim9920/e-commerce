@@ -13,24 +13,28 @@ class User {
     score: any
     ticket: any = []
     coupon: any = []
+    like: any = []
+    order: any = []
+    comment: any = []
+    notification: any = []
 
-    constructor (_id: any){
+    constructor(_id: any) {
         this._id = _id
     }
 
-    async getTickets(){
+    async getTickets() {
         const res = await fetch(API.GET_TICKETS_USER(this._id))
         const data = await res.json()
         this.ticket = data
     }
 
-    async getCoupons(){
+    async getCoupons() {
         const res = await fetch(API.GET_COUPONS_USER(this._id))
         const data = await res.json()
         this.coupon = data
     }
 
-    async getDetail(){
+    async getDetail() {
         const res = await fetch(API.GET_DETAIL_USER(this._id))
         const data = await res.json()
         this.authId = data.authId
@@ -41,7 +45,7 @@ class User {
         this.score = data.score
     }
 
-    async postTicket(ticket: Ticket){
+    async postTicket(ticket: Ticket) {
         const res = await fetch(API.POST_TICKET_USER(), {
             method: 'POST',
             body: JSON.stringify(ticket.toJSON()),
@@ -54,7 +58,7 @@ class User {
         console.log(this.ticket)
     }
 
-    async postCoupon(coupon: Coupon){
+    async postCoupon(coupon: Coupon) {
         const res = await fetch(API.POST_COUPON_USER(), {
             method: 'POST',
             body: JSON.stringify(coupon.toJSON()),
