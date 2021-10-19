@@ -9,6 +9,7 @@ class Order{
   status: any
   pay: any
   createTime: any
+  detail: any = []
 
   constructor (_id: any, userId: String, payId: String, noteId: String, shopId: String, total: String, status: String, pay: Boolean, createTime: String){
     this._id = _id

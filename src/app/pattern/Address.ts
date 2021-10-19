@@ -1,17 +1,19 @@
 
-class Coupon {
+class Address {
 
   shopId: String;
   address: String;
   lat: String;
   lng: String;
+  status: boolean;
 
 
-  constructor(shopId: String, address: String, lat: String, lng: String) {
+  constructor(shopId: String, address: String, lat: String, lng: String, status: boolean) {
       this.shopId=shopId;
       this.address=address;
       this.lat=lat;
       this.lng=lng;
+      this.status=status;
   }
 
   toJSON(){
@@ -19,10 +21,11 @@ class Coupon {
         shopId:this.shopId,
         address:this.address,
         lat:this.lat,
-        lng:this.lng
+        lng:this.lng,
+        status:this.status
       }
   }
 
 }
 
-export default Coupon
+export default Address
