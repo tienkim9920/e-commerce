@@ -187,30 +187,6 @@ table th {
     border-radius: 10px;
 }
 
-.toast-header{
-	background-color: #1A94FF;
-	color: #fff;
-}
-
-.toast-body{
-	background-color: #fff;
-}
-
-.toast.show{
-	animation: moveIn 1s;
-}
-
-@keyframes moveIn {
-	0%{
-		transform: translateX(300px);
-		opacity: 0;
-	}
-	100%{
-		transform: translateX(0px);
-		opacity: 1;
-	}
-}
-
 @media only screen and (max-width: 600px){
 
 	.layout-lucky{

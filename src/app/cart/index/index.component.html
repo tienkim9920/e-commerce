@@ -17,21 +17,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Áo thun Basic Young Green</td>
-                        <td><img class="img-body-cart" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt=""></td>
-                        <td>70000</td>
-                        <td>L</td>
-                        <td><input class="input-count-cart" type="number" value="1" max="10" min="1"></td>
-                        <td><i class="fa fa-trash padding-icon-cart"></i></td>
-                    </tr>
-                    <tr>
-                        <td>Áo thun Basic Young Green</td>
-                        <td><img class="img-body-cart" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt=""></td>
-                        <td>70000</td>
-                        <td>L</td>
-                        <td><input class="input-count-cart" type="number" value="1" max="10" min="1"></td>
-                        <td><i class="fa fa-trash padding-icon-cart"></i></td>
+                    <tr *ngFor="let item of myCarts; index as i">
+                        <td>{{ item.name }}</td>
+                        <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
+                        <td>{{ item.price | currency: 'VND' }}</td>
+                        <td>{{ item.size }}</td>
+                        <td>
+                            <input (change)="handlerUpdate(item.productId)" 
+                                class="input-count-cart"
+                                id="{{ item.productId }}"
+                                type="number" 
+                                value="{{ item.count }}" 
+                                max="20" min="1">
+                        </td>
+                        <td><i class="fa fa-trash padding-icon-cart" (click)="handlerDelete(i)"></i></td>
                     </tr>
                 </tbody>
             </table>
@@ -146,19 +145,40 @@
             <h4 class="h4-order-cart">Tiến hành thanh toán</h4>
             <div class="detail-order-cart">
                 <div>Thành Tiền</div>
-                <div>150000</div>
+                <div>{{ totalPayment.total | currency: 'VND' }}</div>
             </div>
             <div class="detail-order-cart">
                 <div>Giảm giá</div>
-                <div>32000</div>
+                <div>{{ totalPayment.total - totalPayment.payment | currency: 'VND' }}</div>
             </div>
             <div class="detail-order-cart" style="font-family: 'Nunito Sans', sans-serif; font-size: 1.2rem;">
                 <div>Tổng tiền</div>
-                <div>128000</div>
+                <div>{{ totalPayment.payment | currency: 'VND' }}</div>
             </div>
             <div (click)="handlerOrder()" class="btn-order-cart">
                 Đặt Hàng
             </div>
         </div>
+    </div>
+</div>
+
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+    <div id="liveToast" [ngClass]="toastSuccess ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Bạn đã cập nhật giỏ hàng thành công.
+      </div>
+    </div>
+</div>
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+    <div id="liveToast" [ngClass]="toastFail ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-danger">
+        <strong class="me-auto">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Không thể thực hiện thao tác này!
+      </div>
     </div>
 </div>

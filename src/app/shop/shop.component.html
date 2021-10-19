@@ -11,7 +11,7 @@
                     <div>YG Shop</div>
                     <div style="color: gray;">Online 2 giờ trước</div>
                     <div class="d-flex mt-1">
-                        <div class="padding-infor-shop">
+                        <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
                             <i class="fa fa-comments"></i>
                             Chat Ngay
                         </div>
@@ -56,22 +56,34 @@
             <div class="box-coupon-shop">
                 <h6>Giảm giá 20K</h6>
                 <div class="text-center p-3">Cho đơn hàng từ 50K</div>
-                <div class="text-center p-3" style="border-top: 3px dotted #cccccc;">JTNDSYGL</div>
+                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
+                    <div class="text-danger">JTNDSYGL</div>
+                    <div style="color: #1A94FF">Lưu</div>
+                </div>
             </div>
             <div class="box-coupon-shop">
                 <h6>Giảm giá 20K</h6>
                 <div class="text-center p-3">Cho đơn hàng từ 50K</div>
-                <div class="text-center p-3" style="border-top: 3px dotted #cccccc;">JTNDSYGL</div>
+                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
+                    <div class="text-danger">JTNDSYGL</div>
+                    <div style="color: #1A94FF">Lưu</div>
+                </div>
             </div>
             <div class="box-coupon-shop">
                 <h6>Giảm giá 20K</h6>
                 <div class="text-center p-3">Cho đơn hàng từ 50K</div>
-                <div class="text-center p-3" style="border-top: 3px dotted #cccccc;">JTNDSYGL</div>
+                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
+                    <div class="text-danger">JTNDSYGL</div>
+                    <div style="color: #1A94FF">Lưu</div>
+                </div>
             </div>
             <div class="box-coupon-shop">
                 <h6>Giảm giá 20K</h6>
                 <div class="text-center p-3">Cho đơn hàng từ 50K</div>
-                <div class="text-center p-3" style="border-top: 3px dotted #cccccc;">JTNDSYGL</div>
+                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
+                    <div class="text-danger">JTNDSYGL</div>
+                    <div style="color: #1A94FF">Lưu</div>
+                </div>
             </div>
         </div>
         <div class="d-flex justify-content-center">
@@ -195,5 +207,25 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="chat-shop" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nhắn tin cho Shop</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mt-4">
+                    <label for="exampleFormControlTextarea1" class="form-label">Nhập tin nhắn ở đây:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Gửi Tin Nhắn</button>
+            </div>
+        </div>
     </div>
 </div>

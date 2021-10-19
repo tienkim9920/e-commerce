@@ -1,0 +1,149 @@
+<div class="container layout-list-voucher">
+
+    <div class="content-product-header mt-2">
+        <div class="content-product__tab dropdown">
+          <div id="menuOrderClient" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="content-product__tab-icon fa fa-filter"></i>
+            <span class="content-product__tab-label" *ngIf="ticket">Đã sử dụng</span>
+            <span class="content-product__tab-label" *ngIf="!ticket">Chưa sử dụng</span>
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="menuOrderClient">
+            <li><a class="dropdown-item" (click)="handlerFilter(false)">Chưa sử dụng</a></li>
+            <li><a class="dropdown-item" (click)="handlerFilter(true)">Đã sử dụng</a></li>
+          </ul>
+  
+        </div>
+    
+        <div class="content-product__search">
+          <div class="content-product__search-input-wrap">
+              <input type="text" class="content-product__search-input" placeholder="Tìm kiếm sản phẩm ...">
+              <!-- content-product-search-history -->
+    
+              <div class="content-product__search-history">
+                  <h3 class="content-product__search-history-heading">Lịch sử tìm kiếm</h3>
+                  <ul class="content-product__search-history-list">
+                      <li class="content-product__search-history-item">
+                          <a href="">Áo khoác hàng hiệu</a>
+                      </li>
+                      <li class="content-product__search-history-item">
+                          <a href="">Quần jean cao cấp</a>
+                      </li>
+                      <li class="content-product__search-history-item">
+                          <a href="">Đồng hồ Rolex</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+    
+          <button class="content-product__search-btn">
+              <i class="content-product__search-btn-icon fa fa-search"></i>
+          </button>
+    
+        </div>
+    </div>
+
+    <div class="row scrollVoucher">
+        <div class="col-12 col-lg-6 my-3 content-voucher">
+            <mat-card class="example-card">
+                <div class="d-flex">
+                    <div class="image-voucher">
+                        <img mat-card-md-image src="../../../../assets/ticket.png">
+                    </div>
+                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
+                        <mat-card-title class="title">
+                            Giảm đơn hàng 10%
+                        </mat-card-title>
+                        <div><span class="ticket unactive">Đã sử dụng</span></div>
+                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
+                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-12 col-lg-6 my-3 content-voucher">
+            <mat-card class="example-card">
+                <div class="d-flex">
+                    <div class="image-voucher">
+                        <img mat-card-md-image src="../../../../assets/ticket.png">
+                    </div>
+                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
+                        <mat-card-title class="title">
+                            Giảm đơn hàng 10%
+                        </mat-card-title>
+                        <div><span class="ticket active">Chưa sử dụng</span></div>
+                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
+                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-12 col-lg-6 my-3 content-voucher">
+            <mat-card class="example-card">
+                <div class="d-flex">
+                    <div class="image-voucher">
+                        <img mat-card-md-image src="../../../../assets/ticket.png">
+                    </div>
+                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
+                        <mat-card-title class="title">
+                            Giảm đơn hàng 10%
+                        </mat-card-title>
+                        <div><span class="ticket active">Chưa sử dụng</span></div>
+                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
+                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-12 col-lg-6 my-3 content-voucher">
+            <mat-card class="example-card">
+                <div class="d-flex">
+                    <div class="image-voucher">
+                        <img mat-card-md-image src="../../../../assets/ticket.png">
+                    </div>
+                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
+                        <mat-card-title class="title">
+                            Giảm đơn hàng 10%
+                        </mat-card-title>
+                        <div><span class="ticket active">Chưa sử dụng</span></div>
+                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
+                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-12 col-lg-6 my-3 content-voucher">
+            <mat-card class="example-card">
+                <div class="d-flex">
+                    <div class="image-voucher">
+                        <img mat-card-md-image src="../../../../assets/ticket.png">
+                    </div>
+                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
+                        <mat-card-title class="title">
+                            Giảm đơn hàng 10%
+                        </mat-card-title>
+                        <div><span class="ticket active">Chưa sử dụng</span></div>
+                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
+                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-12 col-lg-6 my-3 content-voucher">
+            <mat-card class="example-card">
+                <div class="d-flex">
+                    <div class="image-voucher">
+                        <img mat-card-md-image src="../../../../assets/ticket.png">
+                    </div>
+                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
+                        <mat-card-title class="title">
+                            Giảm đơn hàng 10%
+                        </mat-card-title>
+                        <div><span class="ticket active">Chưa sử dụng</span></div>
+                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
+                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

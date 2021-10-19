@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { CartService } from './cart.service';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +12,33 @@ export class AppComponent {
 
   @ViewChild('sticky', { read: ElementRef }) sticky!: ElementRef<any>;
 
+  // quyền truy cập
   auth: any = 'shop'
 
+  // word tìm kiếm
   search: any = ''
 
   searchUpdate: Subject<string> = new Subject<string>();
 
+  // Trang thái loading search
   subSearch: any = false
 
+  // list search
   listSearch: any = null
 
-  constructor() {
+  // Giỏ hàng của bạn
+  myCarts: any
+
+  // Giỏ hàng của bạn bè
+  anotherCarts: any
+
+  // Tổng thanh toán
+  totalPayment: any
+
+  // Tổng lượng sản phẩm
+  count: any
+
+  constructor(private cartService: CartService) {
     // debounce search
     this.searchUpdate.pipe(
       debounceTime(500),
@@ -52,6 +69,20 @@ export class AppComponent {
     window.scroll(0,0)
   }
 
+  ngOnInit() {
+
+    this.getLocalStorage()
+    this.totalCount(this.myCarts, this.anotherCarts)
+
+  }
+
+  ngDoCheck(){
+    
+    this.getLocalStorage()
+    this.totalCount(this.myCarts, this.anotherCarts)
+
+  }
+
   ngAfterContentChecked(){
     window.onscroll = () => {
       if (window.pageYOffset >= this.sticky.nativeElement.offsetTop + 50) {
@@ -60,6 +91,29 @@ export class AppComponent {
         this.sticky.nativeElement.classList.remove("sticky");
       }
     }
+  }
+
+  getLocalStorage(){
+    this.myCarts = this.cartService.getMyCarts()
+    this.anotherCarts = this.cartService.getAnotherCarts()
+    this.totalPayment = this.cartService.getTotalPayment()
+  }
+
+  totalCount(carts: any, another: any){
+    const countCarts = this.loopCount(carts)
+    const countAnother = this.loopCount(another)
+
+    this.count = countCarts + countAnother
+  }
+
+  loopCount(carts: any){
+    let result = 0
+
+    carts.forEach((element: any) => {
+      result += element.count
+    });
+
+    return result
   }
 
 }

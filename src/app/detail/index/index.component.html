@@ -60,7 +60,7 @@
                     culpa suscipit?
                 </div>
             </div>
-            <div class="btn-addcart mt-3">
+            <div class="btn-addcart mt-3" (click)="addCart()">
                 Mua ngay
             </div>
             <div class="count-detail-like mt-3">
@@ -217,5 +217,16 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+    <div id="liveToast" [ngClass]="showToast ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Bạn đã mua hàng thành công.
+      </div>
     </div>
 </div>

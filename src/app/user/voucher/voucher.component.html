@@ -1,18 +1,4 @@
-<mat-tab-group mat-align-tabs="start">
-    <mat-tab label="Tất cả">
-        <app-list-voucher></app-list-voucher>
-    </mat-tab>
-    <mat-tab label="Shop">
-        <app-list-voucher></app-list-voucher>
-    </mat-tab>
-    <mat-tab label="Social">
-        <app-list-voucher></app-list-voucher>
-    </mat-tab>
-    <mat-tab label="Đã sử dụng">
-        <app-list-voucher></app-list-voucher>
-    </mat-tab>
-    <mat-tab label="Đã hết hạng">
-        <app-list-voucher></app-list-voucher>
-    </mat-tab>
-</mat-tab-group>
+<nav mat-tab-nav-bar>
+    <a mat-tab-link *ngFor="let link of links" [routerLink]="[link.path]" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"> {{link.name}} </a>
+</nav>
 <router-outlet></router-outlet>
