@@ -13,7 +13,15 @@ class User {
     score: any
     ticket: any = []
     coupon: any = []
+<<<<<<< HEAD
 
+=======
+    like: any = []
+    order: any = []
+    comment: any = []
+    notification: any = []
+    
+>>>>>>> 2beba6771d1b6e0a0222a0d476866c5f43df323d
     constructor (_id: any){
         this._id = _id
     }
