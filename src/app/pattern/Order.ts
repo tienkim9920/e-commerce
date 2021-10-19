@@ -24,14 +24,14 @@ class Order{
 
   toJSON(){
     return {
-        userId: this.userId,
-        payId: this.payId,
-        noteId: this.noteId,
-        shopId: this.shopId,
-        total: this.total,
-        status: this.status,
-        pay: this.pay,
-        createTime: this.createTime
+      userId: this.userId,
+      payId: this.payId,
+      noteId: this.noteId,
+      shopId: this.shopId,
+      total: this.total,
+      status: this.status,
+      pay: this.pay,
+      createTime: this.createTime
     }
   }
 
