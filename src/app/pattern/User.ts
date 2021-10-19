@@ -13,6 +13,10 @@ class User {
     score: any
     ticket: any = []
     coupon: any = []
+    like: any = []
+    order: any = []
+    comment: any = []
+    notification: any = []
     
     constructor (_id: any){
         this._id = _id
