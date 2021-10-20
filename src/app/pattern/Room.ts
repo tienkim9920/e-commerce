@@ -4,7 +4,6 @@ class Room{
   clientId: any
   shopId: any
   message: any = []
-  checking: any = []
 
   constructor (_id: any, clientId: String, shopId: String, message: String){
     this._id = _id
@@ -20,6 +19,12 @@ class Room{
         message: this.message
     }
   }
+
+  // POST_ROOM
+
+  // GET List message by _id
+
+  // POST List message
 
 }
 export default Room

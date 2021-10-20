@@ -36,5 +36,13 @@ class Order{
     }
   }
 
+  // GET DETAIL ORDER
+
+  // POST ORDER
+
+  // PATCH ORDER
+
+  // GET List Detail
+
 }
 export default Order

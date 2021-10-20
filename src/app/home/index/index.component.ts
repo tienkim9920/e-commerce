@@ -11,6 +11,8 @@ import User from 'src/app/pattern/User';
 
 export class IndexComponent implements OnInit {
 
+  statusTicket: Boolean = false
+
   @ViewChild('widgetsContent', { read: ElementRef }) widgetsContent!: ElementRef<any>;
 
   scroll: any = true
@@ -35,6 +37,10 @@ export class IndexComponent implements OnInit {
   handlerCoupon(){
     const coupon = new Coupon('6162b4fa77e2a8176e6619a5', '12312321', true)
     this.user.postCoupon(coupon)
+  }
+
+  handlerStatus(){
+    this.statusTicket = !this.statusTicket
   }
 
   public scrollLeft(): void {

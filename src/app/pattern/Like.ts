@@ -16,6 +16,9 @@ class Like {
         }
     }
 
+    // POST_LIKE
+
+    // DELETE_LIKE
 }
 
 export default Like

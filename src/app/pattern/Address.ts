@@ -17,14 +17,20 @@ class Address {
   }
 
   toJSON(){
-      return {
-        shopId:this.shopId,
-        address:this.address,
-        lat:this.lat,
-        lng:this.lng,
-        status:this.status
-      }
+    return {
+      shopId:this.shopId,
+      address:this.address,
+      lat:this.lat,
+      lng:this.lng,
+      status:this.status
+    }
   }
+
+  // POST_ADDRESS
+
+  // DELETE_ADDRESS
+
+  // PATCH_ADDRESS
 
 }
 

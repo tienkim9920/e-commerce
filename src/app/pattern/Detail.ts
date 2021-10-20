@@ -25,6 +25,8 @@ class Detail {
       }
   }
 
+  // POST_DETAIL
+  
 }
 
 export default Detail

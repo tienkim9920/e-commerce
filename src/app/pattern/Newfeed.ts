@@ -26,5 +26,7 @@ class Newfeed{
     }
   }
 
+  // POST_NEWFEED
+
 }
 export default Newfeed

@@ -16,6 +16,8 @@ class Notification {
       }
   }
 
+  // POST_NOTIFICATION
+
 }
 
 export default Notification

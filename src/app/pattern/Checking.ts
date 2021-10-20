@@ -1,27 +1,27 @@
 
 class Checking {
 
-  roomId: String;
-  subjectId: String;
-  status: Boolean;
-  count: Number;
+  noticeClient: Number
+  noticeShop: Number
 
-  constructor(roomId: String,subjectId: String,status: Boolean,count: Number) {
-    this.roomId = roomId;
-    this.subjectId=subjectId;
-    this.status = status;
-    this.count = count;
-
+  constructor(noticeClient: Number, noticeShop: Number) {
+    this.noticeClient = noticeClient;
+    this.noticeShop= noticeShop;
   }
 
   toJSON(){
-      return {
-        roomId: this.roomId,
-        subjectId: this.subjectId,
-        status: this.status,
-        count: this.count
-      }
+    return {
+      noticeClient: this.noticeClient,
+      noticeShop: this.noticeShop
+    }
   }
+
+  // POST_CHECKING
+
+  // PATCH_CHECKING by permission
+
+  // PATCH_CHECKING when user click checking
+
 
 }
 

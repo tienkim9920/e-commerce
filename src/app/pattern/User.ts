@@ -17,23 +17,41 @@ class User {
     order: any = []
     comment: any = []
     notification: any = []
+    reputation: any = []
 
     constructor(_id: any) {
         this._id = _id
     }
 
+    // GET Ticket
     async getTickets() {
         const res = await fetch(API.GET_TICKETS_USER(this._id))
         const data = await res.json()
         this.ticket = data
     }
 
+    // POST Ticket
+    async postTicket(ticket: Ticket) {
+        const data = await ticket.POST_TICKET()
+        this.ticket = [...this.ticket, data]
+        console.log(this.ticket)
+    }
+
+    // GET Coupon
     async getCoupons() {
         const res = await fetch(API.GET_COUPONS_USER(this._id))
         const data = await res.json()
         this.coupon = data
     }
 
+    // POST coupon
+    async postCoupon(coupon: Coupon) {
+        const data = await coupon.POST_COUPON()
+        this.coupon = [...this.coupon, data]
+        console.log(this.coupon)
+    }
+
+    // GET Detail User
     async getDetail() {
         const res = await fetch(API.GET_DETAIL_USER(this._id))
         const data = await res.json()
@@ -45,31 +63,23 @@ class User {
         this.score = data.score
     }
 
-    async postTicket(ticket: Ticket) {
-        const res = await fetch(API.POST_TICKET_USER(), {
-            method: 'POST',
-            body: JSON.stringify(ticket.toJSON()),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-        const data = await res.json()
-        this.ticket = [...this.ticket, data.result]
-        console.log(this.ticket)
-    }
+    // GET List Like
 
-    async postCoupon(coupon: Coupon) {
-        const res = await fetch(API.POST_COUPON_USER(), {
-            method: 'POST',
-            body: JSON.stringify(coupon.toJSON()),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-        const data = await res.json()
-        this.coupon = [...this.coupon, data.result]
-        console.log(this.coupon)
-    }
+    // GET List Order
+
+    // GET List Comment
+
+    // GET List Notification
+
+    // GET List Reputation
+
+    // POST List Notification
+
+    // Function Sign In User return true - false
+
+    // Function Sign Up User
+
+    // Checking Permisstion User return "admin", "client", "shop"
 
 }
 

@@ -17,6 +17,10 @@ class Reputation {
       }
   }
 
+  // POST_REPUTATION
+
+  // DELETE_REPUTATION
+
 }
 
 export default Reputation

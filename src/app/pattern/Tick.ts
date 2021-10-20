@@ -9,5 +9,11 @@ class Tick{
   constructor (_id: any){
     this._id = _id
   }
+
+  // POST Tick
+
+  // PATCH Tick
+
+  // DELETE Tick
 }
 export default Tick

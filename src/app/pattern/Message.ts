@@ -19,6 +19,8 @@ class Message {
       }
   }
 
+  // POST_MESSAGE
+  
 }
 
 export default Message

@@ -22,6 +22,8 @@ class Note {
         }
     }
 
+    // POST_NOTE
+
 }
 
 export default Note

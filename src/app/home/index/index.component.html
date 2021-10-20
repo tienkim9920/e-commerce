@@ -332,11 +332,12 @@
 </div>
 
 <div *ngFor="let item of user.ticket">
-    <div>{{ item.tickId }}</div>
+    <div *ngIf="item.status === statusTicket">{{ item.tickId }}</div>
 </div>
 
 <div>{{ user.name }} </div>
 
+<a class="btn btn-danger" (click)="handlerStatus()">Thay đổi trạng thái</a>
 <a class="btn btn-primary" (click)="handlerTicket()">Thêm Ticket</a>
 
 <div *ngFor="let item of user.coupon">

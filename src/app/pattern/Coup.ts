@@ -22,6 +22,11 @@ class Coup {
       }
   }
 
+  // POST_COUP
+
+  // PATCH_COUP
+
+  // DELETE_COUP
 }
 
 export default Coup

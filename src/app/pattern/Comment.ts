@@ -26,6 +26,8 @@ class Comment {
         }
     }
 
+    // POST_COMMENT
+
 }
 
 export default Comment
