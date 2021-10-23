@@ -1,3 +1,4 @@
+
 import API from "../http/http"
 import Message from "./Message"
 
@@ -48,6 +49,12 @@ class Room{
     const data = await message.POST_MESSAGE()
     this.message = [...this.message, data]
   }
+
+  async postMessage(messagePost:Message) {
+    const data = await messagePost.POST_MESSAGE()
+    this.message = [...this.message, data]
+  }
+
 
 }
 export default Room

@@ -1,6 +1,8 @@
 import API from "../http/http"
 import Coupon from "./Coupon"
 import Ticket from "./Ticket"
+import Notification from "./Notification"
+import Reputation from "./Reputation"
 
 class User {
 
@@ -64,7 +66,7 @@ class User {
         this.score = data.score
     }
 
-    // GET List Like
+    // GET List Reputation
 
     // GET List Order
 
@@ -81,6 +83,25 @@ class User {
     // Function Sign Up User
 
     // Checking Permisstion User return "admin", "client", "shop"
+
+    async postNotification(notificationPost:Notification) {
+      const data = await notificationPost.POST_NOTIFICATION()
+      this.notification = [...this.notification, data]
+    }
+
+    async postReputation(reputationPost:Reputation) {
+      const data = await reputationPost.POST_REPUTATION()
+      this.notification = [...this.notification, data]
+    }
+
+    async deleteReputation(reputationDelete:Reputation) {
+      const data = await reputationDelete.DELETE_REPUTATION()
+
+      let updateReputation = this.reputation.filter((item: Reputation) => {
+        return item !== reputationDelete
+      })
+      this.reputation =updateReputation
+    }
 
 }
 

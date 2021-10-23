@@ -1,5 +1,9 @@
 import API from "../http/http"
+import Like from "./Like"
+import Option from "./Option"
+
 import Comment from "./Comment"
+
 
 class Product {
 
@@ -18,7 +22,7 @@ class Product {
     comments: any = []
     option: any = []
 
-    constructor (_id: any, shopId: any, categoryId: any, name: any, price: any, description: any, image: any, 
+    constructor (_id: any, shopId: any, categoryId: any, name: any, price: any, description: any, image: any,
         discount: any, like: any, comment: any, expiredTime: any) {
         this._id = _id
         this.shopId = shopId
@@ -49,8 +53,43 @@ class Product {
     }
 
     // POST_PRODUCT
+    async POST_PRODUCT(){
+      const res = await fetch(API.POST_PRODUCT(), {
+          method: 'POST',
+          body: JSON.stringify(this.toJSON()),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+          }
+      })
+      const data = await res.json()
+      return data.result
+    }
 
     // PATCH_PRODUCT
+    async PATCH_PRODUCT(id: any){
+      const res = await fetch(API.PATCH_PRODUCT(id), {
+          method: 'PATCH',
+          body: JSON.stringify(this.toJSON()),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+          }
+      })
+      const data = await res.json()
+      return data.result
+    }
+
+    // DELETE_PRODUCT
+    async DELETE_PRODUCT(id: any){
+          const res = await fetch(API.DELETE_PRODUCT(id), {
+              method: 'DELETE',
+              body: JSON.stringify(this.toJSON()),
+              headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+              }
+          })
+          const data = await res.json()
+          return data.result
+    }
 
     // DELETE_PRODUCT
 
@@ -99,6 +138,29 @@ class Product {
         this.option = data
     }
 
+<<<<<<< HEAD
+
+    async postLike(like:Like) {
+      const data = await like.POST_LIKE()
+      this.likes = [...this.likes, data]
+    }
+
+    async deleteLike(like:Like) {
+      const data = await like.DELETE_LIKE()
+
+      let updateLike = this.likes.filter((item: Like) => {
+        return item !== like
+      })
+
+      this.likes =updateLike
+    }
+
+    async postOption(optionPost:Option) {
+      const data = await optionPost.POST_OPTION()
+      this.option = [...this.option, data]
+    }
+
+=======
     async patchLike(){
         await fetch(API.PATCH_LIKE(this._id))
         this.like = this.like + 1
@@ -108,6 +170,7 @@ class Product {
         await fetch(API.PATCH_DISLIKE(this._id))
         this.like = this.like - 1
     }
+>>>>>>> 40b8ab9e2474f12f464fd3208eea7570045664ea
 }
 
 export default Product

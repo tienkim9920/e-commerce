@@ -2,8 +2,6 @@
 const url = 'http://localhost:4000'
 
 const API = {
-    
-    // User
     GET_DETAIL_USER: (_id: any) => {
         return url + `/user/${_id}`
     },
@@ -24,6 +22,49 @@ const API = {
 
     POST_COUPON: () => {
         return url + `/coupon`
+    },
+    POST_REPUTATION: ()=>{
+      return url + `/reputation`
+    },
+
+    DELETE_REPUTATION: (id: any) => {
+      return url + `/reputation/${id}`
+    },
+
+    POST_LIKE: ()=>{
+      return url + `/like`
+    },
+
+    DELETE_LIKE: (id: any)=>{
+      return url + `/like/${id}`
+    },
+
+    POST_MESSAGE: ()=>{
+      return url + `/message`
+    },
+
+    POST_NEWFEED:()=>{
+      return url + `/newfeed`
+    },
+
+    POST_NOTIFICATION:()=>{
+      return url + `/notification`
+    },
+
+    POST_OPTION: ()=>{
+      return url + `/option`
+    },
+
+    POST_PRODUCT:()=>{
+      return url + `/product`
+    },
+
+    DELETE_PRODUCT:(productID: any)=>{
+      return url + `/product/${productID}`
+    },
+
+    PATCH_PRODUCT:(productID: any)=>{
+      return url + `/product/${productID}`
     },
 
     // Order
