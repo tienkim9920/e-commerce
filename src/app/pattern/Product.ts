@@ -138,8 +138,6 @@ class Product {
         this.option = data
     }
 
-<<<<<<< HEAD
-
     async postLike(like:Like) {
       const data = await like.POST_LIKE()
       this.likes = [...this.likes, data]
@@ -152,7 +150,7 @@ class Product {
         return item !== like
       })
 
-      this.likes =updateLike
+      this.likes = updateLike
     }
 
     async postOption(optionPost:Option) {
@@ -160,7 +158,6 @@ class Product {
       this.option = [...this.option, data]
     }
 
-=======
     async patchLike(){
         await fetch(API.PATCH_LIKE(this._id))
         this.like = this.like + 1
@@ -170,7 +167,7 @@ class Product {
         await fetch(API.PATCH_DISLIKE(this._id))
         this.like = this.like - 1
     }
->>>>>>> 40b8ab9e2474f12f464fd3208eea7570045664ea
+
 }
 
 export default Product

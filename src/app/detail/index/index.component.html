@@ -1,192 +1,199 @@
-<div class="layout-detail-product container">
-    <div *ngIf="product.name" class="grid-detail-product">
-        <div class="group-detail-product-image">
-            <div class="product-image-show">
-                <img src="{{ product.image[index] }}" alt="">
-            </div>
-            <div class="product-image-list">
-                <div *ngFor="let item of product.image; let i = index" 
-                    [ngClass]="i === index ? 'item-product-image-list active' : 'item-product-image-list'">
-                    <img src="{{ item }}" alt="" (click)="changeImage(i)">
-                </div>
-            </div>
-        </div>
-        <div class="group-detail-product-content">
-            <h3 style="text-transform: uppercase;">{{ product.name }}</h3>
-            <div class="d-flex" style="border-bottom: 1px solid #f1f1f1; padding-bottom: 1rem;">
-                <div class="price-product-detail">{{ product.price - ((product.price * product.discount)/100) | currency: "VND" }}</div>
-                <del class="price-del-detail">{{ product.price | currency: "VND" }}</del>
-                <div class="percent-discount">
-                    -{{ product.discount }}%
-                </div>
-            </div>
-            <div class="size pt-3">
-                <div>
-                    Kích thước: &nbsp; <span style="font-family: 'Nunito Sans', sans-serif;">{{ size }}</span>
-                </div>
-                <div class="d-flex mt-2">
-                    <div [ngClass]="size === 'S' ? 'padding-size active' : 'padding-size'" (click)="changeSize('S')">S
-                    </div>
-                    <div [ngClass]="size === 'M' ? 'padding-size active' : 'padding-size'" (click)="changeSize('M')">M
-                    </div>
-                    <div [ngClass]="size === 'L' ? 'padding-size active' : 'padding-size'" (click)="changeSize('L')">L
-                    </div>
-                    <div [ngClass]="size === 'XL' ? 'padding-size active' : 'padding-size'" (click)="changeSize('XL')">
-                        XL</div>
-                </div>
-            </div>
-            <div class="quality pt-3">
-                <div>Số lượng:</div>
-                <div class="mt-2">
-                    <input class="input-detail-quality" type="number" max="10" min="1" value="{{ count }}"
-                        [(ngModel)]="count">
-                </div>
-            </div>
-            <div class="description pt-4">
-                <div>
-                    Mô tả sản phẩm:
-                </div>
-                <div class="mt-2" style="font-family: 'Nunito Sans', sans-serif;">
-                    {{ product.description }}
-                </div>
-            </div>
-            <div class="btn-addcart mt-3" (click)="addCart()">
-                Mua ngay
-            </div>
-            <div class="count-detail-like mt-3">
-                <div>
-                    Số lượt thích: &nbsp;
-                    <span *ngIf="like" style="font-family: 'Nunito Sans', sans-serif;">Bạn đã thích</span>
-                    <span *ngIf="!like" style="font-family: 'Nunito Sans', sans-serif;">Bạn chưa thích</span>
-                </div>
-                <div>
-                    <i (click)="statusLike()" [ngClass]="like ? 'fa fa-heart text-danger' : 'fa fa-heart-o text-danger'"
-                        style="font-size: 28px; cursor: pointer;"></i>
-                    &nbsp;
-                    <span style="font-family: 'Nunito Sans', sans-serif; font-size: 20px;">{{ product.like }} lượt</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="layout-section-information-shop container">
-    <div class="d-flex">
-        <img class="image-infor-shop" src="{{ product.shopId.image }}" alt="">
-        <div style="margin: 0 0 0 1rem;">
-            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">{{ product.shopId.name }}</div>
-            <div class="d-flex" style="color: gray;">
-                <div class="bg-success" style="width: 15px; height: 15px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
-                Đang hoạt động
-            </div>
-            <div class="d-flex mt-1">
-                <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
-                    <i class="fa fa-comments"></i>
-                    Chat Ngay
+<div *ngIf="product.name">
+    <div class="layout-detail-product container">
+        <div *ngIf="product.name" class="grid-detail-product">
+            <div class="group-detail-product-image">
+                <div class="product-image-show">
+                    <img src="{{ product.image[index] }}" alt="">
                 </div>
-                <a [routerLink]="['/shop', 123]" class="padding-infor-shop">
-                    <i class="fa fa-institution"></i>
-                    Xem Shop
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="detail-shop">
-        <div class="d-flex justify-content-between w-100">
-            <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.reply }}%</span></div>
-            <br>
-            <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.replyTime}}</span>
-            </div>
-            <br>
-            <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.createTime }}</span></div>
-        </div>
-        <div class="mt-3">
-            Về chúng tôi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.description }}</span> 
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="chat-shop" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nhắn tin cho Shop</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mt-4">
-                        <label for="exampleFormControlTextarea1" class="form-label">Nhập tin nhắn ở đây:</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <div class="product-image-list">
+                    <div *ngFor="let item of product.image; let i = index" 
+                        [ngClass]="i === index ? 'item-product-image-list active' : 'item-product-image-list'">
+                        <img src="{{ item }}" alt="" (click)="changeImage(i)">
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Gửi Tin Nhắn</button>
-                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="layout-comment-product container">
-    <div class="title-comment-product">
-        <h3 style="border-bottom: 5px solid #1A94FF; padding-bottom: .5rem;">Đánh Giá Sản Phẩm</h3>
-    </div>
-    <div class="group-list-comment">
-        <div *ngFor="let item of product.comments" class="mt-4">
-            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Nguyen Kim Tien</div>
-            <div>{{ item.content}}</div>
-            <div style="color: #1A94FF;">
-                <i *ngFor="let index of [1, 2, 3, 4, 5]" 
-                [ngClass]="index > item.star ? 'fa fa-star-o' : 'fa fa-star'"></i>
-            </div>
-            <div>{{ item.createTime}}</div>
-        </div>
-    </div>
-
-    <div class="btn-write-comment" data-bs-toggle="modal" data-bs-target="#write-comment">
-        <div>Viết Bình Luận</div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="write-comment" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Đánh Giá Sản Phẩm</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="group-detail-product-content">
+                <h3 style="text-transform: uppercase;">{{ product.name }}</h3>
+                <div class="d-flex" style="border-bottom: 1px solid #f1f1f1; padding-bottom: 1rem;">
+                    <div class="price-product-detail">{{ product.price - ((product.price * product.discount)/100) | currency: "VND" }}</div>
+                    <del class="price-del-detail">{{ product.price | currency: "VND" }}</del>
+                    <div class="percent-discount">
+                        -{{ product.discount }}%
+                    </div>
                 </div>
-                <div class="modal-body">
+                <div class="size pt-3">
                     <div>
-                        <div>Chọn sao: </div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Vui lòng chọn sao cho sản phẩm</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="3">4</option>
-                            <option value="3">5</option>
-                        </select>
+                        Kích thước: &nbsp; <span style="font-family: 'Nunito Sans', sans-serif;">{{ size }}</span>
                     </div>
-                    <div class="mt-4">
-                        <label for="exampleFormControlTextarea1" class="form-label">Viết bình luận tại đây:</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div class="d-flex mt-2">
+                        <div [ngClass]="size === 'S' ? 'padding-size active' : 'padding-size'" (click)="changeSize('S')">S
+                        </div>
+                        <div [ngClass]="size === 'M' ? 'padding-size active' : 'padding-size'" (click)="changeSize('M')">M
+                        </div>
+                        <div [ngClass]="size === 'L' ? 'padding-size active' : 'padding-size'" (click)="changeSize('L')">L
+                        </div>
+                        <div [ngClass]="size === 'XL' ? 'padding-size active' : 'padding-size'" (click)="changeSize('XL')">
+                            XL</div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Gửi Bình Luận</button>
+                <div class="quality pt-3">
+                    <div>Số lượng:</div>
+                    <div class="mt-2">
+                        <input class="input-detail-quality" type="number" max="10" min="1" value="{{ count }}"
+                            [(ngModel)]="count">
+                    </div>
+                </div>
+                <div class="description pt-4">
+                    <div>
+                        Mô tả sản phẩm:
+                    </div>
+                    <div class="mt-2" style="font-family: 'Nunito Sans', sans-serif;">
+                        {{ product.description }}
+                    </div>
+                </div>
+                <div class="btn-addcart mt-3" (click)="addCart()">
+                    Mua ngay
+                </div>
+                <div class="count-detail-like mt-3">
+                    <div>
+                        Số lượt thích: &nbsp;
+                        <span *ngIf="like" style="font-family: 'Nunito Sans', sans-serif;">Bạn đã thích</span>
+                        <span *ngIf="!like" style="font-family: 'Nunito Sans', sans-serif;">Bạn chưa thích</span>
+                    </div>
+                    <div>
+                        <i (click)="statusLike()" [ngClass]="like ? 'fa fa-heart text-danger' : 'fa fa-heart-o text-danger'"
+                            style="font-size: 28px; cursor: pointer;"></i>
+                        &nbsp;
+                        <span style="font-family: 'Nunito Sans', sans-serif; font-size: 20px;">{{ product.like }} lượt</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <div class="layout-section-information-shop container">
+        <div class="d-flex">
+            <img class="image-infor-shop" src="{{ product.shopId.image }}" alt="">
+            <div style="margin: 0 0 0 1rem;">
+                <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">{{ product.shopId.name }}</div>
+                <div class="d-flex" style="color: gray;">
+                    <div class="bg-success" style="width: 15px; height: 15px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                    Đang hoạt động
+                </div>
+                <div class="d-flex mt-1">
+                    <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
+                        <i class="fa fa-comments"></i>
+                        Chat Ngay
+                    </div>
+                    <a [routerLink]="['/shop', 123]" class="padding-infor-shop">
+                        <i class="fa fa-institution"></i>
+                        Xem Shop
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="detail-shop">
+            <div class="d-flex justify-content-between w-100">
+                <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.reply }}%</span></div>
+                <br>
+                <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.replyTime}}</span>
+                </div>
+                <br>
+                <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.createTime }}</span></div>
+            </div>
+            <div class="mt-3">
+                Về chúng tôi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.description }}</span> 
+            </div>
+        </div>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="chat-shop" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nhắn tin cho Shop</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mt-4">
+                            <label for="exampleFormControlTextarea1" class="form-label">Nhập tin nhắn ở đây:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Gửi Tin Nhắn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="layout-comment-product container">
+        <div class="title-comment-product">
+            <h3 style="border-bottom: 5px solid #1A94FF; padding-bottom: .5rem;">Đánh Giá Sản Phẩm</h3>
+        </div>
+        <div class="group-list-comment">
+            <div *ngFor="let item of product.comments" class="mt-4">
+                <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Nguyen Kim Tien</div>
+                <div>{{ item.content}}</div>
+                <div style="color: #1A94FF;">
+                    <i *ngFor="let index of [1, 2, 3, 4, 5]" 
+                    [ngClass]="index > item.star ? 'fa fa-star-o' : 'fa fa-star'"></i>
+                </div>
+                <div>{{ item.createTime}}</div>
+            </div>
+        </div>
+    
+        <div class="btn-write-comment" data-bs-toggle="modal" data-bs-target="#write-comment">
+            <div>Viết Bình Luận</div>
+        </div>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="write-comment" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đánh Giá Sản Phẩm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div>Chọn sao: </div>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Vui lòng chọn sao cho sản phẩm</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3">4</option>
+                                <option value="3">5</option>
+                            </select>
+                        </div>
+                        <div class="mt-4">
+                            <label for="exampleFormControlTextarea1" class="form-label">Viết bình luận tại đây:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Gửi Bình Luận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+        <div id="liveToast" [ngClass]="showToast ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="me-auto">Thông báo</strong>
+          </div>
+          <div class="toast-body">
+            Bạn đã mua hàng thành công.
+          </div>
+        </div>
+    </div>
 </div>
 
-<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
-    <div id="liveToast" [ngClass]="showToast ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <strong class="me-auto">Thông báo</strong>
-      </div>
-      <div class="toast-body">
-        Bạn đã mua hàng thành công.
-      </div>
-    </div>
+<div *ngIf="!product.name">
+    <app-skeleton></app-skeleton>
 </div>
