@@ -1,3 +1,5 @@
+import Message from "./Message"
+
 class Room{
 
   _id: any
@@ -25,6 +27,12 @@ class Room{
   // GET List message by _id
 
   // POST List message
+
+  async postMessage(messagePost:Message) {
+    const data = await messagePost.POST_MESSAGE()
+    this.message = [...this.message, data]
+  }
+
 
 }
 export default Room

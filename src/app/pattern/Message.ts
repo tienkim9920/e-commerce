@@ -1,3 +1,4 @@
+import API from "../http/http";
 
 class Message {
 
@@ -20,7 +21,18 @@ class Message {
   }
 
   // POST_MESSAGE
-  
+  async POST_MESSAGE(){
+    const res = await fetch(API.POST_MESSAGE(), {
+        method: 'POST',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    const data = await res.json()
+    return data.result
+  }
+
 }
 
 export default Message
