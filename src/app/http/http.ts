@@ -2,8 +2,65 @@
 const url = 'http://localhost:4000'
 
 const API = {
+
+    // User
     GET_DETAIL_USER: (_id: any) => {
-        return url + `/user/${_id}`
+      return url + `/user/${_id}`
+    },
+    
+    GET_TICKETS_USER: (userId: any) => {
+        return url + `/ticket/${userId}`
+    },
+
+    GET_COUPONS_USER: (userId: any) => {
+        return url + `/coupon/${userId}`
+    },
+
+    GET_COMMENT_USER: (userId: any) => {
+      return url + `/comment/${userId}`
+    },
+
+    POST_TICKET_USER: () => {
+        return url + `/ticket`
+    },
+
+    POST_COUPON_USER: () => {
+        return url + `/coupon`
+    },
+
+    // Product
+    POST_DETAIL_PRODUCT: () => {
+      return url + `/detail`
+    },
+
+    // Tick
+    POST_TICKs: () => {
+      return url + `/tick`
+    },
+
+    // SHOP
+    POST_COUP_SHOP: () => {
+      return url + `/coup`
+    },
+
+    PATCH_COUP_SHOP: () => {
+      return url + `/coup`
+    },
+
+    DELETE_COUP_SHOP: () => {
+      return url + `/coup`
+    },
+
+    POST_ADDRESS_SHOP: () => {
+      return url + `/address`
+    },
+
+    PATCH_ADDRESS_SHOP: () => {
+      return url + `/address`
+    },
+
+    DELETE_ADDRESS_SHOP: () => {
+      return url + `/address`
     },
 
     // Ticket
@@ -156,7 +213,6 @@ const API = {
     GET_CATEGORY: () => {
         return url + `/category`
     }
-
 }
 
 export default API
