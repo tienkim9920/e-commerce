@@ -22,7 +22,7 @@ class Coupon {
 
     // POST_COUPON
     async POST_COUPON(){
-        const res = await fetch(API.POST_COUPON_USER(), {
+        const res = await fetch(API.POST_COUPON(), {
             method: 'POST',
             body: JSON.stringify(this.toJSON()),
             headers: {
@@ -32,6 +32,7 @@ class Coupon {
         const data = await res.json()
         return data.result
     }
+    
 }
 
 export default Coupon

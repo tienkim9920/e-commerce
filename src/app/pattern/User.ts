@@ -1,6 +1,8 @@
 import API from "../http/http"
 import Coupon from "./Coupon"
 import Ticket from "./Ticket"
+import Notification from "./Notification"
+import Reputation from "./Reputation"
 
 class User {
 
@@ -25,7 +27,7 @@ class User {
 
     // GET Ticket
     async getTickets() {
-        const res = await fetch(API.GET_TICKETS_USER(this._id))
+        const res = await fetch(API.GET_TICKETS(this._id))
         const data = await res.json()
         this.ticket = data
     }
@@ -39,7 +41,7 @@ class User {
 
     // GET Coupon
     async getCoupons() {
-        const res = await fetch(API.GET_COUPONS_USER(this._id))
+        const res = await fetch(API.GET_COUPONS(this._id))
         const data = await res.json()
         this.coupon = data
     }
@@ -50,6 +52,7 @@ class User {
         this.coupon = [...this.coupon, data]
         console.log(this.coupon)
     }
+
 
     // GET Detail User
     async getDetail() {
@@ -69,6 +72,7 @@ class User {
       const data = await res.json()
       this.like = data
     }
+    // GET List Reputation
 
     // GET List Order:TN
     async getListOrder() {
@@ -95,6 +99,25 @@ class User {
     // Function Sign Up User
 
     // Checking Permisstion User return "admin", "client", "shop"
+
+    async postNotification(notificationPost:Notification) {
+      const data = await notificationPost.POST_NOTIFICATION()
+      this.notification = [...this.notification, data]
+    }
+
+    async postReputation(reputationPost:Reputation) {
+      const data = await reputationPost.POST_REPUTATION()
+      this.notification = [...this.notification, data]
+    }
+
+    async deleteReputation(reputationDelete:Reputation) {
+      const data = await reputationDelete.DELETE_REPUTATION()
+
+      let updateReputation = this.reputation.filter((item: Reputation) => {
+        return item !== reputationDelete
+      })
+      this.reputation =updateReputation
+    }
 
 }
 

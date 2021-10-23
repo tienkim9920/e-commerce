@@ -22,7 +22,7 @@ class Ticket {
 
     // POST TICKET
     async POST_TICKET(){
-        const res = await fetch(API.POST_TICKET_USER(), {
+        const res = await fetch(API.POST_TICKET(), {
             method: 'POST',
             body: JSON.stringify(this.toJSON()),
             headers: {

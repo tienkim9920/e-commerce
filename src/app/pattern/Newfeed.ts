@@ -1,3 +1,5 @@
+import API from "../http/http"
+
 class Newfeed{
 
   _id: any
@@ -27,6 +29,16 @@ class Newfeed{
   }
 
   // POST_NEWFEED
-
+  async POST_NEWFEED(){
+    const res = await fetch(API.POST_NEWFEED(), {
+        method: 'POST',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    const data = await res.json()
+    return data.result
+  }
 }
 export default Newfeed

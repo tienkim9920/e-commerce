@@ -154,6 +154,13 @@
     border-left: 1px solid #e2e2e2;
 }
 
+.detail-shop{
+    padding: 0 2rem;
+    display: block;
+    color: gray;
+    border-left: 1px solid #e2e2e2;
+}
+
 .layout-comment-product{
     margin: 0 auto 2rem auto;
     background-color: #fff;
