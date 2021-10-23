@@ -33,6 +33,9 @@ class Message {
     return data.result
   }
 
+
+
+
 }
 
 export default Message

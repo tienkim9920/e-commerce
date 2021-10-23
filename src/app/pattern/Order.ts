@@ -1,3 +1,5 @@
+import API from "../http/http"
+
 class Order{
 
   _id: any
@@ -11,7 +13,7 @@ class Order{
   createTime: any
   detail: any = []
 
-  constructor (_id: any, userId: String, payId: String, noteId: String, shopId: String, total: String, status: String, pay: Boolean, createTime: String){
+  constructor (_id: any, userId: any, payId: any, noteId: any, shopId: any, total: any, status: any, pay: any, createTime: any){
     this._id = _id
     this.userId = userId
     this.payId = payId
@@ -37,12 +39,55 @@ class Order{
   }
 
   // GET DETAIL ORDER
+  async getDetailOrder(){
+    const res = await fetch(API.GET_DETAIL_ORDER(this._id))
+    const data = await res.json()
+    this.userId = data.userId
+    this.payId = data.payId
+    this.noteId = data.noteId
+    this.shopId = data.shopId
+    this.total = data.total
+    this.status = data.status
+    this.pay = data.pay
+    this.createTime = data.createTime
+  }
 
-  // POST ORDER
+  // POST_ORDER
+  async POST_ORDER(){
+    const res = await fetch(API.POST_ORDER(), {
+      method: 'POST',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    return data.result
+  }
 
-  // PATCH ORDER
+  // PATCH_ORDER
+  async PATCH_ORDER(status: any){
+    const query = {
+      status
+    }
+    const res = await fetch(API.PATCH_ORDER(this._id), {
+      method: 'PATCH',
+      body: JSON.stringify(query),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    return data.result
+  }
 
-  // GET List Detail
+  // GET List Detail by orderId
+  async getDetailByOrder(){
+    const res = await fetch(API.GET_DETAIL_BY_ORDER(this._id))
+    const data = await res.json()
+    console.log(data)
+    this.detail = data
+  }
 
 }
 export default Order

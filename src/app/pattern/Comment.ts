@@ -1,3 +1,4 @@
+import API from "../http/http"
 
 class Comment {
 
@@ -27,6 +28,17 @@ class Comment {
     }
 
     // POST_COMMENT
+    async POST_COMMENT() {
+        const res = await fetch(API.POST_COMMENT(), {
+            method: 'POST',
+            body: JSON.stringify(this.toJSON()),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        const data = await res.json()
+        return data.result
+    }
 
 }
 

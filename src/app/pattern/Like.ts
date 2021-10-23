@@ -31,7 +31,6 @@ class Like {
           return data.result
     }
 
-    // DELETE_LIKE
     async DELETE_LIKE(){
       const res = await fetch(API.DELETE_LIKE(this.id), {
           method: 'DELETE',
@@ -44,6 +43,14 @@ class Like {
       return data.result
   }
 
+
+
+    // Checking Like User
+    async checkingLikeUser(){
+        const res = await fetch(API.CHECKING_LIKE_USER(this.userId, this.productId))
+        const data = await res.json()
+        return data
+    }
 }
 
 export default Like
