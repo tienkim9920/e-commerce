@@ -25,7 +25,7 @@ class User {
 
     // GET Ticket
     async getTickets() {
-        const res = await fetch(API.GET_TICKETS_USER(this._id))
+        const res = await fetch(API.GET_TICKETS(this._id))
         const data = await res.json()
         this.ticket = data
     }
@@ -39,17 +39,18 @@ class User {
 
     // GET Coupon
     async getCoupons() {
-        const res = await fetch(API.GET_COUPONS_USER(this._id))
+        const res = await fetch(API.GET_COUPONS(this._id))
         const data = await res.json()
         this.coupon = data
     }
 
     // POST coupon
     async postCoupon(coupon: Coupon) {
-        const data = await coupon.POST_COUPON()
+        const data = await coupon.POST_COUPON()        
         this.coupon = [...this.coupon, data]
         console.log(this.coupon)
     }
+
 
     // GET Detail User
     async getDetail() {

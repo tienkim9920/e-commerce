@@ -44,53 +44,11 @@
         <h4 class="h4-danhmuc">Danh Mục</h4>
         <div class="list-danhmuc-product">
             <div class="category-danhmuc">
-                <a class="category-danhmuc-detail">
+                <a class="category-danhmuc-detail" *ngFor="let item of thamSo.productCategory">
                     <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/tshirt.png" alt="">
+                        <img class="image-category-danhmuc" src="{{ item.image }}" alt="">
                     </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
-                </a>
-                <a class="category-danhmuc-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/phone.png" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
-                </a>
-                <a class="category-danhmuc-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/watch.png" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
-                </a>
-                <a class="category-danhmuc-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/camera.png" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
-                </a>
-                <a class="category-danhmuc-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/toy.png" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
-                </a>
-                <a class="category-danhmuc-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/electronic.png" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
-                </a>
-                <a class="category-danhmuc-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/laptop.png" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
-                </a>
-                <a class="category-danhmuc-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-category-danhmuc" src="../../../assets/toy.png" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2">Thời Trang</div>
+                    <div class="d-flex justify-content-center mt-2">{{ item.name }}</div>
                 </a>
             </div>
         </div>
@@ -107,100 +65,17 @@
         </div>
         <div class="list-flash-sale">
             <div class="group-flash-sale" #widgetsContent>
-                <a [routerLink]="['/detail', 123]" class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                <a *ngFor="let value of thamSo.productDiscount" class="flash-sale-detail">
+                    <div [routerLink]="['/detail', value._id]" class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="{{ value.image[0] }}" alt="">
                         <div class="title-discount">
-                            50% Giảm
+                            {{ value.discount }}% Giảm
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
+                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">{{ value.name }}</div>
                     <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                        <div class="title-discount">
-                            50% Giảm
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
-                    </div>
-                </a>
-                <a class="flash-sale-detail">
-                    <div class="d-flex justify-content-center">
-                        <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                    <div class="d-flex justify-content-between" style="padding: 0 .5rem;">
-                        <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                        <div><i class="fa fa-heart text-danger"></i> 30</div>
+                        <div class="text-danger" style="font-size: 1.1rem;"> {{ value.price | currency: "VND"}}</div>
+                        <div><i class="fa fa-heart text-danger"></i> {{ value.like }}</div>
                     </div>
                 </a>
             </div>
@@ -216,108 +91,19 @@
     <div class="section-home-product">
         <h3 class="title-home-product">Gợi Ý Hôm Nay</h3>
         <div class="group-grid-product-home">
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
+            <a class="list-product-home" *ngFor="let item of thamSo.productHomePagination">
+                <div [routerLink]="['/detail', item._id]">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="{{ item.image[0] }}" alt="">
+                        <div class="title-discount">
+                            {{ item.discount }}% Giảm
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
+                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">{{ item.name }}</div>
+                    <div class="d-flex justify-content-between" style="padding: 0 1rem;">
+                        <div class="text-danger" style="font-size: 1.1rem;"> {{ item.price | currency: "VND" }}</div>
+                        <div><i class="fa fa-heart text-danger"></i> {{ item.like }} </div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
                 </div>
             </a>
         </div>
@@ -330,7 +116,7 @@
 
     </div>
 </div>
-
+<!-- 
 <div *ngFor="let item of user.ticket">
     <div *ngIf="item.status === statusTicket">{{ item.tickId }}</div>
 </div>
@@ -345,3 +131,9 @@
 </div>
 
 <a class="btn btn-success" (click)="handlerCoupon()">Thêm Coupon</a>
+<br>
+<div *ngFor="let item of product.comments">
+    {{ item.userId }}
+</div>
+
+<a class="btn btn-success" (click)="handlerComment()">Thêm Comment</a> -->

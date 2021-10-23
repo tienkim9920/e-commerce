@@ -20,7 +20,9 @@ class Message {
   }
 
   // POST_MESSAGE
-  
+  async POST_MESSAGE(){
+    
+  }
 }
 
 export default Message

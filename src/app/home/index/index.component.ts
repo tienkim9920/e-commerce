@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import Comment from 'src/app/pattern/Comment';
 import Coupon from 'src/app/pattern/Coupon';
+import Order from 'src/app/pattern/Order';
+import Product from 'src/app/pattern/Product';
+import ThamSo from 'src/app/pattern/ThamSo';
 import Ticket from 'src/app/pattern/Ticket';
 import User from 'src/app/pattern/User';
 
@@ -17,7 +21,15 @@ export class IndexComponent implements OnInit {
 
   scroll: any = true
 
+  thamSo = new ThamSo()
+
+  listDiscount: any = []
+
   user = new User('6162b4fa77e2a8176e6619a5')
+
+  product = new Product('123', '', '', '', '', '', [], '', '', '', '')
+
+  page: Number = 1
 
   constructor() {
 
@@ -27,6 +39,17 @@ export class IndexComponent implements OnInit {
     this.user.getTickets()
     this.user.getCoupons()
     this.user.getDetail()
+
+    this.product.getCommentProduct()
+
+    this.thamSo.getDiscountProduct()
+    this.thamSo.getListCategory()
+    this.thamSo.getHomeProduct(this.page)
+  }
+
+  handlerComment(){
+    const comment = new Comment('123', '789', 3, 'Nhuw cc', '123')
+    this.product.postCommentProduct(comment)
   }
 
   handlerTicket(){

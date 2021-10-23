@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import Product from 'src/app/pattern/Product';
 import { CartService } from '../../cart.service'
 
 @Component({
@@ -19,17 +20,28 @@ export class IndexComponent implements OnInit {
 
   like: any = false
 
-  constructor(private route: ActivatedRoute, private cartService: CartService) { }
+  index = 0
 
+  product = new Product('', '', '', '', '', '', [], '', '', '', '')
+
+  constructor(private route: ActivatedRoute, private cartService: CartService) {
+    setTimeout(() => {
+      this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
+      this.product.getCommentProduct()
+    }, 2000)
+  }
+
+  
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id')
-    console.log(this.id)
-
     window.scroll(0,0)
   }
 
   changeSize(value: any){
     this.size = value
+  }
+
+  changeImage(index: any){
+    this.index = index
   }
 
   statusLike(){
@@ -41,12 +53,12 @@ export class IndexComponent implements OnInit {
     this.showToast = true
 
     const data = {
-      productId: "1235",
-      name: "Áo thun Basic",
-      image: 'https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn',
-      price: '70000',
-      size: 'M',
-      count: 1
+      productId: this.product._id,
+      name: this.product.name,
+      image: this.product.image[0],
+      price: this.product.price - ((this.product.price * this.product.discount) / 100),
+      size: this.size,
+      count: this.count
     }
 
     this.cartService.addProduct(data)

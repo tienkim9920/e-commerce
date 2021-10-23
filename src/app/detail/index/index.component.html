@@ -1,31 +1,23 @@
 <div class="layout-detail-product container">
-    <div class="grid-detail-product">
+    <div *ngIf="product.name" class="grid-detail-product">
         <div class="group-detail-product-image">
             <div class="product-image-show">
-                <img src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                <img src="{{ product.image[index] }}" alt="">
             </div>
             <div class="product-image-list">
-                <div class="item-product-image-list active">
-                    <img src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                </div>
-                <div class="item-product-image-list">
-                    <img src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                </div>
-                <div class="item-product-image-list">
-                    <img src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                </div>
-                <div class="item-product-image-list">
-                    <img src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                <div *ngFor="let item of product.image; let i = index" 
+                    [ngClass]="i === index ? 'item-product-image-list active' : 'item-product-image-list'">
+                    <img src="{{ item }}" alt="" (click)="changeImage(i)">
                 </div>
             </div>
         </div>
         <div class="group-detail-product-content">
-            <h3 style="text-transform: uppercase;">Áo thun Young Green Basic</h3>
+            <h3 style="text-transform: uppercase;">{{ product.name }}</h3>
             <div class="d-flex" style="border-bottom: 1px solid #f1f1f1; padding-bottom: 1rem;">
-                <div class="price-product-detail">{{ 180000 | currency: "VND" }}</div>
-                <del class="price-del-detail">{{ 200000 | currency: "VND" }}</del>
+                <div class="price-product-detail">{{ product.price - ((product.price * product.discount)/100) | currency: "VND" }}</div>
+                <del class="price-del-detail">{{ product.price | currency: "VND" }}</del>
                 <div class="percent-discount">
-                    -10%
+                    -{{ product.discount }}%
                 </div>
             </div>
             <div class="size pt-3">
@@ -55,9 +47,7 @@
                     Mô tả sản phẩm:
                 </div>
                 <div class="mt-2" style="font-family: 'Nunito Sans', sans-serif;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet hic ratione dolorem voluptatem maxime
-                    fuga in nihil autem. Culpa libero id vitae. Dolorem soluta iste exercitationem praesentium, aliquid
-                    culpa suscipit?
+                    {{ product.description }}
                 </div>
             </div>
             <div class="btn-addcart mt-3" (click)="addCart()">
@@ -73,7 +63,7 @@
                     <i (click)="statusLike()" [ngClass]="like ? 'fa fa-heart text-danger' : 'fa fa-heart-o text-danger'"
                         style="font-size: 28px; cursor: pointer;"></i>
                     &nbsp;
-                    <span style="font-family: 'Nunito Sans', sans-serif; font-size: 20px;">30 lượt</span>
+                    <span style="font-family: 'Nunito Sans', sans-serif; font-size: 20px;">{{ product.like }} lượt</span>
                 </div>
             </div>
         </div>
@@ -82,10 +72,13 @@
 
 <div class="layout-section-information-shop container">
     <div class="d-flex">
-        <img class="image-infor-shop" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
+        <img class="image-infor-shop" src="{{ product.shopId.image }}" alt="">
         <div style="margin: 0 0 0 1rem;">
-            <div>YG Shop</div>
-            <div style="color: gray;">Online 2 giờ trước</div>
+            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">{{ product.shopId.name }}</div>
+            <div class="d-flex" style="color: gray;">
+                <div class="bg-success" style="width: 15px; height: 15px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                Đang hoạt động
+            </div>
             <div class="d-flex mt-1">
                 <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
                     <i class="fa fa-comments"></i>
@@ -98,23 +91,17 @@
             </div>
         </div>
     </div>
-    <div class="detail-infor-shop">
-        <div class="margin-infor-shop">
-            <div>Đánh giá: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">16</span></div>
+    <div class="detail-shop">
+        <div class="d-flex justify-content-between w-100">
+            <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.reply }}%</span></div>
             <br>
-            <div>Sản phẩm: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">123</span>
+            <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.replyTime}}</span>
             </div>
-        </div>
-        <div class="margin-infor-shop">
-            <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">99%</span></div>
             <br>
-            <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">Trong vài giờ</span>
-            </div>
+            <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.createTime }}</span></div>
         </div>
-        <div class="margin-infor-shop">
-            <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">14 tháng</span></div>
-            <br>
-            <div>Người theo dõi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">26</span></div>
+        <div class="mt-3">
+            Về chúng tôi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.description }}</span> 
         </div>
     </div>
 
@@ -145,41 +132,14 @@
         <h3 style="border-bottom: 5px solid #1A94FF; padding-bottom: .5rem;">Đánh Giá Sản Phẩm</h3>
     </div>
     <div class="group-list-comment">
-        <div class="mt-4">
+        <div *ngFor="let item of product.comments" class="mt-4">
             <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Nguyen Kim Tien</div>
-            <div>Sản phẩm này thật là tuyệt. Đáng đồng tiền bát gạo!</div>
+            <div>{{ item.content}}</div>
             <div style="color: #1A94FF;">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
+                <i *ngFor="let index of [1, 2, 3, 4, 5]" 
+                [ngClass]="index > item.star ? 'fa fa-star-o' : 'fa fa-star'"></i>
             </div>
-            <div>12/09/2021</div>
-        </div>
-        <div class="mt-4">
-            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Nguyen Kim Tien</div>
-            <div>Sản phẩm này thật là tuyệt. Đáng đồng tiền bát gạo!</div>
-            <div style="color: #1A94FF;">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <div>12/09/2021</div>
-        </div>
-        <div class="mt-4">
-            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Nguyen Kim Tien</div>
-            <div>Sản phẩm này thật là tuyệt. Đáng đồng tiền bát gạo!</div>
-            <div style="color: #1A94FF;">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <div>12/09/2021</div>
+            <div>{{ item.createTime}}</div>
         </div>
     </div>
 
