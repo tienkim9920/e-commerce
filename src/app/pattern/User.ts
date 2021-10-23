@@ -63,11 +63,26 @@ class User {
         this.score = data.score
     }
 
-    // GET List Like
+    // GET List Like:TN
+    async getListLike() {
+      const res = await fetch(API.GET_LIKE_PRODUCT(this._id))
+      const data = await res.json()
+      this.like = data
+    }
 
-    // GET List Order
+    // GET List Order:TN
+    async getListOrder() {
+      const res = await fetch(API.GET_DETAIL_ORDER(this._id))
+      const data = await res.json()
+      this.order = data
+    }
 
-    // GET List Comment
+    // GET List Comment:TN
+    async getListComment() {
+      const res = await fetch(API.GET_COMMENT_USER(this._id))
+      const data = await res.json()
+      this.comment = data
+    }
 
     // GET List Notification
 
