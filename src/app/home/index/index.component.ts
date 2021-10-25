@@ -25,10 +25,6 @@ export class IndexComponent implements OnInit {
 
   listDiscount: any = []
 
-  user = new User('6162b4fa77e2a8176e6619a5')
-
-  product = new Product('123', '', '', '', '', '', [], '', '', '', '')
-
   page: Number = 1
 
   constructor() {
@@ -36,35 +32,11 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user.getTickets()
-    this.user.getCoupons()
-    this.user.getDetail()
-
-    this.product.getCommentProduct()
-
     this.thamSo.getDiscountProduct()
     this.thamSo.getListCategory()
     this.thamSo.getHomeProduct(this.page)
   }
 
-  handlerComment(){
-    const comment = new Comment('123', '789', 3, 'Nhuw cc', '123')
-    this.product.postCommentProduct(comment)
-  }
-
-  handlerTicket(){
-    const ticket = new Ticket('6162b4fa77e2a8176e6619a5', '5225', true)
-    this.user.postTicket(ticket)
-  }
-
-  handlerCoupon(){
-    const coupon = new Coupon('6162b4fa77e2a8176e6619a5', '12312321', true)
-    this.user.postCoupon(coupon)
-  }
-
-  handlerStatus(){
-    this.statusTicket = !this.statusTicket
-  }
 
   public scrollLeft(): void {
     this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft - 1250), behavior: 'smooth' });

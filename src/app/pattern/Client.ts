@@ -10,12 +10,16 @@ class Client{
   room: any = []
   message: any = []
 
-  constructor (_id: any){
+  constructor (_id: any, userId: any, limit: any, code: any, statusOrder: any){
     this._id = _id
+    this.userId = userId
+    this.limit = limit
+    this.code = code
+    this.statusOrder = statusOrder
   }
 
   toJSON(){
-    return{
+    return {
       userId: this.userId,
       limit: this.limit,
       code: this.code,

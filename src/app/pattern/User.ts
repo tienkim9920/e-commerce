@@ -3,6 +3,8 @@ import Coupon from "./Coupon"
 import Ticket from "./Ticket"
 import Notification from "./Notification"
 import Reputation from "./Reputation"
+import Client from "./Client"
+import Shop from "./Shop"
 
 class User {
 
@@ -23,6 +25,17 @@ class User {
 
     constructor(_id: any) {
         this._id = _id
+    }
+
+    toJSON(){
+      return {
+        authId: this.authId,
+        email: this.email,
+        password: this.password,
+        name: this.name,
+        image: this.image,
+        score: this.score
+      }
     }
 
     // GET Ticket
@@ -95,10 +108,67 @@ class User {
     // POST List Notification
 
     // Function Sign In User return true - false
+    async signInUser(){
+      const res = await fetch(API.POST_LOGIN(), {
+        method: 'POST',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+      })
+      const data = await res.json()
+
+      if (data.msg === 'Code 200'){
+        return data
+      }
+      return false
+    }
 
     // Function Sign Up User
+    async signUpUser(permission: any){
+      const res = await fetch(API.POST_USER(), {
+        method: 'POST',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+      })
+      const data = await res.json()
 
-    // Checking Permisstion User return "admin", "client", "shop"
+      if (data.msg === "Code 200"){
+
+        // Kiểm tra quyền và khởi tạo đối tượng
+        if (permission === 'client'){
+          const randomCode = (Math.random() + 1).toString(36).substring(6)
+          const client = new Client('', data.userId, 50000, randomCode, false)
+          await client.POST_CLIENT()
+        }else{ // shop
+          const createTime = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
+          const shop = new Shop('', data.userId, '', '', 0, '', createTime)
+          await shop.POST_SHOP()
+        }
+
+        return true
+      }
+      return false
+    }
+
+    // PATCH_USER
+    async PATCH_USER(file: any, checking: Boolean){
+
+      const formData = new FormData();
+
+      formData.append("checking", checking.toString())
+      formData.append("file", file);
+      formData.append("name", this.name)
+
+      const res = await fetch(API.PATCH_USER(this._id), {
+        method: 'PATCH',
+        body: formData
+      })
+      const data = await res.json()
+      console.log(data)
+    }
 
     async postNotification(notificationPost:Notification) {
       const data = await notificationPost.POST_NOTIFICATION()
@@ -117,6 +187,15 @@ class User {
         return item !== reputationDelete
       })
       this.reputation =updateReputation
+    }
+
+    resetUser(){
+      this.name = ''
+      this.email = ''
+      this.authId = '' 
+      this.password = ''
+      this.image = ''
+      this.score = 0
     }
 
 }
