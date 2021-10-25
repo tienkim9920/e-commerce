@@ -101,11 +101,26 @@ class User {
       this.comment = data
     }
 
-    // GET List Notification
+    // GET List Notification:TN
+    async getListNotification() {
+      const res = await fetch(API.GET_NOTIFICATION_USER(this._id))
+      const data = await res.json()
+      this.notification = data
+    }
 
-    // GET List Reputation
+    // GET List Reputation:TN
+    async getListReputation() {
+      const res = await fetch(API.GET_REPUTATION_USER(this._id))
+      const data = await res.json()
+      this.reputation = data
+    }
 
-    // POST List Notification
+    // POST List Notification:TN
+    async postListNotification(notification: Notification) {
+      const data = await notification.POST_NOTIFICATION()
+      this.notification = [...this.notification, data]
+      console.log(this.notification)
+    }
 
     // Function Sign In User return true - false
     async signInUser(){

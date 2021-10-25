@@ -49,19 +49,20 @@ class Shop{
     console.log(this.coup)
   }
 
-  // PATCH Coup:TN
-  async patchCoup(coup: Coup) {
-    const data = await coup.PATCH_COUP()
-    this.coup = [...this.coup, data]
-    console.log(this.coup)
-  }
+    // GET Address:TN
+    async getAddress(shopId: any) {
+      const query = "?" + new URLSearchParams({shopId: shopId});
+      const res = await fetch(API.GET_ADDRESS_SHOP(query), {
+          method: 'GET',
+          body: JSON.stringify(this.toJSON()),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+          }
+      })
+      const data = await res.json()
+      this.address = data.address
 
-  // DELETE Coup:TN
-  async deleteCoup(coup: Coup) {
-    const data = await coup.DELETE_COUP()
-    this.coup = [...this.coup, data]
-    console.log(this.coup)
-  }
+    }
 
     // GET Address:TN
     async getAddress(shopId: any) {
@@ -181,11 +182,26 @@ class Shop{
 
   // PATCH Address
 
-  // GET List Coup by shopId
+  // GET List Coup by shopId:TN
+  async getListCoup() {
+    const res = await fetch(API.GET_COUP_SHOP(this._id))
+    const data = await res.json()
+    this.coup = data
+  }
 
-  // DELETE Coup
+  // PATCH Coup:TN
+  async patchCoup(coup: Coup) {
+    const data = await coup.PATCH_COUP()
+    this.coup = [...this.coup, data]
+    console.log(this.coup)
+  }
 
-  // PATCH Coup
+  // DELETE Coup:TN
+  async deleteCoup(coup: Coup) {
+    const data = await coup.DELETE_COUP()
+    this.coup = [...this.coup, data]
+    console.log(this.coup)
+  }
 
 }
 

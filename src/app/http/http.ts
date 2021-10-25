@@ -21,6 +21,14 @@ const API = {
         return url + `/coupon/${userId}`
     },
 
+    GET_NOTIFICATION_USER: (userId: any) => {
+        return url + `/notification/${userId}`
+    },
+
+    GET_REPUTATION_USER: (userId: any) => {
+        return url + `/reputation/${userId}`
+    },
+
     GET_COMMENT_USER: (userId: any) => {
       return url + `/comment/${userId}`
     },
