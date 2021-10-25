@@ -1,14 +1,11 @@
 const url = 'http://localhost:4000'
 
 const API = {
-<<<<<<< HEAD
-    
+
     // Auth
     GET_AUTH: () => {
         return url + `/auth`
     },
-=======
->>>>>>> 35edcee3454659a936e63d38e065e68473daf2f9
 
     // User
     GET_DETAIL_USER: (_id: any) => {
