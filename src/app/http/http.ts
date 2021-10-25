@@ -265,6 +265,10 @@ const API = {
         return url + `/shop/${_id}`
     },
 
+    GET_COUP_SHOP: (_id: any) => {
+        return url + `/shop/${_id}`
+    },
+
     // Category
     GET_CATEGORY: () => {
         return url + `/category`
