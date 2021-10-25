@@ -1,3 +1,4 @@
+import API from "../http/http"
 
 class Detail {
 
@@ -25,8 +26,19 @@ class Detail {
       }
   }
 
-  // POST_DETAIL
-  
+  // POST_DETAIL:TN
+  async POST_DETAIL(){
+    const res = await fetch(API.POST_DETAIL_PRODUCT(), {
+        method: 'POST',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    const data = await res.json()
+    return data.result
+  }
+
 }
 
 export default Detail

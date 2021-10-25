@@ -61,7 +61,7 @@ class User {
 
     // POST coupon
     async postCoupon(coupon: Coupon) {
-        const data = await coupon.POST_COUPON()        
+        const data = await coupon.POST_COUPON()
         this.coupon = [...this.coupon, data]
         console.log(this.coupon)
     }
@@ -79,11 +79,27 @@ class User {
         this.score = data.score
     }
 
+    // GET List Like:TN
+    async getListLike() {
+      const res = await fetch(API.GET_LIKE_PRODUCT(this._id))
+      const data = await res.json()
+      this.like = data
+    }
     // GET List Reputation
 
-    // GET List Order
+    // GET List Order:TN
+    async getListOrder() {
+      const res = await fetch(API.GET_DETAIL_ORDER(this._id))
+      const data = await res.json()
+      this.order = data
+    }
 
-    // GET List Comment
+    // GET List Comment:TN
+    async getListComment() {
+      const res = await fetch(API.GET_COMMENT_USER(this._id))
+      const data = await res.json()
+      this.comment = data
+    }
 
     // GET List Notification
 

@@ -1,7 +1,7 @@
 import API from "../http/http"
+import Detail from "./Detail"
 import Like from "./Like"
 import Option from "./Option"
-
 import Comment from "./Comment"
 
 
@@ -21,6 +21,7 @@ class Product {
     likes: any = []
     comments: any = []
     option: any = []
+    detail: any = []
 
     constructor (_id: any, shopId: any, categoryId: any, name: any, price: any, description: any, image: any,
         discount: any, like: any, comment: any, expiredTime: any) {
@@ -52,6 +53,12 @@ class Product {
         }
     }
 
+    // POST DETAIL:TN
+    async postDetail(detail: Detail) {
+      const data = await detail.POST_DETAIL()
+      this.detail = [...this.detail, data]
+      console.log(this.detail)
+  }
     // POST_PRODUCT
     async POST_PRODUCT(){
       const res = await fetch(API.POST_PRODUCT(), {
