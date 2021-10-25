@@ -6,10 +6,7 @@ const API = {
     GET_AUTH: () => {
         return url + `/auth`
     },
-<<<<<<< HEAD
-=======
 
->>>>>>> 92bca412f5a6826f7eddc1b5053c29ac07dccfba
 
     // User
     GET_DETAIL_USER: (_id: any) => {
