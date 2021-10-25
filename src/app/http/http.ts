@@ -269,7 +269,6 @@ const API = {
         return url + `/shop/${_id}`
     },
 
-
     // Category
     GET_CATEGORY: () => {
         return url + `/category`
