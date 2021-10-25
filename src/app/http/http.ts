@@ -7,13 +7,21 @@ const API = {
     GET_DETAIL_USER: (_id: any) => {
       return url + `/user/${_id}`
     },
-    
+
     GET_TICKETS_USER: (userId: any) => {
         return url + `/ticket/${userId}`
     },
 
     GET_COUPONS_USER: (userId: any) => {
         return url + `/coupon/${userId}`
+    },
+
+    GET_NOTIFICATION_USER: (userId: any) => {
+        return url + `/notification/${userId}`
+    },
+
+    GET_REPUTATION_USER: (userId: any) => {
+        return url + `/reputation/${userId}`
     },
 
     GET_COMMENT_USER: (userId: any) => {
@@ -206,6 +214,10 @@ const API = {
     },
 
     GET_DETAIL_SHOP: (_id: any) => {
+        return url + `/shop/${_id}`
+    },
+
+    GET_COUP_SHOP: (_id: any) => {
         return url + `/shop/${_id}`
     },
 
