@@ -1,6 +1,21 @@
 <div class="container my-3 layout-index">
     <div class="text-center">
-        <h1>Thông tin tài khoản</h1>
+        <h1 class="p-4">Thông tin tài khoản</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+          </svg>
+        <div *ngIf="success" class="d-flex justify-content-center mb-4">
+            <div class="alert alert-success d-flex align-items-center fade-true" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                  Bạn đã thay đổi thông tin thành công
+                </div>
+            </div>
+        </div>
+
+
         <div class="form-name">
             <form>
                 <div class="mb-4 row">
@@ -8,7 +23,7 @@
                         <label for="email" class="mr-3 lbl-info">Email:</label>
                     </div>
                     <div class="col-8">
-                        <input type="text" disabled class="form-control w-75" id="email" value="email@example.com">
+                        <input type="text" disabled class="form-control w-75" value="{{ user.email }}">
                     </div>
                 </div>
 
@@ -17,7 +32,10 @@
                         <label for="name" class="mr-3 lbl-info">Họ và tên:</label>
                     </div>
                     <div class="col-8">
-                        <input type="text" class="form-control w-75" id="name">
+                        <input type="text" class="form-control w-75"
+                        [(ngModel)]="user.name"
+                        (ngModelChange)="changeName($event)"
+                        value="{{ user.name }}" name="name">
                     </div>
                 </div>
 
@@ -26,15 +44,15 @@
                         <label for="nameShop" class="mr-3 lbl-info">Ảnh Đại Diện:</label>
                     </div>
                     <div class="col-8">
-                        <input type="file" class="form-control w-75" id="nameShop">
+                        <input type="file" (change)="uploadImage($event)" class="form-control w-75">
                     </div>
                 </div>
 
                 <div class="mb-4 row">
-                    <div class="col-4 col-lg-3 ">
+                    <div class="col-4 col-lg-3">
                     </div>
                     <div>
-                        <button mat-raised-button color="primary">Lưu</button>
+                        <a class="btn btn-primary" (click)="saveInfor()">Lưu lại</a>
                     </div>
                 </div>
 

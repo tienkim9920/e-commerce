@@ -1,13 +1,67 @@
 <div class="main-header">
   <div class="header-laptop">
     <div class="layout-header-laptop container">
-      <div *ngIf="auth === 'client'" class="group-header-top d-flex justify-content-end">
-        <div class="header-profile">
-          <i class="fa fa-user-circle-o p-1"></i>
-          <span>Nguyễn Kim Tiền</span>
+      <div *ngIf="user.permission === 'client'" class="group-header-top d-flex justify-content-end">
+        <div class="header-notification">
+          <div>
+            <i class="fa fa-bell-o p-1"></i>
+            <span>Thông Báo</span>
+          </div>
+          <div class="sub-notification">
+            <!-- <div class="text-center">
+                <div class="bg-cart-empty"></div>
+                <span>Chưa có sản phẩm</span>
+              </div> -->
+            <div class="pt-2 pb-3">
+              Thông báo mới nhận
+            </div>
+            <div class="hover-sub-notification active">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Áo Tay</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="hover-sub-notification">
+              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+              <div class="content-sub-notification">
+                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                <span>Vừa thả tim sản phẩm 123123213</span>
+              </div>
+            </div>
+            <div class="view-all">
+              Xem tất cả
+            </div>
+          </div>
         </div>
+        <div class="header-profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i *ngIf="!user.image" class="fa fa-user-circle-o p-1"></i>
+          <img *ngIf="user.image" class="logo-mini-profile" src="{{ user.image }}" alt="">
+          <span class="ms-1">{{ user.name }}</span>
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" [routerLink]="['/user/profile']"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Quản lý thông tin</a>
+          </li>
+          <li><a class="dropdown-item" [routerLink]="['/chat', 123]"><i class="fa fa-comment icon-profile"></i>&nbsp;&nbsp;Tin nhắn</a></li>
+          <li><a class="dropdown-item" (click)="logOut()"><i class="fa fa-mail-forward icon-profile"></i>&nbsp;&nbsp;Đăng xuất</a>
+          </li>
+        </ul>
       </div>
-      <div *ngIf="auth === 'shop'" class="group-header-top d-flex justify-content-end">
+      <div *ngIf="user.permission === 'shop'" class="group-header-top d-flex justify-content-end">
         <div class="header-notification">
           <div>
             <i class="fa fa-bell-o p-1"></i>
@@ -56,18 +110,18 @@
         </div>
         <div class="header-profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa fa-user-circle-o p-1"></i>
-          <span>Young Green</span>
+          <span>{{ user.name }}</span>
         </div>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" [routerLink]="['/manages/product/list/all']"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Quản lý thông tin</a>
           </li>
           <li><a class="dropdown-item" [routerLink]="['/chat', 123]"><i class="fa fa-comment icon-profile"></i>&nbsp;&nbsp;Tin nhắn</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa fa-mail-forward icon-profile"></i>&nbsp;&nbsp;Đăng xuất</a>
+          <li><a class="dropdown-item" (click)="logOut()"><i class="fa fa-mail-forward icon-profile"></i>&nbsp;&nbsp;Đăng xuất</a>
           </li>
         </ul>
       </div>
-      <div *ngIf="!auth" class="group-header-top d-flex justify-content-end">
-        <div class="header-profile">
+      <div *ngIf="!user.name" class="group-header-top d-flex justify-content-end">
+        <div [routerLink]="['/login']" class="header-profile">
           <i class="fa fa-user-circle-o p-1"></i>
           <span>Đăng Nhập</span>
         </div>
@@ -129,55 +183,11 @@
           </div>
         </div>
         <div class="nav-option cart-header">
-
           <div class="padding-cart-header" [routerLink]="['/cart']">
             <i class="fa fa-cart-arrow-down" style="font-size: 30px;"></i>
             <span class="count-cart">{{ count }}</span>
             <span style="font-size: .8rem; margin-left: .2rem;">Giỏ hàng</span>
           </div>
-
-          <div class="sub-menu">
-            <!-- <div class="text-center">
-                <div class="bg-cart-empty"></div>
-                <span>Chưa có sản phẩm</span>
-              </div> -->
-
-            <div class="pt-2 pb-3">
-              Sản phẩm mới mua
-            </div>
-            <div class="hover-sub-notification active">
-              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-              <div class="content-sub-notification">
-                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                <span>Giá: 70000</span>, <span>size: Lớn</span>
-              </div>
-            </div>
-            <div class="hover-sub-notification">
-              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-              <div class="content-sub-notification">
-                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                <span>Giá: 70000</span>, <span>size: Lớn</span>
-              </div>
-            </div>
-            <div class="hover-sub-notification">
-              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-              <div class="content-sub-notification">
-                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                <span>Giá: 70000</span>, <span>size: Lớn</span>
-              </div>
-            </div>
-            <div class="hover-sub-notification">
-              <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-              <div class="content-sub-notification">
-                <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                <span>Giá: 70000</span>, <span>size: Lớn</span>
-              </div>
-            </div>
-            <div class="view-all" [routerLink]="['/cart']">
-              Xem tất cả
-            </div>
-          </div>
-
         </div>
       </div>
     </div>

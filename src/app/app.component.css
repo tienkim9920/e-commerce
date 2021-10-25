@@ -199,7 +199,7 @@
     padding: .4rem .8rem;
     position: absolute;
     top: 1.8rem;
-    right: 17%;
+    right: 19%;
     box-shadow: 0 0 5px rgb(0 0 0 / 20%);
     color: #323232;
     z-index: 999;
@@ -213,7 +213,7 @@
     content: "";
     position: absolute;
     top: -1.25rem;
-    left: 90%;
+    left: 85%;
     border-width: 10px 18px;
     border-style: solid;
     border-color: transparent transparent #ffffff transparent;
@@ -397,6 +397,13 @@ li{
 
 .fix-icon-direct:hover{
     transform: scale(1.1);
+}
+
+.logo-mini-profile{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #bebebe;
 }
 
 @media only screen and (max-width: 600px){

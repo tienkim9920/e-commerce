@@ -6,8 +6,8 @@ class Shop{
   userId: any
   name: any
   description: any
-  rely: any
-  relyTime: any
+  reply: any
+  replyTime: any
   createTime: any
   product: any = []
   order: any = []
@@ -18,13 +18,13 @@ class Shop{
   newfeed: any = []
   coup: any = []
 
-  constructor (_id: String, userId: String, name: String, description: String, rely: any, relyTime: any, createTime: any){
+  constructor (_id: String, userId: String, name: String, description: String, reply: Number, replyTime: String, createTime: String){
     this._id = _id
     this.userId = userId
     this.name = name
     this.description = description
-    this.rely = rely
-    this.relyTime = relyTime
+    this.reply = reply
+    this.replyTime = replyTime
     this.createTime = createTime
   }
 
@@ -33,8 +33,8 @@ class Shop{
       userId: this.userId,
       name: this.name,
       description: this.description,
-      rely: this.rely,
-      relyTime: this.relyTime,
+      reply: this.reply,
+      replyTime: this.replyTime,
       createTime: this.createTime
     }
   }
@@ -72,8 +72,8 @@ class Shop{
     this.userId = data.userId
     this.name = data.name
     this.description = data.description
-    this.rely = data.rely
-    this.relyTime = data.relyTime
+    this.reply = data.reply
+    this.replyTime = data.replyTime
     this.createTime = data.createTime
   }
 
@@ -100,4 +100,5 @@ class Shop{
   // PATCH Coup
 
 }
+
 export default Shop

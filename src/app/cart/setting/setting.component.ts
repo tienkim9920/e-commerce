@@ -28,4 +28,5 @@ export class SettingComponent implements OnInit {
     this.status = !this.status
     console.log(this.status)
   }
+  
 }
