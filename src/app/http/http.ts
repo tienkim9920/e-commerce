@@ -7,7 +7,7 @@ const API = {
     GET_DETAIL_USER: (_id: any) => {
       return url + `/user/${_id}`
     },
-    
+
     GET_TICKETS_USER: (userId: any) => {
         return url + `/ticket/${userId}`
     },
@@ -51,16 +51,21 @@ const API = {
       return url + `/coup`
     },
 
+
+    //ADDRESS
+    GET_ADDRESS_SHOP: (query: any) => {
+      return url + `/address/address${query}`
+    },
     POST_ADDRESS_SHOP: () => {
       return url + `/address`
     },
 
-    PATCH_ADDRESS_SHOP: () => {
-      return url + `/address`
+    PATCH_ADDRESS_SHOP: (id: any) => {
+      return url + `/address/address/${id}`
     },
 
-    DELETE_ADDRESS_SHOP: () => {
-      return url + `/address`
+    DELETE_ADDRESS_SHOP: (id: any) => {
+      return url + `/address/${id}`
     },
 
     // Ticket
@@ -80,6 +85,12 @@ const API = {
     POST_COUPON: () => {
         return url + `/coupon`
     },
+
+    //REPUTATION
+    GET_REPUTATION_SHOP:(query:any)=>{
+      return url + `/reputation/detail${query}`
+    },
+
     POST_REPUTATION: ()=>{
       return url + `/reputation`
     },
@@ -212,6 +223,19 @@ const API = {
     // Category
     GET_CATEGORY: () => {
         return url + `/category`
+    },
+
+    //Room
+    GET_ROOM_SHOP: (shopId:any)=>{
+      return url + `/room/list/shopId/${shopId}`
+    },
+
+    //Client
+    GET_ROOM_CLIENT:(clientId: any)=>{
+      return url + `/room/list/clientId/${clientId}`
+    },
+    POST_CLIENT:()=>{
+      return url + `/client`
     }
 }
 
