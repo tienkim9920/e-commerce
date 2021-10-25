@@ -6,18 +6,30 @@ const API = {
     GET_AUTH: () => {
         return url + `/auth`
     },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92bca412f5a6826f7eddc1b5053c29ac07dccfba
 
     // User
     GET_DETAIL_USER: (_id: any) => {
       return url + `/user/${_id}`
     },
-    
+
     GET_TICKETS_USER: (userId: any) => {
         return url + `/ticket/${userId}`
     },
 
     GET_COUPONS_USER: (userId: any) => {
         return url + `/coupon/${userId}`
+    },
+
+    GET_NOTIFICATION_USER: (userId: any) => {
+        return url + `/notification/${userId}`
+    },
+
+    GET_REPUTATION_USER: (userId: any) => {
+        return url + `/reputation/${userId}`
     },
 
     GET_COMMENT_USER: (userId: any) => {
@@ -55,16 +67,21 @@ const API = {
       return url + `/coup`
     },
 
+
+    //ADDRESS
+    GET_ADDRESS_SHOP: (query: any) => {
+      return url + `/address/address${query}`
+    },
     POST_ADDRESS_SHOP: () => {
       return url + `/address`
     },
 
-    PATCH_ADDRESS_SHOP: () => {
-      return url + `/address`
+    PATCH_ADDRESS_SHOP: (id: any) => {
+      return url + `/address/address/${id}`
     },
 
-    DELETE_ADDRESS_SHOP: () => {
-      return url + `/address`
+    DELETE_ADDRESS_SHOP: (id: any) => {
+      return url + `/address/${id}`
     },
 
     POST_USER: () => {
@@ -97,8 +114,11 @@ const API = {
         return url + `/coupon`
     },
 
+    //REPUTATION
+    GET_REPUTATION_SHOP:(query:any)=>{
+      return url + `/reputation/detail${query}`
+    },
 
-    // Reputation
     POST_REPUTATION: ()=>{
       return url + `/reputation`
     },
@@ -170,11 +190,11 @@ const API = {
     POST_PRODUCT:()=>{
         return url + `/product`
       },
-  
+
     DELETE_PRODUCT:(productID: any)=>{
         return url + `/product/${productID}`
     },
-  
+
     PATCH_PRODUCT:(productID: any)=>{
         return url + `/product/${productID}`
     },
@@ -193,7 +213,7 @@ const API = {
     POST_LIKE: ()=>{
         return url + `/like`
     },
-  
+
     DELETE_LIKE: (id: any)=>{
         return url + `/like/${id}`
     },
@@ -235,12 +255,6 @@ const API = {
     },
 
 
-    // Client
-    POST_CLIENT: () => {
-        return url + `/client`
-    },
-
-
     // Shop
     POST_SHOP: () => {
         return url + `/shop`
@@ -254,11 +268,28 @@ const API = {
         return url + `/shop/${_id}`
     },
 
+    GET_COUP_SHOP: (_id: any) => {
+        return url + `/shop/${_id}`
+    },
 
 
     // Category
     GET_CATEGORY: () => {
         return url + `/category`
+    },
+
+    //Room
+    GET_ROOM_SHOP: (shopId:any)=>{
+      return url + `/room/list/shopId/${shopId}`
+    },
+
+    //Client
+    GET_ROOM_CLIENT:(clientId: any)=>{
+      return url + `/room/list/clientId/${clientId}`
+    },
+
+    POST_CLIENT:()=>{
+      return url + `/client`
     }
 }
 

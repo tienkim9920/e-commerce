@@ -27,6 +27,8 @@ class Client{
     }
   }
 
+
+
   // POST_CLIENT
   async POST_CLIENT(){
     const res = await fetch(API.POST_CLIENT(), {
@@ -42,7 +44,21 @@ class Client{
 
   // GET Detail Client
 
+
   // GET List Room by clientId
+  async getRoom(clientId: any) {
+    const res = await fetch(API.GET_ROOM_CLIENT(clientId), {
+        method: 'GET',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    const data = await res.json()
+    this.room = data
+
+}
+
 
 }
 

@@ -49,19 +49,20 @@ class Shop{
     console.log(this.coup)
   }
 
-  // PATCH Coup:TN
-  async patchCoup(coup: Coup) {
-    const data = await coup.PATCH_COUP()
-    this.coup = [...this.coup, data]
-    console.log(this.coup)
+    // GET Address:TN
+  async getAddress(shopId: any) {
+    const query = "?" + new URLSearchParams({shopId: shopId});
+    const res = await fetch(API.GET_ADDRESS_SHOP(query), {
+        method: 'GET',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    const data = await res.json()
+    this.address = data.address
   }
 
-  // DELETE Coup:TN
-  async deleteCoup(coup: Coup) {
-    const data = await coup.DELETE_COUP()
-    this.coup = [...this.coup, data]
-    console.log(this.coup)
-  }
 
   // POST Address:TN
   async postAddress(address: Address) {
@@ -71,17 +72,20 @@ class Shop{
   }
 
   // PATCH Address:TN
-  async patchAddress(address: Address) {
-    const data = await address.PATCH_ADDRESS()
-    this.address = [...this.address, data]
-    console.log(this.address)
+  async patchAddress(addressPatch: Address,valueChange: Address) {
+    const data = await addressPatch.PATCH_ADDRESS()
+    const index= this.address.indexOf(addressPatch);
+    this.address[index] = valueChange
+
   }
 
   // DELETE Address:TN
-  async deleteAddress(address: Address) {
-    const data = await address.DELETE_ADDRESS()
-    this.address = [...this.address, data]
-    console.log(this.address)
+  async deleteAddress(addressDelete: Address) {
+    const data = await addressDelete.DELETE_ADDRESS()
+    let updateAddress = this.address.filter((item: Address) => {
+      return item !== addressDelete
+    })
+    this.address =updateAddress
   }
 
   // POST_SHOP
@@ -94,7 +98,7 @@ class Shop{
       }
     })
     const data = await res.json()
-    return data.result
+    return data
   }
 
   // PATCH_SHOP
@@ -107,7 +111,7 @@ class Shop{
       }
     })
     const data = await res.json()
-    return data.result
+    return data
   }
 
   // GET Detail Shop
@@ -129,8 +133,33 @@ class Shop{
   // PATCH list Order by shopId
 
   // GET List Room
+  async getRoom(shopId: any) {
+        const res = await fetch(API.GET_ROOM_SHOP(shopId), {
+            method: 'GET',
+            body: JSON.stringify(this.toJSON()),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        const data = await res.json()
+        this.room = data
+
+  }
 
   // GET List Reputation by shopId
+  async getReputation(shopId: any) {
+    const query = "?" + new URLSearchParams({shopId: shopId});
+    const res = await fetch(API.GET_REPUTATION_SHOP(query), {
+        method: 'GET',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    const data = await res.json()
+    this.reputation = data
+
+}
 
   // GET List Address by shopId
 
@@ -138,11 +167,26 @@ class Shop{
 
   // PATCH Address
 
-  // GET List Coup by shopId
+  // GET List Coup by shopId:TN
+  async getListCoup() {
+    const res = await fetch(API.GET_COUP_SHOP(this._id))
+    const data = await res.json()
+    this.coup = data
+  }
 
-  // DELETE Coup
+  // PATCH Coup:TN
+  async patchCoup(coup: Coup) {
+    const data = await coup.PATCH_COUP()
+    this.coup = [...this.coup, data]
+    console.log(this.coup)
+  }
 
-  // PATCH Coup
+  // DELETE Coup:TN
+  async deleteCoup(coup: Coup) {
+    const data = await coup.DELETE_COUP()
+    this.coup = [...this.coup, data]
+    console.log(this.coup)
+  }
 
 }
 
