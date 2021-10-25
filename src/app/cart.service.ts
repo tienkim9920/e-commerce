@@ -50,6 +50,35 @@ export class CartService {
     return result
   }
 
+  getJWT(){
+    
+    let result = {}
+
+    if (localStorage.getItem('jwt') !== null){
+        result = JSON.parse(localStorage.getItem('jwt') || '{}')
+    }else{
+      localStorage.setItem('jwt', JSON.stringify({}))
+    }
+
+    return result
+  }
+
+  setJWT(token: any){
+    localStorage.setItem('jwt', JSON.stringify(token))
+  }
+
+  setName(name: any){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    token.name = name
+    localStorage.setItem('jwt', JSON.stringify(token))
+  }
+
+  setImage(image: any){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    token.image = image
+    localStorage.setItem('jwt', JSON.stringify(token))
+  }
+
   // cập nhật total payment
   TotalPayment(){
 
@@ -159,28 +188,28 @@ export class CartService {
     }
   }
 
-  deleteProduct (index: any) {
-      //Lấy dữ diệu có sẵn trong state
-      const delete_cart = JSON.parse(localStorage.getItem('carts') || '[]')
+    deleteProduct (index: any) {
+        //Lấy dữ diệu có sẵn trong state
+        const delete_cart = JSON.parse(localStorage.getItem('carts') || '[]')
 
-      //Xóa theo vị trí
-      delete_cart.splice(index, 1)
+        //Xóa theo vị trí
+        delete_cart.splice(index, 1)
 
-      localStorage.setItem('carts', JSON.stringify(delete_cart))
-  }
+        localStorage.setItem('carts', JSON.stringify(delete_cart))
+    }
 
-  updateProduct(data: any) {
-      const data_update_cart = data
-          
-      const update_cart = JSON.parse(localStorage.getItem('carts') || '[]')
+    updateProduct(data: any) {
+        const data_update_cart = data
+            
+        const update_cart = JSON.parse(localStorage.getItem('carts') || '[]')
 
-      const index = update_cart.findIndex((value: any) => {
-          return value.productId === data_update_cart.productId
-      })
+        const index = update_cart.findIndex((value: any) => {
+            return value.productId === data_update_cart.productId
+        })
 
-      update_cart[index].count = parseInt(data_update_cart.count)
+        update_cart[index].count = parseInt(data_update_cart.count)
 
-      localStorage.setItem('carts', JSON.stringify(update_cart))
-  }
+        localStorage.setItem('carts', JSON.stringify(update_cart))
+    }
 
 }

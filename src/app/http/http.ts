@@ -1,7 +1,12 @@
-
 const url = 'http://localhost:4000'
 
 const API = {
+
+    // Auth
+    GET_AUTH: () => {
+        return url + `/auth`
+    },
+
 
     // User
     GET_DETAIL_USER: (_id: any) => {
@@ -59,16 +64,33 @@ const API = {
       return url + `/coup`
     },
 
+
+    //ADDRESS
+    GET_ADDRESS_SHOP: (query: any) => {
+      return url + `/address/address${query}`
+    },
     POST_ADDRESS_SHOP: () => {
       return url + `/address`
     },
 
-    PATCH_ADDRESS_SHOP: () => {
-      return url + `/address`
+    PATCH_ADDRESS_SHOP: (id: any) => {
+      return url + `/address/address/${id}`
     },
 
-    DELETE_ADDRESS_SHOP: () => {
-      return url + `/address`
+    DELETE_ADDRESS_SHOP: (id: any) => {
+      return url + `/address/${id}`
+    },
+
+    POST_USER: () => {
+        return url + `/user`
+    },
+
+    POST_LOGIN: () => {
+        return url + `/user/login`
+    },
+
+    PATCH_USER: (_id: any) => {
+        return url + `/user/update/${_id}`
     },
 
     // Ticket
@@ -88,6 +110,12 @@ const API = {
     POST_COUPON: () => {
         return url + `/coupon`
     },
+
+    //REPUTATION
+    GET_REPUTATION_SHOP:(query:any)=>{
+      return url + `/reputation/detail${query}`
+    },
+
     POST_REPUTATION: ()=>{
       return url + `/reputation`
     },
@@ -96,41 +124,23 @@ const API = {
       return url + `/reputation/${id}`
     },
 
-    POST_LIKE: ()=>{
-      return url + `/like`
-    },
-
-    DELETE_LIKE: (id: any)=>{
-      return url + `/like/${id}`
-    },
-
-    POST_MESSAGE: ()=>{
-      return url + `/message`
-    },
-
+    // Newfeed
     POST_NEWFEED:()=>{
       return url + `/newfeed`
     },
 
+
+    // Notification
     POST_NOTIFICATION:()=>{
       return url + `/notification`
     },
 
+
+    // Option
     POST_OPTION: ()=>{
       return url + `/option`
     },
 
-    POST_PRODUCT:()=>{
-      return url + `/product`
-    },
-
-    DELETE_PRODUCT:(productID: any)=>{
-      return url + `/product/${productID}`
-    },
-
-    PATCH_PRODUCT:(productID: any)=>{
-      return url + `/product/${productID}`
-    },
 
     // Order
     GET_DETAIL_ORDER: (_id: any) => {
@@ -145,10 +155,13 @@ const API = {
         return url + `/order/${_id}`
     },
 
+
+
     // Detail
     GET_DETAIL_BY_ORDER: (orderId: any) => {
         return url + `/detail/order?orderId=${orderId}`
     },
+
 
     // Product
     GET_DETAIL_PRODUCT: (_id: any) => {
@@ -171,6 +184,20 @@ const API = {
         return url + `/product/dislike/${_id}`
     },
 
+    POST_PRODUCT:()=>{
+        return url + `/product`
+      },
+
+    DELETE_PRODUCT:(productID: any)=>{
+        return url + `/product/${productID}`
+    },
+
+    PATCH_PRODUCT:(productID: any)=>{
+        return url + `/product/${productID}`
+    },
+
+
+
     // Like
     GET_LIKE_PRODUCT: (productId: any) => {
         return url + `/like/list/productId?productId=${productId}`
@@ -179,6 +206,16 @@ const API = {
     CHECKING_LIKE_USER: (userId: any, productId: any) => {
         return url + `/like/checking?userId=${userId}&productId=${productId}`
     },
+
+    POST_LIKE: ()=>{
+        return url + `/like`
+    },
+
+    DELETE_LIKE: (id: any)=>{
+        return url + `/like/${id}`
+    },
+
+
 
     // Comment
     GET_COMMENT_PRODUCT: (productId: any) => {
@@ -189,20 +226,31 @@ const API = {
         return url + `/comment`
     },
 
+
+
     // Option
     GET_OPTION_PRODUCT: (productId: any) => {
         return url + `/option/${productId}`
     },
+
+
 
     // Room
     POST_ROOM: () => {
         return url + `/room`
     },
 
+
+
     // Message
     GET_MESSAGE_BY_ROOM: (roomId: any) => {
         return url + `/message/list/roomId/${roomId}`
     },
+
+    POST_MESSAGE: ()=>{
+        return url + `/message`
+    },
+
 
     // Shop
     POST_SHOP: () => {
@@ -221,9 +269,24 @@ const API = {
         return url + `/shop/${_id}`
     },
 
+
     // Category
     GET_CATEGORY: () => {
         return url + `/category`
+    },
+
+    //Room
+    GET_ROOM_SHOP: (shopId:any)=>{
+      return url + `/room/list/shopId/${shopId}`
+    },
+
+    //Client
+    GET_ROOM_CLIENT:(clientId: any)=>{
+      return url + `/room/list/clientId/${clientId}`
+    },
+
+    POST_CLIENT:()=>{
+      return url + `/client`
     }
 }
 

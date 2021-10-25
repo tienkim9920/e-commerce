@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { CartService } from './cart.service';
@@ -11,9 +12,6 @@ import { CartService } from './cart.service';
 export class AppComponent {
 
   @ViewChild('sticky', { read: ElementRef }) sticky!: ElementRef<any>;
-
-  // quyền truy cập
-  auth: any = 'shop'
 
   // word tìm kiếm
   search: any = ''
@@ -38,7 +36,10 @@ export class AppComponent {
   // Tổng lượng sản phẩm
   count: any
 
-  constructor(private cartService: CartService) {
+  // Phiên đăng nhập người dùng
+  user: any
+
+  constructor(private cartService: CartService, private router: Router) {
     // debounce search
     this.searchUpdate.pipe(
       debounceTime(500),
@@ -97,6 +98,7 @@ export class AppComponent {
     this.myCarts = this.cartService.getMyCarts()
     this.anotherCarts = this.cartService.getAnotherCarts()
     this.totalPayment = this.cartService.getTotalPayment()
+    this.user = this.cartService.getJWT()
   }
 
   totalCount(carts: any, another: any){
@@ -116,4 +118,8 @@ export class AppComponent {
     return result
   }
 
+  logOut(){
+    this.user = this.cartService.setJWT({})
+    this.router.navigate(['/login'])
+  }
 }
