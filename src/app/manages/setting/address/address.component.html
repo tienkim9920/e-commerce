@@ -274,33 +274,19 @@
             <label for="user-name" class="address-edit__item-label">
               Tên shop
             </label>
-            <input type="text" id="user-name" class="address-edit__item-input" placeholder="toannguyen197">
+            <input type="text" [(ngModel)]="address.address"  class="address-edit__item-input" placeholder="toannguyen197" />
           </div>
 
           <div class="address-edit__item">
             <label for="user-address" class="address-edit__item-label">
               Số điện thoại
             </label>
-            <input type="text" id="user-address" class="address-edit__item-input" placeholder="342 Tân hòa đông">
+            <input type="text" id="user-address" class="address-edit__item-input" placeholder="342 Tân hòa đông" />
           </div>
 
           <div class="address-edit__item">
             <h2>Địa chỉ</h2>
-            <label for="user-address" class="address-edit__item-label">
-              Tỉnh/Thành phố/Quận/Huyện/Phường/Xã
-            </label>
-            <div class="input-group">
-              <input type="text" id="province-address" aria-label="province" class="form-control address-edit__item-input" placeholder="Tỉnh">
-              <input type="text" id="city-address" aria-label="city" class="form-control address-edit__item-input" placeholder="Thành phố">
-              <input type="text" id="local-address" aria-label="local" class="form-control address-edit__item-input" placeholder="Quận/Huyện/Phường/Xã">
-            </div>
-          </div>
-
-          <div class="address-edit__item ">
-            <label for="product-name" class="address-edit__item-label">
-              Địa chỉ chi tiết
-            </label>
-            <input type="text" id="product-name" class="address-edit__item-input address-edit__item-input-desc" placeholder="Số nhà , tên đường ...">
+            <input type="text" id="province-address" aria-label="province" class="form-control address-edit__item-input" placeholder="Tỉnh">
           </div>
 
           <div class="address-edit__item">
@@ -339,7 +325,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary">Thêm địa chỉ</button>
+        <button type="button" class="btn btn-primary" (click)="handlerInsertAddress()">Thêm địa chỉ</button>
       </div>
     </div>
   </div>

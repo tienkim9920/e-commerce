@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { SettingRoutingModule } from './setting-routing.module';
 import { AddressComponent } from './address/address.component';
@@ -19,7 +20,8 @@ import { SettingComponent } from './setting.component';
   ],
   imports: [
     CommonModule,
-    SettingRoutingModule
+    SettingRoutingModule,
+    FormsModule
   ]
 })
 export class SettingModule { }
