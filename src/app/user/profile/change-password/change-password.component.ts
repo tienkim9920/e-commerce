@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-change-password',
@@ -11,5 +12,8 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onSubmit(data: NgForm){
+    console.log(JSON.parse(localStorage.getItem('jwt')!).jwt)
+    console.log(data)
+  }
 }
