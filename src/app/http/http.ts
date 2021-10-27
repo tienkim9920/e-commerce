@@ -7,7 +7,6 @@ const API = {
         return url + `/auth`
     },
 
-
     // User
     GET_DETAIL_USER: (_id: any) => {
       return url + `/user/${_id}`
