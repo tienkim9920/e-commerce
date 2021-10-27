@@ -19,7 +19,7 @@
       <div class="address__subtitle">Địa chỉ vận chuyển và giao hàng của bạn</div>
     </div>
 
-    <button class="address__create-btn">
+    <button class="address__create-btn" data-bs-toggle="modal" data-bs-target="#address-post">
       <i class="address__create-icon fa fa-plus"></i>
       <p class="address__create-text">Thêm địa chỉ mới</p>
     </button>
@@ -64,8 +64,8 @@
         </div>
       </div>
       <div class="address__list-item-action">
-        <div class="address__list-item-action-edit">Sửa</div>
-        <div class="address__list-item-action-delete">Xóa</div>
+        <div class="address__list-item-action-edit" data-bs-toggle="modal" data-bs-target="#address-patch">Sửa</div>
+        <div class="address__list-item-action-delete" data-bs-toggle="modal" data-bs-target="#address-delete">Xóa</div>
       </div>
     </div>
     <div class="address__list-item">
@@ -197,15 +197,43 @@
   </div>
 </div>
 
-<div class="modal fade" id="address-help" aria-hidden="true">
+<div class="modal fade mdl mdl-help" id="address-help" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
-    <div class="modal-content">
+    <div class="modal-content mdl-container">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Hướng dẫn cách lấy địa chỉ</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        B1
+        <div class="address-step">
+
+          <div class="address-step-order">
+            <p class="address-step-order-label">
+              <b style="font-size: 18px;">Bước 1:</b> Hãy truy cập vào <a href="https://www.google.com/maps/" target="_blank">google.com/maps</a>
+            </p>
+          </div>
+
+          <div class="address-step-order">
+            <p class="address-step-order-label">
+              <b style="font-size: 18px;">Bước 2:</b> Nhập địa chỉ mà bạn muốn thêm cho shop
+            </p>
+            <img src="../../../../assets/googlemap-address.png" alt="site_google-map" class="address-step-order-image">
+          </div>
+
+          <div class="address-step-order">
+            <p class="address-step-order-label">
+              <b style="font-size: 18px;">Bước 3:</b> Sau khi nhập địa chỉ , ta hãy lấy tọa độ để có thể thêm địa chỉ mới
+            </p>
+            <img src="../../../../assets/help-location.png" alt="site_google-map" class="address-step-order-image">
+          </div>
+
+          <div class="address-step-order">
+            <p class="address-step-order-label">
+              <b style="font-size: 18px;">Bước 4:</b> Khi đã lấy được tọa độ thì có thể tiến hành thêm địa chỉ mới cho shop
+            </p>
+          </div>
+
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đã hiểu</button>
@@ -213,3 +241,192 @@
     </div>
   </div>
 </div>
+
+<div class="modal" id="address-delete" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa địa chỉ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn muốn xóa địa chỉ này của shop ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Xóa địa chỉ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal mdl" id="address-post" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content mdl-container">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm địa chỉ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="address-edit__info">
+
+          <div class="address-edit__item">
+            <label for="user-name" class="address-edit__item-label">
+              Tên shop
+            </label>
+            <input type="text" id="user-name" class="address-edit__item-input" placeholder="toannguyen197">
+          </div>
+
+          <div class="address-edit__item">
+            <label for="user-address" class="address-edit__item-label">
+              Số điện thoại
+            </label>
+            <input type="text" id="user-address" class="address-edit__item-input" placeholder="342 Tân hòa đông">
+          </div>
+
+          <div class="address-edit__item">
+            <h2>Địa chỉ</h2>
+            <label for="user-address" class="address-edit__item-label">
+              Tỉnh/Thành phố/Quận/Huyện/Phường/Xã
+            </label>
+            <div class="input-group">
+              <input type="text" id="province-address" aria-label="province" class="form-control address-edit__item-input" placeholder="Tỉnh">
+              <input type="text" id="city-address" aria-label="city" class="form-control address-edit__item-input" placeholder="Thành phố">
+              <input type="text" id="local-address" aria-label="local" class="form-control address-edit__item-input" placeholder="Quận/Huyện/Phường/Xã">
+            </div>
+          </div>
+
+          <div class="address-edit__item ">
+            <label for="product-name" class="address-edit__item-label">
+              Địa chỉ chi tiết
+            </label>
+            <input type="text" id="product-name" class="address-edit__item-input address-edit__item-input-desc" placeholder="Số nhà , tên đường ...">
+          </div>
+
+          <div class="address-edit__item">
+            <div class="address-edit__item-location">
+              <label for="user-name" class="address-edit__item-label">
+                Tọa độ của shop
+              </label>
+              <div class="address__help-modal" data-bs-toggle="modal" data-bs-target="#address-help">
+                <i class="address__help-modal-icon fa fa-question-circle"></i>
+                <div class="address__help-modal-title">Click vào để xem hướng dẫn cách lấy địa chỉ</div>
+              </div>
+            </div>
+            <input type="text" id="user-name" class="address-edit__item-input" placeholder="Nhập tọa độ đã lấy từ hướng dẫn">
+          </div>
+
+
+          <div class="address-edit__item ">
+            <div class="address-check-group">
+              <div class="mb-3 address-check-item form-check">
+                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck1">
+                <label class="form-check-label address-check-label" for="exampleCheck1">Đặt làm địa chỉ mặc định</label>
+              </div>
+              <div class="mb-3 address-check-item form-check">
+                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck2">
+                <label class="form-check-label address-check-label" for="exampleCheck2">Đặt làm địa chỉ lấy hàng</label>
+              </div>
+              <div class="mb-3 address-check-item form-check">
+                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck3">
+                <label class="form-check-label address-check-label" for="exampleCheck3">Đặt làm địa chỉ trả hàng</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Thêm địa chỉ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal mdl" id="address-patch" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content mdl-container">
+      <div class="modal-header">
+        <h5 class="modal-title">Sửa địa chỉ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="address-edit__info">
+
+          <div class="address-edit__item">
+            <label for="user-name" class="address-edit__item-label">
+              Tên shop
+            </label>
+            <input type="text" id="user-name" class="address-edit__item-input" placeholder="toannguyen197">
+          </div>
+
+          <div class="address-edit__item">
+            <label for="user-address" class="address-edit__item-label">
+              Số điện thoại
+            </label>
+            <input type="text" id="user-address" class="address-edit__item-input" placeholder="342 Tân hòa đông">
+          </div>
+
+          <div class="address-edit__item">
+            <h2>Địa chỉ</h2>
+            <label for="user-address" class="address-edit__item-label">
+              Tỉnh/Thành phố/Quận/Huyện/Phường/Xã
+            </label>
+            <div class="input-group">
+              <input type="text" id="province-address" aria-label="province" class="form-control address-edit__item-input" placeholder="Tỉnh">
+              <input type="text" id="city-address" aria-label="city" class="form-control address-edit__item-input" placeholder="Thành phố">
+              <input type="text" id="local-address" aria-label="local" class="form-control address-edit__item-input" placeholder="Quận/Huyện/Phường/Xã">
+            </div>
+          </div>
+
+          <div class="address-edit__item ">
+            <label for="product-name" class="address-edit__item-label">
+              Địa chỉ chi tiết
+            </label>
+            <input type="text" id="product-name" class="address-edit__item-input address-edit__item-input-desc" placeholder="Số nhà , tên đường ...">
+          </div>
+
+          <div class="address-edit__item">
+            <div class="address-edit__item-location">
+              <label for="user-name" class="address-edit__item-label">
+                Tọa độ của shop
+              </label>
+              <div class="address__help-modal" data-bs-toggle="modal" data-bs-target="#address-help">
+                <i class="address__help-modal-icon fa fa-question-circle"></i>
+                <div class="address__help-modal-title">Click vào để xem hướng dẫn cách lấy địa chỉ</div>
+              </div>
+            </div>
+            <input type="text" id="user-name" class="address-edit__item-input" placeholder="Nhập tọa độ đã lấy từ hướng dẫn">
+          </div>
+
+
+          <div class="address-edit__item ">
+            <div class="address-check-group">
+              <div class="mb-3 address-check-item form-check">
+                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck1">
+                <label class="form-check-label address-check-label" for="exampleCheck1">Đặt làm địa chỉ mặc định</label>
+              </div>
+              <div class="mb-3 address-check-item form-check">
+                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck2">
+                <label class="form-check-label address-check-label" for="exampleCheck2">Đặt làm địa chỉ lấy hàng</label>
+              </div>
+              <div class="mb-3 address-check-item form-check">
+                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck3">
+                <label class="form-check-label address-check-label" for="exampleCheck3">Đặt làm địa chỉ trả hàng</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Sửa địa chỉ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
