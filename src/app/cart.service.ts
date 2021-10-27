@@ -67,6 +67,16 @@ export class CartService {
     localStorage.setItem('jwt', JSON.stringify(token))
   }
 
+  getUserId(){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    return token.userId
+  }
+
+  getPermission(){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    return token.permission
+  }
+
   setName(name: any){
     let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
     token.name = name

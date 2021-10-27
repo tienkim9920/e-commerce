@@ -5,6 +5,7 @@ class ThamSo {
     productDiscount: any = []
     productHomePagination: any = []
     productCategory: any = []
+    listTick: any = []
 
     constructor () {}
 
@@ -24,6 +25,12 @@ class ThamSo {
         const res = await fetch(API.GET_DISCOUNT_PRODUCT())
         const data = await res.json()
         this.productDiscount = data
+    }
+
+    async getListTick() {
+        const res = await fetch(API.GET_TICK())
+        const data = await res.json()
+        this.listTick = data
     }
 
 }
