@@ -7,7 +7,6 @@ const API = {
         return url + `/auth`
     },
 
-
     // User
     GET_DETAIL_USER: (_id: any) => {
       return url + `/user/${_id}`
@@ -48,6 +47,10 @@ const API = {
 
     // Tick
     POST_TICKs: () => {
+      return url + `/tick`
+    },
+
+    GET_TICK: () => {
       return url + `/tick`
     },
 

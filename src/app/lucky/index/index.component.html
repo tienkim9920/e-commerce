@@ -6,21 +6,23 @@
                 <button class="spin active" *ngIf="spin === 0" (click)="resetLucky()">Lại</button>
                 <span class="arrow"></span>
                 <div class="lucky-implement" #lucky>
-                    <div class="one"><span class="detail-ticket-lucky">Giảm Giá 10%</span></div>
-                    <div class="two"><span class="detail-ticket-lucky">Giảm Giá 20%</span></div>
-                    <div class="three"><span class="detail-ticket-lucky">Giảm Giá 30%</span></div>
-                    <div class="four"><span class="detail-ticket-lucky">Giảm Giá 10%</span></div>
-                    <div class="five"><span class="detail-ticket-lucky">Giảm Giá 5%</span></div>
-                    <div class="six"><span class="detail-ticket-lucky">Giảm Giá 5%</span></div>
-                    <div class="seven"><span class="detail-ticket-lucky">Giảm Giá 5%</span></div>
-                    <div class="eight"><span class="detail-ticket-lucky">Giảm Giá 50%</span></div>
+                    <div *ngFor="let item of thamSo.listTick; let i = index" 
+                        [ngClass]="i === 0 ? 'one' : 
+                            (i === 1 ? 'two' : 
+                            (i == 2 ? 'three' : 
+                            (i === 3 ? 'four' : 
+                            (i === 4 ? 'five' : 
+                            (i === 5 ? 'six' : 
+                            (i === 6 ? 'seven' : 'eight'))))))">
+                        <span class="detail-ticket-lucky">{{ item.name }}</span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="award-lucky">
             <div class="header-award-lucky">
                 <div>Lưu ý: Mỗi lần quay sẽ mất 500 điểm</div>
-                <div>Bạn có {{ 500 }} điểm</div>
+                <div>Bạn có {{ user.score }} điểm</div>
             </div>
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
                 <table>
@@ -32,32 +34,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
+                        <tr *ngFor="let item of user.ticket; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.tickId.name }}</td>
+                            <td>{{ item.tickId.description }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
+
+
         <div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
             <div id="liveToast" [ngClass]="showToast ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="toast-header">
                 <strong class="me-auto">Thông báo</strong>
               </div>
               <div class="toast-body">
-                Bạn đã nhận được Ticket có mã giảm giá.
+                {{ messToast }}
               </div>
             </div>
         </div>

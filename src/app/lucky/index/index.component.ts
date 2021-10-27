@@ -1,4 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CartService } from 'src/app/cart.service';
+import ThamSo from 'src/app/pattern/ThamSo';
+import Ticket from 'src/app/pattern/Ticket';
+import User from 'src/app/pattern/User';
 
 @Component({
   selector: 'app-index',
@@ -9,6 +13,10 @@ export class IndexComponent implements OnInit {
 
   @ViewChild('lucky', { read: ElementRef }) lucky!: ElementRef<any>;
 
+  user = new User('')
+
+  thamSo = new ThamSo()
+
   number: any = 0
 
   index: any
@@ -17,10 +25,30 @@ export class IndexComponent implements OnInit {
 
   showToast: any = false
 
-  constructor() { }
+  messToast: any = ''
 
-  ngOnInit(): void {
+  // Mảng này dùng để lưu trữ Tick và vị trí
+  arrayTick: any
+
+  constructor(private cartService: CartService) {
+    this.user._id = cartService.getUserId()
+
+    // GET observe user
+    this.user.getDetail()
+    this.user.getTickets()
+    
+    // ThamSo get Tick
+    this.thamSo.getListTick()
+
+  }
+
+  async ngOnInit() {
     window.scroll(0, 0)
+
+    setTimeout(() => {
+      this.arrayTick = this.thamSo.listTick.concat(this.thamSo.listTick[0])
+    }, 300)
+
   }
 
   startLucky(){
@@ -43,6 +71,7 @@ export class IndexComponent implements OnInit {
     const duVitri = (duVong - duVong % 45) / 45
     console.log(duVitri)
     
+    // Kiểm tra vị trí
     const checkIndex = duVong - (duVitri * 45)
 
     // Xoay
@@ -57,7 +86,10 @@ export class IndexComponent implements OnInit {
     if (checkIndex > 22.5){
 
       setTimeout(() => {
-        console.log(duVitri + 2)
+        // Thêm Ticket mới
+        const ticket = new Ticket(this.user._id, this.arrayTick[duVitri + 1]._id, false)
+        this.user.postTicket(ticket)
+        this.messToast = `Bạn đã nhận được Ticket ${this.arrayTick[duVitri + 1].name}.`
         this.spin = 0
         this.showToast = true
       }, 10000)
@@ -69,7 +101,10 @@ export class IndexComponent implements OnInit {
     }else{
 
       setTimeout(() => {
-        console.log(duVitri + 1)
+        // Thêm Ticket mới
+        const ticket = new Ticket(this.user._id, this.arrayTick[duVitri]._id, false)
+        this.user.postTicket(ticket)
+        this.messToast = `Bạn đã nhận được Ticket ${this.arrayTick[duVitri].name}.`
         this.spin = 0
         this.showToast = true
       }, 10000)

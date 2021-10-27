@@ -24,7 +24,7 @@ class User {
     reputation: any = []
 
     constructor(_id: any) {
-        this._id = _id
+      this._id = _id
     }
 
     toJSON(){
@@ -49,7 +49,6 @@ class User {
     async postTicket(ticket: Ticket) {
         const data = await ticket.POST_TICKET()
         this.ticket = [...this.ticket, data]
-        console.log(this.ticket)
     }
 
     // GET Coupon
@@ -63,7 +62,6 @@ class User {
     async postCoupon(coupon: Coupon) {
         const data = await coupon.POST_COUPON()
         this.coupon = [...this.coupon, data]
-        console.log(this.coupon)
     }
 
 
@@ -73,7 +71,6 @@ class User {
         const data = await res.json()
         this.authId = data.authId
         this.email = data.email
-        this.password = data.password
         this.name = data.name
         this.image = data.image
         this.score = data.score
@@ -185,11 +182,13 @@ class User {
       console.log(data)
     }
 
+    // POST Notification
     async postNotification(notificationPost:Notification) {
       const data = await notificationPost.POST_NOTIFICATION()
       this.notification = [...this.notification, data]
     }
 
+    // POST 
     async postReputation(reputationPost:Reputation) {
       const data = await reputationPost.POST_REPUTATION()
       this.notification = [...this.notification, data]
