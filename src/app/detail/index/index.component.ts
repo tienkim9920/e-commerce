@@ -28,7 +28,7 @@ export class IndexComponent implements OnInit {
     setTimeout(() => {
       this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
       this.product.getCommentProduct()
-    }, 2000)
+    }, 1000)
   }
 
   

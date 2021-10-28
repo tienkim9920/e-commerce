@@ -122,4 +122,12 @@ export class AppComponent {
     this.user = this.cartService.setJWT({})
     this.router.navigate(['/login'])
   }
+
+  redirectLucky(){
+    if (!this.cartService.getUserId()){
+      this.router.navigate(['/login'])
+    }else{
+      this.router.navigate(['/lucky'])
+    }
+  }
 }

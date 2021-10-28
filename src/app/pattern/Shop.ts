@@ -9,6 +9,7 @@ class Shop{
   userId: any
   name: any
   description: any
+  image: any
   reply: any
   replyTime: any
   createTime: any
@@ -21,11 +22,12 @@ class Shop{
   newfeed: any = []
   coup: any = []
 
-  constructor (_id: String, userId: String, name: String, description: String, reply: Number, replyTime: String, createTime: String){
+  constructor (_id: String, userId: String, name: String, description: String, image: String, reply: Number, replyTime: String, createTime: String){
     this._id = _id
     this.userId = userId
     this.name = name
     this.description = description
+    this.image = image
     this.reply = reply
     this.replyTime = replyTime
     this.createTime = createTime
@@ -36,6 +38,7 @@ class Shop{
       userId: this.userId,
       name: this.name,
       description: this.description,
+      image: this.image,
       reply: this.reply,
       replyTime: this.replyTime,
       createTime: this.createTime
@@ -76,7 +79,6 @@ class Shop{
     const data = await addressPatch.PATCH_ADDRESS()
     const index= this.address.indexOf(addressPatch);
     this.address[index] = valueChange
-
   }
 
   // DELETE Address:TN
@@ -121,6 +123,7 @@ class Shop{
     this.userId = data.userId
     this.name = data.name
     this.description = data.description
+    this.image = data.image
     this.reply = data.reply
     this.replyTime = data.replyTime
     this.createTime = data.createTime
@@ -134,16 +137,15 @@ class Shop{
 
   // GET List Room
   async getRoom(shopId: any) {
-        const res = await fetch(API.GET_ROOM_SHOP(shopId), {
-            method: 'GET',
-            body: JSON.stringify(this.toJSON()),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-        const data = await res.json()
-        this.room = data
-
+    const res = await fetch(API.GET_ROOM_SHOP(shopId), {
+      method: 'GET',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    this.room = data
   }
 
   // GET List Reputation by shopId
@@ -158,8 +160,7 @@ class Shop{
     })
     const data = await res.json()
     this.reputation = data
-
-}
+  }
 
   // GET List Address by shopId
 
@@ -168,7 +169,7 @@ class Shop{
   // PATCH Address
 
   // GET List Coup by shopId:TN
-  async getListCoup() {
+  async getListCoup(){
     const res = await fetch(API.GET_COUP_SHOP(this._id))
     const data = await res.json()
     this.coup = data

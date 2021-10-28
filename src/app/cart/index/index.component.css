@@ -226,8 +226,9 @@ tbody tr td{
     transition: all .3s ease-in-out;
 }
 
-.box-order-ticket:hover{
+.box-order-ticket.active{
     border-left: 13px solid #1A94FF;
+    background-color: #f5f5f5;
 }
 
 @media only screen and (max-width: 600px){
