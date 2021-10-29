@@ -15,6 +15,7 @@ class User {
     name: any
     image: any
     score: any
+    permission: any = {}
     ticket: any = []
     coupon: any = []
     like: any = []
@@ -188,7 +189,7 @@ class User {
       this.notification = [...this.notification, data]
     }
 
-    // POST 
+    // POST
     async postReputation(reputationPost:Reputation) {
       const data = await reputationPost.POST_REPUTATION()
       this.notification = [...this.notification, data]
@@ -203,10 +204,19 @@ class User {
       this.reputation =updateReputation
     }
 
+    // GET Permission
+    // async getPermission(permission: any){
+    //   if (permission === 'client'){
+    //     console.log("User dang nhap")
+    //   }else if (permission === 'shop'){
+    //     const res = await fetch(API.GET_DETAIL_SHOP())
+    //   }
+    // }
+
     resetUser(){
       this.name = ''
       this.email = ''
-      this.authId = '' 
+      this.authId = ''
       this.password = ''
       this.image = ''
       this.score = 0

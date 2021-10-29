@@ -33,10 +33,12 @@ export class IndexComponent implements OnInit {
   constructor(private cartService: CartService) {
     this.user._id = cartService.getUserId()
 
+    console.log(this.user._id)
+
     // GET observe user
     this.user.getDetail()
     this.user.getTickets()
-    
+
     // ThamSo get Tick
     this.thamSo.getListTick()
 
@@ -70,7 +72,7 @@ export class IndexComponent implements OnInit {
     // Số dư để kiểm tra vị trí
     const duVitri = (duVong - duVong % 45) / 45
     console.log(duVitri)
-    
+
     // Kiểm tra vị trí
     const checkIndex = duVong - (duVitri * 45)
 
@@ -112,13 +114,13 @@ export class IndexComponent implements OnInit {
       setTimeout(() => {
         this.showToast = false
       }, 14000)
-      
+
     }
 
   }
 
   resetLucky(){
-    
+
     this.spin = 2
     this.number = 0
     this.lucky.nativeElement.style.transform = "rotate(" + this.number + "deg)";

@@ -25,7 +25,8 @@
     </button>
   </div>
 
-  <div class="address__list">
+  <div class="address__list" *ngFor="let item of shop.address">
+
     <div class="address__list-item">
       <div class="address__list-item-icon">
         <svg viewBox="0 0 32 32">
@@ -35,18 +36,11 @@
       <div class="address__list-item-content">
         <div class="address__list-item-content-grid">
           <div class="address__list-item-content-label">
-            Họ & tên
-          </div>
-          <div class="address__list-item-content-name">
-            Nguyễn Quốc Toàn
-          </div>
-        </div>
-        <div class="address__list-item-content-grid">
-          <div class="address__list-item-content-label">
             Số điện thoại
           </div>
           <div class="address__list-item-content-phone">
-            06969696969
+            {{ item.phone }}
+            {{ item.id }}
           </div>
         </div>
         <div class="address__list-item-content-grid">
@@ -55,10 +49,7 @@
           </div>
           <div class="address__list-item-content-address">
             <p>
-            800 Nguyễn Thị Minh Khai -
-            Phường Nguyễn Văn Cừ -
-            Thành Phố Quy Nhơn -
-            Bình Định
+              {{ item.address }}
           </p>
           </div>
         </div>
@@ -68,90 +59,7 @@
         <div class="address__list-item-action-delete" data-bs-toggle="modal" data-bs-target="#address-delete">Xóa</div>
       </div>
     </div>
-    <div class="address__list-item">
-      <div class="address__list-item-icon">
-        <svg viewBox="0 0 32 32">
-          <path d="M17.7 29.2H22c.6 0 1 .4 1 1s-.4 1-1 1H10c-.6 0-1-.4-1-1s.4-1 1-1h4.3C11.3 25.4 5 17.1 5 12.4 5 6.2 9.9 1.2 16 1.2s11 5 11 11.2c0 4.7-6.3 13-9.3 16.8zM16 3.2c-5 0-9 4.2-9 9.4s9 15.6 9 15.6 9-10.4 9-15.6c0-5.2-4-9.4-9-9.4zm-5 9c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5-5-2.3-5-5zm8 0c0-1.7-1.3-3-3-3s-3 1.3-3 3 1.3 3 3 3 3-1.4 3-3z"></path>
-        </svg>
-      </div>
-      <div class="address__list-item-content">
-        <div class="address__list-item-content-grid">
-          <div class="address__list-item-content-label">
-            Họ & tên
-          </div>
-          <div class="address__list-item-content-name">
-            Nguyễn Quốc Toàn
-          </div>
-        </div>
-        <div class="address__list-item-content-grid">
-          <div class="address__list-item-content-label">
-            Số điện thoại
-          </div>
-          <div class="address__list-item-content-phone">
-            06969696969
-          </div>
-        </div>
-        <div class="address__list-item-content-grid">
-          <div class="address__list-item-content-label">
-            Địa chỉ
-          </div>
-          <div class="address__list-item-content-address">
-            <p>
-            800 Nguyễn Thị Minh Khai -
-            Phường Nguyễn Văn Cừ -
-            Thành Phố Quy Nhơn -
-            Bình Định
-          </p>
-          </div>
-        </div>
-      </div>
-      <div class="address__list-item-action">
-        <div class="address__list-item-action-edit">Sửa</div>
-        <div class="address__list-item-action-delete">Xóa</div>
-      </div>
-    </div>
-    <div class="address__list-item">
-      <div class="address__list-item-icon">
-        <svg viewBox="0 0 32 32">
-          <path d="M17.7 29.2H22c.6 0 1 .4 1 1s-.4 1-1 1H10c-.6 0-1-.4-1-1s.4-1 1-1h4.3C11.3 25.4 5 17.1 5 12.4 5 6.2 9.9 1.2 16 1.2s11 5 11 11.2c0 4.7-6.3 13-9.3 16.8zM16 3.2c-5 0-9 4.2-9 9.4s9 15.6 9 15.6 9-10.4 9-15.6c0-5.2-4-9.4-9-9.4zm-5 9c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5-5-2.3-5-5zm8 0c0-1.7-1.3-3-3-3s-3 1.3-3 3 1.3 3 3 3 3-1.4 3-3z"></path>
-        </svg>
-      </div>
-      <div class="address__list-item-content">
-        <div class="address__list-item-content-grid">
-          <div class="address__list-item-content-label">
-            Họ & tên
-          </div>
-          <div class="address__list-item-content-name">
-            Nguyễn Quốc Toàn
-          </div>
-        </div>
-        <div class="address__list-item-content-grid">
-          <div class="address__list-item-content-label">
-            Số điện thoại
-          </div>
-          <div class="address__list-item-content-phone">
-            06969696969
-          </div>
-        </div>
-        <div class="address__list-item-content-grid">
-          <div class="address__list-item-content-label">
-            Địa chỉ
-          </div>
-          <div class="address__list-item-content-address">
-            <p>
-            800 Nguyễn Thị Minh Khai -
-            Phường Nguyễn Văn Cừ -
-            Thành Phố Quy Nhơn -
-            Bình Định
-          </p>
-          </div>
-        </div>
-      </div>
-      <div class="address__list-item-action">
-        <div class="address__list-item-action-edit">Sửa</div>
-        <div class="address__list-item-action-delete">Xóa</div>
-      </div>
-    </div>
+
     <div class="address__list-item">
       <div class="address__list-item-icon">
         <svg viewBox="0 0 32 32">
@@ -271,27 +179,22 @@
         <div class="address-edit__info">
 
           <div class="address-edit__item">
-            <label for="user-name" class="address-edit__item-label">
-              Tên shop
-            </label>
-            <input type="text" [(ngModel)]="address.address"  class="address-edit__item-input" placeholder="toannguyen197" />
-          </div>
-
-          <div class="address-edit__item">
             <label for="user-address" class="address-edit__item-label">
               Số điện thoại
             </label>
-            <input type="text" id="user-address" class="address-edit__item-input" placeholder="342 Tân hòa đông" />
+            <input id="user-address" type="text" [(ngModel)]="address.phone" class="form-control address-edit__item-input" placeholder="Nhập số điện thoại của địa chỉ" />
           </div>
 
           <div class="address-edit__item">
-            <h2>Địa chỉ</h2>
-            <input type="text" id="province-address" aria-label="province" class="form-control address-edit__item-input" placeholder="Tỉnh">
+            <label for="detail-address" class="address-edit__item-label">
+              Địa chỉ
+            </label>
+            <input type="text" id="detail-address" aria-label="detail-address" [(ngModel)]="address.address" class="form-control address-edit__item-input" placeholder="Số nhà , phố phường , thành phố , tỉnh ...">
           </div>
 
           <div class="address-edit__item">
             <div class="address-edit__item-location">
-              <label for="user-name" class="address-edit__item-label">
+              <label class="address-edit__item-label">
                 Tọa độ của shop
               </label>
               <div class="address__help-modal" data-bs-toggle="modal" data-bs-target="#address-help">
@@ -299,7 +202,16 @@
                 <div class="address__help-modal-title">Click vào để xem hướng dẫn cách lấy địa chỉ</div>
               </div>
             </div>
-            <input type="text" id="user-name" class="address-edit__item-input" placeholder="Nhập tọa độ đã lấy từ hướng dẫn">
+
+            <label for="location-address" class="address-edit__item-label">
+              Vĩ độ
+            </label>
+            <input type="text" id="lat-address" [(ngModel)]="address.lat" class="form-control address-edit__item-input" placeholder="Nhập vĩ độ đã lấy từ hướng dẫn (LATITUDE)">
+
+            <label for="location-address" class="address-edit__item-label">
+              Kinh độ
+            </label>
+            <input type="text" id="lng-address" [(ngModel)]="address.lng" class="form-control address-edit__item-input" placeholder="Nhập kinh độ đã lấy từ hướng dẫn (LONGITUDE)">
           </div>
 
 
