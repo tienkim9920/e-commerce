@@ -131,6 +131,7 @@
     <div class="group-order-cart">
         <div>
             <div class="body-order-coupon">
+                <h1 class="name-header-cart">Mã Giảm Giá</h1>
                 <input class="input-order-coupon" [(ngModel)]="code" type="text" placeholder="Nhập mã giảm giá">
                 <div>
                     <div class="btn-order-cart" (click)="applyCoupon()">Áp dụng</div>
@@ -143,7 +144,7 @@
                 <div>Thành Tiền</div>
                 <div style="font-family: 'Nunito Sans', sans-serif">{{ totalPayment.total | currency: 'VND' }}</div>
             </div>
-            <div class="detail-order-cart" data-bs-toggle="collapse" href="#showPromotion" aria-controls="showPromotion">
+            <div class="detail-order-cart" style="cursor: pointer;" data-bs-toggle="collapse" href="#showPromotion" aria-controls="showPromotion">
                 <div>
                     Giảm giá
                     <i class="fa fa-chevron-down"></i>
@@ -154,7 +155,7 @@
                 </div>
             </div>
             <div *ngIf="ticket._id || coupon._id" class="collapse" id="showPromotion">
-                <div class="d-flex justify-content-between p-2">
+                <div *ngIf="ticket._id" class="d-flex justify-content-between p-2">
                     <div class="d-flex">
                         <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
                         <div class="center-body-ticket">
@@ -166,16 +167,16 @@
                         <span style="cursor: pointer;" (click)="cancelTicket()">Hủy</span>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between p-2">
+                <div *ngIf="coupon._id" class="d-flex justify-content-between p-2">
                     <div class="d-flex">
                         <div><img class="icon-ticket" src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg" alt=""></div>
                         <div class="center-body-ticket">
-                            <div *ngIf="ticket._id">Giảm giá {{ coupon.discount | currency: 'VND' }}</div>
-                            <div *ngIf="ticket._id" class="mt-1"><span class="ticket active">Mã: {{ coupon.code }}</span></div>
+                            <div *ngIf="coupon._id">Giảm giá {{ coupon.discount | currency: 'VND' }}</div>
+                            <div *ngIf="coupon._id" class="mt-1"><span class="ticket active">Mã: {{ coupon.code }}</span></div>
                         </div>
                     </div>
                     <div class="text-danger mt-3">
-                        <span style="cursor: pointer;" (click)="cancelTicket()">Hủy</span>
+                        <span style="cursor: pointer;" (click)="cancelCoupon()">Hủy</span>
                     </div>
                 </div>
             </div>

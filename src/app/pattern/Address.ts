@@ -9,7 +9,6 @@ class Address {
   lng: String;
   status: boolean;
 
-
   constructor(id:any,shopId: String, address: String, phone: String, lat: String, lng: String, status: boolean) {
       this.id = id;
       this.shopId=shopId;

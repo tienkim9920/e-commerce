@@ -154,8 +154,6 @@ export class CartService {
       payment: total
     }
 
-    console.log(coupon)
-
     // Nếu có coupon
     if (coupon._id){
       newData.payment = newData.payment - coupon.discount
@@ -183,6 +181,21 @@ export class CartService {
 
     localStorage.setItem('totalPayment', JSON.stringify(newData))
     this.setTicket({})
+
+  }
+
+  // Hủy Coupon
+  unCoupon(coupon: any){
+    
+    let totalPayment = JSON.parse(localStorage.getItem('totalPayment') || '{}')
+
+    const newData = {
+      total: totalPayment.total,
+      payment: totalPayment.payment + coupon.discount
+    }
+
+    localStorage.setItem('totalPayment', JSON.stringify(newData))
+    this.setCoupon({})
 
   }
 
@@ -260,6 +273,8 @@ export class CartService {
         delete_cart.splice(index, 1)
 
         localStorage.setItem('carts', JSON.stringify(delete_cart))
+        
+        this.TotalPayment()
     }
 
     updateProduct(data: any) {
@@ -274,6 +289,8 @@ export class CartService {
         update_cart[index].count = parseInt(data_update_cart.count)
 
         localStorage.setItem('carts', JSON.stringify(update_cart))
+
+        this.TotalPayment()
     }
 
 }
