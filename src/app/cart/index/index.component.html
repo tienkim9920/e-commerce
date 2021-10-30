@@ -136,6 +136,7 @@
                 <div>
                     <div class="btn-order-cart" (click)="applyCoupon()">Áp dụng</div>
                 </div>
+                <div class="text-danger pt-3 pb-1">Lưu ý: Có thể áp dụng nhiều mã khuyến mãi khác nhau</div>
             </div>
         </div>
         <div class="body-order-cart">
@@ -154,7 +155,7 @@
                     
                 </div>
             </div>
-            <div *ngIf="ticket._id || coupon._id" class="collapse" id="showPromotion">
+            <div *ngIf="ticket._id || coupon" class="collapse" id="showPromotion">
                 <div *ngIf="ticket._id" class="d-flex justify-content-between p-2">
                     <div class="d-flex">
                         <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
@@ -167,16 +168,17 @@
                         <span style="cursor: pointer;" (click)="cancelTicket()">Hủy</span>
                     </div>
                 </div>
-                <div *ngIf="coupon._id" class="d-flex justify-content-between p-2">
+                <div *ngFor="let item of coupon" class="d-flex justify-content-between p-2">
                     <div class="d-flex">
                         <div><img class="icon-ticket" src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg" alt=""></div>
                         <div class="center-body-ticket">
-                            <div *ngIf="coupon._id">Giảm giá {{ coupon.discount | currency: 'VND' }}</div>
-                            <div *ngIf="coupon._id" class="mt-1"><span class="ticket active">Mã: {{ coupon.code }}</span></div>
+                            <div *ngIf="item._id">Shop {{ item.shopId.name  }}</div>
+                            <div *ngIf="item._id">Giảm giá {{ item.discount | currency: 'VND' }}</div>
+                            <div *ngIf="item._id" class="mt-1"><span class="ticket active">Mã: {{ item.code }}</span></div>
                         </div>
                     </div>
                     <div class="text-danger mt-3">
-                        <span style="cursor: pointer;" (click)="cancelCoupon()">Hủy</span>
+                        <span style="cursor: pointer;" (click)="cancelCoupon(item._id)">Hủy</span>
                     </div>
                 </div>
             </div>

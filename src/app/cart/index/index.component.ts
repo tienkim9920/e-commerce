@@ -96,13 +96,15 @@ export class IndexComponent implements OnInit {
   }
 
   // Luôn luôn kiểm tra trạng thái có thỏa mãn để đáp ứng sử dụng coupon
-  async alwayCheckingCoupon(){
-    if (this.coupon._id){
-      const checking = await this.checkingCoupon(this.coupon.code)
+  alwayCheckingCoupon(){
+    if (this.coupon){
+      this.coupon.forEach(async (element: any) => {
+        const checking = await this.checkingCoupon(element.code)
 
-      if (!checking){
-        await this.cancelCoupon()
-      }
+        if (!checking){
+          await this.cancelCoupon(element._id)
+        }
+      });
     }
   }
 
@@ -142,25 +144,34 @@ export class IndexComponent implements OnInit {
     const checking = await this.checkingCoupon(this.code)
 
     // Kiểm tra xem coup này có thỏa mãn hay không
-    if (!checking){
-      this.toastCoupon = true
+    if (checking){
+      this.coupon = [...this.coupon, checking]
+      this.cartService.setCoupon(this.coupon)
+      this.totalPayment = this.cartService.getTotalPayment()
+  
+      this.toastPromotion = true
       this.Toast()
       return
     }
 
-    this.coupon = checking
-    this.cartService.setCoupon(checking)
-    this.totalPayment = this.cartService.getTotalPayment()
-
-    this.toastPromotion = true
+    this.toastCoupon = true
     this.Toast()
+
   }
 
   // Hủy Coupon
-  cancelCoupon(){
-    this.cartService.unCoupon(this.coupon)
+  cancelCoupon(_id: any){
+    // Tìm vị trí của coupon cần xóa
+    const indexCoupon = this.coupon.findIndex((element: any) => {
+      return element._id === _id
+    })
+
+    // Xóa tại localstorage
+    this.cartService.unCoupon(this.coupon[indexCoupon], indexCoupon)
     this.totalPayment = this.cartService.getTotalPayment()
-    this.coupon = {}
+
+    // Xóa tại coupon
+    this.coupon.splice(indexCoupon, 1)
   }
 
   Toast(){
@@ -176,7 +187,7 @@ export class IndexComponent implements OnInit {
     let totalShop = 0
 
     this.cartService.getMyCarts().forEach((element: any) => {
-      if (element.shopId === checking.shopId){
+      if (element.shopId === checking.shopId._id){
         totalShop += element.price * element.count
       }
     });
@@ -185,8 +196,9 @@ export class IndexComponent implements OnInit {
   }
 
   checkingDiscountShop(checking: any){
+    
     const discount = this.myCarts.some((element: any) => {
-      return element.shopId === checking.shopId
+      return element.shopId === checking.shopId._id
     })
 
     return discount
@@ -195,18 +207,18 @@ export class IndexComponent implements OnInit {
   // Hàm kiểm tra trạng thái coupon sau mỗi lần thay đổi
   async checkingCoupon(code: any){
     const checking = await this.user.checkingCoupon(code)
-    console.log(checking)
+    if (!checking){
+      return false
+    }
 
     // Kiểm tra xem những sản phẩm mà khách hàng mua của shop có thỏa mãn với limit hay k
     const totalShop = this.checkingProductShop(checking)
-    console.log(totalShop)
 
     // Kiểm tra xem có phải sản phẩm của shop không
     const discount = this.checkingDiscountShop(checking)
-    console.log(discount)
 
     // Kiểm tra xem coup này có thỏa mãn hay không
-    if (!checking || totalShop < checking.limit || !discount){
+    if (totalShop < checking.limit || !discount){
       return false
     }
 
@@ -223,6 +235,7 @@ export class IndexComponent implements OnInit {
     if (this.myCarts.length < 1){
       return
     }
+
     window.location.href = '/checkout/map'
   }
 

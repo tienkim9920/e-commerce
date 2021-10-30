@@ -72,12 +72,12 @@ export class CartService {
 
   // function get coupon
   getCoupon(){
-    let result = {}
+    let result = []
 
     if (localStorage.getItem('coupon') !== null){
-        result = JSON.parse(localStorage.getItem('coupon') || '{}')
+        result = JSON.parse(localStorage.getItem('coupon') || '[]')
     }else{
-      localStorage.setItem('coupon', JSON.stringify({}))
+      localStorage.setItem('coupon', JSON.stringify([]))
     }
 
     return result
@@ -132,7 +132,7 @@ export class CartService {
   TotalPayment(){
 
     let ticket = JSON.parse(localStorage.getItem('ticket') || '{}')
-    let coupon = JSON.parse(localStorage.getItem('coupon') || '{}')
+    let coupon = JSON.parse(localStorage.getItem('coupon') || '[]')
     let myCarts = JSON.parse(localStorage.getItem('carts') || '[]')
     let anotherCarts = JSON.parse(localStorage.getItem('another') || '[]')
 
@@ -155,8 +155,10 @@ export class CartService {
     }
 
     // Nếu có coupon
-    if (coupon._id){
-      newData.payment = newData.payment - coupon.discount
+    if (coupon){
+      coupon.forEach((element: any) => {
+        newData.payment = newData.payment - element.discount
+      });
     }
 
     // Nếu có ticket
@@ -185,7 +187,7 @@ export class CartService {
   }
 
   // Hủy Coupon
-  unCoupon(coupon: any){
+  unCoupon(coupon: any, index: any){
     
     let totalPayment = JSON.parse(localStorage.getItem('totalPayment') || '{}')
 
@@ -195,7 +197,11 @@ export class CartService {
     }
 
     localStorage.setItem('totalPayment', JSON.stringify(newData))
-    this.setCoupon({})
+    
+    // Tìm vị trí xóa tại Localstorage
+    const newCoupon = this.getCoupon()
+    newCoupon.splice(index, 1)
+    this.setCoupon(newCoupon)
 
   }
 

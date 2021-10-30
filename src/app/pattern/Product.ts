@@ -57,7 +57,6 @@ class Product {
     async postDetail(detail: Detail) {
       const data = await detail.POST_DETAIL()
       this.detail = [...this.detail, data]
-      console.log(this.detail)
   }
     // POST_PRODUCT
     async POST_PRODUCT(){
