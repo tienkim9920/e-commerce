@@ -54,7 +54,7 @@ export class IndexComponent implements OnInit {
 
     const data = {
       productId: this.product._id,
-      shopId: this.product.shopId._id,
+      shopId: this.product.shopId,
       name: this.product.name,
       image: this.product.image[0],
       price: this.product.price - ((this.product.price * this.product.discount) / 100),

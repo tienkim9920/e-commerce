@@ -103,7 +103,6 @@ class Product {
     async getDetailProduct(_id: any){
         const res = await fetch(API.GET_DETAIL_PRODUCT(_id))
         const data = await res.json()
-        console.log(data)
         this._id = _id
         this.shopId = data.shopId
         this.categoryId = data.categoryId

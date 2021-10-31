@@ -1,5 +1,128 @@
 
 .layout-checkout{
     margin: 3rem auto;
+}
+
+.color-checkout-address{
+    color: #1A94FF;
+    font-size: 1.5rem;
+}
+
+.checkout-address{
+    padding: 2rem;
+    border-top: 3px solid #1A94FF;
     background-color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.flex-checkout-address{
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-product{
+    margin-top: 1.5rem;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.body-cart{
+    padding: 2rem 0;
+    width: 100%;
+}
+
+table{
+    width: 100%;
+}
+
+thead{
+    background-color: #F8F9FA;
+}
+
+thead tr th{
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+tbody tr td{
+    text-align: center;
+    padding: 1rem 2rem;
+}
+
+.img-body-cart{
+    width: 65px;
+}
+
+.checkout-payment{
+    margin-top: 1.5rem;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.payment-border{
+    font-size: 1rem;
+    padding: .6rem 1.4rem;
+    border: 1px solid #e2e2e2;
+    margin-left: 1rem;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.payment-border.active{
+    color: #fff;
+    background-color: #1A94FF;
+    border: 1px solid #1A94FF;
+}
+
+.header-checkout-payment{
+    padding-bottom: 1.5rem;
+    display: flex;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.body-checkout-payment{
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-ticket{
+    width: 80px;
+}
+
+.width-promotion{
+    padding-top: 2rem;
+    width: 35%;
+}
+
+.h4-order-cart{
+    font-size: 1.3rem;
+    padding: .5rem 1rem;
+    background-color: #F8F9FA;
+    font-family: 'Nunito Sans', sans-serif;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.price-checkout{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.btn-checkout-payment{
+    padding: .6rem 1.4rem;
+    background-color: #1A94FF;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-checkout-payment:hover{
+    background-color: #1d88e6;
+}
+
+.width-checkout-payment{
+    padding-top: 2rem;
+    width: 35%;
 }

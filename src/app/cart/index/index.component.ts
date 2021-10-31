@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/cart.service';
 import Tick from 'src/app/pattern/Tick';
 import User from 'src/app/pattern/User';
@@ -37,7 +38,7 @@ export class IndexComponent implements OnInit {
   coupon: any
   code: string = ''
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
     this.user._id = cartService.getUserId()
 
     this.user.getTickets()
@@ -187,7 +188,7 @@ export class IndexComponent implements OnInit {
     let totalShop = 0
 
     this.cartService.getMyCarts().forEach((element: any) => {
-      if (element.shopId === checking.shopId._id){
+      if (element.shopId._id === checking.shopId._id){
         totalShop += element.price * element.count
       }
     });
@@ -198,7 +199,7 @@ export class IndexComponent implements OnInit {
   checkingDiscountShop(checking: any){
     
     const discount = this.myCarts.some((element: any) => {
-      return element.shopId === checking.shopId._id
+      return element.shopId._id === checking.shopId._id
     })
 
     return discount
@@ -236,7 +237,7 @@ export class IndexComponent implements OnInit {
       return
     }
 
-    window.location.href = '/checkout/map'
+    this.router.navigate(['/checkout'])
   }
 
 }

@@ -224,9 +224,6 @@ export class CartService {
 
     let add_cart: any = JSON.parse(localStorage.getItem('carts') || '[]')
 
-    console.log(add_cart.length)
-    console.log(data_add_cart)
-
     if (add_cart.length < 1) {
 
         add_cart.push(data_add_cart)

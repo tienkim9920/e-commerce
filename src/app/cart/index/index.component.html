@@ -8,6 +8,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Tên cửa hàng</th>
                         <th>Tên sản phẩm</th>
                         <th>Hình ảnh</th>
                         <th>Giá</th>
@@ -18,6 +19,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of myCarts; index as i">
+                        <td>{{ item.shopId.name }}</td>
                         <td>{{ item.name }}</td>
                         <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
                         <td>{{ item.price | currency: 'VND' }}</td>
