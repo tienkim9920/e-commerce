@@ -48,6 +48,10 @@ const API = {
       return url + `/user/update/info/${_id}`
     },
 
+    POST_CHANGE_PASSWORD: () => {
+      return url+'/user/changepassword'
+    },
+
     // Product
     POST_DETAIL_PRODUCT: () => {
       return url + `/detail`
@@ -147,9 +151,11 @@ const API = {
     POST_ORDER: () => {
         return url + `/order`
     },
-
     PATCH_ORDER: (_id: any) => {
         return url + `/order/${_id}`
+    },
+    GET_ORDER_USER:(userId:any) => {
+      return url + `/order/user/${userId}`
     },
 
 
@@ -300,6 +306,10 @@ const API = {
 
     POST_CLIENT:()=>{
       return url + `/client`
+    },
+
+    GET_DETAIL_CLIENT:(userID: any)=>{
+      return url + `/client/${userID}`
     }
 }
 

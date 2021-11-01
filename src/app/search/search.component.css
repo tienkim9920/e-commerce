@@ -65,3 +65,13 @@ input.example-right-align {
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: #1274ca;
 }
+
+.line {
+    width: 7px;
+    height: 1px;
+    font-size: 12px;
+    display: inline-block;
+    background: rgb(154, 154, 154);
+    margin: 25px auto;
+    vertical-align: middle;
+}

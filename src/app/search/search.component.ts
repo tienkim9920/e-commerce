@@ -7,7 +7,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+  filter:any={page:1 ,pageSize:4, search:""}
   constructor() { }
 
   ngOnInit(): void {

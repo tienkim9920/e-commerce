@@ -1,12 +1,16 @@
-import API from '../http/http';
-import Coupon from './Coupon';
-import Ticket from './Ticket';
-import Notification from './Notification';
-import Reputation from './Reputation';
-import Client from './Client';
-import Shop from './Shop';
+import API from "../http/http"
+import Coupon from "./Coupon"
+import Ticket from "./Ticket"
+import Notification from "./Notification"
+import Reputation from "./Reputation"
+import Client from "./Client"
+import Shop from "./Shop"
+import Order from "./Order"
+
+
 
 class User {
+
   _id: any;
   authId: any;
   email: any;
@@ -84,7 +88,14 @@ class User {
 
   // GET List Order:TN
   async getListOrder() {
-    const res = await fetch(API.GET_DETAIL_ORDER(this._id));
+    const res = await fetch(API.GET_ORDER_USER(this._id));
+    const data = await res.json();
+    this.order = data;
+  }
+
+  async getOrderUser() {
+    console.log(this._id)
+    const res = await fetch(API.GET_ORDER_USER(this._id));
     const data = await res.json();
     this.order = data;
   }
@@ -165,6 +176,8 @@ class User {
     return false;
   }
 
+
+
   // PATCH Score User
   async PATCH_SCORE() {
     const body = {
@@ -218,7 +231,7 @@ class User {
   }
 
   async checkingCoupon(code: any) {
-    
+
     const coup = await this.checkingCode(code)
 
     if (coup === null){
@@ -236,6 +249,7 @@ class User {
     return coup
 
   }
+
 
   // Gọi API kiểm tra code của SHOP
   async checkingCode(code: any) {

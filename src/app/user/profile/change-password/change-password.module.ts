@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -17,6 +18,7 @@ import { ChangePasswordComponent } from './change-password.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ChangePasswordRoutingModule,
     MatIconModule,
     MatInputModule,
