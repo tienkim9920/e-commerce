@@ -2,17 +2,18 @@ import API from "../http/http"
 
 class Address {
   id: any;
-  shopId: String;
-  address: String;
+  shopId: String
+  address: String
+  phone: String
   lat: String;
   lng: String;
   status: boolean;
 
-
-  constructor(id:any,shopId: String, address: String, lat: String, lng: String, status: boolean) {
+  constructor(id:any,shopId: String, address: String, phone: String, lat: String, lng: String, status: boolean) {
       this.id = id;
       this.shopId=shopId;
       this.address=address;
+      this.phone = phone
       this.lat=lat;
       this.lng=lng;
       this.status=status;
@@ -22,6 +23,7 @@ class Address {
     return {
       shopId:this.shopId,
       address:this.address,
+      phone: this.phone,
       lat:this.lat,
       lng:this.lng,
       status:this.status

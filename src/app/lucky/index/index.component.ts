@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
 
   index: any
 
-  spin: any = 1
+  spin: any = 2
 
   showToast: any = false
 
@@ -33,21 +33,29 @@ export class IndexComponent implements OnInit {
   constructor(private cartService: CartService) {
     this.user._id = cartService.getUserId()
 
-    // GET observe user
-    this.user.getDetail()
-    this.user.getTickets()
-    
     // ThamSo get Tick
     this.thamSo.getListTick()
 
+    if (!this.user._id){
+      return
+    }
+
+    // GET observe user
+    this.user.getDetail()
+    this.user.getTickets()
+
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     window.scroll(0, 0)
 
     setTimeout(() => {
+      if (this.user.score >= 500){
+        this.spin = 1
+      }
+
       this.arrayTick = this.thamSo.listTick.concat(this.thamSo.listTick[0])
-    }, 300)
+    }, 400)
 
   }
 
@@ -86,12 +94,20 @@ export class IndexComponent implements OnInit {
     if (checkIndex > 22.5){
 
       setTimeout(() => {
+
+        // Trừ Score
+        this.user.score = this.user.score - 500
+        this.user.PATCH_SCORE()
+
         // Thêm Ticket mới
         const ticket = new Ticket(this.user._id, this.arrayTick[duVitri + 1]._id, false)
         this.user.postTicket(ticket)
+        
+        // Hiển thị Toast
         this.messToast = `Bạn đã nhận được Ticket ${this.arrayTick[duVitri + 1].name}.`
         this.spin = 0
         this.showToast = true
+
       }, 10000)
 
       setTimeout(() => {
@@ -101,12 +117,20 @@ export class IndexComponent implements OnInit {
     }else{
 
       setTimeout(() => {
+
+        // Trừ Score
+        this.user.score = this.user.score - 500
+        this.user.PATCH_SCORE()
+
         // Thêm Ticket mới
         const ticket = new Ticket(this.user._id, this.arrayTick[duVitri]._id, false)
         this.user.postTicket(ticket)
+
+        // Hiển thị Toast
         this.messToast = `Bạn đã nhận được Ticket ${this.arrayTick[duVitri].name}.`
         this.spin = 0
         this.showToast = true
+        
       }, 10000)
 
       setTimeout(() => {
@@ -118,13 +142,14 @@ export class IndexComponent implements OnInit {
   }
 
   resetLucky(){
-    
-    this.spin = 2
     this.number = 0
     this.lucky.nativeElement.style.transform = "rotate(" + this.number + "deg)";
     this.lucky.nativeElement.style.transition = "0s";
-    this.spin = 1
-
+    if (this.user.score >= 500){
+      this.spin = 1
+    }else{
+      this.spin = 2
+    }
   }
 
 }

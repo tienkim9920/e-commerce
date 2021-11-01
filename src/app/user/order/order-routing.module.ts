@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';;
-import { DetailComponent } from './detail/detail.component';
+
 const routes: Routes = [
   { path: '', loadChildren: () => import('./index/index.module').then(m => m.IndexModule) },
   { path: 'detail/:id', loadChildren: () => import('./detail-order/detail-order.module').then(m => m.DetailOrderModule) }

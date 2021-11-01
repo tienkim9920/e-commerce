@@ -75,6 +75,7 @@ export class RegisterComponent implements OnInit {
       return value.auth !== 'admin'
     })
     this.auth = newFilter
+    this.user.authId = newFilter[0]._id
   }
 
   validateEmail(email: any) {

@@ -50,6 +50,7 @@ export class CartService {
     return result
   }
 
+  // function get thông tin của user
   getJWT(){
     
     let result = {}
@@ -63,18 +64,62 @@ export class CartService {
     return result
   }
 
-  setJWT(token: any){
-    localStorage.setItem('jwt', JSON.stringify(token))
-  }
-
+  // function get userId
   getUserId(){
     let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
     return token.userId
   }
 
+  // function get name
+  getName(){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    return token.name
+  }
+
+  // function get coupon
+  getCoupon(){
+    let result = []
+
+    if (localStorage.getItem('coupon') !== null){
+        result = JSON.parse(localStorage.getItem('coupon') || '[]')
+    }else{
+      localStorage.setItem('coupon', JSON.stringify([]))
+    }
+
+    return result
+  }
+
+  // function get ticket
+  getTicket(){
+    let result = {}
+
+    if (localStorage.getItem('ticket') !== null){
+        result = JSON.parse(localStorage.getItem('ticket') || '{}')
+    }else{
+      localStorage.setItem('ticket', JSON.stringify({}))
+    }
+
+    return result
+  }
+
+  // function lấy quyền user
   getPermission(){
     let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
     return token.permission
+  }
+
+  setCoupon(coupon: any){
+    localStorage.setItem('coupon', JSON.stringify(coupon))
+    this.TotalPayment()
+  }
+
+  setTicket(ticket: any){
+    localStorage.setItem('ticket', JSON.stringify(ticket))
+    this.TotalPayment()
+  }
+
+  setJWT(token: any){
+    localStorage.setItem('jwt', JSON.stringify(token))
   }
 
   setName(name: any){
@@ -92,43 +137,77 @@ export class CartService {
   // cập nhật total payment
   TotalPayment(){
 
-    let totalPayment = JSON.parse(localStorage.getItem('totalPayment') || '{}')
+    let ticket = JSON.parse(localStorage.getItem('ticket') || '{}')
+    let coupon = JSON.parse(localStorage.getItem('coupon') || '[]')
     let myCarts = JSON.parse(localStorage.getItem('carts') || '[]')
     let anotherCarts = JSON.parse(localStorage.getItem('another') || '[]')
 
     const total = this.loopPrice(myCarts) + this.loopPrice(anotherCarts)
 
     const newData = {
-        total,
-        coupon: totalPayment.coupon,
-        ticket: totalPayment.ticket,
-        payment: this.getDiscountCoupon(total, totalPayment.coupon, totalPayment.ticket)
+      total,
+      payment: this.getDiscountCoupon(total, coupon, ticket)
     }
 
     localStorage.setItem('totalPayment', JSON.stringify(newData))
   }
 
-  // Giảm giá || chưa làm xong
+  // Khuyến mãi
   getDiscountCoupon(total: any, coupon: any, ticket: any){
 
-    let result = total
+    const newData = {
+      total,
+      payment: total
+    }
 
+    // Nếu có coupon
     if (coupon){
-        console.log(coupon)
+      coupon.forEach((element: any) => {
+        newData.payment = newData.payment - element.discount
+      });
     }
 
-    if (ticket){
-        console.log(ticket)
+    // Nếu có ticket
+    if (ticket._id){
+      newData.payment = newData.payment - ((newData.total * ticket.tickId.value) / 100)
     }
 
-    return result
+    localStorage.setItem('totalPayment', JSON.stringify(newData))
+
+    return newData.payment
   }
 
-  discountCoupon(payment: any, coupon: any){
+  // Hủy Ticket
+  unTicket(ticket: any){
+
+    let totalPayment = JSON.parse(localStorage.getItem('totalPayment') || '{}')
+
+    const newData = {
+      total: totalPayment.total,
+      payment: totalPayment.payment + ((totalPayment.total * ticket.tickId.value) / 100)
+    }
+
+    localStorage.setItem('totalPayment', JSON.stringify(newData))
+    this.setTicket({})
 
   }
 
-  discountTicket(payment: any, ticket: any){
+  // Hủy Coupon
+  unCoupon(coupon: any, index: any){
+    
+    let totalPayment = JSON.parse(localStorage.getItem('totalPayment') || '{}')
+
+    const newData = {
+      total: totalPayment.total,
+      payment: totalPayment.payment + coupon.discount
+    }
+
+    localStorage.setItem('totalPayment', JSON.stringify(newData))
+    
+    // Tìm vị trí xóa tại Localstorage
+    const newCoupon = this.getCoupon()
+    newCoupon.splice(index, 1)
+    this.setCoupon(newCoupon)
 
   }
 
@@ -150,9 +229,6 @@ export class CartService {
     //Lấy dữ liệu có sẵn trong state
 
     let add_cart: any = JSON.parse(localStorage.getItem('carts') || '[]')
-
-    console.log(add_cart.length)
-    console.log(data_add_cart)
 
     if (add_cart.length < 1) {
 
@@ -206,6 +282,8 @@ export class CartService {
         delete_cart.splice(index, 1)
 
         localStorage.setItem('carts', JSON.stringify(delete_cart))
+        
+        this.TotalPayment()
     }
 
     updateProduct(data: any) {
@@ -220,6 +298,8 @@ export class CartService {
         update_cart[index].count = parseInt(data_update_cart.count)
 
         localStorage.setItem('carts', JSON.stringify(update_cart))
+
+        this.TotalPayment()
     }
 
 }

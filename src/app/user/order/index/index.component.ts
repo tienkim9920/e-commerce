@@ -28,7 +28,6 @@ export class IndexComponent implements OnInit {
 
   async ngOnInit():Promise<void> {
     await this.user.getOrderUser()
-
     this.route.queryParams.subscribe(params => {
       params.page? this.filter.page = params.page : this.filter.page=1;
       params.status? this.filter.status = params.status : this.filter.query = this.filterOrder[0];

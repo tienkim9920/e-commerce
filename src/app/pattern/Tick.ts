@@ -3,13 +3,16 @@ import API from "../http/http"
 class Tick{
 
   _id: any
-  name: any
-  description: any
-  value: any
+  name: String
+  description: String
+  value: Number
   ticket: any = []
 
-  constructor (_id: any){
+  constructor (_id: any, name: String, description: String, value: Number){
     this._id = _id
+    this.name = name
+    this.description = description
+    this.value = value
   }
 
   toJSON(){
