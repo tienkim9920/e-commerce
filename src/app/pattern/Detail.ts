@@ -1,14 +1,15 @@
 import API from "../http/http"
+import Product from "./Product"
 
 class Detail {
 
-  productId: String
+  productId: Product
   orderId: String
-  count: Number
+  count: any
   size: String
   update: Boolean
 
-  constructor(productId: String, orderId: String, count: Number, size:String, update: Boolean){
+  constructor(productId: Product, orderId: String, count: any, size:String, update: Boolean){
       this.productId=productId;
       this.orderId=orderId;
       this.count=count;

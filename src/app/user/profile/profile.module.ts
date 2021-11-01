@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {MatTabsModule} from '@angular/material/tabs';
 
@@ -14,6 +15,7 @@ import { ClientComponent } from './client/client.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MatTabsModule,
     ProfileRoutingModule
   ]

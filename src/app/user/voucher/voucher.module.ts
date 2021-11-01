@@ -1,28 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
-import { MatTabsModule } from '@angular/material/tabs';
 
 import { VoucherRoutingModule } from './voucher-routing.module';
 import { VoucherComponent } from './voucher.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TicketComponent } from './ticket/ticket.component';
-import { CouponComponent } from './coupon/coupon.component';
-
+import { TicketModule } from './ticket/ticket.module';
+import { CouponModule } from './coupon/coupon.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
-    VoucherComponent,
-    TicketComponent,
-    CouponComponent
-  ],
+    VoucherComponent
+    ],
   imports: [
     CommonModule,
     VoucherRoutingModule,
+    NgbModule,
     MatTabsModule,
-    MatCardModule,
-    NgbModule
+    TicketModule,
+    CouponModule,
   ]
 })
 export class VoucherModule { }

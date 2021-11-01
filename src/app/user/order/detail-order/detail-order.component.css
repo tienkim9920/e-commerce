@@ -1,0 +1,115 @@
+.content-product-wrap-table {
+    position: relative;
+    margin-top: 12px;
+    /* padding-left: 24px;
+  padding-right: 24px; */
+}
+
+.content-product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content-product-table th {
+    color: white;
+}
+
+.content-product-table td,
+.content-product-table th {
+    padding: 12px 0px;
+    width: calc(100% / 8);
+    border: 1px solid #ddd;
+    font-size: 16px;
+    text-align: center;
+}
+
+.content-product-table th {
+    background-color: #1A94FF;
+}
+
+.content-product-table-action {
+    display: block;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.content-product-table-btn {
+    margin: 12px 0;
+    width: 100%;
+    border: none;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 8px 0;
+    outline: none;
+    color: white;
+}
+
+.content-product-table-btn-detail {
+    background-color: rgb(112, 84, 220);
+}
+
+.content-product-table-btn-detail:hover {
+    background-color: rgba(112, 84, 220, 0.8);
+}
+
+.content-product-table-btn-update {
+    background-color: rgb(41, 149, 85);
+}
+
+.content-product-table-btn-update:hover {
+    background-color: rgba(41, 149, 85, 0.8);
+}
+
+.content-product-table-btn-delete {
+    background-color: rgba(219, 50, 54);
+}
+
+.content-product-table-btn-delete:hover {
+    background-color: rgba(219, 50, 54, 0.8);
+}
+
+.content-product-table-image {
+    width: 60px;
+}
+
+.bg_status_delivery {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #e2e2e2;
+    z-index: 999;
+}
+
+.bg_status_delivery_active {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #1A94FF;
+    z-index: 999;
+}
+
+.a_status_delivery {
+    font-size: 1.1rem;
+    color: #323232;
+}
+
+.group_status_delivery {
+    width: 70%;
+}
+
+.hr_status_delivery {
+    width: 70%;
+    height: 1px;
+    background-color: #e2e2e2;
+}
+
+.group_box_status {
+    position: relative;
+}
+
+.test_status {
+    position: absolute;
+    top: .5rem;
+    left: 0;
+    width: 100%;
+}

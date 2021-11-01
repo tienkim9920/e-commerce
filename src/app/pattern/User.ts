@@ -5,6 +5,7 @@ import Notification from "./Notification"
 import Reputation from "./Reputation"
 import Client from "./Client"
 import Shop from "./Shop"
+import Order from "./Order"
 
 class User {
 
@@ -43,6 +44,7 @@ class User {
         const res = await fetch(API.GET_TICKETS(this._id))
         const data = await res.json()
         this.ticket = data
+        console.log(data)
     }
 
     // POST Ticket
@@ -89,6 +91,12 @@ class User {
       const res = await fetch(API.GET_DETAIL_ORDER(this._id))
       const data = await res.json()
       this.order = data
+    }
+
+    async getOrderUser() {
+      const res = await fetch(API.GET_ORDER_USER(this._id))
+      let data = await res.json()
+      this.order=data
     }
 
     // GET List Comment:TN
@@ -188,7 +196,7 @@ class User {
       this.notification = [...this.notification, data]
     }
 
-    // POST 
+    // POST
     async postReputation(reputationPost:Reputation) {
       const data = await reputationPost.POST_REPUTATION()
       this.notification = [...this.notification, data]
@@ -206,7 +214,7 @@ class User {
     resetUser(){
       this.name = ''
       this.email = ''
-      this.authId = '' 
+      this.authId = ''
       this.password = ''
       this.image = ''
       this.score = 0
