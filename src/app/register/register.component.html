@@ -48,7 +48,7 @@
                     <label>Loại Tài Khoản: </label>
                     <select class="form-select" [(ngModel)]="user.authId" (ngModelChange)="changePermission($event)" name="Loại Khác Hàng">
                         <option *ngFor="let item of auth" 
-                            [value]="item._id">{{ item.name }}</option>
+                            [value]="item._id" >{{ item.name }}</option>
                     </select>
                 </div>
 

@@ -1,28 +1,30 @@
-import API from '../http/http';
-import Coupon from './Coupon';
-import Ticket from './Ticket';
-import Notification from './Notification';
-import Reputation from './Reputation';
-import Client from './Client';
-import Shop from './Shop';
+import API from "../http/http"
+import Coupon from "./Coupon"
+import Ticket from "./Ticket"
+import Notification from "./Notification"
+import Reputation from "./Reputation"
+import Client from "./Client"
+import Shop from "./Shop"
+import Order from "./Order"
+
+
 
 class User {
 
-    _id: any
-    authId: any
-    email: any
-    password: any
-    name: any
-    image: any
-    score: any
-    permission: any = {}
-    ticket: any = []
-    coupon: any = []
-    like: any = []
-    order: any = []
-    comment: any = []
-    notification: any = []
-    reputation: any = []
+  _id: any;
+  authId: any;
+  email: any;
+  password: any;
+  name: any;
+  image: any;
+  score: any;
+  ticket: any = [];
+  coupon: any = [];
+  like: any = [];
+  order: any = [];
+  comment: any = [];
+  notification: any = [];
+  reputation: any = [];
 
   constructor(_id: any) {
     this._id = _id;
@@ -86,7 +88,18 @@ class User {
 
   // GET List Order:TN
   async getListOrder() {
+<<<<<<< HEAD
     const res = await fetch(API.GET_DETAIL_ORDER(this._id));
+=======
+    const res = await fetch(API.GET_ORDER_USER(this._id));
+    const data = await res.json();
+    this.order = data;
+  }
+
+  async getOrderUser() {
+    console.log(this._id)
+    const res = await fetch(API.GET_ORDER_USER(this._id));
+>>>>>>> 04dbf475d798153d9fb57c52e0f8699d10fb89d1
     const data = await res.json();
     this.order = data;
   }
@@ -167,6 +180,11 @@ class User {
     return false;
   }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 04dbf475d798153d9fb57c52e0f8699d10fb89d1
   // PATCH Score User
   async PATCH_SCORE() {
     const body = {
@@ -230,6 +248,7 @@ class User {
     // Thỏa mãn sẽ gọi tiếp API Checking Coupon
     const res = await fetch(API.CHECKING_COUPON_USER(this._id, coup._id))
     const data = await res.json()
+<<<<<<< HEAD
 
     if (data.toString() === 'Status True'){
       return false
@@ -246,6 +265,25 @@ class User {
     return data
   }
 
+=======
+
+    if (data.toString() === 'Status True'){
+      return false
+    }
+
+    return coup
+
+  }
+
+
+  // Gọi API kiểm tra code của SHOP
+  async checkingCode(code: any) {
+    const res = await fetch(API.GET_COUP_CODE(code))
+    const data = await res.json()
+    return data
+  }
+
+>>>>>>> 04dbf475d798153d9fb57c52e0f8699d10fb89d1
   resetUser() {
     this.name = '';
     this.email = '';

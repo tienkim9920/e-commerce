@@ -33,7 +33,6 @@ export class IndexComponent implements OnInit {
   constructor(private cartService: CartService) {
     this.user._id = cartService.getUserId()
 
-    console.log(this.user._id)
     // ThamSo get Tick
     this.thamSo.getListTick()
 
@@ -44,9 +43,6 @@ export class IndexComponent implements OnInit {
     // GET observe user
     this.user.getDetail()
     this.user.getTickets()
-
-    // ThamSo get Tick
-    this.thamSo.getListTick()
 
   }
 

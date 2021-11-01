@@ -1,0 +1,47 @@
+<div>
+    <app-query [filter]="filter" [filterOrder]="filterOrder"></app-query>
+
+    <div class="content-product-wrap-table container">
+        <table class="content-product-table">
+            <thead>
+                <th>Mã hóa đơn</th>
+                <th>Tên shop</th>
+                <th>Tổng tiền</th>
+                <th>Tình trạng</th>
+                <th>Thanh toán</th>
+                <th>Ngày đặt hàng</th>
+                <th>Hành động</th>
+            </thead>
+            <tbody *ngFor="let item of order;index as i;">
+                <tr>
+                    <td data-label="Mã sản phẩm">{{item._id}}</td>
+                    <td data-label="Tên shop">
+                        <a [routerLink]="['/shop/{{item.shopId._id}}']">{{item.shopId.name}}</a>
+                    </td>
+                    <td data-label="Tổng tiền">{{item.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
+                    <td data-label="Tổng tiền">{{item.status}}</td>
+                    <td data-label="Loại sản phẩm">{{item.payId.payment}}</td>
+                    <td data-label="Giá thành">{{item.createTime|date:"dd/MM/YYYY, HH:mm:ss"}}</td>
+
+                    <td data-label="Action">
+                        <div class="content-product-table-action">
+                            <button [routerLink]="['/user/order/detail/'+item._id]" class="content-product-table-btn btn-primary">Chi tiết</button>
+                        </div>
+                        <div class="content-product-table-action">
+                            <button class="content-product-table-btn btn-danger">Hủy</button>
+                        </div>
+                    </td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3">
+        <app-pagination [itemLength]="orderLength" [filter]="filter"></app-pagination>
+    </div>
+
+
+</div>

@@ -1,7 +1,161 @@
 
 <div class="layout-checkout container">
-    <router-outlet></router-outlet>
+    <div class="checkout-address">
+        <div class="color-checkout-address">
+            <i class="fa fa-map-marker" style="font-size: 30px;"></i>
+            Địa chỉ nhận hàng
+        </div>
+        <div class="flex-checkout-address">
+            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.2rem;">
+                <div>{{ user.name }}</div>
+                <div>{{ phone }}</div>
+            </div>
+            <div style="font-size: 1.1rem;" *ngIf="address">{{ address }}</div>
+            <div style="font-size: 1.1rem;" *ngIf="!address">Vui lòng chọn địa chỉ nhận hàng!</div>
+            <div style="font-size: 1.1rem; color: blue; cursor: pointer;" 
+                data-bs-toggle="modal" data-bs-target="#choose-address">Thiết lập địa chỉ</div>
+        </div>
+    </div>
+    <div class="checkout-product">
+        <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.4rem;">Sản phẩm</div>
+        <div class="body-cart" *ngFor="let item of myCarts; index as i">
+            <table>
+                <thead>
+                    <tr>
+                        <th><i class="fa fa-institution"></i> {{ item.shopId.name }}</th>
+                        <th>Kích thước</th>
+                        <th>Đơn giá</th>
+                        <th>Số lương</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img class="img-body-cart" src="{{ item.image }}" alt=""> &nbsp; {{ item.name }}</td>
+                        <td>{{ item.size }}</td>
+                        <td>{{ item.price | currency: 'VND' }}</td>
+                        <td>{{ item.count }}</td>
+                        <td style="font-family: 'Nunito Sans', sans-serif">{{ item.price * item.count | currency: 'VND' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="checkout-payment">
+        <div class="header-checkout-payment">
+            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.4rem; margin-top: .6rem;">Phương thức thanh toán: </div>
+            <div [ngClass]="activePayment === 0 ? 'payment-border active' : 'payment-border'" 
+                (click)="changePayment(0)">Paypal</div>
+            <div [ngClass]="activePayment === 1 ? 'payment-border active' : 'payment-border'" 
+                (click)="changePayment(1)">Khi nhận hàng</div>
+        </div>
+        <div class="body-checkout-payment">
+            <div *ngIf="ticket._id || coupon" class="width-promotion">
+                <h4 class="h4-order-cart">Các khuyến mãi đã áp dụng</h4>
+                <div *ngIf="!ticket._id || !coupon">
+                    <div>Không có áp dụng khuyến mãi</div>
+                </div>
+                <div *ngIf="ticket._id" class="d-flex justify-content-between p-2">
+                    <div class="d-flex">
+                        <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
+                        <div class="center-body-ticket ms-2 mt-1">
+                            <div *ngIf="ticket._id">Giảm giá {{ ticket.tickId.value }}%</div>
+                            <div *ngIf="ticket._id" class="mt-1"><span class="ticket active">Đã áp dụng</span></div>
+                        </div>
+                    </div>
+                    <div class="text-danger mt-3">
+                        <span style="cursor: pointer;" (click)="cancelTicket()">Hủy</span>
+                    </div>
+                </div>
+                <div *ngFor="let item of coupon" class="d-flex justify-content-between p-2">
+                    <div class="d-flex">
+                        <div><img class="icon-ticket" src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg" alt=""></div>
+                        <div class="center-body-ticket ms-2 mt-1">
+                            <div *ngIf="item._id">Shop {{ item.shopId.name  }}</div>
+                            <div *ngIf="item._id">Giảm giá {{ item.discount | currency: 'VND' }}</div>
+                            <div *ngIf="item._id" class="mt-1"><span class="ticket active">Mã: {{ item.code }}</span></div>
+                        </div>
+                    </div>
+                    <div class="text-danger mt-3">
+                        <span style="cursor: pointer;" (click)="cancelCoupon(item._id)">Hủy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="width-checkout-payment">
+                <h4 class="h4-order-cart">Tiến Hành thanh toán</h4>
+                <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Tổng tiền hàng: 
+                    <span class="price-checkout">{{ totalPayment.total |  currency: 'VND' }}</span></div>
+                <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Khuyến mãi: 
+                    <span class="price-checkout">{{ totalPayment.total - totalPayment.payment |  currency: 'VND' }}</span></div>
+                <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Phí vận chuyển: 
+                    <span class="price-checkout">{{ feeShip |  currency: 'VND' }}</span></div>
+                <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Tổng thanh toán: 
+                    <span class="price-checkout" style="font-size: 1.7rem; color: #1A94FF;">{{ sumPayment |  currency: 'VND' }}</span></div>
+                <div *ngIf="activePayment === 1" class="btn-checkout-payment mt-3">Thanh Toán</div>
+                <div *ngIf="activePayment === 0" class="mt-3">
+                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
 
-    <!-- <app-map [item]="currentItem"></app-map>
-    <app-information [item]="currentItem"></app-information> -->
+<div class="modal fade" id="choose-address" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chọn Địa Chỉ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Số điện thoại:</label>
+                    <input type="text" [(ngModel)]="phone" class="form-control" placeholder="Nhập số điện thoại!">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="mb-3 w-50">
+                        <label class="form-label">Tỉnh/Thành Phố:</label>
+                        <select class="form-select" [(ngModel)]="codeTinh" (ngModelChange)="changeTinh($event)" name="Tỉnh">
+                            <option *ngFor="let item of tinh" [value]="item.code" [selected]="item.selected == true">
+                                {{ item.name }}</option>
+                        </select>
+                    </div>
+                    &nbsp;
+                    <div class="mb-3 w-50">
+                        <label class="form-label">Quận/Huyện:</label>
+                        <select class="form-select" [(ngModel)]="codeQuan" (ngModelChange)="changeQuan($event)" name="Quận">
+                            <option *ngFor="let item of quan" [value]="item.code" [selected]="item.selected == true">
+                                {{ item.name }}</option>
+                        </select>
+                    </div>
+                    &nbsp;
+                    <div class="mb-3 w-50">
+                        <label class="form-label">Phường/Thị Xã:</label>
+                        <select class="form-select" [(ngModel)]="codePhuong" (ngModelChange)="changePhuong($event)" name="Phường">
+                            <option *ngFor="let item of phuong" [value]="item.code" [selected]="item.selected == true">
+                                {{ item.name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Địa chỉ cụ thể:</label>
+                    <input type="text" [(ngModel)]="location" class="form-control" placeholder="Nhập địa chỉ cụ thể!">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div
+                    *ngIf="!codeTinh || !codeQuan || !codePhuong || !phone || !location"
+                    class="btn-checkout-payment unactive">
+                    Xác nhận
+                </div>
+                <div
+                    *ngIf="codeTinh && codeQuan && codePhuong && phone && location"
+                    class="btn-checkout-payment"
+                    (click)="handlerSubmitAddress()"
+                    data-bs-dismiss="modal" aria-label="Close">
+                    Xác nhận
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
