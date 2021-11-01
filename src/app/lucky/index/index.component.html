@@ -31,6 +31,7 @@
                             <th>STT</th>
                             <th>Tên Ticket</th>
                             <th>Mô tả</th>
+                            <th>Tình trạng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,8 @@
                             <td>{{ i + 1 }}</td>
                             <td>{{ item.tickId.name }}</td>
                             <td>{{ item.tickId.description }}</td>
+                            <td *ngIf="item.status">Đã sử dụng</td>
+                            <td *ngIf="!item.status">Chưa sử dụng</td>
                         </tr>
                     </tbody>
                 </table>

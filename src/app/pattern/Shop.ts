@@ -9,6 +9,7 @@ class Shop{
   userId: any
   name: any
   description: any
+  image: any
   reply: any
   replyTime: any
   createTime: any
@@ -21,11 +22,12 @@ class Shop{
   newfeed: any = []
   coup: any = []
 
-  constructor (_id: String, userId: String, name: String, description: String, reply: Number, replyTime: String, createTime: String){
+  constructor (_id: String, userId: String, name: String, description: String, image: String, reply: Number, replyTime: String, createTime: String){
     this._id = _id
     this.userId = userId
     this.name = name
     this.description = description
+    this.image = image
     this.reply = reply
     this.replyTime = replyTime
     this.createTime = createTime
@@ -36,6 +38,7 @@ class Shop{
       userId: this.userId,
       name: this.name,
       description: this.description,
+      image: this.image,
       reply: this.reply,
       replyTime: this.replyTime,
       createTime: this.createTime
@@ -49,18 +52,11 @@ class Shop{
     console.log(this.coup)
   }
 
-    // GET Address:TN
-  async getAddress(shopId: any) {
-    const query = "?" + new URLSearchParams({shopId: shopId});
-    const res = await fetch(API.GET_ADDRESS_SHOP(query), {
-        method: 'GET',
-        body: JSON.stringify(this.toJSON()),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    })
+  // GET Address:TN
+  async getAddress() {
+    const res = await fetch(API.GET_ADDRESS_SHOP(this._id))
     const data = await res.json()
-    this.address = data.address
+    this.address = data
   }
 
 
@@ -73,15 +69,22 @@ class Shop{
 
   // PATCH Address:TN
   async patchAddress(addressPatch: Address,valueChange: Address) {
-    const data = await addressPatch.PATCH_ADDRESS()
+    const data = await addressPatch.PATCH_ADDRESS(addressPatch._id)
     const index= this.address.indexOf(addressPatch);
     this.address[index] = valueChange
-
   }
 
   // DELETE Address:TN
   async deleteAddress(addressDelete: Address) {
-    const data = await addressDelete.DELETE_ADDRESS()
+    const res = await fetch(API.DELETE_ADDRESS_SHOP(addressDelete._id), {
+      method: 'DELETE',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    // const data = await addressDelete.DELETE_ADDRESS(addressDelete._id)
     let updateAddress = this.address.filter((item: Address) => {
       return item !== addressDelete
     })
@@ -121,6 +124,20 @@ class Shop{
     this.userId = data.userId
     this.name = data.name
     this.description = data.description
+    this.image = data.image
+    this.reply = data.reply
+    this.replyTime = data.replyTime
+    this.createTime = data.createTime
+  }
+
+  async getDetailShopByUserId(){
+    const res = await fetch(API.GET_DETAIL_SHOP_BY_USERID(this.userId))
+    const data = await res.json()
+    this._id = data._id
+    this.userId = data.userId
+    this.name = data.name
+    this.description = data.description
+    this.image = data.image
     this.reply = data.reply
     this.replyTime = data.replyTime
     this.createTime = data.createTime
@@ -134,16 +151,15 @@ class Shop{
 
   // GET List Room
   async getRoom(shopId: any) {
-        const res = await fetch(API.GET_ROOM_SHOP(shopId), {
-            method: 'GET',
-            body: JSON.stringify(this.toJSON()),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-        const data = await res.json()
-        this.room = data
-
+    const res = await fetch(API.GET_ROOM_SHOP(shopId), {
+      method: 'GET',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    this.room = data
   }
 
   // GET List Reputation by shopId
@@ -158,8 +174,7 @@ class Shop{
     })
     const data = await res.json()
     this.reputation = data
-
-}
+  }
 
   // GET List Address by shopId
 
@@ -168,7 +183,7 @@ class Shop{
   // PATCH Address
 
   // GET List Coup by shopId:TN
-  async getListCoup() {
+  async getListCoup(){
     const res = await fetch(API.GET_COUP_SHOP(this._id))
     const data = await res.json()
     this.coup = data

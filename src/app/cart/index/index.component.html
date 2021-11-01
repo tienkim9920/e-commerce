@@ -78,10 +78,10 @@
         <div class="body-ticket-cart">
             <div class="left-body-ticket">Áp dụng mã ticket: </div>
             <div class="d-flex">
-                <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
+                <div><img *ngIf="ticket._id" class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
                 <div class="center-body-ticket">
-                    <div>Giảm giá 20% đơn hàng</div>
-                    <div><span class="ticket active">Đã áp dụng</span></div>
+                    <div *ngIf="ticket._id">{{ ticket.tickId.description }}</div>
+                    <div *ngIf="ticket._id" class="mt-1"><span class="ticket active">Đã áp dụng</span></div>
                 </div>
                 <!-- <div class="mt-3">Bạn chưa chọn Ticket</div> -->
             </div>
@@ -101,31 +101,27 @@
                     <div class="modal-body">
                         <div class="list-order-ticket">
                             <div class="warning-info-ticket">Vui lòng chọn một mã Ticket bất kì</div>
-                            <div class="box-order-ticket">
+                            <div *ngFor="let item of user.ticket; let i = index">
+                            <div *ngIf="!item.status" (click)="handlerActiveTick(i)" 
+                            [ngClass]="i === activeTick ? 'box-order-ticket active' : 'box-order-ticket'">
                                 <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
                                 <div class="center-body-ticket">
-                                    <div>Giảm giá 20% đơn hàng</div>
-                                    <div><span class="ticket active">Chưa sử dụng</span></div>
+                                    <div>{{ item.tickId.description }}</div>
+                                    <div class="mt-1">
+                                        <span *ngIf="!item.status" class="ticket active">Chưa sử dụng</span>
+                                        <span *ngIf="item.status" class="ticket unactive">Đã sử dụng</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="box-order-ticket">
-                                <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
-                                <div class="center-body-ticket">
-                                    <div>Giảm giá 20% đơn hàng</div>
-                                    <div><span class="ticket active">Chưa sử dụng</span></div>
-                                </div>
-                            </div>
-                            <div class="box-order-ticket">
-                                <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
-                                <div class="center-body-ticket">
-                                    <div>Giảm giá 20% đơn hàng</div>
-                                    <div><span class="ticket unactive">Đã sử dụng</span></div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div class="btn-click-ticket">Áp dụng</div>
+                        <div 
+                            class="btn-click-ticket" (click)="applyTicket()"
+                            data-bs-dismiss="modal" aria-label="Close">
+                            Áp dụng
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,9 +131,10 @@
     <div class="group-order-cart">
         <div>
             <div class="body-order-coupon">
-                <input class="input-order-coupon" type="text" placeholder="Nhập mã giảm giá">
+                <h1 class="name-header-cart">Mã Giảm Giá</h1>
+                <input class="input-order-coupon" [(ngModel)]="code" type="text" placeholder="Nhập mã giảm giá">
                 <div>
-                    <div class="btn-order-cart">Áp dụng</div>
+                    <div class="btn-order-cart" (click)="applyCoupon()">Áp dụng</div>
                 </div>
             </div>
         </div>
@@ -145,11 +142,43 @@
             <h4 class="h4-order-cart">Tiến hành thanh toán</h4>
             <div class="detail-order-cart">
                 <div>Thành Tiền</div>
-                <div>{{ totalPayment.total | currency: 'VND' }}</div>
+                <div style="font-family: 'Nunito Sans', sans-serif">{{ totalPayment.total | currency: 'VND' }}</div>
             </div>
-            <div class="detail-order-cart">
-                <div>Giảm giá</div>
-                <div>{{ totalPayment.total - totalPayment.payment | currency: 'VND' }}</div>
+            <div class="detail-order-cart" style="cursor: pointer;" data-bs-toggle="collapse" href="#showPromotion" aria-controls="showPromotion">
+                <div>
+                    Giảm giá
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+                <div style="font-family: 'Nunito Sans', sans-serif">
+                    {{ totalPayment.total - totalPayment.payment | currency: 'VND' }}
+                    
+                </div>
+            </div>
+            <div *ngIf="ticket._id || coupon._id" class="collapse" id="showPromotion">
+                <div *ngIf="ticket._id" class="d-flex justify-content-between p-2">
+                    <div class="d-flex">
+                        <div><img class="icon-ticket" src="../../../assets/ticket.png" alt=""></div>
+                        <div class="center-body-ticket">
+                            <div *ngIf="ticket._id">Giảm giá {{ ticket.tickId.value }}%</div>
+                            <div *ngIf="ticket._id" class="mt-1"><span class="ticket active">Đã áp dụng</span></div>
+                        </div>
+                    </div>
+                    <div class="text-danger mt-3">
+                        <span style="cursor: pointer;" (click)="cancelTicket()">Hủy</span>
+                    </div>
+                </div>
+                <div *ngIf="coupon._id" class="d-flex justify-content-between p-2">
+                    <div class="d-flex">
+                        <div><img class="icon-ticket" src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg" alt=""></div>
+                        <div class="center-body-ticket">
+                            <div *ngIf="coupon._id">Giảm giá {{ coupon.discount | currency: 'VND' }}</div>
+                            <div *ngIf="coupon._id" class="mt-1"><span class="ticket active">Mã: {{ coupon.code }}</span></div>
+                        </div>
+                    </div>
+                    <div class="text-danger mt-3">
+                        <span style="cursor: pointer;" (click)="cancelCoupon()">Hủy</span>
+                    </div>
+                </div>
             </div>
             <div class="detail-order-cart" style="font-family: 'Nunito Sans', sans-serif; font-size: 1.2rem;">
                 <div>Tổng tiền</div>
@@ -179,6 +208,26 @@
       </div>
       <div class="toast-body">
         Không thể thực hiện thao tác này!
+      </div>
+    </div>
+</div>
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+    <div id="liveToast" [ngClass]="toastCoupon ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-danger">
+        <strong class="me-auto">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Không thể sử dụng mã khuyến mãi này!
+      </div>
+    </div>
+</div>
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+    <div id="liveToast" [ngClass]="toastPromotion ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-success">
+        <strong class="me-auto">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Sử dụng khuyến mãi thành công!.
       </div>
     </div>
 </div>

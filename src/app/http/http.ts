@@ -13,19 +13,23 @@ const API = {
     },
 
     GET_TICKETS_USER: (userId: any) => {
-        return url + `/ticket/${userId}`
+      return url + `/ticket/${userId}`
     },
 
     GET_COUPONS_USER: (userId: any) => {
-        return url + `/coupon/${userId}`
+      return url + `/coupon/${userId}`
+    },
+
+    CHECKING_COUPON_USER: (userId: any, coupId: any) => {
+      return url + `/coupon/checking/status?userId=${userId}&coupId=${coupId}`
     },
 
     GET_NOTIFICATION_USER: (userId: any) => {
-        return url + `/notification/${userId}`
+      return url + `/notification/${userId}`
     },
 
     GET_REPUTATION_USER: (userId: any) => {
-        return url + `/reputation/${userId}`
+      return url + `/reputation/${userId}`
     },
 
     GET_COMMENT_USER: (userId: any) => {
@@ -33,11 +37,15 @@ const API = {
     },
 
     POST_TICKET_USER: () => {
-        return url + `/ticket`
+      return url + `/ticket`
     },
 
     POST_COUPON_USER: () => {
-        return url + `/coupon`
+      return url + `/coupon`
+    },
+
+    PATCH_INFO_USER: (_id: any) => {
+      return url + `/user/update/info/${_id}`
     },
 
     // Product
@@ -54,24 +62,15 @@ const API = {
       return url + `/tick`
     },
 
-    // SHOP
-    POST_COUP_SHOP: () => {
-      return url + `/coup`
-    },
-
-    PATCH_COUP_SHOP: () => {
-      return url + `/coup`
-    },
-
-    DELETE_COUP_SHOP: () => {
-      return url + `/coup`
-    },
-
-
     //ADDRESS
-    GET_ADDRESS_SHOP: (query: any) => {
-      return url + `/address/address${query}`
+    GET_ADDRESS_SHOP: (shopId: any) => {
+      return url + `/address/detail/${shopId}`
     },
+
+    GET_DETAIL_ADDRESS_BY_ADDRESSID: (id: any) => {
+      return url + `/address/detailAddress/${id}`
+    },
+
     POST_ADDRESS_SHOP: () => {
       return url + `/address`
     },
@@ -255,21 +254,41 @@ const API = {
     },
 
 
-    // Shop
+    // Shop and Coup
     POST_SHOP: () => {
-        return url + `/shop`
+      return url + `/shop`
     },
 
     PATCH_SHOP: (_id: any) =>{
-        return url + `/shop/${_id}`
+      return url + `/shop/${_id}`
     },
 
     GET_DETAIL_SHOP: (_id: any) => {
-        return url + `/shop/${_id}`
+      return url + `/shop/${_id}`
     },
 
-    GET_COUP_SHOP: (_id: any) => {
-        return url + `/shop/${_id}`
+    GET_COUP_SHOP: (shopId: any) => {
+      return url + `/coup?shopId=${shopId}`
+    },
+
+    POST_COUP_SHOP: () => {
+      return url + `/coup`
+    },
+
+    PATCH_COUP_SHOP: () => {
+      return url + `/coup`
+    },
+
+    DELETE_COUP_SHOP: () => {
+      return url + `/coup`
+    },
+
+    GET_COUP_CODE: (code: any) => {
+      return url + `/coup/${code}`
+    },
+
+    GET_DETAIL_SHOP_BY_USERID: (userId: any) => {
+      return url + `/shop/detail/${userId}`
     },
 
 

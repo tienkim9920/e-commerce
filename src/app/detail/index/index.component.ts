@@ -28,7 +28,7 @@ export class IndexComponent implements OnInit {
     setTimeout(() => {
       this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
       this.product.getCommentProduct()
-    }, 2000)
+    }, 1000)
   }
 
   
@@ -54,6 +54,7 @@ export class IndexComponent implements OnInit {
 
     const data = {
       productId: this.product._id,
+      shopId: this.product.shopId._id,
       name: this.product.name,
       image: this.product.image[0],
       price: this.product.price - ((this.product.price * this.product.discount) / 100),

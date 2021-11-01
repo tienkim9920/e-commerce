@@ -112,6 +112,7 @@
     text-decoration: none;
     padding-bottom: .3rem;
     font-family: 'Nunito Sans', sans-serif;
+    cursor: pointer;
 }
 
 /* Active Link */

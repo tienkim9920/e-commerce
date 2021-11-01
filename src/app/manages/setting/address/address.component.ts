@@ -1,3 +1,4 @@
+import { CartService } from 'src/app/cart.service';
 import { Component, OnInit } from '@angular/core';
 import Address from 'src/app/pattern/Address';
 import Shop from 'src/app/pattern/Shop';
@@ -9,18 +10,46 @@ import Shop from 'src/app/pattern/Shop';
 })
 export class AddressComponent implements OnInit {
 
-  shop = new Shop('', '', '', '', 0, '', '') // Để hiển thị
+  shop = new Shop('', '', '', '', '', 0, '', '') // Để hiển thị
 
   address = new Address('', '', '', '', '', '', true) // Để thêm
 
-  constructor() { }
+  constructor(private cartService: CartService) {
+    // Lấy user id
+    this.shop.userId = cartService.getUserId()
 
-  ngOnInit(): void {
-    
+
+
+    setTimeout(() => {
+      this.shop.getAddress()
+    }, 500)
+
+  }
+
+  async ngOnInit(): Promise<void> {
+    // Lấy detail shop of user id
+    await this.shop.getDetailShopByUserId()
+    this.address.shopId = this.shop._id
+    console.log(this.address)
+
   }
 
   async handlerInsertAddress(){
+    this.shop.postAddress(this.address)
+    console.log(this.address)
+  }
 
+  async handlerPatchAddress(){
+    // this.shop.patchAddress(this.address)
+    console.log(this.address)
+  }
 
+  async handlerDeleteAddress(address : Address){
+    await this.shop.deleteAddress(address)
+  }
+
+  async handlerGetDetailAddress(id : any){
+    this.address.getDetailAddressByAddressId(id)
+    console.log(this.address)
   }
 }

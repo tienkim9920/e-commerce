@@ -1,20 +1,19 @@
 import API from "../http/http"
 
 class Address {
-  id: any;
-  shopId: String;
-  address: String;
-  phone: String;
+  _id: any;
+  shopId: String
+  address: String
+  phone: String
   lat: String;
   lng: String;
   status: boolean;
 
-
   constructor(id:any,shopId: String, address: String, phone: String, lat: String, lng: String, status: boolean) {
-      this.id = id;
+      this._id = id;
       this.shopId=shopId;
       this.address=address;
-      this.phone=phone;
+      this.phone = phone
       this.lat=lat;
       this.lng=lng;
       this.status=status;
@@ -24,13 +23,24 @@ class Address {
     return {
       shopId:this.shopId,
       address:this.address,
-      phone:this.phone,
+      phone: this.phone,
       lat:this.lat,
       lng:this.lng,
       status:this.status
     }
   }
 
+  // Get detail address by AddressId
+  async getDetailAddressByAddressId(id : any){
+    const res = await fetch(API.GET_DETAIL_ADDRESS_BY_ADDRESSID(id))
+    const data = await res.json()
+    this.shopId = data.shopId
+    this.address = data.address
+    this.phone = data.phone
+    this.lat = data.lat
+    this.lng = data.lng
+    this.status = data.status
+  }
 
   // POST_ADDRESS:TN
   async POST_ADDRESS(){
@@ -46,8 +56,8 @@ class Address {
   }
 
   // PATCH_ADDRESS:TN
-  async PATCH_ADDRESS(){
-    const res = await fetch(API.PATCH_ADDRESS_SHOP(this.id), {
+  async PATCH_ADDRESS(id : any){
+    const res = await fetch(API.PATCH_ADDRESS_SHOP(id), {
         method: 'PATCH',
         body: JSON.stringify(this.toJSON()),
         headers: {
@@ -59,8 +69,8 @@ class Address {
   }
 
   // DELETE_ADDRESS:TN
-  async DELETE_ADDRESS(){
-    const res = await fetch(API.DELETE_ADDRESS_SHOP(this.id), {
+  async DELETE_ADDRESS(id : any){
+    const res = await fetch(API.DELETE_ADDRESS_SHOP(id), {
         method: 'DELETE',
         body: JSON.stringify(this.toJSON()),
         headers: {

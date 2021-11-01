@@ -204,7 +204,7 @@
         <a [routerLink]="['/newfeed']" [routerLinkActive]="['active-link']" class="a-nav-link">Sản phẩm mới</a>
       </div>
       <div class="nav-link">
-        <a [routerLink]="['/lucky']" [routerLinkActive]="['active-link']" class="a-nav-link">Vòng quay may mắn</a>
+        <a (click)="redirectLucky()" [routerLinkActive]="['active-link']" class="a-nav-link">Vòng quay may mắn</a>
       </div>
     </div>
   </div>

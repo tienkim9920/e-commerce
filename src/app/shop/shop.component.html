@@ -5,12 +5,34 @@
         </div>
         <div class="section-information-shop">
             <div class="d-flex">
-                <img class="image-infor-shop" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn"
-                    alt="">
+                <div *ngIf="!shop.image" class="effect-skeleton" style="width: 85px; height: 85px; border-radius: 50%; background-color: #e2e2e2;">
+                    <div class="shimmer-wrapper">
+                        <div class="shimmer"></div>
+                    </div>
+                </div>
+                <img *ngIf="shop.image" class="image-infor-shop" src="{{ shop.image }}">
                 <div style="margin: 0 0 0 1rem;">
-                    <div>YG Shop</div>
-                    <div style="color: gray;">Online 2 giờ trước</div>
-                    <div class="d-flex mt-1">
+                    <div *ngIf="!shop.name" class="effect-skeleton mt-2" style="width: 150px; height: 17px; border-radius: 10px; background-color: #e2e2e2;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                    <div *ngIf="!shop.name" class="effect-skeleton mt-2" style="width: 120px; height: 15px; border-radius: 10px; background-color: #e2e2e2;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                    <div *ngIf="!shop.name" class="effect-skeleton mt-2" style="width: 100px; height: 15px; border-radius: 10px; background-color: #e2e2e2;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                    <div *ngIf="shop.name" class="mt-1" style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">{{ shop.name }}</div>
+                    <div *ngIf="shop.name" class="d-flex" style="color: gray;">
+                        <div class="bg-success" style="width: 15px; height: 15px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                        Đang hoạt động
+                    </div>
+                    <div *ngIf="shop.name" class="d-flex mt-1">
                         <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
                             <i class="fa fa-comments"></i>
                             Chat Ngay
@@ -22,25 +44,44 @@
                     </div>
                 </div>
             </div>
-            <div class="detail-infor-shop">
-                <div class="margin-infor-shop">
-                    <div>Đánh giá: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">16</span></div>
+            <div *ngIf="shop.name" class="detail-shop">
+                <div class="d-flex justify-content-between w-100">
+                    <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.reply }}%</span></div>
                     <br>
-                    <div>Sản phẩm: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">123</span>
-                    </div>
-                </div>
-                <div class="margin-infor-shop">
-                    <div>Tỉ lệ phản hồi: <span
-                            style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">99%</span></div>
-                    <br>
-                    <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">Trong vài
-                            giờ</span></div>
-                </div>
-                <div class="margin-infor-shop">
-                    <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">14 tháng</span>
+                    <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.replyTime}}</span>
                     </div>
                     <br>
-                    <div>Người theo dõi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">26</span>
+                    <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.createTime }}</span></div>
+                </div>
+                <div class="mt-3">
+                    Về chúng tôi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.description }}</span> 
+                </div>
+            </div>
+            <div *ngIf="!shop.name" class="detail-shop">
+                <div class="d-flex justify-content-between w-100">
+                    <div class="effect-skeleton" style="width: 100px; height: 15px; border-radius: 10px; background-color: #e2e2e2;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="effect-skeleton" style="width: 100px; height: 15px; border-radius: 10px; background-color: #e2e2e2;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="effect-skeleton" style="width: 100px; height: 15px; border-radius: 10px; background-color: #e2e2e2;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="effect-skeleton" style="width: 100%; height: 50px; border-radius: 10px; background-color: #e2e2e2;">
+                        <div class="shimmer-wrapper">
+                            <div class="shimmer"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,37 +93,22 @@
         <div class="d-flex justify-content-center">
             <h4 class="title-shop">Mã khuyến mãi</h4>
         </div>
-        <div class="section-coupon-shop">
-            <div class="box-coupon-shop">
-                <h6>Giảm giá 20K</h6>
-                <div class="text-center p-3">Cho đơn hàng từ 50K</div>
+        <div *ngIf="shop.name" class="section-coupon-shop">
+            <div *ngFor="let item of shop.coup" class="box-coupon-shop">
+                <h6>Giảm giá {{ item.discount | currency: 'VND' }}</h6>
+                <div class="text-center p-3">Cho đơn hàng từ {{ item.limit | currency: 'VND' }}</div>
                 <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
-                    <div class="text-danger">JTNDSYGL</div>
+                    <div class="text-danger">{{ item.code }}</div>
                     <div style="color: #1A94FF">Lưu</div>
                 </div>
             </div>
-            <div class="box-coupon-shop">
-                <h6>Giảm giá 20K</h6>
-                <div class="text-center p-3">Cho đơn hàng từ 50K</div>
-                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
-                    <div class="text-danger">JTNDSYGL</div>
-                    <div style="color: #1A94FF">Lưu</div>
-                </div>
-            </div>
-            <div class="box-coupon-shop">
-                <h6>Giảm giá 20K</h6>
-                <div class="text-center p-3">Cho đơn hàng từ 50K</div>
-                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
-                    <div class="text-danger">JTNDSYGL</div>
-                    <div style="color: #1A94FF">Lưu</div>
-                </div>
-            </div>
-            <div class="box-coupon-shop">
-                <h6>Giảm giá 20K</h6>
-                <div class="text-center p-3">Cho đơn hàng từ 50K</div>
-                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
-                    <div class="text-danger">JTNDSYGL</div>
-                    <div style="color: #1A94FF">Lưu</div>
+        </div>
+        <div *ngIf="!shop.name" class="section-coupon-shop">
+            <div *ngFor="let item of [0, 1, 2, 3]" class="box-coupon-shop">
+                <div class="effect-skeleton" style="width: 100%; height: 170px; border-radius: 10px; background-color: #e2e2e2;">
+                    <div class="shimmer-wrapper">
+                        <div class="shimmer"></div>
+                    </div>
                 </div>
             </div>
         </div>
