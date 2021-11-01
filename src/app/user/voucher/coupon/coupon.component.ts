@@ -7,15 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CouponComponent implements OnInit {
 
-  coupon: any = false
+  filterOrder: any=[
+    {title:"Chưa sử dụng",status:"0"},
+    {title:"Đã sử dụng",status:"1"},
+  ]
+  filter:any={query:this.filterOrder[0] , search:""}
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
-  handlerFilter(value: any){
-    this.coupon = value
-  }
+  ngOnInit(): void {}
 
 }

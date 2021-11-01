@@ -1,28 +1,30 @@
-import API from '../http/http';
-import Coupon from './Coupon';
-import Ticket from './Ticket';
-import Notification from './Notification';
-import Reputation from './Reputation';
-import Client from './Client';
-import Shop from './Shop';
+import API from "../http/http"
+import Coupon from "./Coupon"
+import Ticket from "./Ticket"
+import Notification from "./Notification"
+import Reputation from "./Reputation"
+import Client from "./Client"
+import Shop from "./Shop"
+import Order from "./Order"
+
+
 
 class User {
 
-    _id: any
-    authId: any
-    email: any
-    password: any
-    name: any
-    image: any
-    score: any
-    permission: any = {}
-    ticket: any = []
-    coupon: any = []
-    like: any = []
-    order: any = []
-    comment: any = []
-    notification: any = []
-    reputation: any = []
+  _id: any;
+  authId: any;
+  email: any;
+  password: any;
+  name: any;
+  image: any;
+  score: any;
+  ticket: any = [];
+  coupon: any = [];
+  like: any = [];
+  order: any = [];
+  comment: any = [];
+  notification: any = [];
+  reputation: any = [];
 
   constructor(_id: any) {
     this._id = _id;
@@ -86,7 +88,14 @@ class User {
 
   // GET List Order:TN
   async getListOrder() {
-    const res = await fetch(API.GET_DETAIL_ORDER(this._id));
+    const res = await fetch(API.GET_ORDER_USER(this._id));
+    const data = await res.json();
+    this.order = data;
+  }
+
+  async getOrderUser() {
+    console.log(this._id)
+    const res = await fetch(API.GET_ORDER_USER(this._id));
     const data = await res.json();
     this.order = data;
   }
@@ -167,6 +176,8 @@ class User {
     return false;
   }
 
+
+
   // PATCH Score User
   async PATCH_SCORE() {
     const body = {
@@ -238,6 +249,7 @@ class User {
     return coup
 
   }
+
 
   // Gọi API kiểm tra code của SHOP
   async checkingCode(code: any) {

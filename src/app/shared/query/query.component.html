@@ -1,0 +1,22 @@
+<div class="content-product-header row">
+    <div class="content-product__tab dropdown col-2">
+        <div id="menuOrderClient" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="content-product__tab-icon fa fa-filter"></i>
+            <span class="content-product__tab-label">{{filter.query.title}}</span>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="menuOrderClient">
+            <ul class="menu" *ngFor="let item of filterOrder;index as i;">
+                <li><a class="dropdown-item" (click)="onChangeStatus(item)">{{item.title}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <form class="content-product__search col-10" #search="ngForm" (ngSubmit)="onSearchSubmit(search.value)">
+
+        <div class="content-product__search-input-wrap">
+            <input ngModel name="search" type="text" class="content-product__search-input" placeholder="Tìm kiếm ...">
+        </div>
+
+        <button class="content-product__search-btn"><i class="content-product__search-btn-icon fa fa-search"></i></button>
+    </form>
+</div>

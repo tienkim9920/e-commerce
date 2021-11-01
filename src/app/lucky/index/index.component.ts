@@ -33,7 +33,6 @@ export class IndexComponent implements OnInit {
   constructor(private cartService: CartService) {
     this.user._id = cartService.getUserId()
 
-    console.log(this.user._id)
     // ThamSo get Tick
     this.thamSo.getListTick()
 
@@ -44,9 +43,6 @@ export class IndexComponent implements OnInit {
     // GET observe user
     this.user.getDetail()
     this.user.getTickets()
-
-    // ThamSo get Tick
-    this.thamSo.getListTick()
 
   }
 
@@ -106,7 +102,6 @@ export class IndexComponent implements OnInit {
         // Thêm Ticket mới
         const ticket = new Ticket(this.user._id, this.arrayTick[duVitri + 1]._id, false)
         this.user.postTicket(ticket)
-
         // Hiển thị Toast
         this.messToast = `Bạn đã nhận được Ticket ${this.arrayTick[duVitri + 1].name}.`
         this.spin = 0

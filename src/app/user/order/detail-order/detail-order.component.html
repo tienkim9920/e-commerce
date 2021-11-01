@@ -1,41 +1,41 @@
 <div class="p-4">
     <h1>Chi tiết đơn hàng</h1>
     <div style="font-size: 1rem;">
-        <div>Tên người đặt hàng: </div>
-        <div>Số điện thoại: </div>
-        <div>Địa chỉ: </div>
-        <div>Tổng tiền đơn hàng: </div>
-        <div>Thanh toán: Paypal</div>
-        <div>Trạng thái thanh toán: </div>
-        <div>Ngày đặt hàng: </div>
+        <div>Tên người đặt hàng:{{order.noteId.name}} </div>
+        <div>Số điện thoại: {{order.noteId.phone}}</div>
+        <div>Địa chỉ: {{order.noteId.address}}</div>
+        <div>Tổng tiền đơn hàng: {{order.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</div>
+        <div>Thanh toán: {{order.payId.payment}}</div>
+        <div>Trạng thái thanh toán: {{order.pay?"Đã thanh toán":"Chưa thanh toán"}}</div>
+        <div>Ngày đặt hàng: {{order.createTime|date:"dd/MM/YYYY, HH:mm:ss"}}</div>
     </div>
     <div class="group_box_status" style="margin: 3rem 0">
         <div class="d-flex justify-content-center">
             <div class="group_status_delivery d-flex justify-content-around">
                 <div class="detail_status_delivery">
                     <div class="w-100 d-flex justify-content-center">
-                        <div class='bg_status_delivery_active'></div>
+                        <div [ngClass]="order.status=='1'?'bg_status_delivery_active':'bg_status_delivery'"></div>
                     </div>
                     <a class="a_status_delivery">Đang xử lý</a>
                 </div>
 
                 <div class="detail_status_delivery">
                     <div class="w-100 d-flex justify-content-center">
-                        <div class='bg_status_delivery'></div>
+                        <div [ngClass]="order.status=='2'?'bg_status_delivery_active':'bg_status_delivery'"></div>
                     </div>
                     <a class="a_status_delivery">Đã xác nhận</a>
                 </div>
 
                 <div class="detail_status_delivery">
                     <div class="w-100 d-flex justify-content-center">
-                        <div class='bg_status_delivery_active'></div>
+                        <div [ngClass]="order.status=='3'?'bg_status_delivery_active':'bg_status_delivery'"></div>
                     </div>
                     <a class="a_status_delivery">Đang vận chuyển</a>
                 </div>
 
                 <div class="detail_status_delivery">
-                    <div class="w-100 d-flex justify-content-center">   
-                        <div class='bg_status_delivery'></div>
+                    <div class="w-100 d-flex justify-content-center">
+                        <div [ngClass]="order.status=='4'?'bg_status_delivery_active':'bg_status_delivery'"></div>
                     </div>
                     <a class="a_status_delivery">Hoàn thành</a>
                 </div>
@@ -52,18 +52,20 @@
                     <th>STT</th>
                     <th>Hình ảnh</th>
                     <th>Tên sản phẩm</th>
-                    <th>Size</th>
+                    <th>Số lượng</th>
                     <th>Giá tiền</th>
+                    <th>Tổng tiền</th>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let item of order.detail;index as i">
                     <tr>
-                        <td data-label="#">1</td>
+                        <td data-label="#">{{i+1}}</td>
                         <td data-label="Hình ảnh">
-                            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
+                            <img src={{item.productId.image[0]}} alt="đây là áo" class="content-product-table-image" />
                         </td>
-                        <td data-label="Mã sản phẩm">001</td>
-                        <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-                        <td data-label="Loại sản phẩm">Áo Thun</td>
+                        <td data-label="Tên sản phẩm">{{item.productId.name}}</td>
+                        <td data-label="Mã sản phẩm">{{item.count}}</td>
+                        <td data-label="Loại sản phẩm">{{item.productId.price|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
+                        <td data-label="Loại sản phẩm">{{item.productId.price * item.count|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
                     </tr>
                 </tbody>
             </table>

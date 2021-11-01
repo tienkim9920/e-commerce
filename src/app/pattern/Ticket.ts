@@ -3,10 +3,10 @@ import API from "../http/http"
 class Ticket {
 
     userId: String
-    tickId: String
+    tickId: any
     status: Boolean
 
-    constructor(userId: String, tickId: String, status: Boolean){
+    constructor(userId: String, tickId: any, status: Boolean){
         this.userId = userId
         this.tickId = tickId
         this.status = status

@@ -52,7 +52,7 @@ class Address {
         }
     })
     const data = await res.json()
-    return data
+    return data.address
   }
 
   // PATCH_ADDRESS:TN

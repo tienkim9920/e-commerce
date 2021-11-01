@@ -1,13 +1,13 @@
 
 class Note {
 
-    distanceId: String
+    fee: Number
     name: String
     phone: String
     address: String
 
-    constructor (distanceId: String, name: String, phone: String, address: String){
-        this.distanceId = distanceId
+    constructor (fee: Number, name: String, phone: String, address: String){
+        this.fee = fee
         this.name = name
         this.phone = phone
         this.address = address
@@ -15,7 +15,7 @@ class Note {
 
     toJSON(){
         return {
-            distanceId: this.distanceId,
+            fee: this.fee,
             name: this.name,
             phone: this.phone,
             address: this.address

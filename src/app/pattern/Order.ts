@@ -25,6 +25,8 @@ class Order{
     this.createTime = createTime
   }
 
+  Order(){}
+
   toJSON(){
     return {
       userId: this.userId,
@@ -42,6 +44,7 @@ class Order{
   async getDetailOrder(){
     const res = await fetch(API.GET_DETAIL_ORDER(this._id))
     const data = await res.json()
+
     this.userId = data.userId
     this.payId = data.payId
     this.noteId = data.noteId
@@ -51,6 +54,7 @@ class Order{
     this.pay = data.pay
     this.createTime = data.createTime
   }
+
 
   // POST_ORDER
   async POST_ORDER(){
@@ -85,7 +89,6 @@ class Order{
   async getDetailByOrder(){
     const res = await fetch(API.GET_DETAIL_BY_ORDER(this._id))
     const data = await res.json()
-    console.log(data)
     this.detail = data
   }
 
