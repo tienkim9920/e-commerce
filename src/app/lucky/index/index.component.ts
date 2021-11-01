@@ -78,7 +78,7 @@ export class IndexComponent implements OnInit {
     // Số dư để kiểm tra vị trí
     const duVitri = (duVong - duVong % 45) / 45
     console.log(duVitri)
-    
+
     // Kiểm tra vị trí
     const checkIndex = duVong - (duVitri * 45)
 
@@ -102,7 +102,7 @@ export class IndexComponent implements OnInit {
         // Thêm Ticket mới
         const ticket = new Ticket(this.user._id, this.arrayTick[duVitri + 1]._id, false)
         this.user.postTicket(ticket)
-        
+
         // Hiển thị Toast
         this.messToast = `Bạn đã nhận được Ticket ${this.arrayTick[duVitri + 1].name}.`
         this.spin = 0
@@ -130,13 +130,13 @@ export class IndexComponent implements OnInit {
         this.messToast = `Bạn đã nhận được Ticket ${this.arrayTick[duVitri].name}.`
         this.spin = 0
         this.showToast = true
-        
+
       }, 10000)
 
       setTimeout(() => {
         this.showToast = false
       }, 14000)
-      
+
     }
 
   }

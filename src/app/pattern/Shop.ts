@@ -52,18 +52,11 @@ class Shop{
     console.log(this.coup)
   }
 
-    // GET Address:TN
-  async getAddress(shopId: any) {
-    const query = "?" + new URLSearchParams({shopId: shopId});
-    const res = await fetch(API.GET_ADDRESS_SHOP(query), {
-        method: 'GET',
-        body: JSON.stringify(this.toJSON()),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    })
+  // GET Address:TN
+  async getAddress() {
+    const res = await fetch(API.GET_ADDRESS_SHOP(this._id))
     const data = await res.json()
-    this.address = data.address
+    this.address = data
   }
 
 
@@ -76,14 +69,22 @@ class Shop{
 
   // PATCH Address:TN
   async patchAddress(addressPatch: Address,valueChange: Address) {
-    const data = await addressPatch.PATCH_ADDRESS()
+    const data = await addressPatch.PATCH_ADDRESS(addressPatch._id)
     const index= this.address.indexOf(addressPatch);
     this.address[index] = valueChange
   }
 
   // DELETE Address:TN
   async deleteAddress(addressDelete: Address) {
-    const data = await addressDelete.DELETE_ADDRESS()
+    const res = await fetch(API.DELETE_ADDRESS_SHOP(addressDelete._id), {
+      method: 'DELETE',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    // const data = await addressDelete.DELETE_ADDRESS(addressDelete._id)
     let updateAddress = this.address.filter((item: Address) => {
       return item !== addressDelete
     })
@@ -120,6 +121,19 @@ class Shop{
   async getDetailShop(){
     const res = await fetch(API.GET_DETAIL_SHOP(this._id))
     const data = await res.json()
+    this.userId = data.userId
+    this.name = data.name
+    this.description = data.description
+    this.image = data.image
+    this.reply = data.reply
+    this.replyTime = data.replyTime
+    this.createTime = data.createTime
+  }
+
+  async getDetailShopByUserId(){
+    const res = await fetch(API.GET_DETAIL_SHOP_BY_USERID(this.userId))
+    const data = await res.json()
+    this._id = data._id
     this.userId = data.userId
     this.name = data.name
     this.description = data.description

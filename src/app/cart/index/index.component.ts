@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/cart.service';
@@ -26,7 +27,7 @@ export class IndexComponent implements OnInit {
 
   // Giỏ hàng của bạn bè
   anotherCarts: any
-  
+
   // Tổng thanh toán
   totalPayment: any
 
@@ -154,7 +155,7 @@ export class IndexComponent implements OnInit {
       this.coupon = [...this.coupon, checking]
       this.cartService.setCoupon(this.coupon)
       this.totalPayment = this.cartService.getTotalPayment()
-  
+
       this.toastPromotion = true
       this.Toast()
       return
@@ -202,7 +203,7 @@ export class IndexComponent implements OnInit {
   }
 
   checkingDiscountShop(checking: any){
-    
+
     const discount = this.myCarts.some((element: any) => {
       return element.shopId._id === checking.shopId._id
     })

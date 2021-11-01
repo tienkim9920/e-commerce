@@ -52,7 +52,7 @@ export class CartService {
 
   // function get thông tin của user
   getJWT(){
-    
+
     let result = {}
 
     if (localStorage.getItem('jwt') !== null){
@@ -194,7 +194,7 @@ export class CartService {
 
   // Hủy Coupon
   unCoupon(coupon: any, index: any){
-    
+
     let totalPayment = JSON.parse(localStorage.getItem('totalPayment') || '{}')
 
     const newData = {
@@ -203,7 +203,7 @@ export class CartService {
     }
 
     localStorage.setItem('totalPayment', JSON.stringify(newData))
-    
+
     // Tìm vị trí xóa tại Localstorage
     const newCoupon = this.getCoupon()
     newCoupon.splice(index, 1)
@@ -236,7 +236,7 @@ export class CartService {
 
         localStorage.setItem('carts', JSON.stringify(add_cart))
 
-    } else {           
+    } else {
 
         //Tìm xem thử sản phẩm này đã mua hay chưa
         const findCart = add_cart.find((value: any) => {
@@ -249,7 +249,7 @@ export class CartService {
         //Còn đã từng mua rồi thì mình update tại vị trí indexCart mà mình vừa tìm được
         if (!findCart) {
             add_cart.push(data_add_cart)
-            
+
             localStorage.setItem('carts', JSON.stringify(add_cart))
         } else {
             for (let i = 0; i < add_cart.length; i++) {
@@ -282,13 +282,13 @@ export class CartService {
         delete_cart.splice(index, 1)
 
         localStorage.setItem('carts', JSON.stringify(delete_cart))
-        
+
         this.TotalPayment()
     }
 
     updateProduct(data: any) {
         const data_update_cart = data
-            
+
         const update_cart = JSON.parse(localStorage.getItem('carts') || '[]')
 
         const index = update_cart.findIndex((value: any) => {

@@ -67,9 +67,14 @@ const API = {
     },
 
     //ADDRESS
-    GET_ADDRESS_SHOP: (query: any) => {
-      return url + `/address/address${query}`
+    GET_ADDRESS_SHOP: (shopId: any) => {
+      return url + `/address/detail/${shopId}`
     },
+
+    GET_DETAIL_ADDRESS_BY_ADDRESSID: (id: any) => {
+      return url + `/address/detailAddress/${id}`
+    },
+
     POST_ADDRESS_SHOP: () => {
       return url + `/address`
     },
@@ -283,9 +288,13 @@ const API = {
     DELETE_COUP_SHOP: () => {
       return url + `/coup`
     },
-    
+
     GET_COUP_CODE: (code: any) => {
       return url + `/coup/${code}`
+    },
+
+    GET_DETAIL_SHOP_BY_USERID: (userId: any) => {
+      return url + `/shop/detail/${userId}`
     },
 
 

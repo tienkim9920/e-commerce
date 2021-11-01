@@ -31,7 +31,7 @@ export class IndexComponent implements OnInit {
     }, 1000)
   }
 
-  
+
   ngOnInit(): void {
     window.scroll(0,0)
   }
