@@ -36,11 +36,35 @@ export class IndexComponent implements OnInit {
   // Tổng thanh toán
   sumPayment: any;
 
+  // Get tỉnh thành
+  tinh: any
+  codeTinh: any
+
+  // Get quận huyện
+  quan: any
+  codeQuan: any
+
+  // Get phường xã
+  phuong: any
+  codePhuong: any
+
+  // Số điện thoại
+  phone: any
+
+  // Địa chỉ cụ thể
+  location: any
+
+  // Địa chỉ cuối cùng
+  address: any
+
   constructor(private cartService: CartService) {
     this.getLocalStorage();
     this.feeShip = this.getFeeShip();
     this.sumPayment = this.totalPayment.payment + this.feeShip;
     this.initConfig();
+    this.getTinh()
+
+    this.user.name = cartService.getName()
   }
 
   ngOnInit(): void {
@@ -94,6 +118,60 @@ export class IndexComponent implements OnInit {
     });
 
     return 30000 * flag;
+  }
+
+  // GET API Tinh
+  async getTinh(){
+    const res = await fetch('http://localhost:4000/tinh')
+    const data = await res.json()
+    this.tinh = data.results
+  }
+
+  async getQuan(code: any){
+    const res = await fetch(`http://localhost:4000/quan?code=${code}`)
+    const data = await res.json()
+    this.quan = data.results
+  }
+
+  async getPhuong(code: any){
+    const res = await fetch(`http://localhost:4000/phuong?code=${code}`)
+    const data = await res.json()
+    this.phuong = data.results
+  }
+
+  changeTinh(value: any){
+    this.codeTinh = value
+    setTimeout(() => {
+      this.getQuan(this.codeTinh)
+    }, 500)
+  }
+
+  changeQuan(value: any){
+    this.codeQuan = value
+    setTimeout(() => {
+      this.getPhuong(this.codeQuan)
+    }, 500)
+  }
+
+  changePhuong(value: any){
+    this.codePhuong = value
+  }
+
+  handlerSubmitAddress() {
+    const indexTinh = this.tinh.findIndex((element: any) => {
+      return element.code === this.codeTinh
+    })
+
+    const indexQuan = this.quan.findIndex((element: any) => {
+      return element.code === this.codeQuan
+    })
+
+    const indexPhuong = this.phuong.findIndex((element: any) => {
+      return element.code === this.codePhuong
+    })
+
+    this.address = `${this.location}, ${this.phuong[indexPhuong].name}, ${this.quan[indexQuan].name}, ${this.tinh[indexTinh].name}`
+    
   }
 
   private initConfig(): void {

@@ -122,6 +122,11 @@ tbody tr td{
     background-color: #1d88e6;
 }
 
+.btn-checkout-payment.unactive{
+    background-color: #dbdbdb;
+    color: #fff;
+}
+
 .width-checkout-payment{
     padding-top: 2rem;
     width: 35%;

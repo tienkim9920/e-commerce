@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { IndexComponent } from './index/index.component';
 import { MapComponent } from './map/map.component';
@@ -17,7 +17,8 @@ import { SuccessComponent } from './success/success.component';
   imports: [
     CommonModule,
     CheckoutRoutingModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    FormsModule
   ]
 })
 export class CheckoutModule { }

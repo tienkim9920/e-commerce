@@ -7,11 +7,13 @@
         </div>
         <div class="flex-checkout-address">
             <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.2rem;">
-                <div>Nguyễn Kim Tiền</div>
-                <div>07 6355 7366</div>
+                <div>{{ user.name }}</div>
+                <div>{{ phone }}</div>
             </div>
-            <div style="font-size: 1.1rem;">102 Nguyễn Thị Định, Phường Nguyễn Văn Cừ, Phường Nguyễn Văn Cừ, Thành Phố Quy Nhơn, Bình Định</div>
-            <div style="font-size: 1.1rem; color: blue;">Thay đổi</div>
+            <div style="font-size: 1.1rem;" *ngIf="address">{{ address }}</div>
+            <div style="font-size: 1.1rem;" *ngIf="!address">Vui lòng chọn địa chỉ nhận hàng!</div>
+            <div style="font-size: 1.1rem; color: blue; cursor: pointer;" 
+                data-bs-toggle="modal" data-bs-target="#choose-address">Thiết lập địa chỉ</div>
         </div>
     </div>
     <div class="checkout-product">
@@ -94,6 +96,66 @@
                     <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                 </div>
             </div>    
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="choose-address" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chọn Địa Chỉ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Số điện thoại:</label>
+                    <input type="text" [(ngModel)]="phone" class="form-control" placeholder="Nhập số điện thoại!">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="mb-3 w-50">
+                        <label class="form-label">Tỉnh/Thành Phố:</label>
+                        <select class="form-select" [(ngModel)]="codeTinh" (ngModelChange)="changeTinh($event)" name="Tỉnh">
+                            <option *ngFor="let item of tinh" [value]="item.code" [selected]="item.selected == true">
+                                {{ item.name }}</option>
+                        </select>
+                    </div>
+                    &nbsp;
+                    <div class="mb-3 w-50">
+                        <label class="form-label">Quận/Huyện:</label>
+                        <select class="form-select" [(ngModel)]="codeQuan" (ngModelChange)="changeQuan($event)" name="Quận">
+                            <option *ngFor="let item of quan" [value]="item.code" [selected]="item.selected == true">
+                                {{ item.name }}</option>
+                        </select>
+                    </div>
+                    &nbsp;
+                    <div class="mb-3 w-50">
+                        <label class="form-label">Phường/Thị Xã:</label>
+                        <select class="form-select" [(ngModel)]="codePhuong" (ngModelChange)="changePhuong($event)" name="Phường">
+                            <option *ngFor="let item of phuong" [value]="item.code" [selected]="item.selected == true">
+                                {{ item.name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Địa chỉ cụ thể:</label>
+                    <input type="text" [(ngModel)]="location" class="form-control" placeholder="Nhập địa chỉ cụ thể!">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div
+                    *ngIf="!codeTinh || !codeQuan || !codePhuong || !phone || !location"
+                    class="btn-checkout-payment unactive">
+                    Xác nhận
+                </div>
+                <div
+                    *ngIf="codeTinh && codeQuan && codePhuong && phone && location"
+                    class="btn-checkout-payment"
+                    (click)="handlerSubmitAddress()"
+                    data-bs-dismiss="modal" aria-label="Close">
+                    Xác nhận
+                </div>
+            </div>
         </div>
     </div>
 </div>

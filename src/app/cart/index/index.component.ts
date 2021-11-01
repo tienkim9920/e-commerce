@@ -142,6 +142,11 @@ export class IndexComponent implements OnInit {
   // Hàm apply coupon
   async applyCoupon(){
 
+    if (!this.checkingLogin()){
+      this.router.navigate(['/login'])
+      return
+    }
+
     const checking = await this.checkingCoupon(this.code)
 
     // Kiểm tra xem coup này có thỏa mãn hay không
@@ -237,7 +242,22 @@ export class IndexComponent implements OnInit {
       return
     }
 
+    if (!this.checkingLogin()){
+      this.router.navigate(['/login'])
+      return
+    }
+
     this.router.navigate(['/checkout'])
+  }
+
+  checkingLogin(){
+    const userId = this.cartService.getUserId()
+
+    if (!userId){
+      return false
+    }
+
+    return true
   }
 
 }

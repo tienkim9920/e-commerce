@@ -70,6 +70,12 @@ export class CartService {
     return token.userId
   }
 
+  // function get name
+  getName(){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    return token.name
+  }
+
   // function get coupon
   getCoupon(){
     let result = []
