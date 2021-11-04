@@ -68,7 +68,7 @@ export class IndexComponent implements OnInit {
     this.getTinh()
     this.thamSo.getListPayment()
     setTimeout(() => {
-      this.activePayment = this.thamSo.listPay[1].payment
+      this.activePayment = this.thamSo.listPay[1]
     }, 500)
 
 
@@ -87,9 +87,8 @@ export class IndexComponent implements OnInit {
     this.coupon = this.cartService.getCoupon();
   }
 
-  changePayment(value: any) {
-    this.activePayment = value;
-    console.log(this.activePayment)
+  changePayment(item: any) {
+    this.activePayment = item;
   }
 
   // Hủy Coupon
@@ -136,12 +135,14 @@ export class IndexComponent implements OnInit {
     this.tinh = data.results
   }
 
+  // GET API Quận
   async getQuan(code: any){
     const res = await fetch(`http://localhost:4000/quan?code=${code}`)
     const data = await res.json()
     this.quan = data.results
   }
 
+  // GET API Phường
   async getPhuong(code: any){
     const res = await fetch(`http://localhost:4000/phuong?code=${code}`)
     const data = await res.json()
@@ -166,6 +167,7 @@ export class IndexComponent implements OnInit {
     this.codePhuong = value
   }
 
+  // Hàm submit địa chỉ
   handlerSubmitAddress() {
     const indexTinh = this.tinh.findIndex((element: any) => {
       return element.code === this.codeTinh
@@ -182,6 +184,7 @@ export class IndexComponent implements OnInit {
     this.address = `${this.location}, ${this.phuong[indexPhuong].name}, ${this.quan[indexQuan].name}, ${this.tinh[indexTinh].name}`
   }
 
+  // Hàm thanh toán trực tiếp
   ThanhToanTrucTiep(){
     let shopList: any = []
       
