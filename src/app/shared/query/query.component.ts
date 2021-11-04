@@ -16,15 +16,16 @@ export class QueryComponent implements OnInit {
 
   ngOnInit(): void {
     this.path=this.router.url.split('?')[0]
+    console.log(this.path)
   }
 
   onChangeStatus(item: any){
-    this.filter.query=item
-    this.router.navigate([this.path],  { queryParams: { status: this.filter.query.status }, queryParamsHandling: 'merge' });
+    this.filter.query = item
+    this.router.navigate([this.path], { queryParams: { status: this.filter.query.status }, queryParamsHandling: 'merge' });
   }
 
   onSearchSubmit(data: any) {
-      this.router.navigate([this.path],  { queryParams: { search: data.search}, queryParamsHandling: 'merge' });
+    this.router.navigate([this.path],  { queryParams: { search: data.search }, queryParamsHandling: 'merge' });
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import User from 'src/app/pattern/User';
+import ThamSo from 'src/app/pattern/ThamSo';
 
 @Component({
   selector: 'app-index',
@@ -10,6 +11,8 @@ import User from 'src/app/pattern/User';
 })
 export class IndexComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
+
+  thamSo = new ThamSo()
 
   user = new User('');
 
@@ -63,6 +66,11 @@ export class IndexComponent implements OnInit {
     this.sumPayment = this.totalPayment.payment + this.feeShip;
     this.initConfig();
     this.getTinh()
+    this.thamSo.getListPayment()
+    setTimeout(() => {
+      this.activePayment = this.thamSo.listPay[1].payment
+    }, 500)
+
 
     this.user.name = cartService.getName()
   }
@@ -81,6 +89,7 @@ export class IndexComponent implements OnInit {
 
   changePayment(value: any) {
     this.activePayment = value;
+    console.log(this.activePayment)
   }
 
   // Hủy Coupon
@@ -171,7 +180,67 @@ export class IndexComponent implements OnInit {
     })
 
     this.address = `${this.location}, ${this.phuong[indexPhuong].name}, ${this.quan[indexQuan].name}, ${this.tinh[indexTinh].name}`
+  }
+
+  ThanhToanTrucTiep(){
+    let shopList: any = []
+      
+    // Tổng số tiền tất cả sản phẩm của Shop
+    this.myCarts.forEach((element: any) => {
+
+      // Kiểm tra xem cái shopId có tồn tại trong shopList chưa
+      const checking = shopList.some((shop: any) => {
+        return shop.shopId === element.shopId._id
+      })
+
+      // Nếu chưa thì thực thi thôi
+      if (!checking){
+        let total = 0
+
+        // Duyệt vòng for tiếp 1 lần nữa để tính tổng những sản phẩm của shop đó
+        this.myCarts.forEach((el: any) => {
+          if (element.shopId._id === el.shopId._id){
+            total += el.price * el.count
+          }
+        })
+
+        const data = {
+          shopId: element.shopId._id,
+          total
+        }
+
+        shopList.push(data)
+      }
+    });
+
+    // Nếu mà có áp dụng ticket
+    if (this.ticket._id){
+      shopList.forEach((element: any) => {
+        element.total = element.total - (element.total * this.ticket.tickId.value / 100)
+      });
+    }
     
+    // Nếu mà có áp dụng coupon
+    if (this.coupon.length > 0){
+      this.coupon.forEach((element: any) => {
+        shopList.forEach((shop: any) => {
+          if (element.shopId === shop.shopId){
+            shop.total = shop.total - element.discount
+          }
+        })
+      })
+    }
+
+    // Cộng thêm phí vận chuyển
+    shopList.forEach((shop: any) => {
+      shop.total = shop.total + 30000
+    })
+
+    console.log(shopList)
+  }
+
+  TotalProductOfShop(){
+
   }
 
   private initConfig(): void {

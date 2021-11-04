@@ -194,7 +194,7 @@ export class IndexComponent implements OnInit {
     let totalShop = 0
 
     this.cartService.getMyCarts().forEach((element: any) => {
-      if (element.shopId._id === checking.shopId._id){
+      if (element.shopId._id === checking.shopId){
         totalShop += element.price * element.count
       }
     });
@@ -205,7 +205,7 @@ export class IndexComponent implements OnInit {
   checkingDiscountShop(checking: any){
 
     const discount = this.myCarts.some((element: any) => {
-      return element.shopId._id === checking.shopId._id
+      return element.shopId._id === checking.shopId
     })
 
     return discount

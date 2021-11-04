@@ -44,10 +44,8 @@
     <div class="checkout-payment">
         <div class="header-checkout-payment">
             <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.4rem; margin-top: .6rem;">Phương thức thanh toán: </div>
-            <div [ngClass]="activePayment === 0 ? 'payment-border active' : 'payment-border'" 
-                (click)="changePayment(0)">Paypal</div>
-            <div [ngClass]="activePayment === 1 ? 'payment-border active' : 'payment-border'" 
-                (click)="changePayment(1)">Khi nhận hàng</div>
+            <div *ngFor="let item of thamSo.listPay" [ngClass]="activePayment === item._id ? 'payment-border active' : 'payment-border'" 
+                (click)="changePayment(item._id)">{{ item.payment }}</div>
         </div>
         <div class="body-checkout-payment">
             <div *ngIf="ticket._id || coupon" class="width-promotion">
@@ -91,7 +89,17 @@
                     <span class="price-checkout">{{ feeShip |  currency: 'VND' }}</span></div>
                 <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Tổng thanh toán: 
                     <span class="price-checkout" style="font-size: 1.7rem; color: #1A94FF;">{{ sumPayment |  currency: 'VND' }}</span></div>
-                <div *ngIf="activePayment === 1" class="btn-checkout-payment mt-3">Thanh Toán</div>
+                <div *ngIf="activePayment === 1" >
+                    <!-- <div *ngIf="address" class="btn-checkout-payment mt-3" (click)="ThanhToanTrucTiep()">
+                        Thanh Toán
+                    </div>
+                    <div *ngIf="!address" class="btn-checkout-payment unactive mt-3">
+                        Thanh Toán
+                    </div> -->
+                    <div class="btn-checkout-payment mt-3" (click)="ThanhToanTrucTiep()">
+                        Thanh Toán
+                    </div>
+                </div>
                 <div *ngIf="activePayment === 0" class="mt-3">
                     <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                 </div>

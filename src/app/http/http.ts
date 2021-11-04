@@ -319,6 +319,12 @@ const API = {
 
     GET_DETAIL_CLIENT:(userID: any)=>{
       return url + `/client/${userID}`
+    },
+
+
+    // Payment
+    GET_PAYMENT: () => {
+      return url + `/pay`
     }
 }
 

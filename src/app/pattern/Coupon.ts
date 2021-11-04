@@ -3,10 +3,10 @@ import API from "../http/http"
 class Coupon {
 
     userId: String
-    coupId: String
+    coupId: any
     status: Boolean
 
-    constructor(userId: String, coupId: String, status: Boolean){
+    constructor(userId: String, coupId: any, status: Boolean){
         this.userId = userId
         this.coupId = coupId
         this.status = status

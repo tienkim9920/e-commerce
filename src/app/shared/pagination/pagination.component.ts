@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-  @Input() itemLength:any=0;
-  @Input() filter: any;
 
+  @Input() itemLength:any
+  @Input() filter: any
   path:any
 
   constructor(private router: Router)
