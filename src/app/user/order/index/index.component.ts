@@ -10,12 +10,12 @@ import User from 'src/app/pattern/User';
 })
 export class IndexComponent implements OnInit {
   filterOrder: any=[
-    {title:"Tất cả đơn hàng",status:"0"},
-    {title:"Đang xử lý",status:"1"},
-    {title:"Đã xác nhận",status:"2"},
-    {title:"Đang vận chuyển",status:"3"},
-    {title:"Đã giao",status:"4"},
-    {title:"Đã hủy",status:"5"},
+    { title:"Tất cả đơn hàng", status:"0" },
+    { title:"Đang xử lý", status:"1" },
+    { title:"Đã xác nhận", status:"2" },
+    { title:"Đang vận chuyển", status:"3" },
+    { title:"Đã giao", status:"4" },
+    { title:"Đã hủy", status:"5" },
   ]
 
   user = new User(JSON.parse(localStorage.getItem('jwt')!).userId)
@@ -43,7 +43,7 @@ export class IndexComponent implements OnInit {
     let search = this.filter.search
 
     let order=this.user.order.filter((result: any) => {
-      if(status!=0){
+      if(status !== "0"){
         return result.status == status
       }
       return result

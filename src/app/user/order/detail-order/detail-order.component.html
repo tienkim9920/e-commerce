@@ -5,9 +5,9 @@
         <div>Số điện thoại: {{order.noteId.phone}}</div>
         <div>Địa chỉ: {{order.noteId.address}}</div>
         <div>Tổng tiền đơn hàng: {{order.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</div>
-        <div>Thanh toán: {{order.payId.payment}}</div>
-        <div>Trạng thái thanh toán: {{order.pay?"Đã thanh toán":"Chưa thanh toán"}}</div>
-        <div>Ngày đặt hàng: {{order.createTime|date:"dd/MM/YYYY, HH:mm:ss"}}</div>
+        <div>Thanh toán: {{order.payId.name}}</div>
+        <div>Trạng thái thanh toán: {{order.pay ?"Đã thanh toán":"Chưa thanh toán"}}</div>
+        <div>Ngày đặt hàng: {{order.createTime}}</div>
     </div>
     <div class="group_box_status" style="margin: 3rem 0">
         <div class="d-flex justify-content-center">

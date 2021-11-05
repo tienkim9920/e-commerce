@@ -3,6 +3,12 @@ import { CartService } from 'src/app/cart.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import User from 'src/app/pattern/User';
 import ThamSo from 'src/app/pattern/ThamSo';
+import Note from 'src/app/pattern/Note';
+import Order from 'src/app/pattern/Order';
+import Detail from 'src/app/pattern/Detail';
+import { Router } from '@angular/router';
+import Ticket from 'src/app/pattern/Ticket';
+import Coupon from 'src/app/pattern/Coupon';
 
 @Component({
   selector: 'app-index',
@@ -14,7 +20,7 @@ export class IndexComponent implements OnInit {
 
   thamSo = new ThamSo()
 
-  user = new User('');
+  user = new User(JSON.parse(localStorage.getItem('jwt')!).userId);
 
   activePayment: any = 1;
 
@@ -60,13 +66,15 @@ export class IndexComponent implements OnInit {
   // Địa chỉ cuối cùng
   address: any
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
     this.getLocalStorage();
     this.feeShip = this.getFeeShip();
     this.sumPayment = this.totalPayment.payment + this.feeShip;
     this.initConfig();
     this.getTinh()
     this.thamSo.getListPayment()
+    this.user.getDetail()
+    this.user.getCoupons()
     setTimeout(() => {
       this.activePayment = this.thamSo.listPay[1]
     }, 500)
@@ -185,7 +193,7 @@ export class IndexComponent implements OnInit {
   }
 
   // Hàm thanh toán trực tiếp
-  ThanhToanTrucTiep(){
+  async ThanhToanTrucTiep(){
     let shopList: any = []
       
     // Tổng số tiền tất cả sản phẩm của Shop
@@ -200,7 +208,7 @@ export class IndexComponent implements OnInit {
       if (!checking){
         let total = 0
 
-        // Duyệt vòng for tiếp 1 lần nữa để tính tổng những sản phẩm của shop đó
+        // Duyệt vòng for tiếp 1 lần nữa để tính tổng những sản phẩm của shop đó và lấy giá gốc
         this.myCarts.forEach((el: any) => {
           if (element.shopId._id === el.shopId._id){
             total += el.price * el.count
@@ -221,25 +229,62 @@ export class IndexComponent implements OnInit {
       shopList.forEach((element: any) => {
         element.total = element.total - (element.total * this.ticket.tickId.value / 100)
       });
+
+      const ticket = new Ticket(this.ticket._id, this.cartService.getUserId(), this.ticket.tickId._id, true)
+      await ticket.PATCH_TICKET()
     }
     
     // Nếu mà có áp dụng coupon
     if (this.coupon.length > 0){
-      this.coupon.forEach((element: any) => {
+      this.coupon.forEach(async (element: any) => {
         shopList.forEach((shop: any) => {
           if (element.shopId === shop.shopId){
             shop.total = shop.total - element.discount
           }
         })
+        
+        // Kiểm tra xem người dùng đó đã lưu coupon vào thông tin hay chưa
+        const checking = this.user.checkingExistCoupon(element._id)
+        const coupon = new Coupon('', this.cartService.getUserId(), element._id, false)
+        if (!checking){
+          coupon.status = true
+          await coupon.POST_COUPON()
+        }else{
+          await coupon.PATCH_COUPON()
+        }
+
       })
     }
 
-    // Cộng thêm phí vận chuyển
-    shopList.forEach((shop: any) => {
-      shop.total = shop.total + 30000
+    // Thêm vào đơn hàng và cộng dồn lên phí vận chuyển
+    shopList.forEach(async (shop: any) => {
+
+      // POST API note
+      const note = new Note(30000, this.cartService.getName(), this.phone, this.address)
+      const resultNote = await note.POST_NOTE()
+
+      // POST API hóa đơn
+      const order = new Order('', this.cartService.getUserId(), this.activePayment._id, resultNote._id, shop.shopId,
+      shop.total + 30000, "1", false, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
+      const resultOrder = await order.POST_ORDER()
+
+      // POST API chi tiết hóa đơn
+      this.myCarts.forEach(async (cart: any) => {
+        if (cart.shopId._id === shop.shopId){
+          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
+          await detail.POST_DETAIL()
+        }
+      })
+
+      // Cập nhật điểm tích lũy cho user
+      this.user.score = this.user.score + 500
+      await this.user.PATCH_SCORE()
+
+      this.router.navigate(['/checkout/success'])
+
     })
 
-    console.log(shopList)
+    
   }
 
   TotalProductOfShop(){

@@ -100,7 +100,7 @@ export class IndexComponent implements OnInit {
         this.user.PATCH_SCORE()
 
         // Thêm Ticket mới
-        const ticket = new Ticket(this.user._id, this.arrayTick[duVitri + 1]._id, false)
+        const ticket = new Ticket('', this.user._id, this.arrayTick[duVitri + 1]._id, false)
         this.user.postTicket(ticket)
 
         // Hiển thị Toast
@@ -123,7 +123,7 @@ export class IndexComponent implements OnInit {
         this.user.PATCH_SCORE()
 
         // Thêm Ticket mới
-        const ticket = new Ticket(this.user._id, this.arrayTick[duVitri]._id, false)
+        const ticket = new Ticket('', this.user._id, this.arrayTick[duVitri]._id, false)
         this.user.postTicket(ticket)
 
         // Hiển thị Toast

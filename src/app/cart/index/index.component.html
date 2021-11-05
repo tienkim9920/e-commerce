@@ -23,7 +23,7 @@
                       <td>{{ item.shopId.name }}</td>
                       <td>{{ item.name }}</td>
                       <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
-                      <td>{{ item.price | currency: 'VND' }}</td>
+                      <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
                       <td>{{ item.size }}</td>
                       <td>
                           <input (change)="handlerUpdate(item.productId)"
@@ -146,7 +146,7 @@
           <h4 class="h4-order-cart">Tiến hành thanh toán</h4>
           <div class="detail-order-cart">
               <div>Thành Tiền</div>
-              <div style="font-family: 'Nunito Sans', sans-serif">{{ totalPayment.total | currency: 'VND' }}</div>
+              <div style="font-family: 'Nunito Sans', sans-serif">{{ totalPayment.total | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
           </div>
           <div class="detail-order-cart" style="cursor: pointer;" data-bs-toggle="collapse" href="#showPromotion" aria-controls="showPromotion">
               <div>
@@ -154,7 +154,7 @@
                   <i class="fa fa-chevron-down"></i>
               </div>
               <div style="font-family: 'Nunito Sans', sans-serif">
-                  {{ totalPayment.total - totalPayment.payment | currency: 'VND' }}
+                  {{ totalPayment.total - totalPayment.payment | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}
 
               </div>
           </div>
@@ -176,7 +176,7 @@
                       <div><img class="icon-ticket" src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg" alt=""></div>
                       <div class="center-body-ticket">
                           <div *ngIf="item._id">Shop {{ item.shopId.name  }}</div>
-                          <div *ngIf="item._id">Giảm giá {{ item.discount | currency: 'VND' }}</div>
+                          <div *ngIf="item._id">Giảm giá {{ item.discount | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
                           <div *ngIf="item._id" class="mt-1"><span class="ticket active">Mã: {{ item.code }}</span></div>
                       </div>
                   </div>
@@ -187,7 +187,7 @@
           </div>
           <div class="detail-order-cart" style="font-family: 'Nunito Sans', sans-serif; font-size: 1.2rem;">
               <div>Tổng tiền</div>
-              <div>{{ totalPayment.payment | currency: 'VND' }}</div>
+              <div>{{ totalPayment.payment | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
           </div>
           <div (click)="handlerOrder()" class="btn-order-cart">
               Đặt Hàng
