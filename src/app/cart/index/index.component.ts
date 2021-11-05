@@ -143,6 +143,17 @@ export class IndexComponent implements OnInit {
   // Hàm apply coupon
   async applyCoupon(){
 
+    // Kiểm tra xem thử code này đã được áp dụng chưa
+    const existCoupon = this.coupon.some((element: any) => {
+      return element.code === this.code
+    })
+    if (existCoupon){ // nếu đã áp dụng rồi thì k áp dụng lại được
+      this.toastCoupon = true
+      this.Toast()
+      return
+    }
+
+    // Kiểm tra xem thử đã đăng nhập chưa
     if (!this.checkingLogin()){
       this.router.navigate(['/login'])
       return

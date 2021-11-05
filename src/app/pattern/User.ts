@@ -259,7 +259,7 @@ class User {
   checkingExistCoupon(_id: any){
 
     const checking = this.coupon.some((element: any) => {
-      return element.userId === this._id && element.coupId === _id
+      return element.userId === this._id && element.coupId._id === _id
     })
 
     return checking

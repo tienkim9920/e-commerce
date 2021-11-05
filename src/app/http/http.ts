@@ -121,8 +121,8 @@ const API = {
         return url + `/coupon`
     },
 
-    PATCH_COUPON: (_id: any) => {
-      return url + `/coupon/${_id}`
+    PATCH_COUPON: (userId: any, coupId: any) => {
+      return url + `/coupon/checking/update?userId=${userId}&coupId=${coupId}`
     },
 
     //REPUTATION

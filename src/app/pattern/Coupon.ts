@@ -37,7 +37,7 @@ class Coupon {
 
     // PATCH_COUPON
     async PATCH_COUPON(){
-        const res = await fetch(API.PATCH_COUPON(this._id), {
+        const res = await fetch(API.PATCH_COUPON(this.userId, this.coupId), {
             method: 'PATCH',
             body: JSON.stringify(this.toJSON()),
             headers: {

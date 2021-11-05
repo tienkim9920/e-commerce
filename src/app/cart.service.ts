@@ -8,6 +8,15 @@ export class CartService {
 
   constructor() { }
 
+  // RESET
+  resetLocalStorage(){
+    localStorage.setItem('carts', JSON.stringify([]))
+    localStorage.setItem('another', JSON.stringify([]))
+    localStorage.setItem('totalPayment', JSON.stringify({}))
+    localStorage.setItem('coupon', JSON.stringify([]))
+    localStorage.setItem('ticket', JSON.stringify({}))
+  }
+
   // function get toàn bộ giỏ hàng của mình
   getMyCarts(){
 
@@ -56,7 +65,7 @@ export class CartService {
     let result = {}
 
     if (localStorage.getItem('jwt') !== null){
-        result = JSON.parse(localStorage.getItem('jwt') || '{}')
+      result = JSON.parse(localStorage.getItem('jwt') || '{}')
     }else{
       localStorage.setItem('jwt', JSON.stringify({}))
     }
@@ -94,7 +103,7 @@ export class CartService {
     let result = {}
 
     if (localStorage.getItem('ticket') !== null){
-        result = JSON.parse(localStorage.getItem('ticket') || '{}')
+      result = JSON.parse(localStorage.getItem('ticket') || '{}')
     }else{
       localStorage.setItem('ticket', JSON.stringify({}))
     }

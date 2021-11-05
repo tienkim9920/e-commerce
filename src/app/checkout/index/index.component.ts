@@ -276,15 +276,16 @@ export class IndexComponent implements OnInit {
         }
       })
 
-      // Cập nhật điểm tích lũy cho user
-      this.user.score = this.user.score + 500
-      await this.user.PATCH_SCORE()
-
-      this.router.navigate(['/checkout/success'])
-
     })
 
-    
+    // Cập nhật điểm tích lũy cho user
+    this.user.score = this.user.score + 500
+    await this.user.PATCH_SCORE()
+
+    this.cartService.resetLocalStorage()    
+
+    this.router.navigate(['/checkout/success'])    
+
   }
 
   TotalProductOfShop(){
