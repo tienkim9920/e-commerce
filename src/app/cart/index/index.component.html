@@ -26,9 +26,9 @@
                       <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
                       <td>{{ item.size }}</td>
                       <td>
-                          <input (change)="handlerUpdate(item.productId)"
+                          <input (change)="handlerUpdate(item.cartId)"
                               class="input-count-cart"
-                              id="{{ item.productId }}"
+                              id="{{ item.cartId }}"
                               type="number"
                               value="{{ item.count }}"
                               max="20" min="1">

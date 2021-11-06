@@ -331,6 +331,14 @@ const API = {
       return url + `/client/${userID}`
     },
 
+    PATCH_CLIENT_LIMIT: (userId: any) => {
+      return url + `/client/${userId}`
+    },
+
+    PATCH_CLIENT_STATUS: (userId: any) => {
+      return url + `/client/update/${userId}`
+    },
+
     // Payment
     GET_PAYMENT: () => {
       return url + `/pay`

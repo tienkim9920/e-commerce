@@ -8,13 +8,28 @@ import Client from 'src/app/pattern/Client';
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
+
+  success: Boolean = false
+
   client= new Client("","","","","");
+
   constructor() { }
 
   ngOnInit(): void {
     this.client.getDetailClient(JSON.parse(localStorage.getItem('jwt')!).userId);
   }
 
+  changeLimit(value: any) {
+    this.client.limit = value
+  }
 
+  async saveInfor() {
+    this.success = true
+    this.client.PATCH_LIMIT()
+
+    setTimeout(() => {
+      this.success = false
+    }, 3000)
+  }
 
 }

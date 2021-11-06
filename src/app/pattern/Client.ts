@@ -27,9 +27,6 @@ class Client{
     }
   }
 
-
-
-
   // POST_CLIENT
   async POST_CLIENT(){
     const res = await fetch(API.POST_CLIENT(), {
@@ -38,6 +35,26 @@ class Client{
       headers: {
           'Content-type': 'application/json; charset=UTF-8',
       }
+    })
+    const data = await res.json()
+    return data.result
+  }
+
+  async PATCH_LIMIT(){
+    const res = await fetch(API.PATCH_CLIENT_LIMIT(this.userId), {
+      method: 'PATCH',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    return data.result
+  }
+
+  async PATCH_STATUS(){
+    const res = await fetch(API.PATCH_CLIENT_STATUS(this.userId), {
+      method: 'PATCH'
     })
     const data = await res.json()
     return data.result
@@ -70,8 +87,7 @@ class Client{
     })
     const data = await res.json()
     this.room = data
-
-}
+  }
 
 
 }

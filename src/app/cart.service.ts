@@ -301,7 +301,7 @@ export class CartService {
         const update_cart = JSON.parse(localStorage.getItem('carts') || '[]')
 
         const index = update_cart.findIndex((value: any) => {
-            return value.productId === data_update_cart.productId
+            return value.cartId === data_update_cart.cartId
         })
 
         update_cart[index].count = parseInt(data_update_cart.count)

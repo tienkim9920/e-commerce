@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Client from 'src/app/pattern/Client';
 
 @Component({
   selector: 'app-setting',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingComponent implements OnInit {
 
-  status: boolean = false
+  success: Boolean = false
+  client= new Client("","","","","");
+  linkShare: string = ''
 
-  constructor() { }
+  constructor() {
+    this.client.getDetailClient(JSON.parse(localStorage.getItem('jwt')!).userId);
+
+    setTimeout(() => {
+      this.linkShare = `http://localhost:4200/cart/share/${this.client.code}`
+    }, 500)
+  }
 
   ngOnInit(): void {
     window.scroll(0, 0)
@@ -25,8 +34,12 @@ export class SettingComponent implements OnInit {
   }
 
   changeStatus(){
-    this.status = !this.status
-    console.log(this.status)
+    this.success = true
+    this.client.statusOrder = !this.client.statusOrder
+    this.client.PATCH_STATUS()
+    setTimeout(() => {
+      this.success = false
+    }, 3000)
   }
   
 }

@@ -1,6 +1,19 @@
 <div class="container my-3 layout-index">
     <div class="text-center">
         <h1 class="p-4">Giỏ hàng chia sẻ</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+          </svg>
+        <div *ngIf="success" class="d-flex justify-content-center mb-4">
+            <div class="alert alert-success d-flex align-items-center fade-true" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                  Bạn đã thay đổi thông tin thành công
+                </div>
+            </div>
+        </div>
         <div class="form-name">
             <form>
                 <div class="mb-4 row">
@@ -8,7 +21,11 @@
                         <label for="email" class="mt-2 lbl-info">Giới hạn số tiền:</label>
                     </div>
                     <div class="col-8">
-                        <input [(ngModel)]="client.limit" name="limit" type="number" class="form-control w-75" />
+                        <input
+                            [(ngModel)]="client.limit" name="limit" 
+                            (ngModelChange)="changeLimit($event)"
+                            value="{{ client.limit }}"
+                            type="number" class="form-control w-75" />
                     </div>
                 </div>
 
@@ -17,7 +34,7 @@
                         <label for="name" class="mt-2 lbl-info">Link giỏ hàng:</label>
                     </div>
                     <div class="col-8">
-                        <input value="http://localhost:4200/share/{{client.code}}" type="text" class="form-control w-75" id="name" disabled />
+                        <input value="http://localhost:4200/cart/share/{{client.code}}" type="text" class="form-control w-75" id="name" disabled />
                     </div>
                 </div>
 
@@ -27,8 +44,11 @@
                         <label for="name" class="mt-2 lbl-info">Trạng thái giỏ hàng:</label>
                     </div>
                     <div class="col-6 mt-2 d-flex justify-content-between">
-                        <div class="d-flex text-success">
+                        <div *ngIf="client.statusOrder" class="d-flex text-success">
                             <div class="bg-success" style="width: 15px; height: 15px; border-radius: 50%;"></div> &nbsp; Đang hoạt động
+                        </div>
+                        <div *ngIf="!client.statusOrder" class="d-flex text-danger">
+                            <div class="bg-danger" style="width: 15px; height: 15px; border-radius: 50%;"></div> &nbsp; Không hoạt động
                         </div>
                         <div [routerLink]="['/cart/setting']" style="cursor: alias; color: #1A94FF;">Thay đổi</div>
                     </div>
@@ -38,7 +58,7 @@
                     <div class="col-4 col-lg-3">
                     </div>
                     <div>
-                        <button class="btn btn-primary">Lưu lại</button>
+                        <button class="btn btn-primary" (click)="saveInfor()">Lưu lại</button>
                     </div>
                 </div>
             </form>

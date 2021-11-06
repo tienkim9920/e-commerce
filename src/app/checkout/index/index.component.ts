@@ -66,6 +66,9 @@ export class IndexComponent implements OnInit {
   // Địa chỉ cuối cùng
   address: any
 
+  // Hiển thị loading
+  loading: Boolean = false
+
   constructor(private cartService: CartService, private router: Router) {
     this.getLocalStorage();
     this.feeShip = this.getFeeShip();
@@ -193,7 +196,9 @@ export class IndexComponent implements OnInit {
   }
 
   // Hàm thanh toán trực tiếp
-  async ThanhToanTrucTiep(){
+  async ThanhToan(){
+    this.loading = true
+
     let shopList: any = []
       
     // Tổng số tiền tất cả sản phẩm của Shop
@@ -264,8 +269,9 @@ export class IndexComponent implements OnInit {
       const resultNote = await note.POST_NOTE()
 
       // POST API hóa đơn
+      const statusThanhToan = this.activePayment.payment === 'offline' ? false : true
       const order = new Order('', this.cartService.getUserId(), this.activePayment._id, resultNote._id, shop.shopId,
-      shop.total + 30000, "1", false, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
+      shop.total + 30000, "1", statusThanhToan, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
       const resultOrder = await order.POST_ORDER()
 
       // POST API chi tiết hóa đơn
@@ -282,13 +288,11 @@ export class IndexComponent implements OnInit {
     this.user.score = this.user.score + 500
     await this.user.PATCH_SCORE()
 
-    this.cartService.resetLocalStorage()    
+    setTimeout(() => {
+      this.cartService.resetLocalStorage() 
 
-    this.router.navigate(['/checkout/success'])    
-
-  }
-
-  TotalProductOfShop(){
+      this.router.navigate(['/checkout/success'])
+    }, 3000)
 
   }
 
@@ -315,25 +319,8 @@ export class IndexComponent implements OnInit {
         label: 'paypal',
         layout: 'vertical',
       },
-      onApprove: (data, actions) => {
-        actions.order.get().then((details: any) => {
-          console.log("Thanh toán thành công");
-        });
-      },
       onClientAuthorization: (data) => {
-        console.log(
-          'onClientAuthorization - you should probably inform your server about completed transaction at this point',
-          data
-        );
-      },
-      onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
-      },
-      onError: (err) => {
-        console.log('OnError', err);
-      },
-      onClick: (data, actions) => {
-        console.log('onClick', data, actions);
+        this.ThanhToan()
       },
     };
   }

@@ -49,10 +49,10 @@ export class IndexComponent implements OnInit {
     this.getLocalStorage()
   }
 
-  async handlerUpdate(productId: any){
+  async handlerUpdate(cartId: any){
 
     // Lấy value từ input
-    let count = (document.getElementById(productId) as HTMLInputElement).value;
+    let count = (document.getElementById(cartId) as HTMLInputElement).value;
 
     if (parseInt(count) < 0 || parseInt(count) > 20){
       this.toastFail = true
@@ -61,7 +61,7 @@ export class IndexComponent implements OnInit {
     }
 
     const data = {
-      productId,
+      cartId,
       count
     }
 

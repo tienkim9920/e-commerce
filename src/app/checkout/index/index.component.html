@@ -93,7 +93,7 @@
                     <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                 </div>
                 <div *ngIf="activePayment.payment === 'offline' && address && phone && location" 
-                    class="btn-checkout-payment mt-3" (click)="ThanhToanTrucTiep()">
+                    class="btn-checkout-payment mt-3" (click)="ThanhToan()">
                     Thanh Toán
                 </div>
                 <div *ngIf="!address || !phone || !location" class="mt-3 alert alert-danger">Vui lòng nhập địa chỉ của bạn trước khi thanh toán!</div>
@@ -159,5 +159,16 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="wrapper-loading">
+    <div class="sk-chase">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
     </div>
 </div>
