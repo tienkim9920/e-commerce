@@ -2,77 +2,95 @@
 
 <div class="layout-cart container">
   <div class="group-my-cart">
-      <div class="header-cart">
-          <div class="name-header-cart">Giỏ hàng của bạn</div>
-      </div>
-      <div class="body-cart">
-          <table>
-              <thead>
-                  <tr>
-                      <th>Tên cửa hàng</th>
-                      <th>Tên sản phẩm</th>
-                      <th>Hình ảnh</th>
-                      <th>Giá</th>
-                      <th>Kích Thước</th>
-                      <th>Số lượng</th>
-                      <th>Xóa</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let item of myCarts; index as i">
-                      <td>{{ item.shopId.name }}</td>
-                      <td>{{ item.name }}</td>
-                      <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
-                      <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
-                      <td>{{ item.size }}</td>
-                      <td>
-                          <input (change)="handlerUpdate(item.cartId)"
-                              class="input-count-cart"
-                              id="{{ item.cartId }}"
-                              type="number"
-                              value="{{ item.count }}"
-                              max="20" min="1">
-                      </td>
-                      <td><i class="fa fa-trash padding-icon-cart" (click)="handlerDelete(i)"></i></td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+        <div class="header-cart">
+                <div class="name-header-cart">Giỏ hàng của bạn</div>
+                <div *ngIf="anotherRoom.fullname && myCarts.length > 0" (click)="verifyCartAnother()" class="btn-order-cart mt-2">
+                    Xác Nhận Giao Dịch
+                </div>
+                <div *ngIf="!user._id && myCarts.length === 0" class="btn-order-cart unactive mt-2">
+                    Xác Nhận Giao Dịch
+                </div>
+        </div>
+        <div class="body-cart" *ngIf="myCarts.length === 0">
+            <div class="text-center" style="font-size: 1.2rem;">
+                <div class="bg-cart-empty"></div>
+                Giỏ hàng chưa có sản phẩm!
+            </div>
+        </div>
+        <div class="body-cart" *ngIf="myCarts.length > 0">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên cửa hàng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Giá</th>
+                        <th>Kích Thước</th>
+                        <th>Số lượng</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let item of myCarts; index as i">
+                            <td>{{ item.shopId.name }}</td>
+                            <td>{{ item.name }}</td>
+                            <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
+                            <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                            <td>{{ item.size }}</td>
+                            <td>
+                                <input (change)="handlerUpdate(item.cartId)"
+                                    class="input-count-cart"
+                                    id="{{ item.cartId }}"
+                                    type="number"
+                                    value="{{ item.count }}"
+                                    max="20" min="1">
+                            </td>
+                            <td><i class="fa fa-trash padding-icon-cart" (click)="handlerDelete(i)"></i></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
   </div>
   <div class="group-another-cart">
-      <div class="header-cart">
-          <div class="name-header-cart">Giỏ hàng giao dịch</div>
-          <div [routerLink]="['/cart/setting']" class="padding-icon-cart">
-              <i class="fa fa-gear icon-profile" style="font-size: 28px;"></i>
-          </div>
-      </div>
-      <div class="body-cart">
-          <table>
-              <thead>
-                  <tr>
-                      <th>Người dùng</th>
-                      <th>Tên sản phẩm</th>
-                      <th>Hình ảnh</th>
-                      <th>Giá</th>
-                      <th>Kích Thước</th>
-                      <th>Số lượng</th>
-                      <th>Xóa</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>Nguyễn Kim Tiền</td>
-                      <td>Áo thun Basic Young Green</td>
-                      <td><img class="img-body-cart" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt=""></td>
-                      <td>70000</td>
-                      <td>L</td>
-                      <td><input class="input-count-cart" type="number" value="1" max="10" min="1"></td>
-                      <td><i class="fa fa-trash padding-icon-cart"></i></td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
+        <div class="header-cart">
+                <div class="name-header-cart">Giỏ hàng giao dịch</div>
+                <div (click)="checkingCartShare()" class="padding-icon-cart">
+                    <i class="fa fa-gear icon-profile" style="font-size: 28px;"></i>
+                </div>
+        </div>
+        <div class="body-cart" *ngIf="anotherCarts.length === 0">
+            <div class="text-center" style="font-size: 1.2rem;">
+                <div class="bg-cart-empty"></div>
+                Giỏ hàng chưa có sản phẩm!
+            </div>
+        </div>
+        <div class="body-cart" *ngIf="anotherCarts.length > 0">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Người dùng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Giá</th>
+                        <th>Kích Thước</th>
+                        <th>Số lượng</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of anotherCarts; index as i">
+                        <td>{{ item.fullname }}</td>
+                        <td>{{ item.name }}</td>
+                        <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
+                        <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                        <td>{{ item.size }}</td>
+                        <td>{{ item.count }}</td>
+                        <td><i class="fa fa-trash padding-icon-cart" (click)="handlerDeleteAnother(i)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
   <div class="group-ticket-cart">
       <div class="header-cart">
@@ -227,12 +245,32 @@
   </div>
 </div>
 <div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+  <div id="liveToast" [ngClass]="toastErrorVerify ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-danger">
+      <strong class="me-auto">Thông báo</strong>
+    </div>
+    <div class="toast-body">
+        Đơn hàng không thể vượt quá giới hạn!
+    </div>
+  </div>
+</div>
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
   <div id="liveToast" [ngClass]="toastPromotion ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header bg-success">
       <strong class="me-auto">Thông báo</strong>
     </div>
     <div class="toast-body">
       Sử dụng khuyến mãi thành công!.
+    </div>
+  </div>
+</div>
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+  <div id="liveToast" [ngClass]="toastVerifyAnother ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-success">
+      <strong class="me-auto">Thông báo</strong>
+    </div>
+    <div class="toast-body">
+      Xác nhận đơn hàng thành công!.
     </div>
   </div>
 </div>

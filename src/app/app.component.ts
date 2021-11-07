@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { CartService } from './cart.service';
+import Client from './pattern/Client';
+import socket from './socket/socket'
 
 @Component({
   selector: 'app-root',
@@ -12,6 +14,9 @@ import { CartService } from './cart.service';
 export class AppComponent {
 
   @ViewChild('sticky', { read: ElementRef }) sticky!: ElementRef<any>;
+
+  // client 
+  client = new Client('', '', '', '' ,'')
 
   // word tìm kiếm
   search: any = ''
@@ -72,12 +77,23 @@ export class AppComponent {
 
   ngOnInit() {
 
+    if (this.cartService.getUserId()){
+      this.client.getDetailClient(this.cartService.getUserId())
+
+      setTimeout(() => {
+        this.JoinSocketCart()
+      }, 500)
+    }
+
     this.getLocalStorage()
     this.totalCount(this.myCarts, this.anotherCarts)
 
   }
 
   ngDoCheck(){
+
+    // Nhận socket
+    this.receiveCartAnother()
     
     this.getLocalStorage()
     this.totalCount(this.myCarts, this.anotherCarts)
@@ -92,6 +108,17 @@ export class AppComponent {
         this.sticky.nativeElement.classList.remove("sticky");
       }
     }
+  }
+
+  // Hàm này dùng để kết nối với socket giỏ hàng
+  async JoinSocketCart(){
+    const checking = await this.client.getClientStatus()
+
+    if (!checking){
+      return
+    }
+
+    socket.emit('joinCart', checking.code)
   }
 
   getLocalStorage(){
@@ -129,5 +156,13 @@ export class AppComponent {
     }else{
       this.router.navigate(['/lucky'])
     }
+  }
+
+  receiveCartAnother(){
+    socket.on('verifyCart', data => {
+      this.anotherCarts = data
+      this.cartService.setAnotherCart(this.anotherCarts)
+      this.cartService.TotalPayment()
+    })
   }
 }

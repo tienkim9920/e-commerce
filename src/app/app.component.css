@@ -288,15 +288,6 @@
     transform : translate(0px, 0px) scale(1);
 }
 
-.bg-cart-empty{
-    background-image: url(../assets/cart-empty.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 6rem;
-}
-
 .group-detail-cart{
     padding: 2rem 1rem;
 }

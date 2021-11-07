@@ -70,10 +70,10 @@ class Client{
         }
     })
     const data = await res.json()
-    this.userId=data.userId
-    this.code=data.code
-    this.limit=data.limit
-    this.statusOrder=data.statusOrder
+    this.userId = userId
+    this.code = data.code
+    this.limit = data.limit
+    this.statusOrder = data.statusOrder
   }
 
   // GET List Room by clientId
@@ -89,6 +89,12 @@ class Client{
     this.room = data
   }
 
+  // GET Client Status
+  async getClientStatus(){
+    const res = await fetch(API.GET_CLIENT_STATUS(this.code))
+    const data = await res.json()
+    return data
+  }
 
 }
 

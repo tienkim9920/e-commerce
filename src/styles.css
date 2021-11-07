@@ -330,3 +330,12 @@ h3{
         transform: scale(1);
     }
 }
+
+.bg-cart-empty{
+    background-image: url(./assets/cart-empty.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 6rem;
+}

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { SettingComponent } from './setting/setting.component';
 import { ShareComponent } from './share/share.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { 
@@ -14,7 +15,7 @@ const routes: Routes = [
     component: SettingComponent
   },
   {
-    path: 'share/:id',
+    path: 'share/:code',
     component: ShareComponent
   }
 ];

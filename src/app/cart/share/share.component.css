@@ -24,3 +24,9 @@
     color: #fff;
     box-shadow: .5px .5px 5px #1A94FF;
 }
+
+.btn-cart-share.unactive{
+    background-color: #e2e2e2;
+    color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}

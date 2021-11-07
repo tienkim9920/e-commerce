@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/cart.service';
 import Tick from 'src/app/pattern/Tick';
 import User from 'src/app/pattern/User';
+import socket from 'src/app/socket/socket';
 
 @Component({
   selector: 'app-index',
@@ -14,6 +15,9 @@ export class IndexComponent implements OnInit {
 
   user = new User('')
 
+  // Thông tin share giỏ hàng
+  anotherRoom: any
+
   toastSuccess: boolean = false
 
   toastFail: boolean = false
@@ -21,6 +25,10 @@ export class IndexComponent implements OnInit {
   toastCoupon: boolean = false
 
   toastPromotion: boolean = false
+
+  toastVerifyAnother: boolean = false
+
+  toastErrorVerify: boolean = false
 
   // Giỏ hàng của bạn
   myCarts: any
@@ -43,10 +51,17 @@ export class IndexComponent implements OnInit {
     this.user._id = cartService.getUserId()
 
     this.user.getTickets()
+
+    this.anotherRoom = this.cartService.getAnotherRoom()
   }
 
   ngOnInit(): void {
     this.getLocalStorage()
+  }
+
+  ngDoCheck(){
+    this.anotherCarts = this.cartService.getAnotherCarts()
+    this.totalPayment = this.cartService.getTotalPayment()
   }
 
   async handlerUpdate(cartId: any){
@@ -95,6 +110,24 @@ export class IndexComponent implements OnInit {
     // Thực Thi
     await this.alwayCheckingCoupon()
 
+  }
+
+  async handlerDeleteAnother(index: any){
+    // Thực hiện xóa giỏ hàng
+    this.cartService.deleteProductAnother(index)
+    this.totalPayment = this.cartService.getTotalPayment()
+
+    const newCarts = this.anotherCarts
+
+    newCarts.splice(index, 1)
+
+    this.anotherCarts = newCarts
+
+    this.toastSuccess = true
+    this.Toast()
+
+    // Thực Thi
+    await this.alwayCheckingCoupon()    
   }
 
   // Luôn luôn kiểm tra trạng thái có thỏa mãn để đáp ứng sử dụng coupon
@@ -198,6 +231,8 @@ export class IndexComponent implements OnInit {
       this.toastSuccess = false
       this.toastFail = false
       this.toastCoupon = false
+      this.toastVerifyAnother = false
+      this.toastErrorVerify = false
     }, 3000)
   }
 
@@ -270,6 +305,47 @@ export class IndexComponent implements OnInit {
     }
 
     return true
+  }
+
+  // Hàm này dùng để kiểm tra trạng thái của giỏ hàng chia sẽ
+  checkingCartShare(){
+    if (!this.checkingLogin()){
+      this.router.navigate(['/login'])
+      return
+    }
+
+    this.router.navigate(['/cart/setting'])
+  }
+
+  // Hàm này dùng để xác nhận giao dịch
+  verifyCartAnother(){
+
+    let cartSocket: any = []
+
+    let totalBill = 0
+
+    this.cartService.getMyCarts().forEach((element: any) => {
+      totalBill += element.price * element.count
+
+      element.fullname = this.anotherRoom.fullname
+      cartSocket.push(element)
+    })
+
+    if (totalBill > this.anotherRoom.limit){
+      this.toastErrorVerify = true
+      this.Toast()
+      return
+    }
+
+    const data = {
+      room: this.anotherRoom.code,
+      cart: cartSocket
+    }
+
+    socket.emit('verifyCart', data)
+
+    this.toastVerifyAnother = true
+    this.Toast()
   }
 
 }

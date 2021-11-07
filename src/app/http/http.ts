@@ -339,6 +339,10 @@ const API = {
       return url + `/client/update/${userId}`
     },
 
+    GET_CLIENT_STATUS: (code: any) => {
+      return url + `/client/checking/cart?code=${code}`
+    },
+
     // Payment
     GET_PAYMENT: () => {
       return url + `/pay`
