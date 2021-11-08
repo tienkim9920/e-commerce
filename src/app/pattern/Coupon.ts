@@ -1,4 +1,5 @@
 import API from "../http/http"
+import Coup from "./Coup"
 
 class Coupon {
 
@@ -47,7 +48,7 @@ class Coupon {
         const data = await res.json()
         return data.result
     }
-    
+
 }
 
 export default Coupon

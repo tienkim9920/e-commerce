@@ -91,6 +91,31 @@ class Shop{
     this.address =updateAddress
   }
 
+  // GET_SHOP
+  async GET_SHOP(){
+      const res = await fetch(API.GET_SHOP(), {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+      })
+      const data = await res.json()
+      return data
+ }
+
+   // GET_SHOP_CATEGORY
+   async GET_SHOP_CATEGORY(id : any,query: any){
+    const res = await fetch(API.GET_SHOP_CATEGORY(id,query), {
+      method: 'GET',
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    return data
+  }
+
+
   // POST_SHOP
   async POST_SHOP(){
     const res = await fetch(API.POST_SHOP(), {

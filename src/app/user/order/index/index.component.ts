@@ -54,6 +54,7 @@ export class IndexComponent implements OnInit {
     })
 
     this.orderLength=order.length
+
     this.order=order.slice(start,end)
   }
 

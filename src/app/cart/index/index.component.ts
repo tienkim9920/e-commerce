@@ -127,7 +127,7 @@ export class IndexComponent implements OnInit {
     this.Toast()
 
     // Thực Thi
-    await this.alwayCheckingCoupon()    
+    await this.alwayCheckingCoupon()
   }
 
   // Luôn luôn kiểm tra trạng thái có thỏa mãn để đáp ứng sử dụng coupon
@@ -310,7 +310,7 @@ export class IndexComponent implements OnInit {
 
   handlerOrder(){
     if (this.myCarts.length < 1){
-      
+
       if (this.anotherCarts.length > 0){
         this.router.navigate(['/checkout'])
       }
@@ -378,14 +378,14 @@ export class IndexComponent implements OnInit {
   }
 
   receiveCartAnother(){
-    socket.on('verifyCart', async (data) => {
+    socket.on('verifyCart', async (data:any) => {
       this.anotherCarts = data
       this.cartService.setAnotherCart(this.anotherCarts)
       this.cartService.TotalPayment()
 
       // Thực Thi
-      await this.alwayCheckingCoupon()  
-        
+      await this.alwayCheckingCoupon()
+
     })
   }
 

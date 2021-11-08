@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,19 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-
-  @Input() itemLength:any
-  @Input() filter: any
-  path:any
+  @Input() itemLength:any;
+  @Input() filter: any={};
+  @Input() path: any;
 
   constructor(private router: Router)
   {
-    this.path=this.router.url.split('?')[0]
+    this.path = this.path ? this.path : this.router.url.split('?')[0]
   }
-  ngOnInit(): void {
-  }
+  ngOnInit() { }
+
 
   getPageChange() {
+    console.log(this.filter)
     this.router.navigate([this.path],  { queryParams: { page: this.filter.page },  queryParamsHandling: 'merge'});
     window.scroll(0,0)
   }

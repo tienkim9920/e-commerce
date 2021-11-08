@@ -11,7 +11,9 @@
                         <mat-card-title class="title">
                             {{item.tickId.description}}
                         </mat-card-title>
-                        <div><span [ngClass]="item.status?'ticket unactive':'ticket active'">{{item.status?'Đã sử dụng':'Chưa sử dụng'}}</span></div>
+                        <div>
+                            <span [ngClass]="item.status?'ticket unactive':'ticket active'">{{item.status?'Đã sử dụng':'Chưa sử dụng'}}</span>
+                        </div>
                         <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
                         <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
                     </div>
