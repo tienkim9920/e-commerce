@@ -46,82 +46,22 @@
       </thead>
       <tbody>
 
-        <tr>
-          <td data-label="#">1</td>
+        <tr *ngFor="let item of shop.product, let i = index">
+          <td data-label="#">{{ i + 1 }}</td>
           <td data-label="Hình ảnh">
             <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
           </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Còn hàng</td>
+          <td data-label="Mã sản phẩm"></td>
+          <td data-label="Tên sản phẩm">{{ item.name }}</td>
+          <td data-label="Loại sản phẩm">{{ item.categoryId }}</td>
+          <td data-label="Giá thành">{{ item.price }}</td>
+          <td data-label="Tình trạng">{{ item.count }}</td>
 
           <td data-label="Action">
             <div class="content-product-table-action">
               <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
               <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
-          </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Hết hàng</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
-          </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Giảm giá</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
-          </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Đang ẩn</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
+              <button class="content-product-table-btn content-product-table-btn-delete" (click)="handlerDeleteProduct(item)">Xóa</button>
             </div>
           </td>
         </tr>

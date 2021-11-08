@@ -1,6 +1,7 @@
 import API from "../http/http"
 import Coup from "./Coup"
 import Address from "./Address"
+import Product from "./Product"
 
 
 class Shop{
@@ -65,12 +66,22 @@ class Shop{
     const data = await address.POST_ADDRESS()
     this.address = [...this.address, data]
     console.log(this.address)
+    return data.address
   }
 
   // PATCH Address:TN
   async patchAddress(addressPatch: Address,valueChange: Address) {
-    const data = await addressPatch.PATCH_ADDRESS(addressPatch._id)
-    const index= this.address.indexOf(addressPatch);
+    const res = await fetch(API.PATCH_ADDRESS_SHOP(addressPatch._id), {
+      method: 'PATCH',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    // const data = await addressPatch.PATCH_ADDRESS(addressPatch._id)
+
+    const index = this.address.indexOf(addressPatch);
     this.address[index] = valueChange
   }
 
@@ -144,6 +155,12 @@ class Shop{
   }
 
   // GET List Product by shopId ( Pagination Shop )
+  async getListProductByUserId(){
+    const res = await fetch(API.GET_LIST_PRODUCT_BY_USERID(this._id))
+    const data = await res.json()
+    this.product = data
+
+  }
 
   // GET List Order by shopId
 
@@ -203,6 +220,31 @@ class Shop{
     console.log(this.coup)
   }
 
+
+  // POST Address:TN
+  async postProduct(product: Product) {
+    const data = await product.POST_PRODUCT_SHOP()
+    this.product = [...this.product, data]
+    console.log(this.product)
+    return data.product
+  }
+
+  // DELETE Product of Shop:TN
+  async deleteProduct(productDelete: Product) {
+    const res = await fetch(API.DELETE_PRODUCT_SHOP(productDelete._id), {
+      method: 'DELETE',
+      body: JSON.stringify(this.toJSON()),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    // const data = await productDelete.DELETE_PRODUCT(productDelete._id)
+    let updateProduct = this.product.filter((item: Product) => {
+      return item !== productDelete
+    })
+    this.product =updateProduct
+  }
 }
 
 export default Shop

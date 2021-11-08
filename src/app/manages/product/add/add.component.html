@@ -21,28 +21,28 @@
               <label for="product-name" class="product-edit__item-label">
                 Tên sản phẩm
               </label>
-              <input type="text" id="product-name" class="product-edit__item-input" placeholder="Nhập tên sản phẩm">
+              <input type="text" id="product-name" [(ngModel)]="product.name" class="product-edit__item-input" placeholder="Nhập tên sản phẩm"/>
             </div>
 
             <div class="product-edit__item">
               <label for="product-price" class="product-edit__item-label">
                 Giá sản phẩm
               </label>
-              <input type="text" id="product-price"  class="product-edit__item-input" placeholder="Nhập sản phẩm">
+              <input type="text" id="product-price" [(ngModel)]="product.price" class="product-edit__item-input" placeholder="Nhập giá sản phẩm"/>
             </div>
 
             <div class="product-edit__item">
               <label for="product-quantity" class="product-edit__item-label">
                 Số lượng sản phẩm
               </label>
-              <input type="number" id="product-quantity"  class="product-edit__item-input" placeholder="Số lượng của sản phẩm">
+              <input type="number" id="product-quantity" [(ngModel)]="product.count" class="product-edit__item-input" placeholder="Số lượng của sản phẩm"/>
             </div>
 
             <div class="product-edit__item">
               <label for="product-desc" class="product-edit__item-label">
                 Mô tả sản phẩm
               </label>
-              <input type="text" id="product-desc"  class="product-edit__item-input" placeholder="Mô tả sản phẩm">
+              <input type="text" id="product-desc" [(ngModel)]="product.description" class="product-edit__item-input" placeholder="Mô tả sản phẩm"/>
             </div>
 
             <div class="product-edit__item">
@@ -71,7 +71,7 @@
 
           </div>
 
-          <button type="button" class="btn product-edit__btn" id="">Thêm sản phẩm</button>
+          <button type="button" class="btn product-edit__btn" id="" (click)="handlerInsertAddress()">Thêm sản phẩm</button>
 
         </div>
       </div>

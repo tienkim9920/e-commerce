@@ -11,10 +11,11 @@ class Product {
     shopId: any
     categoryId: any
     name: any
-    price: any
     description: any
     image: any
+    price: any
     discount: any
+    count: any
     like: any
     comment: any
     expiredTime: any
@@ -24,7 +25,7 @@ class Product {
     detail: any = []
 
     constructor (_id: any, shopId: any, categoryId: any, name: any, price: any, description: any, image: any,
-        discount: any, like: any, comment: any, expiredTime: any) {
+        discount: any, count: any, like: any, comment: any, expiredTime: any) {
         this._id = _id
         this.shopId = shopId
         this.categoryId = categoryId
@@ -33,6 +34,7 @@ class Product {
         this.description = description
         this.image = image
         this.discount = discount
+        this.count = count
         this.like = like
         this.comment = comment
         this.expiredTime = expiredTime
@@ -47,6 +49,7 @@ class Product {
             image: this.image,
             description: this.description,
             discount: this.discount,
+            count: this.count,
             like: this.like,
             comment: this.comment,
             expiredTime: this.expiredTime
@@ -57,7 +60,21 @@ class Product {
     async postDetail(detail: Detail) {
       const data = await detail.POST_DETAIL()
       this.detail = [...this.detail, data]
-  }
+    }
+
+    // POST_PRODUCT_SHOP
+    async POST_PRODUCT_SHOP(){
+      const res = await fetch(API.POST_PRODUCT(), {
+          method: 'POST',
+          body: JSON.stringify(this.toJSON()),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+          }
+      })
+      const data = await res.json()
+      return data.result
+    }
+
     // POST_PRODUCT
     async POST_PRODUCT(){
       const res = await fetch(API.POST_PRODUCT(), {
@@ -86,15 +103,15 @@ class Product {
 
     // DELETE_PRODUCT
     async DELETE_PRODUCT(id: any){
-          const res = await fetch(API.DELETE_PRODUCT(id), {
-              method: 'DELETE',
-              body: JSON.stringify(this.toJSON()),
-              headers: {
-                  'Content-type': 'application/json; charset=UTF-8',
-              }
-          })
-          const data = await res.json()
-          return data.result
+      const res = await fetch(API.DELETE_PRODUCT(id), {
+          method: 'DELETE',
+          body: JSON.stringify(this.toJSON()),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+          }
+      })
+      const data = await res.json()
+      return data.result
     }
 
     // DELETE_PRODUCT
@@ -111,6 +128,7 @@ class Product {
         this.description = data.description
         this.image = data.image
         this.discount = data.discount
+        this.count = data.count
         this.like = data.like
         this.comment = data.comment
         this.expiredTime = data.expiredTime
