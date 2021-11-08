@@ -95,7 +95,7 @@
                 <div [routerLink]="['/detail', item._id]">
                     <div class="d-flex justify-content-center">
                         <img class="image-flash-sale" src="{{ item.image[0] }}" alt="">
-                        <div class="title-discount">
+                        <div class="title-discount" *ngIf="item.discount !== 0">
                             {{ item.discount }}% Giảm
                         </div>
                     </div>

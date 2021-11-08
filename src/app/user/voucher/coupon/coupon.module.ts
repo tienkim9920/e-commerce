@@ -5,7 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 import { CouponComponent } from './coupon.component';
 
 
-
 @NgModule({
   declarations: [
     CouponComponent

@@ -24,6 +24,7 @@
     justify-content: space-between;
     padding-bottom: 2rem;
     border-bottom: 1px solid #f1f1f1;
+    position: relative;
 }
 
 .share-link input{
@@ -108,6 +109,27 @@ input:checked + .slider:before {
   
 .slider.round:before {
     border-radius: 50%;
+}
+/* Toggle */
+
+.copyLink:hover a{
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.copyLink a{
+    position: absolute;
+    top: 0rem;
+    left: 103%;
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #323232;
+    color: #fff;
+    padding: .6rem 1.2rem;
+    border-radius: 4px;
+    width: 40%;
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: all .3s ease-in-out;
 }
 
 @media only screen and (max-width: 600px){

@@ -171,6 +171,15 @@ tbody tr td{
     text-decoration: none;
 }
 
+.btn-order-cart.unactive{
+    background-color: #e2e2e2;
+    color: #fff;
+}
+
+.btn-order-cart.unactive:hover{
+    background-color: #e2e2e2;
+}
+
 .btn-order-cart:hover{
     background-color: #1a84e0;
 }

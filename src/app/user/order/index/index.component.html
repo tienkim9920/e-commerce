@@ -14,8 +14,8 @@
             </thead>
             <tbody *ngFor="let item of order;index as i;">
                 <tr>
-                    <td data-label="Mã sản phẩm">{{item._id}}</td>
-                    <td data-label="Tên shop">
+                    <td>{{item._id}}</td>
+                    <td>
                         <a [routerLink]="['/shop/{{item.shopId._id}}']">{{item.shopId.name}}</a>
                     </td>
                     <td data-label="Tổng tiền">{{item.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
@@ -29,7 +29,7 @@
                     <td data-label="Loại sản phẩm">{{item.payId.payment}}</td>
                     <td data-label="Giá thành">{{item.createTime|date:"dd/MM/YYYY, HH:mm:ss"}}</td>
 
-                    <td data-label="Action">
+                    <td>
                         <div class="content-product-table-action">
                             <button [routerLink]="['/user/order/detail/'+item._id]" class="content-product-table-btn btn-primary">Chi tiết</button>
                         </div>
@@ -38,9 +38,6 @@
                         </div>
                     </td>
                 </tr>
-
-
-
             </tbody>
         </table>
     </div>

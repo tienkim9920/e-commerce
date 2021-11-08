@@ -4,22 +4,31 @@
         <div class="width-body-setting-cart">
             <div class="share-link">
                 <div class="mt-2" style="font-size: 1.3rem;">Link Share:</div>
-                <input type="text" value="TKNSHOSDC" disabled>
-                <div 
-                    data-bs-toggle="tooltip" 
-                    data-bs-placement="right" 
-                    title="This is copy"
-                    (click)="copyMessage('TKNSHOSDC')">
+                <input type="text" value="http://localhost:4200/cart/share/{{client.code}}" disabled>
+                <div class="copyLink"
+                    (click)="copyMessage(linkShare)">
                     <i class="copy-link fa fa-check" style="font-size: 24px; color: #1A94FF;"></i>
+                    <a>Bấm vào đây để sao chép</a>
                 </div>
             </div>
             <div class="setting-status-share">
                 <div style="font-size: 1.3rem;">Trạng thái hoạt động</div>
                 <label class="switch">
-                    <input type="checkbox" [checked]="status" (change)="changeStatus()">
+                    <input type="checkbox" [checked]="client.statusOrder" (change)="changeStatus()">
                     <span class="slider round"></span>
                 </label>
             </div>
         </div>
     </div>
 </div>
+
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+    <div id="liveToast" [ngClass]="success ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Bạn đã cập nhật trạng thái thành công!.
+      </div>
+    </div>
+  </div>

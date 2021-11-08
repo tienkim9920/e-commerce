@@ -108,6 +108,10 @@ const API = {
         return url + `/ticket`
     },
 
+    PATCH_TICKET: (_id: any) => {
+      return url + `/ticket/update/ticket/${_id}`
+    },
+
     // Coupon
     GET_COUPONS: (userId: any) => {
         return url + `/coupon/${userId}`
@@ -115,6 +119,10 @@ const API = {
 
     POST_COUPON: () => {
         return url + `/coupon`
+    },
+
+    PATCH_COUPON: (userId: any, coupId: any) => {
+      return url + `/coupon/checking/update?userId=${userId}&coupId=${coupId}`
     },
 
     //REPUTATION
@@ -156,10 +164,12 @@ const API = {
     POST_ORDER: () => {
         return url + `/order`
     },
+
     PATCH_ORDER: (_id: any) => {
         return url + `/order/${_id}`
     },
-    GET_ORDER_USER:(userId:any) => {
+
+    GET_ORDER_USER:(userId: any) => {
       return url + `/order/user/${userId}`
     },
 
@@ -331,6 +341,28 @@ const API = {
 
     GET_DETAIL_CLIENT:(userID: any)=>{
       return url + `/client/${userID}`
+    },
+
+    PATCH_CLIENT_LIMIT: (userId: any) => {
+      return url + `/client/${userId}`
+    },
+
+    PATCH_CLIENT_STATUS: (userId: any) => {
+      return url + `/client/update/${userId}`
+    },
+
+    GET_CLIENT_STATUS: (code: any) => {
+      return url + `/client/checking/cart?code=${code}`
+    },
+
+    // Payment
+    GET_PAYMENT: () => {
+      return url + `/pay`
+    },
+
+    // Note
+    POST_NOTE: () => {
+      return url + `/note`
     }
 }
 

@@ -1,0 +1,32 @@
+
+.layout-cart-share{
+    padding: 3rem 0;
+    margin: 3rem auto;
+    animation: moveShowLeft .5s ease-in-out;
+}
+
+.input-cart-share{
+    padding: .6rem 1.2rem;
+    border-radius: 40px;
+    width: 350px;
+    border: none;
+    outline: none;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.btn-cart-share{
+    padding: .6rem 1.2rem;
+    border-radius: 40px;
+    width: 350px;
+    border: none;
+    outline: none;
+    background-color: #1A94FF;
+    color: #fff;
+    box-shadow: .5px .5px 5px #1A94FF;
+}
+
+.btn-cart-share.unactive{
+    background-color: #e2e2e2;
+    color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}

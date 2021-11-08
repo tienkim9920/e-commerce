@@ -6,6 +6,7 @@ class ThamSo {
     productHomePagination: any = []
     productCategory: any = []
     listTick: any = []
+    listPay: any = []
 
     constructor () {}
 
@@ -31,6 +32,12 @@ class ThamSo {
         const res = await fetch(API.GET_TICK())
         const data = await res.json()
         this.listTick = data
+    }
+
+    async getListPayment() {
+        const res = await fetch(API.GET_PAYMENT())
+        const data = await res.json()
+        this.listPay = data
     }
 
 }

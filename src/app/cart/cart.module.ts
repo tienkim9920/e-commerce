@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { CartRoutingModule } from './cart-routing.module';
 import { IndexComponent } from './index/index.component';
 import { SettingComponent } from './setting/setting.component';
+import { ShareComponent } from './share/share.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
-    SettingComponent
+    SettingComponent,
+    ShareComponent
   ],
   imports: [
     CommonModule,
