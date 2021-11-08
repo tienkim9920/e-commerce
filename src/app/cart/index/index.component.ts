@@ -60,7 +60,7 @@ export class IndexComponent implements OnInit {
   }
 
   ngDoCheck(){
-    this.anotherCarts = this.cartService.getAnotherCarts()
+    this.receiveCartAnother()
     this.totalPayment = this.cartService.getTotalPayment()
   }
 
@@ -176,10 +176,15 @@ export class IndexComponent implements OnInit {
   // Hàm apply coupon
   async applyCoupon(){
 
+    if (!this.code){
+      return
+    }
+
     // Kiểm tra xem thử code này đã được áp dụng chưa
     const existCoupon = this.coupon.some((element: any) => {
       return element.code === this.code
     })
+
     if (existCoupon){ // nếu đã áp dụng rồi thì k áp dụng lại được
       this.toastCoupon = true
       this.Toast()
@@ -245,17 +250,33 @@ export class IndexComponent implements OnInit {
       }
     });
 
+    this.cartService.getAnotherCarts().forEach((element: any) => {
+      if (element.shopId._id === checking.shopId){
+        totalShop += element.price * element.count
+      }
+    });
+
     return totalShop
   }
 
+  // Hàm kiểm tra sản phẩm trong giỏ hàng có phải của shop
   checkingDiscountShop(checking: any){
 
     const discount = this.myCarts.some((element: any) => {
       return element.shopId._id === checking.shopId
     })
 
-    return discount
+    const discountAnother = this.anotherCarts.some((element: any) => {
+      return element.shopId._id === checking.shopId
+    })
+
+    if (!discount && !discountAnother){
+      return false
+    }
+
+    return true
   }
+
 
   // Hàm kiểm tra trạng thái coupon sau mỗi lần thay đổi
   async checkingCoupon(code: any){
@@ -266,9 +287,12 @@ export class IndexComponent implements OnInit {
 
     // Kiểm tra xem những sản phẩm mà khách hàng mua của shop có thỏa mãn với limit hay k
     const totalShop = this.checkingProductShop(checking)
+    console.log(totalShop)
 
     // Kiểm tra xem có phải sản phẩm của shop không
     const discount = this.checkingDiscountShop(checking)
+    console.log(discount)
+
 
     // Kiểm tra xem coup này có thỏa mãn hay không
     if (totalShop < checking.limit || !discount){
@@ -286,6 +310,11 @@ export class IndexComponent implements OnInit {
 
   handlerOrder(){
     if (this.myCarts.length < 1){
+      
+      if (this.anotherCarts.length > 0){
+        this.router.navigate(['/checkout'])
+      }
+
       return
     }
 
@@ -346,6 +375,18 @@ export class IndexComponent implements OnInit {
 
     this.toastVerifyAnother = true
     this.Toast()
+  }
+
+  receiveCartAnother(){
+    socket.on('verifyCart', async (data) => {
+      this.anotherCarts = data
+      this.cartService.setAnotherCart(this.anotherCarts)
+      this.cartService.TotalPayment()
+
+      // Thực Thi
+      await this.alwayCheckingCoupon()  
+        
+    })
   }
 
 }

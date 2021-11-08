@@ -88,6 +88,11 @@ export class AppComponent {
     this.getLocalStorage()
     this.totalCount(this.myCarts, this.anotherCarts)
 
+    //expiredTime cái giỏ hàng của another
+    if (this.cartService.getAnotherRoom().expiredtime < Date.now()){
+      localStorage.setItem('anotherRoom', JSON.stringify({}))
+    }
+
   }
 
   ngDoCheck(){
@@ -97,6 +102,8 @@ export class AppComponent {
     
     this.getLocalStorage()
     this.totalCount(this.myCarts, this.anotherCarts)
+
+    this.resetSessionAnother()
 
   }
 
@@ -165,4 +172,14 @@ export class AppComponent {
       this.cartService.TotalPayment()
     })
   }
+
+  //expiredTime cái giỏ hàng của another
+  resetSessionAnother(){
+    setInterval(() => {
+      if (this.cartService.getAnotherRoom().expiredtime < Date.now()){
+        localStorage.setItem('anotherRoom', JSON.stringify({}))
+      }
+    }, 300000)
+  }
+
 }

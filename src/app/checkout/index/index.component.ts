@@ -208,26 +208,52 @@ export class IndexComponent implements OnInit {
       const checking = shopList.some((shop: any) => {
         return shop.shopId === element.shopId._id
       })
+      
+      if (checking){
 
-      // Nếu chưa thì thực thi thôi
-      if (!checking){
-        let total = 0
-
-        // Duyệt vòng for tiếp 1 lần nữa để tính tổng những sản phẩm của shop đó và lấy giá gốc
-        this.myCarts.forEach((el: any) => {
-          if (element.shopId._id === el.shopId._id){
-            total += el.price * el.count
-          }
+        const index = shopList.findIndex((shop: any) => {
+          return shop.shopId === element.shopId._id
         })
 
-        const data = {
-          shopId: element.shopId._id,
-          total
-        }
+        shopList[index].total += element.price * element.count
 
-        shopList.push(data)
+        return
       }
+
+      const data = {
+        shopId: element.shopId._id,
+        total: element.price * element.count
+      }
+      shopList.push(data)
+
     });
+
+    // Tổng số tiền tất cả sản phẩm another của shop
+    this.anotherCarts.forEach((element: any) => {
+
+      // Kiểm tra xem cái shopId có tồn tại trong shopList chưa
+      const checking = shopList.some((shop: any) => {
+        return shop.shopId === element.shopId._id
+      })
+      
+      if (checking){
+
+        const index = shopList.findIndex((shop: any) => {
+          return shop.shopId === element.shopId._id
+        })
+
+        shopList[index].total += element.price * element.count
+
+        return
+      }
+
+      const data = {
+        shopId: element.shopId._id,
+        total: element.price * element.count
+      }
+      shopList.push(data)
+
+    })
 
     // Nếu mà có áp dụng ticket
     if (this.ticket._id){
@@ -276,6 +302,14 @@ export class IndexComponent implements OnInit {
 
       // POST API chi tiết hóa đơn
       this.myCarts.forEach(async (cart: any) => {
+        if (cart.shopId._id === shop.shopId){
+          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
+          await detail.POST_DETAIL()
+        }
+      })
+
+      // POST API chi tiết hóa đơn another
+      this.anotherCarts.forEach(async (cart: any) => {
         if (cart.shopId._id === shop.shopId){
           const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
           await detail.POST_DETAIL()

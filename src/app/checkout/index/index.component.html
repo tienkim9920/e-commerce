@@ -40,6 +40,30 @@
                 </tbody>
             </table>
         </div>
+        <div class="body-cart" *ngFor="let item of anotherCarts; index as i">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Người giao dịch</th>
+                        <th><i class="fa fa-institution"></i> {{ item.shopId.name }}</th>
+                        <th>Kích thước</th>
+                        <th>Đơn giá</th>
+                        <th>Số lương</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ item.fullname }}</td>
+                        <td><img class="img-body-cart" src="{{ item.image }}" alt=""> &nbsp; {{ item.name }}</td>
+                        <td>{{ item.size }}</td>
+                        <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                        <td>{{ item.count }}</td>
+                        <td style="font-family: 'Nunito Sans', sans-serif">{{ item.price * item.count | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="checkout-payment">
         <div class="header-checkout-payment">
