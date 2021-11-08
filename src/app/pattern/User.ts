@@ -88,10 +88,7 @@ class User {
 
   // GET List Order:TN
   async getListOrder() {
-<<<<<<< HEAD
     const res = await fetch(API.GET_DETAIL_ORDER(this._id));
-=======
-    const res = await fetch(API.GET_ORDER_USER(this._id));
     const data = await res.json();
     this.order = data;
   }
@@ -99,7 +96,6 @@ class User {
   async getOrderUser() {
     console.log(this._id)
     const res = await fetch(API.GET_ORDER_USER(this._id));
->>>>>>> 04dbf475d798153d9fb57c52e0f8699d10fb89d1
     const data = await res.json();
     this.order = data;
   }
@@ -180,11 +176,6 @@ class User {
     return false;
   }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 04dbf475d798153d9fb57c52e0f8699d10fb89d1
   // PATCH Score User
   async PATCH_SCORE() {
     const body = {
@@ -248,24 +239,6 @@ class User {
     // Thỏa mãn sẽ gọi tiếp API Checking Coupon
     const res = await fetch(API.CHECKING_COUPON_USER(this._id, coup._id))
     const data = await res.json()
-<<<<<<< HEAD
-
-    if (data.toString() === 'Status True'){
-      return false
-    }
-
-    return coup
-
-  }
-
-  // Gọi API kiểm tra code của SHOP
-  async checkingCode(code: any) {
-    const res = await fetch(API.GET_COUP_CODE(code))
-    const data = await res.json()
-    return data
-  }
-
-=======
 
     if (data.toString() === 'Status True'){
       return false
@@ -283,7 +256,6 @@ class User {
     return data
   }
 
->>>>>>> 04dbf475d798153d9fb57c52e0f8699d10fb89d1
   resetUser() {
     this.name = '';
     this.email = '';

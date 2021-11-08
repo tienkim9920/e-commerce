@@ -5,9 +5,9 @@ class Coup {
   shopId: String
   code: String
   discount: Number
-  limit: Number
+  limit: any
 
-  constructor(shopId: String, code: String, discount: Number, limit: Number) {
+  constructor(shopId: String, code: String, discount: Number, limit: any) {
       this.shopId =shopId;
       this.code = code;
       this.discount = discount;

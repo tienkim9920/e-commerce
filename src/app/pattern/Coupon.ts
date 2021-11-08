@@ -1,12 +1,13 @@
 import API from "../http/http"
+import Coup from "./Coup"
 
 class Coupon {
 
     userId: String
-    coupId: String
+    coupId: Coup
     status: Boolean
 
-    constructor(userId: String, coupId: String, status: Boolean){
+    constructor(userId: String, coupId: Coup, status: Boolean){
         this.userId = userId
         this.coupId = coupId
         this.status = status
@@ -32,7 +33,7 @@ class Coupon {
         const data = await res.json()
         return data.result
     }
-    
+
 }
 
 export default Coupon

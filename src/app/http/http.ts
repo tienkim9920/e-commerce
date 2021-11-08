@@ -172,6 +172,10 @@ const API = {
 
 
     // Product
+    GET_PRODUCT_CATEGORY: (id: any, query: any)=>{
+      return url + `/product/category/${id}${query}`
+    },
+
     GET_DETAIL_PRODUCT: (_id: any) => {
         return url + `/product/${_id}`
     },
@@ -261,6 +265,14 @@ const API = {
 
 
     // Shop and Coup
+    GET_SHOP: ()=>{
+      return url + `/shop`
+    },
+
+    GET_SHOP_CATEGORY: (id:any,query: any)=>{
+      return url + `/shop/category/${id}${query}`
+    },
+
     POST_SHOP: () => {
       return url + `/shop`
     },

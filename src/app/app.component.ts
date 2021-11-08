@@ -66,6 +66,10 @@ export class AppComponent {
     this.searchUpdate.next(value);
   }
 
+  onSearchProduct(data: any){
+    this.router.navigate(["/product/search"],  { queryParams:{ keyWord: data.search }  });
+  }
+
   onScrollTop(){
     window.scroll(0,0)
   }
@@ -78,7 +82,7 @@ export class AppComponent {
   }
 
   ngDoCheck(){
-    
+
     this.getLocalStorage()
     this.totalCount(this.myCarts, this.anotherCarts)
 

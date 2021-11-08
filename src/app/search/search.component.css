@@ -75,3 +75,22 @@ input.example-right-align {
     margin: 25px auto;
     vertical-align: middle;
 }
+
+a {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: black;
+    cursor: pointer;
+}
+
+a.active-link {
+    color: #1274ca!important;
+    font-weight: bold!important;
+}
+
+.section-right .active-link {
+    border-bottom: 2px solid #1274ca;
+}
+
+.mat-tab-link {
+    opacity: 1!important;
+}

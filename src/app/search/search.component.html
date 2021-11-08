@@ -5,67 +5,78 @@
 
                 <div class="mt-2 section-item">
                     <div class="m-3">
-                        <h1 class="font-title login-title mb-2">Khoảng giá</h1>
-                        <form>
+                        <h1 class="font-title login-title">Khoảng giá</h1>
+                        <form #rangePrice="ngForm" (ngSubmit)="onRangePriceSubmit(rangePrice.value)">
                             <div class="d-flex justify-content-lg-start">
                                 <mat-form-field appearance="outline" floatLabel="always" style="width:83px">
-                                    <mat-label>Từ</mat-label>
-                                    <input matInput type="number" class="example-right-align" placeholder="0">
+                                    <mat-label id="minPrice">Từ</mat-label>
+                                    <input [(ngModel)]="filter.minPrice" type="" name="minPrice" matInput type="number" class="example-right-align" placeholder="0">
                                 </mat-form-field>
                                 <span class="line"></span>
                                 <mat-form-field appearance="outline" floatLabel="always" style="width:83px">
-                                    <mat-label>Đến</mat-label>
-                                    <input matInput type="number" class="example-right-align" placeholder="0">
+                                    <mat-label id="maxPrice">Đến</mat-label>
+                                    <input [(ngModel)]="filter.maxPrice" name="maxPrice" matInput type="number" class="example-right-align" placeholder="0">
                                 </mat-form-field>
+
                             </div>
+                            <p class="text-danger" style="font-size: 12px">{{errorRangePrice}}</p>
                             <button class="btn-otp" mat-raised-button color="primary">Áp dụng</button>
                         </form>
                     </div>
                 </div>
 
-                <div class="mt-2 section-item">
+                <div class="mt-2 section-item" *ngIf="this.params !=='search'; else elseBlock">
                     <div class="m-3">
                         <h1 class="font-title login-title mb-2">Danh mục sản phẩm</h1>
                         <div class="select-checkbox">
-                            <div class="mt-2" *ngFor="let shoe of typesOfShoes">
-                                <mat-checkbox class="lbl-name">{{shoe}}</mat-checkbox>
+                            <div class="mt-2" *ngFor="let item of listCategory.listCategory">
+                                <a class="lbl-name" [routerLink]="['/product/'+item._id]" [routerLinkActive]="['active-link']">{{item.name}}</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <ng-template #elseBlock>
+                    <div class="mt-2 section-item">
+                        <div class="m-3">
+                            <h1 class="font-title login-title mb-2">Danh mục sản phẩm</h1>
+                            <div class="select-checkbox">
+                                <div class="mt-2" *ngFor="let item of listCategory.listCategory">
+                                    <mat-checkbox [(ngModel)]="item.completed" [value]="item" (ngModelChange)="onCheckCategory(item)" class="lbl-name">{{item.name}}</mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+
 
                 <div class="mt-2 section-item">
                     <div class="m-3">
                         <h1 class="font-title login-title mb-2">Nơi bán</h1>
                         <div class="select-checkbox">
-                            <div class="mt-2" *ngFor="let shoe of typesOfShoes">
-                                <mat-checkbox class="lbl-name">{{shoe}}</mat-checkbox>
+                            <div class="mt-2" *ngFor="let item of listShop.listShop">
+                                <mat-checkbox [(ngModel)]="item.completed" [value]="item" (ngModelChange)="onCheckChange(item)" class="lbl-name">{{item.name}}</mat-checkbox>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="col-sm-12 col-lg-9 col-xl-10 section-right">
-                <mat-tab-group animationDuration="1000ms">
-                    <mat-tab label="Phổ biến">
-                        <app-list-product></app-list-product>
-                    </mat-tab>
-                    <mat-tab label="Bán chạy">
-                        <app-list-product></app-list-product>
-                    </mat-tab>
 
-                    <mat-tab label="Hàng mới">
-                        <app-list-product></app-list-product>
-                    </mat-tab>
-                    <mat-tab label="Giá cao">
-                        <app-list-product></app-list-product>
-                    </mat-tab>
-                    <mat-tab label="Giá thấp">
-                        <app-list-product></app-list-product>
-                    </mat-tab>
-                </mat-tab-group>
-                <app-pagination [itemLength]="8" [filter]="filter"></app-pagination>
+            <div class="col-sm-12 col-lg-9 col-xl-10 section-right">
+                <nav mat-tab-nav-bar>
+                    <a mat-tab-link [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[this.path]" [queryParams]="{type: null}" queryParamsHandling="merge">Phổ biến</a>
+                    <a mat-tab-link [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[this.path]" [queryParams]="{type: 1}" queryParamsHandling="merge">Bán chạy</a>
+                    <a mat-tab-link [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[this.path]" [queryParams]="{type: 2}" queryParamsHandling="merge">Hàng mới</a>
+                    <a mat-tab-link [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[this.path]" [queryParams]="{type: 3}" queryParamsHandling="merge">Giá cao</a>
+                    <a mat-tab-link [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[this.path]" [queryParams]="{type: 4}" queryParamsHandling="merge">Giá thấp</a>
+                </nav>
+                <h1 *ngIf="status && this.category.product.total<=0" class="text-center mt-3" style="font-size:25px">Không có sản phẩm nào</h1>
+
+                <app-list-product *ngIf="status" [listProduct]="this.category.product.product"></app-list-product>
+
+                <app-pagination *ngIf="status && this.category.product.total>0" [itemLength]="this.category.product.total" [filter]="filter" [path]="this.path"></app-pagination>
+
             </div>
         </div>
 
