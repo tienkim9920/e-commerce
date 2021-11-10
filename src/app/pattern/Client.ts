@@ -77,14 +77,8 @@ class Client{
   }
 
   // GET List Room by clientId
-  async getRoom(clientId: any) {
-    const res = await fetch(API.GET_ROOM_CLIENT(clientId), {
-        method: 'GET',
-        body: JSON.stringify(this.toJSON()),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    })
+  async getRoom() {
+    const res = await fetch(API.GET_ROOM_CLIENT(this._id))
     const data = await res.json()
     this.room = data
   }

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import Client from '../pattern/Client';
 
 @Component({
   selector: 'app-chat',
@@ -11,6 +12,10 @@ export class ChatComponent implements OnInit {
 
   message: any
 
+  client = new Client(JSON.parse(localStorage.getItem('jwt')!).clientId, "", "", "", "")
+
+  shop: any = {}
+
   listMessage: any = [
     { message: 'Hé lô', category: 'send'},
     { message: 'Hé lô', category: 'receive'},
@@ -21,7 +26,9 @@ export class ChatComponent implements OnInit {
     { message: 'Hé lô', category: 'send'},
   ]
 
-  constructor() { }
+  constructor() {
+    this.client.getRoom()
+  }
 
   ngOnInit(){
     setTimeout(() => {
@@ -50,6 +57,11 @@ export class ChatComponent implements OnInit {
     }, 10)
 
     this.message = ''
+  }
+
+  activeShop(item: any){
+    this.shop = item
+    console.log(this.shop)
   }
 
   onEnter(){

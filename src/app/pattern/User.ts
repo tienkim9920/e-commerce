@@ -97,7 +97,7 @@ class User {
     console.log(this._id)
     const res = await fetch(API.GET_ORDER_USER(this._id));
     const data = await res.json();
-    this.order = data;
+    this.order = data.reverse();
   }
 
   // GET List Comment:TN
@@ -139,10 +139,10 @@ class User {
     });
     const data = await res.json();
 
-    if (data.msg === 'Code 200') {
-      return data;
+    if (data.msg === 'Code 404') {
+      return false;
     }
-    return false;
+    return data;
   }
 
   // Function Sign Up User
@@ -187,7 +187,7 @@ class User {
       body: JSON.stringify(body),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
-      },
+      }, 
     });
   }
 

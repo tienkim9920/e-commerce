@@ -20,7 +20,8 @@ class Room{
   toJSON(){
     return {
       clientId: this.clientId,
-      shopId: this.shopId
+      shopId: this.shopId,
+      checkingId: this.checkingId
     }
   }
 
@@ -35,6 +36,12 @@ class Room{
     })
     const data = await res.json()
     return data.result
+  }
+
+  async checkingRoom(){
+    const res = await fetch(API.GET_CHECKING_ROOM(this.clientId, this.shopId))
+    const data = await res.json()
+    return data
   }
 
   // GET List message by _id

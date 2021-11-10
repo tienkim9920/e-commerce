@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Checking from 'src/app/pattern/Checking';
+import Message from 'src/app/pattern/Message';
 import Product from 'src/app/pattern/Product';
+import Room from 'src/app/pattern/Room';
 import { CartService } from '../../cart.service'
 
 @Component({
@@ -11,6 +14,8 @@ import { CartService } from '../../cart.service'
 export class IndexComponent implements OnInit {
 
   showToast: boolean = false
+
+  toastMessage: boolean = false
 
   id: any
 
@@ -24,7 +29,9 @@ export class IndexComponent implements OnInit {
 
   product = new Product('', '', '', '', '', '', [], '', '', '', '')
 
-  constructor(private route: ActivatedRoute, private cartService: CartService) {
+  message: string = ''
+
+  constructor(private route: ActivatedRoute, private cartService: CartService, private router: Router) {
     setTimeout(() => {
       this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
       this.product.getCommentProduct()
@@ -49,7 +56,6 @@ export class IndexComponent implements OnInit {
   }
 
   addCart(){
-
     this.showToast = true
 
     const data = {
@@ -69,7 +75,54 @@ export class IndexComponent implements OnInit {
     setTimeout(() => {
       this.showToast = false
     }, 3000)
+  }
+
+  async handlerSendMessage(){
+    if (!this.cartService.getUserId()){
+      this.router.navigate(['/login'])
+      return
+    }
+
+    const room = new Room('', this.cartService.getClientId(), this.product.shopId._id, '')
+    
+    const checking = await room.checkingRoom()
+    
+    // Kiểm tra xem đã có phòng chat hay chưa
+    if (!checking){ // Nếu chưa
+
+      // POST api checking
+      const notice = new Checking('', 1, 0)
+      const noticeRoom = await notice.POST_CHECKING()
+
+      room.checkingId = noticeRoom._id
+      const roomId = await room.POST_ROOM() // tạo phòng chat
+
+      const messenger = new Message(this.cartService.getClientId(), roomId._id, this.message)
+      await messenger.POST_MESSAGE()
+      this.message = ''
+      this.ToastMessage()
+
+      return
+    }
+
+    // Cập nhật checking
+    const notice = new Checking(checking.checkingId, 0, 0)
+    await notice.PATCH_CHECKING('client')
+
+    // Thêm message
+    const messenger = new Message(this.cartService.getClientId(), checking._id, this.message)
+    await messenger.POST_MESSAGE()
+    this.message = ''
+    this.ToastMessage()
 
   }
+
+  ToastMessage(){
+    this.toastMessage = true
+    setTimeout(() => {
+      this.toastMessage = false
+    }, 3000)
+  }
+
 
 }

@@ -296,7 +296,7 @@ const API = {
     },
 
     GET_COUP_SHOP: (shopId: any) => {
-      return url + `/coup?shopId=${shopId}`
+      return url + `/coup/coup?shopId=${shopId}`
     },
 
     POST_COUP_SHOP: () => {
@@ -330,8 +330,12 @@ const API = {
       return url + `/room/list/shopId/${shopId}`
     },
 
+    GET_CHECKING_ROOM: (clientId: any, shopId: any) => {
+      return url + `/room/checking?clientId=${clientId}&shopId=${shopId}`
+    },
+
     //Client
-    GET_ROOM_CLIENT:(clientId: any)=>{
+    GET_ROOM_CLIENT: (clientId: any)=>{
       return url + `/room/list/clientId/${clientId}`
     },
 
@@ -363,6 +367,15 @@ const API = {
     // Note
     POST_NOTE: () => {
       return url + `/note`
+    },
+
+    // Checking
+    POST_CHECKING: () => {
+      return url + `/checking`
+    },
+
+    PATCH_CHECKING: (id: any) => {
+      return url + `/checking/${id}`
     }
 }
 

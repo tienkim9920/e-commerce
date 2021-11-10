@@ -95,11 +95,10 @@
         </div>
         <div *ngIf="shop.name" class="section-coupon-shop">
             <div *ngFor="let item of shop.coup" class="box-coupon-shop">
-                <h6>Giảm giá {{ item.discount | currency: 'VND' }}</h6>
-                <div class="text-center p-3">Cho đơn hàng từ {{ item.limit | currency: 'VND' }}</div>
-                <div class="d-flex justify-content-between p-3" style="border-top: 3px dotted #cccccc;">
+                <h6>Giảm giá {{ item.discount | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</h6>
+                <div class="text-center p-3">Cho đơn hàng từ {{ item.limit | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
+                <div class="d-flex justify-content-center p-3" style="border-top: 3px dotted #cccccc;">
                     <div class="text-danger">{{ item.code }}</div>
-                    <div style="color: #1A94FF">Lưu</div>
                 </div>
             </div>
         </div>

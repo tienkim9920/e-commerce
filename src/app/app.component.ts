@@ -101,9 +101,6 @@ export class AppComponent {
 
   ngDoCheck(){
 
-    // Nhận socket
-    this.receiveCartAnother()
-
     this.getLocalStorage()
     this.totalCount(this.myCarts, this.anotherCarts)
 
@@ -167,14 +164,6 @@ export class AppComponent {
     }else{
       this.router.navigate(['/lucky'])
     }
-  }
-
-  receiveCartAnother(){
-    socket.on('verifyCart', data => {
-      this.anotherCarts = data
-      this.cartService.setAnotherCart(this.anotherCarts)
-      this.cartService.TotalPayment()
-    })
   }
 
   //expiredTime cái giỏ hàng của another

@@ -353,9 +353,11 @@ export class IndexComponent implements OnInit {
 
     let totalBill = 0
 
+    // Tính điều kiện giới hạn số tiền giỏ hàng chia sẽ
     this.cartService.getMyCarts().forEach((element: any) => {
       totalBill += element.price * element.count
 
+      element.userId = this.anotherRoom.userId
       element.fullname = this.anotherRoom.fullname
       cartSocket.push(element)
     })
@@ -368,8 +370,11 @@ export class IndexComponent implements OnInit {
 
     const data = {
       room: this.anotherRoom.code,
-      cart: cartSocket
+      cart: cartSocket,
+      userId: this.anotherRoom.userId
     }
+
+    console.log(data)
 
     socket.emit('verifyCart', data)
 
@@ -378,8 +383,14 @@ export class IndexComponent implements OnInit {
   }
 
   receiveCartAnother(){
-    socket.on('verifyCart', async (data:any) => {
-      this.anotherCarts = data
+    socket.on('verifyCart', async (data: any) => {
+
+      // Lọc ra những giỏ hàng khác với người đã gửi socket
+      const newFilter = this.cartService.getAnotherCarts().filter((element: any) => {
+        return element.userId.toString() !== data.userId.toString()
+      })
+
+      this.anotherCarts = newFilter.concat(data.cart)
       this.cartService.setAnotherCart(this.anotherCarts)
       this.cartService.TotalPayment()
 
