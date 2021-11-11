@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { CartService } from './cart.service';
 import Client from './pattern/Client';
+import Shop from './pattern/Shop';
 import socket from './socket/socket'
 
 @Component({
@@ -16,7 +17,10 @@ export class AppComponent {
   @ViewChild('sticky', { read: ElementRef }) sticky!: ElementRef<any>;
 
   // client
-  client = new Client('', '', '', '' ,'')
+  client = new Client(JSON.parse(localStorage.getItem('jwt')!).subjectId, '', '', '' ,'')
+
+  // shop
+  shop = new Shop(JSON.parse(localStorage.getItem('jwt')!).subjectId, '', '', '' ,'', 0, '', '')
 
   // word tìm kiếm
   search: any = ''
@@ -55,6 +59,28 @@ export class AppComponent {
           console.log(value)
         }, 1000)
       });
+
+
+    if (this.cartService.getUserId() && this.cartService.getPermission() === 'client'){
+      this.client.getDetailClient()
+    }else if (this.cartService.getUserId() && this.cartService.getPermission() === 'shop'){
+      this.shop.getDetailShop()
+    }
+  
+    if (this.cartService.getUserId()){
+      setTimeout(() => {
+        this.JoinSocketCart()
+      }, 500)
+    }
+  
+    this.getLocalStorage()
+    this.totalCount(this.myCarts, this.anotherCarts)
+  
+    //expiredTime cái giỏ hàng của another
+    if (this.cartService.getAnotherRoom().expiredtime < Date.now()){
+      localStorage.setItem('anotherRoom', JSON.stringify({}))
+    }   
+
   }
 
   searchChange(value: any){
@@ -77,26 +103,6 @@ export class AppComponent {
 
   onScrollTop(){
     window.scroll(0,0)
-  }
-
-  ngOnInit() {
-
-    if (this.cartService.getUserId()){
-      this.client.getDetailClient(this.cartService.getUserId())
-
-      setTimeout(() => {
-        this.JoinSocketCart()
-      }, 500)
-    }
-
-    this.getLocalStorage()
-    this.totalCount(this.myCarts, this.anotherCarts)
-
-    //expiredTime cái giỏ hàng của another
-    if (this.cartService.getAnotherRoom().expiredtime < Date.now()){
-      localStorage.setItem('anotherRoom', JSON.stringify({}))
-    }
-
   }
 
   ngDoCheck(){

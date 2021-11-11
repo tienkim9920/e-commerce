@@ -326,7 +326,7 @@ const API = {
     },
 
     //Room
-    GET_ROOM_SHOP: (shopId:any)=>{
+    GET_ROOM_SHOP: (shopId: any)=>{
       return url + `/room/list/shopId/${shopId}`
     },
 
@@ -343,8 +343,8 @@ const API = {
       return url + `/client`
     },
 
-    GET_DETAIL_CLIENT:(userID: any)=>{
-      return url + `/client/${userID}`
+    GET_DETAIL_CLIENT:(_id: any)=>{
+      return url + `/client/${_id}`
     },
 
     PATCH_CLIENT_LIMIT: (userId: any) => {

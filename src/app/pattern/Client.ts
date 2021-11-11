@@ -62,15 +62,9 @@ class Client{
 
   // GET Detail Client
 
-  async getDetailClient(userId: any) {
-    const res = await fetch(API.GET_DETAIL_CLIENT(userId), {
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    })
+  async getDetailClient() {
+    const res = await fetch(API.GET_DETAIL_CLIENT(this._id))
     const data = await res.json()
-    this.userId = userId
     this.code = data.code
     this.limit = data.limit
     this.statusOrder = data.statusOrder

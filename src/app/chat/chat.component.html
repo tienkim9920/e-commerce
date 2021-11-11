@@ -8,7 +8,7 @@
             <div class="list-chats">
                 <div *ngFor="let item of client.room" 
                     [ngClass]="shop._id === item.shopId._id ? 'box-chats active' : 'box-chats'" 
-                    (click)="activeShop(item.shopId)">
+                    (click)="activeShop(item.shopId, item._id)">
                     <img *ngIf="!item.shopId.image" class="image-box-chat" src="../../../assets/avt.jpg" />
                     <img *ngIf="item.shopId.image" class="image-box-chat" src="{{ item.shopId.image }}" alt="">
                     <div class="mt-1 ms-2">
@@ -18,7 +18,28 @@
                             Đang hoạt động
                         </div>
                     </div>
-                </div>  
+                </div>
+                <div *ngIf="client.room.length === 0">
+                    <div *ngFor="let item of [0, 1, 2, 3, 4]" class="d-flex mt-3">
+                        <div class="effect-skeleton" style="width: 65px; height: 65px; background-color: #e2e2e2; border-radius: 50%;">
+                            <div class="shimmer-wrapper">
+                                <div class="shimmer"></div>
+                            </div>
+                        </div>
+                        <div class="mt-1 ms-2">
+                            <div class="effect-skeleton mt-2" style="width: 150px; height: 15px; background-color: #e2e2e2; border-radius: 10px;">
+                                <div class="shimmer-wrapper">
+                                    <div class="shimmer"></div>
+                                </div>
+                            </div>
+                            <div class="effect-skeleton mt-2" style="width: 90px; height: 13px; background-color: #e2e2e2; border-radius: 10px;">
+                                <div class="shimmer-wrapper">
+                                    <div class="shimmer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="list-messages d-flex justify-content-center align-items-center" *ngIf="!shop._id">
                 <div class="text-center">
@@ -40,10 +61,10 @@
                     </div>
                 </div>
                 <div class="body-list-message" #scrollbottom>
-                    <div *ngFor="let item of listMessage">
-                        <div [ngClass]="item.category === 'send' ? 'group-message-send' : 'group-message-receive'">
+                    <div *ngFor="let item of room.message">
+                        <div [ngClass]="item.subjectId === client._id ? 'group-message-send' : 'group-message-receive'">
                             <div class="message">
-                                <div [ngClass]="item.category === 'send' ? 'message-send' : 'message-receive'">
+                                <div [ngClass]="item.subjectId === client._id ? 'message-send' : 'message-receive'">
                                     {{ item.message }}
                                 </div>
                             </div>
@@ -52,8 +73,9 @@
                 </div>
                 <div class="footer-message">
                     <div class="w-100" style="margin-top: .8rem;">
+                        <!-- (ngModelChange)="typingMessage()" -->
                         <input 
-                            [(ngModel)]="message" 
+                            [(ngModel)]="message"
                             value="message" class="input-send-message" type="text" 
                             placeholder="Nhập tin nhắn ở đây!"
                             (keyup.enter)="onEnter()">

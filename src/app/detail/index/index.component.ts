@@ -83,7 +83,7 @@ export class IndexComponent implements OnInit {
       return
     }
 
-    const room = new Room('', this.cartService.getClientId(), this.product.shopId._id, '')
+    const room = new Room('', this.cartService.getSubjectId(), this.product.shopId._id, '')
     
     const checking = await room.checkingRoom()
     
@@ -97,7 +97,7 @@ export class IndexComponent implements OnInit {
       room.checkingId = noticeRoom._id
       const roomId = await room.POST_ROOM() // tạo phòng chat
 
-      const messenger = new Message(this.cartService.getClientId(), roomId._id, this.message)
+      const messenger = new Message(this.cartService.getSubjectId(), roomId._id, this.message)
       await messenger.POST_MESSAGE()
       this.message = ''
       this.ToastMessage()
@@ -110,7 +110,7 @@ export class IndexComponent implements OnInit {
     await notice.PATCH_CHECKING('client')
 
     // Thêm message
-    const messenger = new Message(this.cartService.getClientId(), checking._id, this.message)
+    const messenger = new Message(this.cartService.getSubjectId(), checking._id, this.message)
     await messenger.POST_MESSAGE()
     this.message = ''
     this.ToastMessage()

@@ -1,109 +1,93 @@
 <div class="layout-chat container">
-  <div class="group-chat">
-      <div class="title-chat">
-          <h6><i class="fa fa-bell-o"></i> Tất cả tin nhắn</h6>
-      </div>
-      <div class="grid-chat">
-          <div class="list-chats">
-              <div class="box-chats active">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="box-chats">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-
-          </div>
-          <div class="list-messages">
-              <div class="header-list-message">
-                  <img class="image-box-chat" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt="">
-                  <div class="mt-1 ms-2">
-                      <div style="font-family: 'Nunito Sans', sans-serif;">Shop Young Green</div>
-                      <div style="font-size: .8rem;">Online 4 phút trước</div>
-                  </div>
-              </div>
-              <div class="body-list-message" #scrollbottom>
-                  <div *ngFor="let item of listMessage">
-                      <div [ngClass]="item.category === 'send' ? 'group-message-send' : 'group-message-receive'">
-                          <div class="message">
-                              <div [ngClass]="item.category === 'send' ? 'message-send' : 'message-receive'">
-                                  {{ item.message }}
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="footer-message">
-                  <div class="w-100" style="margin-top: .8rem;">
-                      <input
-                          value="message" class="input-send-message" type="text"
-                          placeholder="Nhập tin nhắn ở đây!"
-                          (keyup.enter)="onEnter()">
-                  </div>
-                  <div *ngIf="message" class="btn-send-message" (click)="sendMessage()">
-                      <i class="fa fa-send active"></i>
-                  </div>
-                  <div *ngIf="!message" class="btn-send-message">
-                      <i class="fa fa-send unactive"></i>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="group-chat">
+        <div class="title-chat">
+            <h6><i class="fa fa-bell-o"></i> Tất cả tin nhắn</h6>
+        </div>
+        <div class="grid-chat">
+            <div class="list-chats">
+                <div *ngFor="let item of shop.room;" 
+                    [ngClass]="item.clientId.userId._id === client._id ? 'box-chats active' : 'box-chats'"
+                    (click)="activeClient(item.clientId.userId, item._id)">
+                    <img *ngIf="!item.clientId.userId.image" class="image-box-chat" src="../../../assets/avt.jpg" />
+                    <img *ngIf="item.clientId.userId.image" class="image-box-chat" src="{{ item.clientId.userId.image }}"
+                        alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">{{ item.clientId.userId.name }}</div>
+                        <div class="d-flex" style="color: gray;">
+                            <div class="bg-success" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                            Đang hoạt động
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="shop.room.length === 0">
+                    <div *ngFor="let item of [0, 1, 2, 3, 4]" class="d-flex mt-3">
+                        <div class="effect-skeleton" style="width: 65px; height: 65px; background-color: #e2e2e2; border-radius: 50%;">
+                            <div class="shimmer-wrapper">
+                                <div class="shimmer"></div>
+                            </div>
+                        </div>
+                        <div class="mt-1 ms-2">
+                            <div class="effect-skeleton mt-2" style="width: 150px; height: 15px; background-color: #e2e2e2; border-radius: 10px;">
+                                <div class="shimmer-wrapper">
+                                    <div class="shimmer"></div>
+                                </div>
+                            </div>
+                            <div class="effect-skeleton mt-2" style="width: 90px; height: 13px; background-color: #e2e2e2; border-radius: 10px;">
+                                <div class="shimmer-wrapper">
+                                    <div class="shimmer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-messages d-flex justify-content-center align-items-center" *ngIf="!client._id">
+                <div class="text-center">
+                    <i class="fa fa-send border-send-message" style="font-size: 60px;"></i>
+                    <div class="mt-3" style="font-size: 1.5rem;">Tin nhắn của bạn</div>
+                    <div class="mt-2">Vui lòng chọn cửa hàng bạn muốn nhắn tin!</div>
+                </div>
+            </div>
+            <div class="list-messages" *ngIf="client._id">
+                <div class="header-list-message">
+                    <img class="image-box-chat" src="{{ client.image }}"
+                        alt="">
+                    <div class="mt-1 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">{{ client.name }}</div>
+                        <div class="d-flex" style="color: gray;">
+                            <div class="bg-success" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                            Đang hoạt động
+                        </div>
+                    </div>
+                </div>
+                <div class="body-list-message" #scrollbottom>
+                    <div *ngFor="let item of room.message">
+                        <div [ngClass]="item.subjectId === shop._id ? 'group-message-send' : 'group-message-receive'">
+                            <div class="message">
+                                <div [ngClass]="item.subjectId === shop._id ? 'message-send' : 'message-receive'">
+                                    {{ item.message }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-message">
+                    <div class="w-100" style="margin-top: .8rem;">
+                        <!-- (ngModelChange)="typingMessage()" -->
+                        <input 
+                            [(ngModel)]="message" 
+                            class="input-send-message" type="text" 
+                            placeholder="Nhập tin nhắn ở đây!"
+                            (keyup.enter)="onEnter()">
+                    </div>
+                    <div *ngIf="message" class="btn-send-message" (click)="sendMessage()">
+                        <i class="fa fa-send active"></i>
+                    </div>
+                    <div *ngIf="!message" class="btn-send-message">
+                        <i class="fa fa-send unactive"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

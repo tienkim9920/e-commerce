@@ -11,12 +11,12 @@ export class ClientComponent implements OnInit {
 
   success: Boolean = false
 
-  client= new Client("","","","","");
+  client= new Client(JSON.parse(localStorage.getItem('jwt')!).subjectId, JSON.parse(localStorage.getItem('jwt')!).userId,"","","");
 
   constructor() { }
 
   ngOnInit(): void {
-    this.client.getDetailClient(JSON.parse(localStorage.getItem('jwt')!).userId);
+    this.client.getDetailClient();
   }
 
   changeLimit(value: any) {

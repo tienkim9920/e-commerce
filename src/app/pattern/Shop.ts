@@ -175,14 +175,8 @@ class Shop{
   // PATCH list Order by shopId
 
   // GET List Room
-  async getRoom(shopId: any) {
-    const res = await fetch(API.GET_ROOM_SHOP(shopId), {
-      method: 'GET',
-      body: JSON.stringify(this.toJSON()),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      }
-    })
+  async getRoom() {
+    const res = await fetch(API.GET_ROOM_SHOP(this._id))
     const data = await res.json()
     this.room = data
   }

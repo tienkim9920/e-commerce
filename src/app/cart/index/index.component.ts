@@ -343,6 +343,10 @@ export class IndexComponent implements OnInit {
       return
     }
 
+    if (this.cartService.getPermission() !== 'client'){
+      return
+    }
+
     this.router.navigate(['/cart/setting'])
   }
 

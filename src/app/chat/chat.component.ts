@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Client from '../pattern/Client';
+import Message from '../pattern/Message';
+import Room from '../pattern/Room';
+import socket from '../socket/socket';
 
 @Component({
   selector: 'app-chat',
@@ -12,59 +15,110 @@ export class ChatComponent implements OnInit {
 
   message: any
 
-  client = new Client(JSON.parse(localStorage.getItem('jwt')!).clientId, "", "", "", "")
+  client = new Client(JSON.parse(localStorage.getItem('jwt')!).subjectId, "", "", "", "")
+
+  room = new Room('', '', '', '')
 
   shop: any = {}
 
-  listMessage: any = [
-    { message: 'Hé lô', category: 'send'},
-    { message: 'Hé lô', category: 'receive'},
-    { message: 'Hé lô', category: 'send'},
-    { message: 'Hé lô', category: 'receive'},
-    { message: 'Hé lô', category: 'send'},
-    { message: 'Hé lô', category: 'receive'},
-    { message: 'Hé lô', category: 'send'},
-  ]
+  loading: boolean = false
 
   constructor() {
-    this.client.getRoom()
+    setTimeout(() => {
+      this.client.getRoom()
+    }, 1000)
+
   }
 
   ngOnInit(){
-    setTimeout(() => {
-      this.scrollToBottom()
-    }, 10)
+
+  }
+
+  ngAfterContentChecked(){
+    this.receiveMessage()
+
+    // this.receiveTyping()
   }
 
   scrollToBottom() {
     this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;              
   }
 
-  sendMessage(){
+  async sendMessage(){
 
-    const data = {
-      message: this.message,
-      category: 'send'
-    }
+    const messenger = new Message(this.client._id, this.room._id, this.message)
+    await this.room.postMessageRoom(messenger)
 
-    const newMessages = this.listMessage
-    newMessages.push(data)
+    setTimeout(() => {
+      this.scrollToBottom()  
+    }, 300)
 
-    this.listMessage = newMessages
+    socket.emit('sendMessage', messenger)
+
+    this.message = ''
+    // setTimeout(() => {
+    //   this.typingMessage()
+    // }, 100)
+
+  }
+
+  activeShop(item: any, roomId: any){
+    this.shop = item
+    this.room._id = roomId
+    this.room.getMessageByRoom()
+    
+    // Tham gia
+    socket.emit('joinChat', roomId)
 
     setTimeout(() => {
       this.scrollToBottom()
-    }, 10)
-
-    this.message = ''
+    }, 500)
   }
 
-  activeShop(item: any){
-    this.shop = item
-    console.log(this.shop)
+  receiveMessage(){
+    socket.on('sendMessage', async (data: any) => {
+
+      this.room.message = await [...this.room.message, data]
+
+      setTimeout(async () => {
+        await this.scrollToBottom()
+      }, 2000)
+    })
   }
+
+  // Hàm socket nhận bàn phím
+  // receiveTyping(){
+  //   socket.on('typing', (data: any) => {
+  //     if (data.message && this.loading === true) {
+  //       return
+  //     }
+  //     if (!data.message) {
+  //       this.loading = false
+  //       return
+  //     }
+  //     if (data.message && this.loading === false) {
+  //       this.loading = true
+  //       setTimeout(() => {
+  //         this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;
+  //       }, 300)
+  //     }
+  //   })
+  // }
+
+  // typingMessage(){
+  //   const data = {
+  //     roomId: this.room._id,
+  //     message: this.message
+  //   }
+
+  //   socket.emit('typing', data)
+  // }
 
   onEnter(){
+    if (!this.message){
+      return
+    }
+
     this.sendMessage()
   }
 

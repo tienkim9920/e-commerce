@@ -10,7 +10,7 @@ class Room{
   checkingId: any
   message: any = []
 
-  constructor (_id: any, clientId: String, shopId: String, checkingId: String){
+  constructor (_id: any, clientId: any, shopId: any, checkingId: any){
     this._id = _id
     this.clientId = clientId
     this.shopId = shopId
@@ -56,12 +56,6 @@ class Room{
     const data = await message.POST_MESSAGE()
     this.message = [...this.message, data]
   }
-
-  async postMessage(messagePost:Message) {
-    const data = await messagePost.POST_MESSAGE()
-    this.message = [...this.message, data]
-  }
-
 
 }
 export default Room
