@@ -1,0 +1,25 @@
+
+.layout-address{
+    margin: 0 auto 2rem auto;
+    padding: 2rem 0;
+}
+
+.color-checkout-address{
+    color: #1A94FF;
+    font-size: 1.5rem;
+}
+
+.checkout-address{
+    margin-top: 2rem;
+    padding: 2rem;
+    border-top: 3px solid #1A94FF;
+    background-color: #fff;
+    box-shadow: .5px .5px 5px #e2e2e2;
+}
+
+.flex-checkout-address{
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}

@@ -31,11 +31,15 @@ export class IndexComponent implements OnInit {
 
   message: string = ''
 
+  permission: string = ''
+
   constructor(private route: ActivatedRoute, private cartService: CartService, private router: Router) {
     setTimeout(() => {
       this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
       this.product.getCommentProduct()
     }, 1000)
+    
+    this.permission = this.cartService.getPermission()
   }
 
 

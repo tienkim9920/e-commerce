@@ -83,14 +83,18 @@
                     Đang hoạt động
                 </div>
                 <div class="d-flex mt-1">
-                    <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
+                    <div *ngIf="permission === 'client'" class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
                         <i class="fa fa-comments"></i>
                         Chat Ngay
                     </div>
-                    <a [routerLink]="['/shop', product.shopId._id]" class="padding-infor-shop">
+                    <div [routerLink]="['/shop', product.shopId._id]" class="ms-1 padding-infor-shop">
                         <i class="fa fa-institution"></i>
                         Xem Shop
-                    </a>
+                    </div>
+                    <div [routerLink]="['/shop/address', product.shopId._id]" class="ms-1 padding-infor-shop">
+                        <i class="fa fa-paper-plane"></i>
+                        Chỉ Đường
+                    </div>
                 </div>
             </div>
         </div>

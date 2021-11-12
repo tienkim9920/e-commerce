@@ -1,0 +1,49 @@
+<div class="layout-map container">
+    <div class="grid-checkout-map">
+        <div class="checkout-form-list">
+            <div>
+                <div>Địa chỉ cửa hàng: </div>
+                <div class="mt-1 w-50">
+                    <input type="text" name="from" id="from_places" disabled="true"
+                    value="{{ address.address }}" />
+                    <input id="origin" name="origin" required="" type="hidden"
+                    value="{{ address.address }}" />
+                </div>
+            </div>
+            <div class="mt-3">
+                <div>Địa chỉ của bạn:</div>
+                <div class="mt-1 w-50">
+                    <input type="text" id="to_places" placeholder="Vui lòng nhập địa chỉ của bạn" />
+                    <input id="destination" type="text" name="destination" required="" type="hidden" />
+                </div>
+            </div>
+            <div class="mt-3" style="display: none;">
+                <div>Hình thức vận chuyển</div>
+                <select class="mt-1" id="travel_mode" name="travel_mode">
+                    <option value="DRIVING">DRIVING</option>
+                </select>
+            </div>
+            <div class="grid-btn-next-checkout">
+                <div class="order-button-payment">
+                    <a id="distance_form">Chỉ Đường</a>
+                </div>
+            </div>
+        </div>
+    
+        <div>
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem;">
+    <div id="errorMap" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header" style="background-color: #f54f4f;">
+        <strong class="me-auto" style="color: #fff;">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Vui lòng nhập địa chỉ của bạn!.
+      </div>
+    </div>
+</div>
