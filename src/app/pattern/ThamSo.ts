@@ -19,7 +19,7 @@ class ThamSo {
     async getHomeProduct(page: any){
         const res = await fetch(API.GET_HOME_PRODUCT(page))
         const data = await res.json()
-        this.productHomePagination = data
+        this.productHomePagination = this.productHomePagination.concat(data)
     }
 
     async getDiscountProduct(){

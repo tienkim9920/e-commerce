@@ -23,18 +23,16 @@
                     </div>
                 </div>
                 <div class="size pt-3">
-                    <div>
-                        Kích thước: &nbsp; <span style="font-family: 'Nunito Sans', sans-serif;">{{ size }}</span>
-                    </div>
                     <div class="d-flex mt-2">
-                        <div [ngClass]="size === 'S' ? 'padding-size active' : 'padding-size'" (click)="changeSize('S')">S
+                        <div class="mt-2">Kích Thước: &nbsp;</div>
+                        <div *ngFor="let item of product.option" 
+                            [ngClass]="size === item.size ? 'padding-size active' : 'padding-size'"
+                            (click)="changeSize(item)">
+                            {{ item.size }}
                         </div>
-                        <div [ngClass]="size === 'M' ? 'padding-size active' : 'padding-size'" (click)="changeSize('M')">M
+                        <div *ngIf="stock.count" class="mt-2">
+                            Còn lại {{ stock.count }} sản phẩm
                         </div>
-                        <div [ngClass]="size === 'L' ? 'padding-size active' : 'padding-size'" (click)="changeSize('L')">L
-                        </div>
-                        <div [ngClass]="size === 'XL' ? 'padding-size active' : 'padding-size'" (click)="changeSize('XL')">
-                            XL</div>
                     </div>
                 </div>
                 <div class="quality pt-3">
@@ -52,8 +50,11 @@
                         {{ product.description }}
                     </div>
                 </div>
-                <div class="btn-addcart mt-3" (click)="addCart()">
+                <div *ngIf="!stock.status" class="btn-addcart mt-3" (click)="addCart()">
                     Mua ngay
+                </div>
+                <div *ngIf="stock.status" class="btn-addcart stock mt-3">
+                    Hết hàng
                 </div>
                 <div class="count-detail-like mt-3">
                     <div>
@@ -207,6 +208,17 @@
           </div>
           <div class="toast-body">
             Bạn đã gửi tin nhắn thành công!
+          </div>
+        </div>
+    </div>
+
+    <div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+        <div [ngClass]="errorMessage ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header bg-danger">
+            <strong class="me-auto">Thông báo</strong>
+          </div>
+          <div class="toast-body">
+            {{ errorMessage }}
           </div>
         </div>
     </div>

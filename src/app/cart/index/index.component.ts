@@ -30,6 +30,8 @@ export class IndexComponent implements OnInit {
 
   toastErrorVerify: boolean = false
 
+  errorMessage: boolean = false
+
   // Giỏ hàng của bạn
   myCarts: any
 
@@ -238,6 +240,7 @@ export class IndexComponent implements OnInit {
       this.toastCoupon = false
       this.toastVerifyAnother = false
       this.toastErrorVerify = false
+      this.errorMessage = false
     }, 3000)
   }
 
@@ -309,6 +312,17 @@ export class IndexComponent implements OnInit {
   }
 
   handlerOrder(){
+
+    // Kiểm tra số lượng tồn của sản phẩm
+    const checkingStockMyCart = this.cartService.getMyCarts().some((element: any) => {
+      return element.count > element.stock
+    })
+    if (checkingStockMyCart){
+      this.errorMessage = true
+      this.Toast()
+      return
+    }
+
     if (this.myCarts.length < 1){
 
       if (this.anotherCarts.length > 0){

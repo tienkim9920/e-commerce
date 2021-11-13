@@ -6,21 +6,19 @@ class Option{
   productId: any
   size: any
   count: any
-  kilogram: any
 
-  constructor (productId: String, size: String, count: Number, kilogram: Number){
+  constructor (_id: String,productId: String, size: String, count: Number){
+    this._id = _id
     this.productId = productId
     this.size = size
     this.count = count
-    this.kilogram = kilogram
   }
 
   toJSON(){
     return {
-        productId: this.productId,
-        size: this.size,
-        count: this.count,
-        kilogram: this.kilogram
+      productId: this.productId,
+      size: this.size,
+      count: this.count
     }
   }
 

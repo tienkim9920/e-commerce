@@ -255,6 +255,16 @@
   </div>
 </div>
 <div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+  <div id="liveToast" [ngClass]="errorMessage ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-danger">
+      <strong class="me-auto">Thông báo</strong>
+    </div>
+    <div class="toast-body">
+        Số lượng sản phẩm vượt quá giới hạn!
+    </div>
+  </div>
+</div>
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
   <div id="liveToast" [ngClass]="toastPromotion ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header bg-success">
       <strong class="me-auto">Thông báo</strong>

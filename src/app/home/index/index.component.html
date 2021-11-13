@@ -44,7 +44,7 @@
         <h4 class="h4-danhmuc">Danh Mục</h4>
         <div class="list-danhmuc-product">
             <div class="category-danhmuc">
-                <a class="category-danhmuc-detail" *ngFor="let item of thamSo.productCategory">
+                <a [routerLink]="['/product', item._id]" class="category-danhmuc-detail" *ngFor="let item of thamSo.productCategory">
                     <div class="d-flex justify-content-center">
                         <img class="image-category-danhmuc" src="{{ item.image }}" alt="">
                     </div>
@@ -109,7 +109,7 @@
         </div>
 
         <div class="btn-xemthem-home">
-            <div class="view-continue">
+            <div class="view-continue" (click)="changePage()">
                 Xem thêm
             </div>
         </div>

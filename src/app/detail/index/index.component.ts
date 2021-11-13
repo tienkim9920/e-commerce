@@ -17,9 +17,13 @@ export class IndexComponent implements OnInit {
 
   toastMessage: boolean = false
 
+  errorMessage: string = ''
+
   id: any
 
-  size: any = 'M'
+  size: any
+
+  optionId: any
 
   count: any = 1
 
@@ -33,10 +37,14 @@ export class IndexComponent implements OnInit {
 
   permission: string = ''
 
+  stock: any = {}
+
   constructor(private route: ActivatedRoute, private cartService: CartService, private router: Router) {
+    this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
+
     setTimeout(() => {
-      this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
       this.product.getCommentProduct()
+      this.product.getOptionProduct()
     }, 1000)
     
     this.permission = this.cartService.getPermission()
@@ -47,8 +55,17 @@ export class IndexComponent implements OnInit {
     window.scroll(0,0)
   }
 
-  changeSize(value: any){
-    this.size = value
+  changeSize(item: any){
+    this.size = item.size
+    this.optionId = item._id
+    this.stock.count = item.count
+    console.log(this.stock.count)
+
+    if (item.count === 0){
+      this.stock.status = true
+      return
+    }
+    this.stock.status = false
   }
 
   changeImage(index: any){
@@ -60,6 +77,33 @@ export class IndexComponent implements OnInit {
   }
 
   addCart(){
+
+    // Kiểm tra chọn size
+    if (!this.size){
+      this.errorMessage = 'Vui lòng chọn size cho sản phẩm!'
+      this.ToastMessage()
+      return
+    }
+
+    // Kiểm tra số lượng tồn
+    if (this.count > this.stock.count){
+      this.errorMessage = 'Số lượng sản phẩm vượt quá giới hạn!'
+      this.ToastMessage()
+      return
+    }
+
+    // Kiểm tra số lượng tồn ở giỏ hàng
+    const checking = this.cartService.getMyCarts().some((element: any) => {
+      return element.productId === this.product._id && element.size === this.size 
+        && element.count + this.count > this.stock.count
+    })
+    if (checking){
+      this.errorMessage = 'Sản phẩm trong giỏ hàng vượt quá giới hạn!'
+      this.ToastMessage()
+      return
+    }
+
+
     this.showToast = true
 
     const data = {
@@ -70,15 +114,15 @@ export class IndexComponent implements OnInit {
       image: this.product.image[0],
       price: this.product.price - ((this.product.price * this.product.discount) / 100),
       size: this.size,
+      optionId: this.optionId,
+      stock: this.stock.count,
       count: this.count
     }
 
     this.cartService.addProduct(data)
     this.cartService.TotalPayment()
 
-    setTimeout(() => {
-      this.showToast = false
-    }, 3000)
+    this.ToastMessage()
   }
 
   async handlerSendMessage(){
@@ -104,6 +148,8 @@ export class IndexComponent implements OnInit {
       const messenger = new Message(this.cartService.getSubjectId(), roomId._id, this.message)
       await messenger.POST_MESSAGE()
       this.message = ''
+
+      this.toastMessage = true
       this.ToastMessage()
 
       return
@@ -122,9 +168,10 @@ export class IndexComponent implements OnInit {
   }
 
   ToastMessage(){
-    this.toastMessage = true
     setTimeout(() => {
       this.toastMessage = false
+      this.errorMessage = ''
+      this.showToast = false
     }, 3000)
   }
 

@@ -18,6 +18,7 @@ class Product {
     like: any
     comment: any
     expiredTime: any
+    stock: any
     likes: any = []
     comments: any = []
     option: any = []
@@ -35,6 +36,7 @@ class Product {
         this.discount = discount
         this.like = like
         this.comment = comment
+        this.stock = true
         this.expiredTime = expiredTime
     }
 
@@ -49,6 +51,7 @@ class Product {
             discount: this.discount,
             like: this.like,
             comment: this.comment,
+            stock: this.stock,
             expiredTime: this.expiredTime
         }
     }
@@ -113,6 +116,7 @@ class Product {
         this.discount = data.discount
         this.like = data.like
         this.comment = data.comment
+        this.stock = data.stock
         this.expiredTime = data.expiredTime
     }
 
