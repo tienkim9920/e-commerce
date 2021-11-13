@@ -154,6 +154,10 @@ const API = {
     POST_OPTION: ()=>{
       return url + `/option`
     },
+    
+    PATCH_OPTION: (_id: any) => {
+      return url + `/option/${_id}`
+    },
 
 
     // Order

@@ -34,6 +34,19 @@ class Option{
     const data = await res.json()
     return data.result
   }
+
+  // PATCH_OPTION
+  async PATCH_OPTION(){
+    const res = await fetch(API.PATCH_OPTION(this._id), {
+        method: 'PATCH',
+        body: JSON.stringify(this.toJSON()),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    const data = await res.json()
+    return data.result
+  }
   
 }
 export default Option

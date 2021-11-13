@@ -9,6 +9,7 @@ import Detail from 'src/app/pattern/Detail';
 import { Router } from '@angular/router';
 import Ticket from 'src/app/pattern/Ticket';
 import Coupon from 'src/app/pattern/Coupon';
+import Option from 'src/app/pattern/Option'
 
 @Component({
   selector: 'app-index',
@@ -306,19 +307,29 @@ export class IndexComponent implements OnInit {
       shop.total + 30000, "1", statusThanhToan, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
       const resultOrder = await order.POST_ORDER()
 
-      // POST API chi tiết hóa đơn
+      // POST API chi tiết hóa đơn và cập nhật số lượng tồn
       this.myCarts.forEach(async (cart: any) => {
         if (cart.shopId._id === shop.shopId){
           const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
           await detail.POST_DETAIL()
+          
+          // Cập nhật số lượng tồn
+          const option = new Option(cart.optionId, cart.productId, cart.size, 0)
+          option.count = cart.stock - cart.count
+          await option.PATCH_OPTION()
         }
       })
 
-      // POST API chi tiết hóa đơn another
+      // POST API chi tiết hóa đơn another và nhập nhật số lượng tồn
       this.anotherCarts.forEach(async (cart: any) => {
         if (cart.shopId._id === shop.shopId){
           const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
           await detail.POST_DETAIL()
+
+          // Cập nhật số lượng tồn
+          const option = new Option(cart.optionId, cart.productId, cart.size, 0)
+          option.count = cart.stock - cart.count
+          await option.PATCH_OPTION()          
         }
       })
 

@@ -367,6 +367,16 @@ export class IndexComponent implements OnInit {
   // Hàm này dùng để xác nhận giao dịch
   verifyCartAnother(){
 
+    // Kiểm tra số lượng tồn của sản phẩm
+    const checkingStockMyCart = this.cartService.getMyCarts().some((element: any) => {
+      return element.count > element.stock
+    })
+    if (checkingStockMyCart){
+      this.errorMessage = true
+      this.Toast()
+      return
+    }    
+
     let cartSocket: any = []
 
     let totalBill = 0
