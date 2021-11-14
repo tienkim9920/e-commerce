@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { CartService } from './cart.service';
 import Client from './pattern/Client';
 import Shop from './pattern/Shop';
+import ThamSo from './pattern/ThamSo';
 import socket from './socket/socket'
 
 @Component({
@@ -21,6 +22,8 @@ export class AppComponent {
 
   // shop
   shop = new Shop(JSON.parse(localStorage.getItem('jwt')!).subjectId, '', '', '' ,'', 0, '', '')
+
+  thamSo = new ThamSo()
 
   // word tìm kiếm
   search: any = ''
@@ -54,9 +57,9 @@ export class AppComponent {
       debounceTime(500),
       distinctUntilChanged())
       .subscribe(value => {
+        this.thamSo.getListSearch(value)
         setTimeout(() => {
-          this.listSearch = value
-          console.log(value)
+          this.listSearch = this.thamSo.productSearch
         }, 1000)
       });
 
@@ -179,6 +182,11 @@ export class AppComponent {
         localStorage.setItem('anotherRoom', JSON.stringify({}))
       }
     }, 300000)
+  }
+
+  // Click tìm kiếm
+  redirectSearch(_id: any){
+    window.location.href = `/detail/${_id}`
   }
 
 }

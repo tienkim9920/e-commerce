@@ -16,8 +16,8 @@
             <div class="group-detail-product-content">
                 <h3 style="text-transform: uppercase;">{{ product.name }}</h3>
                 <div class="d-flex" style="border-bottom: 1px solid #f1f1f1; padding-bottom: 1rem;">
-                    <div class="price-product-detail">{{ product.price - ((product.price * product.discount)/100) | currency: "VND" }}</div>
-                    <del class="price-del-detail">{{ product.price | currency: "VND" }}</del>
+                    <div class="price-product-detail">{{ product.price - ((product.price * product.discount)/100) | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
+                    <del class="price-del-detail">{{ product.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</del>
                     <div class="percent-discount">
                         -{{ product.discount }}%
                     </div>
@@ -57,16 +57,36 @@
                     Hết hàng
                 </div>
                 <div class="count-detail-like mt-3">
-                    <div>
+                    <div *ngIf="like !== null">
                         Số lượt thích: &nbsp;
                         <span *ngIf="like" style="font-family: 'Nunito Sans', sans-serif;">Bạn đã thích</span>
                         <span *ngIf="!like" style="font-family: 'Nunito Sans', sans-serif;">Bạn chưa thích</span>
                     </div>
-                    <div>
-                        <i (click)="statusLike()" [ngClass]="like ? 'fa fa-heart text-danger' : 'fa fa-heart-o text-danger'"
+                    <div class="mt-2" *ngIf="like !== null">
+                        <i *ngIf="like" (click)="statusDisLike()" [ngClass]="like ? 'fa fa-heart text-danger' : 'fa fa-heart-o text-danger'"
+                            style="font-size: 28px; cursor: pointer;"></i>
+                        <i *ngIf="!like" (click)="statusLike()" [ngClass]="!like ? 'fa fa-heart-o text-danger' : 'fa fa-heart text-danger'"
                             style="font-size: 28px; cursor: pointer;"></i>
                         &nbsp;
                         <span style="font-family: 'Nunito Sans', sans-serif; font-size: 20px;">{{ product.like }} lượt</span>
+                    </div>
+                    <div *ngIf="like === null">
+                        <div
+                            class="effect-skeleton" 
+                            style="width: 160px; height: 20px; border-radius: 10px; background-color: #e2e2e2;">
+                            <div class="shimmer-wrapper">
+                                <div class="shimmer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="like === null">
+                        <div
+                            class="effect-skeleton mt-2" 
+                            style="width: 130px; height: 20px; border-radius: 10px; background-color: #e2e2e2;">
+                            <div class="shimmer-wrapper">
+                                <div class="shimmer"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,7 +104,7 @@
                     Đang hoạt động
                 </div>
                 <div class="d-flex mt-1">
-                    <div *ngIf="permission === 'client'" class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
+                    <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
                         <i class="fa fa-comments"></i>
                         Chat Ngay
                     </div>
@@ -101,14 +121,23 @@
         </div>
         <div class="detail-shop">
             <div class="d-flex justify-content-between w-100">
-                <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.reply }}%</span></div>
-                <br>
-                <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.replyTime}}</span>
+                <div>
+                    <i class="fa fa-share" style="color: #1A94FF;"></i>
+                    Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.reply }}%</span>
                 </div>
                 <br>
-                <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.createTime }}</span></div>
+                <div>
+                    <i class="fa fa-share-square-o" style="color: #1A94FF;"></i>
+                    Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.replyTime }}</span>
+                </div>
+                <br>
+                <div>
+                    <i class="fa fa-calendar" style="color: #1A94FF;"></i>
+                    Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.createTime }}</span>
+                </div>
             </div>
             <div class="mt-3">
+                <i class="fa fa-drivers-license" style="color: #1A94FF;"></i>
                 Về chúng tôi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ product.shopId.description }}</span> 
             </div>
         </div>
@@ -122,15 +151,20 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div *ngIf="permission !== 'client'" class="text-danger">
+                            Bạn không phải khách hàng nên không thể trò chuyện!
+                        </div>
                         <div class="mt-4">
                             <label for="exampleFormControlTextarea1" class="form-label">Nhập tin nhắn ở đây:</label>
                             <textarea [(ngModel)]="message" name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button *ngIf="message" type="button" class="btn btn-primary" (click)="handlerSendMessage()"
+                        <button *ngIf="message && permission === 'client'" type="button" class="btn btn-primary" (click)="handlerSendMessage()"
                         data-bs-dismiss="modal" aria-label="Close">Gửi Tin Nhắn</button>
-                        <button *ngIf="!message" type="button" class="btn btn-light">Gửi Tin Nhắn</button>
+                        <button *ngIf="!message || permission !== 'client'" [routerLink]="['/login']"
+                        data-bs-dismiss="modal" aria-label="Close"
+                        type="button" class="btn btn-light">Gửi Tin Nhắn</button>
                     </div>
                 </div>
             </div>
@@ -142,19 +176,27 @@
             <h3 style="border-bottom: 5px solid #1A94FF; padding-bottom: .5rem;">Đánh Giá Sản Phẩm</h3>
         </div>
         <div class="group-list-comment">
-            <div *ngFor="let item of product.comments" class="mt-4">
-                <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Nguyen Kim Tien</div>
-                <div>{{ item.content}}</div>
-                <div style="color: #1A94FF;">
-                    <i *ngFor="let index of [1, 2, 3, 4, 5]" 
-                    [ngClass]="index > item.star ? 'fa fa-star-o' : 'fa fa-star'"></i>
+            <div *ngFor="let item of product.comments" class="d-flex mt-4">
+                <div>
+                    <img *ngIf="item.userId.image" src="{{ item.userId.image }}" 
+                    style="width: 75px; height: 75px; border-radius: 50%; border: 1px solid #e2e2e2;" alt="">
+                    <img *ngIf="!item.userId.image" src="../../../assets/avt.jpg" 
+                    style="width: 75px; height: 75px; border-radius: 50%; border: 1px solid #e2e2e2;" alt="">
                 </div>
-                <div>{{ item.createTime}}</div>
+                <div class="ms-2">
+                    <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">{{ item.userId.name }}</div>
+                    <div>{{ item.content}}</div>
+                    <div style="color: #1A94FF;">
+                        <i *ngFor="let index of [1, 2, 3, 4, 5]" 
+                        [ngClass]="index > item.star ? 'fa fa-star-o' : 'fa fa-star'"></i>
+                    </div>
+                    <div>{{ item.createTime}}</div>
+                </div>
             </div>
         </div>
     
         <div class="btn-write-comment" data-bs-toggle="modal" data-bs-target="#write-comment">
-            <div>Viết Bình Luận</div>
+            <div>Viết Bình Luận Tại Đây</div>
         </div>
     
         <!-- Modal -->
@@ -168,22 +210,28 @@
                     <div class="modal-body">
                         <div>
                             <div>Chọn sao: </div>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Vui lòng chọn sao cho sản phẩm</option>
+                            <select
+                                [(ngModel)]="starComment"
+                                class="form-select" aria-label="Default select example">
+                                <option value="0" selected>Vui lòng chọn sao cho sản phẩm!</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
-                                <option value="3">4</option>
-                                <option value="3">5</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
                         <div class="mt-4">
-                            <label for="exampleFormControlTextarea1" class="form-label">Viết bình luận tại đây:</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label class="form-label">Viết bình luận tại đây:</label>
+                            <textarea [(ngModel)]="textCommnent" name="textCommnent" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Gửi Bình Luận</button>
+                        <button *ngIf="starComment && textCommnent" type="button" class="btn btn-primary" (click)="handlerComment()"
+                            data-bs-dismiss="modal" aria-label="Close">Gửi Bình Luận</button>
+                        <button *ngIf="!starComment || !textCommnent" 
+                            type="button" class="btn btn-light"
+                            >Gửi Bình Luận</button>
                     </div>
                 </div>
             </div>

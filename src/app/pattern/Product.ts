@@ -128,10 +128,11 @@ class Product {
     }
 
     // GET List Comments Product by productId
-    async getCommentProduct(){
-        const res = await fetch(API.GET_COMMENT_PRODUCT(this._id))
+    async getCommentProduct(productId: any){
+        const res = await fetch(API.GET_COMMENT_PRODUCT(productId))
         const data = await res.json()
         this.comments = data.reverse()
+        console.log(this.comments)
     }
 
     // POST List Comment Product by productId
@@ -141,8 +142,8 @@ class Product {
     }
 
     // GET List Option
-    async getOptionProduct(){
-        const res = await fetch(API.GET_OPTION_PRODUCT(this._id))
+    async getOptionProduct(productId: any){
+        const res = await fetch(API.GET_OPTION_PRODUCT(productId))
         const data = await res.json()
         this.option = data
     }
@@ -168,13 +169,19 @@ class Product {
     }
 
     async patchLike(){
-        await fetch(API.PATCH_LIKE(this._id))
         this.like = this.like + 1
+        await fetch(API.PATCH_LIKE(this._id))
     }
 
     async patchDislike(){
-        await fetch(API.PATCH_DISLIKE(this._id))
         this.like = this.like - 1
+        await fetch(API.PATCH_DISLIKE(this._id))
+    }
+
+    async checkingUserLikeProduct(userId: any){
+        const res = await fetch(API.CHECKING_LIKE_USER(userId, this._id))
+        const data = await res.json()
+        return data
     }
 
 }

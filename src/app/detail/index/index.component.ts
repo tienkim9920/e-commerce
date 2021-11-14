@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Checking from 'src/app/pattern/Checking';
+import Comment from 'src/app/pattern/Comment';
+import Like from 'src/app/pattern/Like';
 import Message from 'src/app/pattern/Message';
 import Product from 'src/app/pattern/Product';
 import Room from 'src/app/pattern/Room';
@@ -27,7 +29,7 @@ export class IndexComponent implements OnInit {
 
   count: any = 1
 
-  like: any = false
+  like: any = null
 
   index = 0
 
@@ -37,15 +39,22 @@ export class IndexComponent implements OnInit {
 
   permission: string = ''
 
+  textCommnent: string = ''
+
+  starComment: number = 0
+
   stock: any = {}
 
   constructor(private route: ActivatedRoute, private cartService: CartService, private router: Router) {
-    this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
-
     setTimeout(() => {
-      this.product.getCommentProduct()
-      this.product.getOptionProduct()
-    }, 1000)
+      this.product.getDetailProduct(this.route.snapshot.paramMap.get('id'))
+      this.product.getCommentProduct(this.route.snapshot.paramMap.get('id'))
+      this.product.getOptionProduct(this.route.snapshot.paramMap.get('id'))
+    }, 700)
+
+    setTimeout(async () => {
+      this.like = await this.product.checkingUserLikeProduct(this.cartService.getUserId())
+    }, 1500)
     
     this.permission = this.cartService.getPermission()
   }
@@ -72,8 +81,22 @@ export class IndexComponent implements OnInit {
     this.index = index
   }
 
+  // POST API Like product
   statusLike(){
     this.like = !this.like
+    this.product.patchLike()
+
+    const like = new Like('', this.product._id, this.cartService.getUserId())
+    like.POST_LIKE()
+  }
+
+  // DELETE API Dislike product
+  statusDisLike(){
+    this.like = !this.like
+    this.product.patchDislike()
+
+    const like = new Like('', this.product._id, this.cartService.getUserId())
+    like.DELETE_LIKE()
   }
 
   addCart(){
@@ -164,6 +187,20 @@ export class IndexComponent implements OnInit {
     await messenger.POST_MESSAGE()
     this.message = ''
     this.ToastMessage()
+
+  }
+
+  handlerComment(){
+
+    if (!this.cartService.getUserId()){
+      this.router.navigate(['/login'])
+      return
+    }
+
+    const comment = new Comment(this.product._id, this.cartService.getUserId(), this.starComment, 
+      this.textCommnent, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
+
+    this.product.postCommentProduct(comment)
 
   }
 

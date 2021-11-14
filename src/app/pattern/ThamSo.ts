@@ -5,6 +5,7 @@ class ThamSo {
     productDiscount: any = []
     productHomePagination: any = []
     productCategory: any = []
+    productSearch: any = []
     listTick: any = []
     listPay: any = []
 
@@ -38,6 +39,12 @@ class ThamSo {
         const res = await fetch(API.GET_PAYMENT())
         const data = await res.json()
         this.listPay = data
+    }
+
+    async getListSearch(word: any){
+        const res = await fetch(API.GET_PRODUCT_SEARCH(word))
+        const data = await res.json()
+        this.productSearch = data
     }
 
 }

@@ -37,9 +37,14 @@
                             <i class="fa fa-comments"></i>
                             Chat Ngay
                         </div>
-                        <a class="ms-1 padding-infor-shop">
-                            <i class="fa fa-plus"></i>
+                        <a *ngIf="!reputation" (click)="handlerReputation()" class="ms-1 padding-infor-shop">
+                            <i class="fa fa-plus-square"></i>
                             Theo Dõi
+                        </a>
+
+                        <a *ngIf="reputation" (click)="handlerDisReputation()" class="ms-1 padding-infor-shop active">
+                            <i class="fa fa-plus-square"></i>
+                            Đã Theo Dõi
                         </a>
                         <a [routerLink]="['/shop/address', shop._id]" class="ms-1 padding-infor-shop">
                             <i class="fa fa-paper-plane"></i>
@@ -50,15 +55,35 @@
             </div>
             <div *ngIf="shop.name" class="detail-shop">
                 <div class="d-flex justify-content-between w-100">
-                    <div>Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.reply }}%</span></div>
-                    <br>
-                    <div>Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.replyTime}}</span>
+                    <div>
+                        <i class="fa fa-share" style="color: #1A94FF;"></i>
+                        Tỉ lệ phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.reply }}%</span>
                     </div>
                     <br>
-                    <div>Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.createTime }}</span></div>
+                    <div>
+                        <i class="fa fa-share-square-o" style="color: #1A94FF;"></i>
+                        Phản hồi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.replyTime}}</span>
+                    </div>
+                    <br>
+                    <div>
+                        <i class="fa fa-calendar" style="color: #1A94FF;"></i>
+                        Tham gia: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.createTime }}</span>
+                    </div>
                 </div>
                 <div class="mt-3">
+                    <i class="fa fa-drivers-license" style="color: #1A94FF;"></i>
                     Về chúng tôi: <span style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">{{ shop.description }}</span> 
+                </div>
+                <div class="mt-3">
+                    <i class="fa fa-rss" style="color: #1A94FF;"></i>
+                    Người theo dõi: 
+                    <span
+                        data-bs-toggle="modal" data-bs-target="#reputation-shop"
+                        style="color: #1A94FF; font-family: 'Nunito Sans', sans-serif; cursor: pointer;">
+                        {{ shop.reputation.length }} người
+                        <i class="fa fa-hand-grab-o"></i>
+                    </span>
+                    
                 </div>
             </div>
             <div *ngIf="!shop.name" class="detail-shop">
@@ -123,122 +148,33 @@
 
     <div class="section-home-product">
         <h3 class="title-home-product">Sản phẩm của Shop</h3>
-        <div class="group-grid-product-home">
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
+        <div *ngIf="shop.product.length > 0">
+            <div class="group-grid-product-home" >
+                <a class="list-product-home" *ngFor="let item of shop.product">
+                    <div class="d-flex justify-content-center">
+                        <img class="image-flash-sale" src="{{ item.image[0] }}" alt="">
+                        <div *ngIf="item.discount !== 0" class="title-discount">
+                            {{ item.discount }}% Giảm
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
+                    <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">{{ item.name }}</div>
+                    <div class="d-flex justify-content-between" style="padding: 0 1rem;">
+                        <div class="text-danger" style="font-size: 1.1rem;"> {{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
+                        <div><i class="fa fa-heart text-danger"></i>&nbsp;{{ item.like }}</div>
                     </div>
+                </a>
+            </div>
+    
+            <div class="btn-xemthem-home">
+                <div class="view-continue" (click)="handlerChangePage()">
+                    Xem thêm
                 </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-            <a class="list-product-home">
-                <div class="d-flex justify-content-center">
-                    <img class="image-flash-sale" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
-                    <div class="title-discount">
-                        50% Giảm
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="padding: 0 .5rem;">Áo thun freesize thương hiệu YG</div>
-                <div class="d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="text-danger" style="font-size: 1.1rem;"> {{ 70000 | currency: "VND" }}</div>
-                    <div><i class="fa fa-heart text-danger"></i> 30</div>
-                </div>
-            </a>
-        </div>
-
-        <div class="btn-xemthem-home">
-            <div class="view-continue">
-                Xem thêm
             </div>
         </div>
-
     </div>
 </div>
 
+<!-- Modal -->
 <div class="modal fade" id="chat-shop" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -247,14 +183,58 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div *ngIf="permission !== 'client'" class="text-danger">
+                    Bạn không phải khách hàng nên không thể trò chuyện!
+                </div>
                 <div class="mt-4">
                     <label for="exampleFormControlTextarea1" class="form-label">Nhập tin nhắn ở đây:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea [(ngModel)]="message" name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Gửi Tin Nhắn</button>
+                <button *ngIf="message && permission === 'client'" type="button" class="btn btn-primary" (click)="handlerSendMessage()"
+                data-bs-dismiss="modal" aria-label="Close">Gửi Tin Nhắn</button>
+                <button *ngIf="!message || permission !== 'client'" [routerLink]="['/login']"
+                data-bs-dismiss="modal" aria-label="Close"
+                type="button" class="btn btn-light">Gửi Tin Nhắn</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="reputation-shop" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Người theo dõi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="height: 330px; overflow-y: scroll;">
+                <div *ngFor="let item of shop.reputation" class="d-flex pb-2">
+                    <img *ngIf="item.userId.image" src="{{ item.userId.image }}" 
+                    style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #e2e2e2;" alt="">
+                    <img *ngIf="!item.userId.image" src="../../assets/avt.jpg" 
+                    style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #e2e2e2;" alt="">
+                    <div class="mt-2 ms-2">
+                        <div style="font-family: 'Nunito Sans', sans-serif;">
+                            {{ item.userId.name }}
+                        </div>
+                        <div>
+                            {{ item.userId.email }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+    <div [ngClass]="toastMessage ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Thông báo</strong>
+      </div>
+      <div class="toast-body">
+        Bạn đã gửi tin nhắn thành công!
+      </div>
     </div>
 </div>

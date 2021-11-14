@@ -134,8 +134,12 @@ const API = {
       return url + `/reputation`
     },
 
-    DELETE_REPUTATION: (id: any) => {
-      return url + `/reputation/${id}`
+    DELETE_REPUTATION: (userId: any, shopId: any) => {
+      return url + `/reputation/delete?userId=${userId}&shopId=${shopId}`
+    },
+
+    CHECKING_REPUTATION: (userId: any, shopId: any) => {
+      return url + `/reputation/checking?userId=${userId}&shopId=${shopId}`
     },
 
     // Newfeed
@@ -222,6 +226,10 @@ const API = {
         return url + `/product/${productID}`
     },
 
+    GET_PRODUCT_SEARCH: (word: any) => {
+      return url + `/product/search/word?word=${word}`
+    },
+
 
 
     // Like
@@ -237,8 +245,8 @@ const API = {
         return url + `/like`
     },
 
-    DELETE_LIKE: (id: any)=>{
-        return url + `/like/${id}`
+    DELETE_LIKE: (userId: any, productId: any)=>{
+        return url + `/like/delete?userId=${userId}&productId=${productId}`
     },
 
 
@@ -323,6 +331,9 @@ const API = {
       return url + `/shop/detail/${userId}`
     },
 
+    GET_PAGINATION_PRODUCT_SHOP: (page: any, shopId: any) => {
+      return url + `/product/shop/pagination?page=${page}&shopId=${shopId}`
+    },
 
     // Category
     GET_CATEGORY: () => {

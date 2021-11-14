@@ -33,6 +33,12 @@
     color: #323232;
 }
 
+.padding-infor-shop.active{
+    background-color: #1A94FF;
+    color: #fff;
+    border: 1px solid #1A94FF;
+}
+
 .padding-infor-shop:hover{
     background-color: #1A94FF;
     color: #fff;
