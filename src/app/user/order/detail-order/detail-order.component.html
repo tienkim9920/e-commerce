@@ -5,9 +5,9 @@
         <div>Số điện thoại: {{order.noteId.phone}}</div>
         <div>Địa chỉ: {{order.noteId.address}}</div>
         <div>Tổng tiền đơn hàng: {{order.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</div>
-        <div>Thanh toán: {{order.payId.payment}}</div>
-        <div>Trạng thái thanh toán: {{order.pay?"Đã thanh toán":"Chưa thanh toán"}}</div>
-        <div>Ngày đặt hàng: {{order.createTime|date:"dd/MM/YYYY, HH:mm:ss"}}</div>
+        <div>Thanh toán: {{order.payId.name}}</div>
+        <div>Trạng thái thanh toán: {{order.pay ? "Đã thanh toán" : "Chưa thanh toán"}}</div>
+        <div>Ngày đặt hàng: {{order.createTime}}</div>
     </div>
     <div class="group_box_status" style="margin: 3rem 0">
         <div class="d-flex justify-content-center">
@@ -53,19 +53,21 @@
                     <th>Hình ảnh</th>
                     <th>Tên sản phẩm</th>
                     <th>Số lượng</th>
+                    <th>Kích thước</th>
                     <th>Giá tiền</th>
                     <th>Tổng tiền</th>
                 </thead>
                 <tbody *ngFor="let item of order.detail;index as i">
                     <tr>
-                        <td data-label="#">{{i+1}}</td>
-                        <td data-label="Hình ảnh">
+                        <td>{{i+1}}</td>
+                        <td>
                             <img src={{item.productId.image[0]}} alt="đây là áo" class="content-product-table-image" />
                         </td>
-                        <td data-label="Tên sản phẩm">{{item.productId.name}}</td>
-                        <td data-label="Mã sản phẩm">{{item.count}}</td>
-                        <td data-label="Loại sản phẩm">{{item.productId.price|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
-                        <td data-label="Loại sản phẩm">{{item.productId.price * item.count|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
+                        <td>{{item.productId.name}}</td>
+                        <td>{{item.count}}</td>
+                        <td>{{item.size}}</td>
+                        <td>{{item.productId.price|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
+                        <td>{{item.productId.price * item.count|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -60,7 +60,7 @@
           <td data-label="Action">
             <div class="content-product-table-action">
               <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
+              <button class="content-product-table-btn content-product-table-btn-update" [routerLink]="['/manages/product/edit']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Thay đổi</button>
               <button class="content-product-table-btn content-product-table-btn-delete" (click)="handlerDeleteProduct(item)">Xóa</button>
             </div>
           </td>

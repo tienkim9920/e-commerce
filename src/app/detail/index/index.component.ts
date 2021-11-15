@@ -53,6 +53,7 @@ export class IndexComponent implements OnInit {
     this.showToast = true
 
     const data = {
+      cartId: Math.random().toString(),
       productId: this.product._id,
       shopId: this.product.shopId,
       name: this.product.name,

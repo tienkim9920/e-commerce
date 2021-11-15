@@ -41,18 +41,13 @@ export class AddressComponent implements OnInit {
     console.log(this.address)
   }
 
-  async handlerPatchAddress(){
-    this.newAddress = this.address
-    await this.shop.patchAddress(this.address,this.newAddress)
-    console.log(this.newAddress)
-  }
-
   async handlerDeleteAddress(address : Address){
     await this.shop.deleteAddress(address)
   }
 
-  async handlerGetDetailAddress(id : any){
-    this.address.getDetailAddressByAddressId(id)
-    console.log(this.address)
+
+  async handlerPatchAddress(data:any,index: any){
+    await this.shop.patchAddress(data,index)
   }
 }
+

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/cart.service';
 import Tick from 'src/app/pattern/Tick';
 import User from 'src/app/pattern/User';
+import socket from 'src/app/socket/socket';
 
 @Component({
   selector: 'app-index',
@@ -14,6 +15,9 @@ export class IndexComponent implements OnInit {
 
   user = new User('')
 
+  // Thông tin share giỏ hàng
+  anotherRoom: any
+
   toastSuccess: boolean = false
 
   toastFail: boolean = false
@@ -21,6 +25,10 @@ export class IndexComponent implements OnInit {
   toastCoupon: boolean = false
 
   toastPromotion: boolean = false
+
+  toastVerifyAnother: boolean = false
+
+  toastErrorVerify: boolean = false
 
   // Giỏ hàng của bạn
   myCarts: any
@@ -43,16 +51,23 @@ export class IndexComponent implements OnInit {
     this.user._id = cartService.getUserId()
 
     this.user.getTickets()
+
+    this.anotherRoom = this.cartService.getAnotherRoom()
   }
 
   ngOnInit(): void {
     this.getLocalStorage()
   }
 
-  async handlerUpdate(productId: any){
+  ngDoCheck(){
+    this.receiveCartAnother()
+    this.totalPayment = this.cartService.getTotalPayment()
+  }
+
+  async handlerUpdate(cartId: any){
 
     // Lấy value từ input
-    let count = (document.getElementById(productId) as HTMLInputElement).value;
+    let count = (document.getElementById(cartId) as HTMLInputElement).value;
 
     if (parseInt(count) < 0 || parseInt(count) > 20){
       this.toastFail = true
@@ -61,7 +76,7 @@ export class IndexComponent implements OnInit {
     }
 
     const data = {
-      productId,
+      cartId,
       count
     }
 
@@ -95,6 +110,24 @@ export class IndexComponent implements OnInit {
     // Thực Thi
     await this.alwayCheckingCoupon()
 
+  }
+
+  async handlerDeleteAnother(index: any){
+    // Thực hiện xóa giỏ hàng
+    this.cartService.deleteProductAnother(index)
+    this.totalPayment = this.cartService.getTotalPayment()
+
+    const newCarts = this.anotherCarts
+
+    newCarts.splice(index, 1)
+
+    this.anotherCarts = newCarts
+
+    this.toastSuccess = true
+    this.Toast()
+
+    // Thực Thi
+    await this.alwayCheckingCoupon()
   }
 
   // Luôn luôn kiểm tra trạng thái có thỏa mãn để đáp ứng sử dụng coupon
@@ -143,6 +176,22 @@ export class IndexComponent implements OnInit {
   // Hàm apply coupon
   async applyCoupon(){
 
+    if (!this.code){
+      return
+    }
+
+    // Kiểm tra xem thử code này đã được áp dụng chưa
+    const existCoupon = this.coupon.some((element: any) => {
+      return element.code === this.code
+    })
+
+    if (existCoupon){ // nếu đã áp dụng rồi thì k áp dụng lại được
+      this.toastCoupon = true
+      this.Toast()
+      return
+    }
+
+    // Kiểm tra xem thử đã đăng nhập chưa
     if (!this.checkingLogin()){
       this.router.navigate(['/login'])
       return
@@ -187,6 +236,8 @@ export class IndexComponent implements OnInit {
       this.toastSuccess = false
       this.toastFail = false
       this.toastCoupon = false
+      this.toastVerifyAnother = false
+      this.toastErrorVerify = false
     }, 3000)
   }
 
@@ -194,7 +245,13 @@ export class IndexComponent implements OnInit {
     let totalShop = 0
 
     this.cartService.getMyCarts().forEach((element: any) => {
-      if (element.shopId._id === checking.shopId._id){
+      if (element.shopId._id === checking.shopId){
+        totalShop += element.price * element.count
+      }
+    });
+
+    this.cartService.getAnotherCarts().forEach((element: any) => {
+      if (element.shopId._id === checking.shopId){
         totalShop += element.price * element.count
       }
     });
@@ -202,14 +259,24 @@ export class IndexComponent implements OnInit {
     return totalShop
   }
 
+  // Hàm kiểm tra sản phẩm trong giỏ hàng có phải của shop
   checkingDiscountShop(checking: any){
 
     const discount = this.myCarts.some((element: any) => {
-      return element.shopId._id === checking.shopId._id
+      return element.shopId._id === checking.shopId
     })
 
-    return discount
+    const discountAnother = this.anotherCarts.some((element: any) => {
+      return element.shopId._id === checking.shopId
+    })
+
+    if (!discount && !discountAnother){
+      return false
+    }
+
+    return true
   }
+
 
   // Hàm kiểm tra trạng thái coupon sau mỗi lần thay đổi
   async checkingCoupon(code: any){
@@ -220,9 +287,12 @@ export class IndexComponent implements OnInit {
 
     // Kiểm tra xem những sản phẩm mà khách hàng mua của shop có thỏa mãn với limit hay k
     const totalShop = this.checkingProductShop(checking)
+    console.log(totalShop)
 
     // Kiểm tra xem có phải sản phẩm của shop không
     const discount = this.checkingDiscountShop(checking)
+    console.log(discount)
+
 
     // Kiểm tra xem coup này có thỏa mãn hay không
     if (totalShop < checking.limit || !discount){
@@ -240,6 +310,11 @@ export class IndexComponent implements OnInit {
 
   handlerOrder(){
     if (this.myCarts.length < 1){
+
+      if (this.anotherCarts.length > 0){
+        this.router.navigate(['/checkout'])
+      }
+
       return
     }
 
@@ -259,6 +334,59 @@ export class IndexComponent implements OnInit {
     }
 
     return true
+  }
+
+  // Hàm này dùng để kiểm tra trạng thái của giỏ hàng chia sẽ
+  checkingCartShare(){
+    if (!this.checkingLogin()){
+      this.router.navigate(['/login'])
+      return
+    }
+
+    this.router.navigate(['/cart/setting'])
+  }
+
+  // Hàm này dùng để xác nhận giao dịch
+  verifyCartAnother(){
+
+    let cartSocket: any = []
+
+    let totalBill = 0
+
+    this.cartService.getMyCarts().forEach((element: any) => {
+      totalBill += element.price * element.count
+
+      element.fullname = this.anotherRoom.fullname
+      cartSocket.push(element)
+    })
+
+    if (totalBill > this.anotherRoom.limit){
+      this.toastErrorVerify = true
+      this.Toast()
+      return
+    }
+
+    const data = {
+      room: this.anotherRoom.code,
+      cart: cartSocket
+    }
+
+    socket.emit('verifyCart', data)
+
+    this.toastVerifyAnother = true
+    this.Toast()
+  }
+
+  receiveCartAnother(){
+    socket.on('verifyCart', async (data:any) => {
+      this.anotherCarts = data
+      this.cartService.setAnotherCart(this.anotherCarts)
+      this.cartService.TotalPayment()
+
+      // Thực Thi
+      await this.alwayCheckingCoupon()
+
+    })
   }
 
 }

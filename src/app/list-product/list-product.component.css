@@ -3,3 +3,28 @@
     transform: scale(1.01);
     transition: all .5s ease-in;
 }
+
+.discount {
+    padding: 0.3rem;
+    background-color: #ffae00;
+    position: absolute;
+    top: 0;
+    color: #fff;
+    width: 48px;
+    text-align: center;
+    right: 0!important;
+}
+
+.discount::after {
+    content: '';
+    position: absolute;
+    top: 3.05rem;
+    left: -1.5%;
+    border-width: 15px 25px;
+    border-style: solid;
+    border-color: #ffae00 transparent transparent transparent;
+}
+
+.example-card {
+    position: relative;
+}

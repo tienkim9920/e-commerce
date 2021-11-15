@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { SettingComponent } from './setting/setting.component';
+import { ShareComponent } from './share/share.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { 
@@ -9,7 +11,12 @@ const routes: Routes = [
     component: IndexComponent
   },
   {
-    path: 'setting', component: SettingComponent
+    path: 'setting', 
+    component: SettingComponent
+  },
+  {
+    path: 'share/:code',
+    component: ShareComponent
   }
 ];
 

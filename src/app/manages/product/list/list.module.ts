@@ -8,7 +8,6 @@ import { AllComponent } from './all/all.component';
 import { OutsaleComponent } from './outsale/outsale.component';
 import { OffsaleComponent } from './offsale/offsale.component';
 import { HiddensaleComponent } from './hiddensale/hiddensale.component';
-import { DetailComponent } from './detail/detail.component';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { DetailComponent } from './detail/detail.component';
     OutsaleComponent,
     OffsaleComponent,
     HiddensaleComponent,
-    DetailComponent
   ],
   imports: [
     CommonModule,

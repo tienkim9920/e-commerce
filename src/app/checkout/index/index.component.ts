@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import User from 'src/app/pattern/User';
+import ThamSo from 'src/app/pattern/ThamSo';
+import Note from 'src/app/pattern/Note';
+import Order from 'src/app/pattern/Order';
+import Detail from 'src/app/pattern/Detail';
+import { Router } from '@angular/router';
+import Ticket from 'src/app/pattern/Ticket';
+import Coupon from 'src/app/pattern/Coupon';
 
 @Component({
   selector: 'app-index',
@@ -11,7 +18,9 @@ import User from 'src/app/pattern/User';
 export class IndexComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
 
-  user = new User('');
+  thamSo = new ThamSo()
+
+  user = new User(JSON.parse(localStorage.getItem('jwt')!).userId);
 
   activePayment: any = 1;
 
@@ -57,12 +66,22 @@ export class IndexComponent implements OnInit {
   // Địa chỉ cuối cùng
   address: any
 
-  constructor(private cartService: CartService) {
+  // Hiển thị loading
+  loading: Boolean = false
+
+  constructor(private cartService: CartService, private router: Router) {
     this.getLocalStorage();
     this.feeShip = this.getFeeShip();
     this.sumPayment = this.totalPayment.payment + this.feeShip;
     this.initConfig();
     this.getTinh()
+    this.thamSo.getListPayment()
+    this.user.getDetail()
+    this.user.getCoupons()
+    setTimeout(() => {
+      this.activePayment = this.thamSo.listPay[1]
+    }, 500)
+
 
     this.user.name = cartService.getName()
   }
@@ -79,8 +98,8 @@ export class IndexComponent implements OnInit {
     this.coupon = this.cartService.getCoupon();
   }
 
-  changePayment(value: any) {
-    this.activePayment = value;
+  changePayment(item: any) {
+    this.activePayment = item;
   }
 
   // Hủy Coupon
@@ -127,12 +146,14 @@ export class IndexComponent implements OnInit {
     this.tinh = data.results
   }
 
+  // GET API Quận
   async getQuan(code: any){
     const res = await fetch(`http://localhost:4000/quan?code=${code}`)
     const data = await res.json()
     this.quan = data.results
   }
 
+  // GET API Phường
   async getPhuong(code: any){
     const res = await fetch(`http://localhost:4000/phuong?code=${code}`)
     const data = await res.json()
@@ -157,6 +178,7 @@ export class IndexComponent implements OnInit {
     this.codePhuong = value
   }
 
+  // Hàm submit địa chỉ
   handlerSubmitAddress() {
     const indexTinh = this.tinh.findIndex((element: any) => {
       return element.code === this.codeTinh
@@ -171,7 +193,141 @@ export class IndexComponent implements OnInit {
     })
 
     this.address = `${this.location}, ${this.phuong[indexPhuong].name}, ${this.quan[indexQuan].name}, ${this.tinh[indexTinh].name}`
+  }
+
+  // Hàm thanh toán trực tiếp
+  async ThanhToan(){
+    this.loading = true
+
+    let shopList: any = []
+      
+    // Tổng số tiền tất cả sản phẩm của Shop
+    this.myCarts.forEach((element: any) => {
+
+      // Kiểm tra xem cái shopId có tồn tại trong shopList chưa
+      const checking = shopList.some((shop: any) => {
+        return shop.shopId === element.shopId._id
+      })
+      
+      if (checking){
+
+        const index = shopList.findIndex((shop: any) => {
+          return shop.shopId === element.shopId._id
+        })
+
+        shopList[index].total += element.price * element.count
+
+        return
+      }
+
+      const data = {
+        shopId: element.shopId._id,
+        total: element.price * element.count
+      }
+      shopList.push(data)
+
+    });
+
+    // Tổng số tiền tất cả sản phẩm another của shop
+    this.anotherCarts.forEach((element: any) => {
+
+      // Kiểm tra xem cái shopId có tồn tại trong shopList chưa
+      const checking = shopList.some((shop: any) => {
+        return shop.shopId === element.shopId._id
+      })
+      
+      if (checking){
+
+        const index = shopList.findIndex((shop: any) => {
+          return shop.shopId === element.shopId._id
+        })
+
+        shopList[index].total += element.price * element.count
+
+        return
+      }
+
+      const data = {
+        shopId: element.shopId._id,
+        total: element.price * element.count
+      }
+      shopList.push(data)
+
+    })
+
+    // Nếu mà có áp dụng ticket
+    if (this.ticket._id){
+      shopList.forEach((element: any) => {
+        element.total = element.total - (element.total * this.ticket.tickId.value / 100)
+      });
+
+      const ticket = new Ticket(this.ticket._id, this.cartService.getUserId(), this.ticket.tickId._id, true)
+      await ticket.PATCH_TICKET()
+    }
     
+    // Nếu mà có áp dụng coupon
+    if (this.coupon.length > 0){
+      this.coupon.forEach(async (element: any) => {
+        shopList.forEach((shop: any) => {
+          if (element.shopId === shop.shopId){
+            shop.total = shop.total - element.discount
+          }
+        })
+        
+        // Kiểm tra xem người dùng đó đã lưu coupon vào thông tin hay chưa
+        const checking = this.user.checkingExistCoupon(element._id)
+        const coupon = new Coupon('', this.cartService.getUserId(), element._id, false)
+        if (!checking){
+          coupon.status = true
+          await coupon.POST_COUPON()
+        }else{
+          await coupon.PATCH_COUPON()
+        }
+
+      })
+    }
+
+    // Thêm vào đơn hàng và cộng dồn lên phí vận chuyển
+    shopList.forEach(async (shop: any) => {
+
+      // POST API note
+      const note = new Note(30000, this.cartService.getName(), this.phone, this.address)
+      const resultNote = await note.POST_NOTE()
+
+      // POST API hóa đơn
+      const statusThanhToan = this.activePayment.payment === 'offline' ? false : true
+      const order = new Order('', this.cartService.getUserId(), this.activePayment._id, resultNote._id, shop.shopId,
+      shop.total + 30000, "1", statusThanhToan, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
+      const resultOrder = await order.POST_ORDER()
+
+      // POST API chi tiết hóa đơn
+      this.myCarts.forEach(async (cart: any) => {
+        if (cart.shopId._id === shop.shopId){
+          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
+          await detail.POST_DETAIL()
+        }
+      })
+
+      // POST API chi tiết hóa đơn another
+      this.anotherCarts.forEach(async (cart: any) => {
+        if (cart.shopId._id === shop.shopId){
+          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
+          await detail.POST_DETAIL()
+        }
+      })
+
+    })
+
+    // Cập nhật điểm tích lũy cho user
+    this.user.score = this.user.score + 500
+    await this.user.PATCH_SCORE()
+
+    setTimeout(() => {
+      this.cartService.resetLocalStorage() 
+
+      this.router.navigate(['/checkout/success'])
+    }, 3000)
+
   }
 
   private initConfig(): void {
@@ -197,25 +353,8 @@ export class IndexComponent implements OnInit {
         label: 'paypal',
         layout: 'vertical',
       },
-      onApprove: (data, actions) => {
-        actions.order.get().then((details: any) => {
-          console.log("Thanh toán thành công");
-        });
-      },
       onClientAuthorization: (data) => {
-        console.log(
-          'onClientAuthorization - you should probably inform your server about completed transaction at this point',
-          data
-        );
-      },
-      onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
-      },
-      onError: (err) => {
-        console.log('OnError', err);
-      },
-      onClick: (data, actions) => {
-        console.log('onClick', data, actions);
+        this.ThanhToan()
       },
     };
   }

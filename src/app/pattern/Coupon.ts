@@ -1,12 +1,15 @@
 import API from "../http/http"
+import Coup from "./Coup"
 
 class Coupon {
 
+    _id: String
     userId: String
-    coupId: String
+    coupId: any
     status: Boolean
 
-    constructor(userId: String, coupId: String, status: Boolean){
+    constructor(_id: String, userId: String, coupId: any, status: Boolean){
+        this._id = _id
         this.userId = userId
         this.coupId = coupId
         this.status = status
@@ -32,7 +35,20 @@ class Coupon {
         const data = await res.json()
         return data.result
     }
-    
+
+    // PATCH_COUPON
+    async PATCH_COUPON(){
+        const res = await fetch(API.PATCH_COUPON(this.userId, this.coupId), {
+            method: 'PATCH',
+            body: JSON.stringify(this.toJSON()),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        const data = await res.json()
+        return data.result
+    }
+
 }
 
 export default Coupon

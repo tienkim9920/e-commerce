@@ -58,31 +58,30 @@ class Shop{
     const res = await fetch(API.GET_ADDRESS_SHOP(this._id))
     const data = await res.json()
     this.address = data
+    console.log(data)
   }
 
 
   // POST Address:TN
   async postAddress(address: Address) {
     const data = await address.POST_ADDRESS()
-    this.address = [...this.address, data]
-    console.log(this.address)
+    this.address = [...this.address, data.address]
+    console.log(data)
     return data.address
   }
 
   // PATCH Address:TN
-  async patchAddress(addressPatch: Address,valueChange: Address) {
+  async patchAddress(addressPatch: Address, index:any) {
     const res = await fetch(API.PATCH_ADDRESS_SHOP(addressPatch._id), {
       method: 'PATCH',
-      body: JSON.stringify(this.toJSON()),
+      body: JSON.stringify(addressPatch),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       }
     })
     const data = await res.json()
-    // const data = await addressPatch.PATCH_ADDRESS(addressPatch._id)
 
-    const index = this.address.indexOf(addressPatch);
-    this.address[index] = valueChange
+    this.address[index] = addressPatch
   }
 
   // DELETE Address:TN
@@ -102,6 +101,31 @@ class Shop{
     this.address =updateAddress
   }
 
+  // GET_SHOP
+  async GET_SHOP(){
+      const res = await fetch(API.GET_SHOP(), {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+      })
+      const data = await res.json()
+      return data
+ }
+
+   // GET_SHOP_CATEGORY
+   async GET_SHOP_CATEGORY(id : any,query: any){
+    const res = await fetch(API.GET_SHOP_CATEGORY(id,query), {
+      method: 'GET',
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    const data = await res.json()
+    return data
+  }
+
+
   // POST_SHOP
   async POST_SHOP(){
     const res = await fetch(API.POST_SHOP(), {
@@ -116,16 +140,13 @@ class Shop{
   }
 
   // PATCH_SHOP
-  async PATCH_SHOP(){
-    const res = await fetch(API.PATCH_SHOP(this._id), {
+  async PATCH_SHOP(detailPatch: any){
+    console.log(detailPatch)
+    const res = await fetch(API.PATCH_SHOP(this.userId), {
       method: 'PATCH',
-      body: JSON.stringify(this.toJSON()),
-      headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-      }
+      body: detailPatch
     })
     const data = await res.json()
-    return data
   }
 
   // GET Detail Shop
@@ -144,6 +165,7 @@ class Shop{
   async getDetailShopByUserId(){
     const res = await fetch(API.GET_DETAIL_SHOP_BY_USERID(this.userId))
     const data = await res.json()
+    console.log(data)
     this._id = data._id
     this.userId = data.userId
     this.name = data.name

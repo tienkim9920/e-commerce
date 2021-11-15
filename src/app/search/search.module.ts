@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';;
 import {MatInputModule} from '@angular/material/input';
 import ListProductComponent from '../list-product/list-product.component';

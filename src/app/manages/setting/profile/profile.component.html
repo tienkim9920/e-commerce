@@ -17,13 +17,13 @@
           <div class="product-file__info">
             <div class="product-file__item">
               <label class="product-file__item-label">
-                Ảnh bìa shop
+                Ảnh đại diện shop
               </label>
               <div class="product-file__upload">
-                <img src="https://cf.shopee.vn/file/6c1c9adf0bc9d0f0c20a18d1f5e8667d" alt="" class="product-file__upload-img">
+                <!-- <img src="https://cf.shopee.vn/file/6c1c9adf0bc9d0f0c20a18d1f5e8667d" alt="" class="product-file__upload-img">
                 <input type="file" id="file-image" class="product-file__upload-btn" placeholder="Tải hình ảnh">
                 <label for="file-image" class="product-file__upload-btn-label">Tải hình ảnh</label>
-                <label for="file-image" class="product-file__upload-label">Chọn hình ảnh từ trong máy</label>
+                <label for="file-image" class="product-file__upload-label">Chọn hình ảnh từ trong máy</label> -->
               </div>
             </div>
           </div>
@@ -130,8 +130,8 @@
         </div>
       </div>
 
-      <div class="product-grid__col-right">
-        <div class="product-edit__section">
+      <div class="product-grid__col-right" >
+        <form class="product-edit__section" #changeDetailShop="ngForm">
           <div class="product-edit__heading">
             <p class="product-edit__heading-label">
               Thông tin cơ bản
@@ -143,23 +143,16 @@
               <label for="user-name" class="product-edit__item-label">
                 Tên shop
               </label>
-              <input type="text" id="user-name" class="product-edit__item-input" placeholder="toannguyen197">
-            </div>
-
-            <div class="product-edit__item">
-              <label for="user-address" class="product-edit__item-label">
-                Địa chỉ shop
-              </label>
-              <input type="text" id="user-address" class="product-edit__item-input" placeholder="342 Tân hòa đông">
+              <input type="text" id="user-name" class="product-edit__item-input" [(ngModel)]="shop.name" name="name"/>
             </div>
 
             <div class="product-file__item">
               <label class="product-file__item-label">
-                Ảnh & video đại diện shop
+                Ảnh đại diện shop
               </label>
               <div class="product-file__upload">
-                <img src="https://cf.shopee.vn/file/6c1c9adf0bc9d0f0c20a18d1f5e8667d" alt="" class="product-file__upload-img">
-                <input type="file" id="file-image" class="product-file__upload-btn" placeholder="Tải hình ảnh">
+                <img src="{{image}}" alt="" class="product-file__upload-img">
+                <input (change)="onSelectImage($event)" type="file" id="file-image" class="product-file__upload-btn" placeholder="Tải hình ảnh">
                 <label for="file-image" class="product-file__upload-btn-label">Tải hình ảnh</label>
                 <label for="file-image" class="product-file__upload-label">Chọn hình ảnh & video từ trong máy</label>
               </div>
@@ -169,13 +162,13 @@
               <label for="product-name" class="product-edit__item-label">
                 Mô tả shop
               </label>
-              <input type="text" id="product-name" class="product-edit__item-input product-edit__item-input-desc" placeholder="Nhập tên sản phẩm">
+              <input type="text" id="product-name" class="product-edit__item-input product-edit__item-input-desc" [(ngModel)]="shop.description" name="description"/>
             </div>
 
           </div>
 
-          <button type="button" class="btn user-edit__btn-save" id="">Lưu thông tin</button>
-        </div>
+          <button type="submit" class="btn user-edit__btn-save" id="" (click)="handlerPatchDetailShop()">Lưu thông tin</button>
+        </form>
       </div>
     </div>
   </div>

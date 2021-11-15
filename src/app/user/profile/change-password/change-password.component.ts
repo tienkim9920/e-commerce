@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import * as bcrypt from 'bcryptjs';
 import API from 'src/app/http/http';
@@ -17,14 +16,15 @@ export class ChangePasswordComponent implements OnInit {
   inforAPI: any;
   constructor(http: HttpClient) {
     this.http = http;
-   }
+  }
 
   ngOnInit(): void {
   }
- async onSubmit(data: any){
+  async onSubmit(data: any){
     this.inforAPI=""
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(JSON.parse(localStorage.getItem('jwt')!).jwt);
+    console.log(decodedToken)
 
     const isValid = await this.validateAll(data,decodedToken);
     if (!isValid) return
@@ -33,10 +33,9 @@ export class ChangePasswordComponent implements OnInit {
       id:decodedToken.user._id,
       newPassword: data.newPassword,
     }
-    this.http.post<any>(API.POST_CHANGE_PASSWORD(),  body).subscribe(data => {
+    this.http.post<any>(API.POST_CHANGE_PASSWORD(), body).subscribe(data => {
       this.inforAPI=data.msg
     })
-
   }
 
   async validateAll(data:any,decodedToken:any){

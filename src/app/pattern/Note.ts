@@ -1,3 +1,4 @@
+import API from "../http/http"
 
 class Note {
 
@@ -23,7 +24,17 @@ class Note {
     }
 
     // POST_NOTE
-
+    async POST_NOTE(){
+        const res = await fetch(API.POST_NOTE(), {
+            method: 'POST',
+            body: JSON.stringify(this.toJSON()),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        const data = await res.json()
+        return data.result
+    }
 }
 
 export default Note

@@ -1,7 +1,7 @@
 <div class=" layout-list-voucher">
     <app-query [filterOrder]="filterOrder" [filter]="filter"></app-query>
     <div class="container row scrollVoucher">
-        <div class="col-12 col-lg-6 my-3 content-voucher">
+        <div class="col-12 col-lg-6 my-3 content-voucher" *ngFor="let item of coupon">
             <mat-card class="example-card">
                 <div class="d-flex">
                     <div class="image-voucher">
@@ -9,77 +9,12 @@
                     </div>
                     <div class="title-voucher mt-2 ms-3 d-flex flex-column">
                         <mat-card-title class="title">
-                            Giảm đơn hàng 10%
+                            Giảm {{ item.coupId.discount}} cho đơn hàng {{ item.coupId.limit | currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}
+
                         </mat-card-title>
-                        <div><span class="ticket unactive">Đã sử dụng</span></div>
-                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
-                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
-                    </div>
-                </div>
-            </mat-card>
-        </div>
-        <div class="col-12 col-lg-6 my-3 content-voucher">
-            <mat-card class="example-card">
-                <div class="d-flex">
-                    <div class="image-voucher">
-                        <img mat-card-md-image src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg">
-                    </div>
-                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
-                        <mat-card-title class="title">
-                            Giảm đơn hàng 10%
-                        </mat-card-title>
-                        <div><span class="ticket unactive">Đã sử dụng</span></div>
-                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
-                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
-                    </div>
-                </div>
-            </mat-card>
-        </div>
-        <div class="col-12 col-lg-6 my-3 content-voucher">
-            <mat-card class="example-card">
-                <div class="d-flex">
-                    <div class="image-voucher">
-                        <img mat-card-md-image src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg">
-                    </div>
-                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
-                        <mat-card-title class="title">
-                            Giảm đơn hàng 10%
-                        </mat-card-title>
-                        <div><span class="ticket active">Chưa sử dụng</span></div>
-                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
-                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
-                    </div>
-                </div>
-            </mat-card>
-        </div>
-        <div class="col-12 col-lg-6 my-3 content-voucher">
-            <mat-card class="example-card">
-                <div class="d-flex">
-                    <div class="image-voucher">
-                        <img mat-card-md-image src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg">
-                    </div>
-                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
-                        <mat-card-title class="title">
-                            Giảm đơn hàng 10%
-                        </mat-card-title>
-                        <div><span class="ticket active">Chưa sử dụng</span></div>
-                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
-                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
-                    </div>
-                </div>
-            </mat-card>
-        </div>
-        <div class="col-12 col-lg-6 my-3 content-voucher">
-            <mat-card class="example-card">
-                <div class="d-flex">
-                    <div class="image-voucher">
-                        <img mat-card-md-image src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg">
-                    </div>
-                    <div class="title-voucher mt-2 ms-3 d-flex flex-column">
-                        <mat-card-title class="title">
-                            Giảm đơn hàng 10%
-                        </mat-card-title>
-                        <div><span class="ticket unactive">Đã sử dụng</span></div>
+                        <div>
+                            <span [ngClass]="item.status?'ticket unactive':'ticket active'">{{item.status?'Đã sử dụng':'Chưa sử dụng'}}</span>
+                        </div>
                         <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
                         <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
                     </div>

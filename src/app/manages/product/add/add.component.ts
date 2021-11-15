@@ -32,7 +32,7 @@ export class AddComponent implements OnInit {
     this.product.categoryId = this.category._id
     this.product.discount = 5
     this.product.like = 10
-    this.product.comments = ['haha','hoho']
+    this.product.comments = 5
     this.product.expiredTime = 10
 
   }

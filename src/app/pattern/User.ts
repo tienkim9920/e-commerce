@@ -248,12 +248,21 @@ class User {
 
   }
 
-
   // Gọi API kiểm tra code của SHOP
   async checkingCode(code: any) {
     const res = await fetch(API.GET_COUP_CODE(code))
     const data = await res.json()
     return data
+  }
+
+  // Kiểm tra xem thg user nó đã lưu coupon vào hay chưa
+  checkingExistCoupon(_id: any){
+
+    const checking = this.coupon.some((element: any) => {
+      return element.userId === this._id && element.coupId._id === _id
+    })
+
+    return checking
   }
 
   resetUser() {

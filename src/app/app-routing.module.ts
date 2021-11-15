@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   { path: 'forgetpassword', loadChildren: () => import('./forget-password/forget-password.module').then(m => m.ForgetPasswordModule) },
-  { path: 'search', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
+  { path: 'product', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
 ];
 

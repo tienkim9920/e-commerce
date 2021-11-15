@@ -8,6 +8,15 @@ export class CartService {
 
   constructor() { }
 
+  // RESET
+  resetLocalStorage(){
+    localStorage.setItem('carts', JSON.stringify([]))
+    localStorage.setItem('another', JSON.stringify([]))
+    localStorage.setItem('totalPayment', JSON.stringify({}))
+    localStorage.setItem('coupon', JSON.stringify([]))
+    localStorage.setItem('ticket', JSON.stringify({}))
+  }
+
   // function get toàn bộ giỏ hàng của mình
   getMyCarts(){
 
@@ -56,7 +65,7 @@ export class CartService {
     let result = {}
 
     if (localStorage.getItem('jwt') !== null){
-        result = JSON.parse(localStorage.getItem('jwt') || '{}')
+      result = JSON.parse(localStorage.getItem('jwt') || '{}')
     }else{
       localStorage.setItem('jwt', JSON.stringify({}))
     }
@@ -94,7 +103,7 @@ export class CartService {
     let result = {}
 
     if (localStorage.getItem('ticket') !== null){
-        result = JSON.parse(localStorage.getItem('ticket') || '{}')
+      result = JSON.parse(localStorage.getItem('ticket') || '{}')
     }else{
       localStorage.setItem('ticket', JSON.stringify({}))
     }
@@ -106,6 +115,15 @@ export class CartService {
   getPermission(){
     let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
     return token.permission
+  }
+
+  getAnotherRoom(){
+    let another: any = JSON.parse(localStorage.getItem('anotherRoom') || '{}')
+    return another
+  }
+
+  setAnotherRoom(room: any){
+    localStorage.setItem('anotherRoom', JSON.stringify(room))
   }
 
   setCoupon(coupon: any){
@@ -132,6 +150,10 @@ export class CartService {
     let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
     token.image = image
     localStorage.setItem('jwt', JSON.stringify(token))
+  }
+
+  setAnotherCart(cart: any){
+    localStorage.setItem('another', JSON.stringify(cart))
   }
 
   // cập nhật total payment
@@ -274,32 +296,44 @@ export class CartService {
     }
   }
 
-    deleteProduct (index: any) {
-        //Lấy dữ diệu có sẵn trong state
-        const delete_cart = JSON.parse(localStorage.getItem('carts') || '[]')
+  deleteProduct (index: any) {
+    //Lấy dữ diệu có sẵn trong state
+    const delete_cart = JSON.parse(localStorage.getItem('carts') || '[]')
 
-        //Xóa theo vị trí
-        delete_cart.splice(index, 1)
+    //Xóa theo vị trí
+    delete_cart.splice(index, 1)
 
-        localStorage.setItem('carts', JSON.stringify(delete_cart))
+    localStorage.setItem('carts', JSON.stringify(delete_cart))
 
-        this.TotalPayment()
-    }
+    this.TotalPayment()
+  }  
 
-    updateProduct(data: any) {
-        const data_update_cart = data
+  deleteProductAnother (index: any) {
+    //Lấy dữ diệu có sẵn trong state
+    const delete_cart = JSON.parse(localStorage.getItem('another') || '[]')
 
-        const update_cart = JSON.parse(localStorage.getItem('carts') || '[]')
+    //Xóa theo vị trí
+    delete_cart.splice(index, 1)
 
-        const index = update_cart.findIndex((value: any) => {
-            return value.productId === data_update_cart.productId
-        })
+    localStorage.setItem('another', JSON.stringify(delete_cart))
 
-        update_cart[index].count = parseInt(data_update_cart.count)
+    this.TotalPayment()
+  }  
 
-        localStorage.setItem('carts', JSON.stringify(update_cart))
+  updateProduct(data: any) {
+    const data_update_cart = data
 
-        this.TotalPayment()
-    }
+    const update_cart = JSON.parse(localStorage.getItem('carts') || '[]')
+
+    const index = update_cart.findIndex((value: any) => {
+        return value.cartId === data_update_cart.cartId
+    })
+
+    update_cart[index].count = parseInt(data_update_cart.count)
+
+    localStorage.setItem('carts', JSON.stringify(update_cart))
+
+    this.TotalPayment()
+  }  
 
 }

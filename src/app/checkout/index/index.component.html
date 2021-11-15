@@ -33,9 +33,33 @@
                     <tr>
                         <td><img class="img-body-cart" src="{{ item.image }}" alt=""> &nbsp; {{ item.name }}</td>
                         <td>{{ item.size }}</td>
-                        <td>{{ item.price | currency: 'VND' }}</td>
+                        <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
                         <td>{{ item.count }}</td>
-                        <td style="font-family: 'Nunito Sans', sans-serif">{{ item.price * item.count | currency: 'VND' }}</td>
+                        <td style="font-family: 'Nunito Sans', sans-serif">{{ item.price * item.count | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="body-cart" *ngFor="let item of anotherCarts; index as i">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Người giao dịch</th>
+                        <th><i class="fa fa-institution"></i> {{ item.shopId.name }}</th>
+                        <th>Kích thước</th>
+                        <th>Đơn giá</th>
+                        <th>Số lương</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ item.fullname }}</td>
+                        <td><img class="img-body-cart" src="{{ item.image }}" alt=""> &nbsp; {{ item.name }}</td>
+                        <td>{{ item.size }}</td>
+                        <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                        <td>{{ item.count }}</td>
+                        <td style="font-family: 'Nunito Sans', sans-serif">{{ item.price * item.count | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -44,10 +68,8 @@
     <div class="checkout-payment">
         <div class="header-checkout-payment">
             <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.4rem; margin-top: .6rem;">Phương thức thanh toán: </div>
-            <div [ngClass]="activePayment === 0 ? 'payment-border active' : 'payment-border'" 
-                (click)="changePayment(0)">Paypal</div>
-            <div [ngClass]="activePayment === 1 ? 'payment-border active' : 'payment-border'" 
-                (click)="changePayment(1)">Khi nhận hàng</div>
+            <div *ngFor="let item of thamSo.listPay" [ngClass]="activePayment.payment === item.payment ? 'payment-border active' : 'payment-border'" 
+                (click)="changePayment(item)">{{ item.name }}</div>
         </div>
         <div class="body-checkout-payment">
             <div *ngIf="ticket._id || coupon" class="width-promotion">
@@ -72,7 +94,7 @@
                         <div><img class="icon-ticket" src="https://salt.tikicdn.com/cache/128x128/ts/upload/7c/57/4c/e812788b606b9efaa0b118fd85e79490.jpg" alt=""></div>
                         <div class="center-body-ticket ms-2 mt-1">
                             <div *ngIf="item._id">Shop {{ item.shopId.name  }}</div>
-                            <div *ngIf="item._id">Giảm giá {{ item.discount | currency: 'VND' }}</div>
+                            <div *ngIf="item._id">Giảm giá {{ item.discount | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
                             <div *ngIf="item._id" class="mt-1"><span class="ticket active">Mã: {{ item.code }}</span></div>
                         </div>
                     </div>
@@ -84,17 +106,21 @@
             <div class="width-checkout-payment">
                 <h4 class="h4-order-cart">Tiến Hành thanh toán</h4>
                 <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Tổng tiền hàng: 
-                    <span class="price-checkout">{{ totalPayment.total |  currency: 'VND' }}</span></div>
+                    <span class="price-checkout">{{ totalPayment.total |  currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</span></div>
                 <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Khuyến mãi: 
-                    <span class="price-checkout">{{ totalPayment.total - totalPayment.payment |  currency: 'VND' }}</span></div>
+                    <span class="price-checkout">{{ totalPayment.total - totalPayment.payment |  currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</span></div>
                 <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Phí vận chuyển: 
-                    <span class="price-checkout">{{ feeShip |  currency: 'VND' }}</span></div>
+                    <span class="price-checkout">{{ feeShip |  currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</span></div>
                 <div class="mt-3 d-flex justify-content-between" style="font-size: 1rem;">Tổng thanh toán: 
-                    <span class="price-checkout" style="font-size: 1.7rem; color: #1A94FF;">{{ sumPayment |  currency: 'VND' }}</span></div>
-                <div *ngIf="activePayment === 1" class="btn-checkout-payment mt-3">Thanh Toán</div>
-                <div *ngIf="activePayment === 0" class="mt-3">
+                    <span class="price-checkout" style="font-size: 1.7rem; color: #1A94FF;">{{ sumPayment |  currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</span></div>
+                <div *ngIf="activePayment.payment === 'paypal' && address && phone && location" class="mt-3">
                     <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                 </div>
+                <div *ngIf="activePayment.payment === 'offline' && address && phone && location" 
+                    class="btn-checkout-payment mt-3" (click)="ThanhToan()">
+                    Thanh Toán
+                </div>
+                <div *ngIf="!address || !phone || !location" class="mt-3 alert alert-danger">Vui lòng nhập địa chỉ của bạn trước khi thanh toán!</div>
             </div>    
         </div>
     </div>
@@ -157,5 +183,16 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="wrapper-loading">
+    <div class="sk-chase">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
     </div>
 </div>
