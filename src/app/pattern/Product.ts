@@ -63,7 +63,8 @@ class Product {
   }
     // POST_PRODUCT
     async POST_PRODUCT(){
-      const res = await fetch(API.POST_PRODUCT(), {
+      console.log(this.toJSON())
+        const res = await fetch(API.POST_PRODUCT(), {
           method: 'POST',
           body: JSON.stringify(this.toJSON()),
           headers: {

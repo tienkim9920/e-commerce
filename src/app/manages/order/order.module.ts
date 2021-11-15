@@ -1,30 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './order.component';
 import { AllComponent } from './all/all.component';
-import { DetailComponent } from './detail/detail.component';
-import { PendingComponent } from './pending/pending.component';
-import { ShippingComponent } from './shipping/shipping.component';
-import { CompletedComponent } from './completed/completed.component';
-import { CancelComponent } from './cancel/cancel.component';
+import { PaginationModule } from 'src/app/shared/pagination/pagination.module';
 
 
 
 @NgModule({
   declarations: [
     OrderComponent,
-    AllComponent,
-    DetailComponent,
-    PendingComponent,
-    ShippingComponent,
-    CompletedComponent,
-    CancelComponent,
+    AllComponent
+
   ],
   imports: [
     CommonModule,
-    OrderRoutingModule
+    OrderRoutingModule,
+    MatTabsModule,
+    PaginationModule,
   ]
 })
 export class OrderModule { }

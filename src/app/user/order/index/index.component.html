@@ -1,8 +1,8 @@
 <div>
     <app-query [filter]="filter" [filterOrder]="filterOrder"></app-query>
 
-    <div class="content-product-wrap-table container">
-        <table class="content-product-table">
+    <div class="container table-responsive my-4">
+        <table class="content-product-table ">
             <thead>
                 <th>Mã hóa đơn</th>
                 <th>Tên shop</th>
@@ -10,7 +10,7 @@
                 <th>Tình trạng</th>
                 <th>Thanh toán</th>
                 <th>Ngày đặt hàng</th>
-                <th>Hành động</th>
+                <th>Ngày đặt hàng</th>
             </thead>
             <tbody *ngFor="let item of order;index as i;">
                 <tr>

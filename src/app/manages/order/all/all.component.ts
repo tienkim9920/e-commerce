@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, Input, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-all',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all.component.css']
 })
 export class AllComponent implements OnInit {
+  @Input() params: any
+  @Input()order:any = []
+  @Input()orderLength:Number = 0;
+  @Input()filter:any;
 
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit(){
+
+
   }
 
 }
