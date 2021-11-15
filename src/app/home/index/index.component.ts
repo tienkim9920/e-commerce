@@ -25,7 +25,7 @@ export class IndexComponent implements OnInit {
 
   listDiscount: any = []
 
-  page: Number = 1
+  page: number = 1
 
   constructor() {
 
@@ -37,6 +37,10 @@ export class IndexComponent implements OnInit {
     this.thamSo.getHomeProduct(this.page)
   }
 
+  changePage(){
+    this.page = this.page + 1
+    this.thamSo.getHomeProduct(this.page)
+  }
 
   public scrollLeft(): void {
     this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft - 1250), behavior: 'smooth' });

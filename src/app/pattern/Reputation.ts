@@ -34,7 +34,7 @@ class Reputation {
 
   // DELETE_REPUTATION
   async DELETE_REPUTATION(){
-    const res = await fetch(API.DELETE_REPUTATION(this.id), {
+    const res = await fetch(API.DELETE_REPUTATION(this.userId, this.shopId), {
         method: 'DELETE',
         body: JSON.stringify(this.toJSON()),
         headers: {

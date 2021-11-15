@@ -50,7 +50,7 @@
 }
 
 .hover-detail:hover .image-newfeed-body{
-    filter: opacity(.7) blur(1px);
+    filter: brightness(70%);
 }
 
 .icon-eye{

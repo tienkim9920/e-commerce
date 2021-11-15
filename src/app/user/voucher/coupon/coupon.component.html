@@ -9,14 +9,13 @@
                     </div>
                     <div class="title-voucher mt-2 ms-3 d-flex flex-column">
                         <mat-card-title class="title">
-                            Giảm {{ item.coupId.discount}} cho đơn hàng {{ item.coupId.limit | currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}
+                            Giảm {{ item.coupId.discount | currency:'VND':'VNĐ':'1.0-0':'vi-VN'}} cho đơn hàng {{ item.coupId.limit | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}
 
                         </mat-card-title>
                         <div>
                             <span [ngClass]="item.status?'ticket unactive':'ticket active'">{{item.status?'Đã sử dụng':'Chưa sử dụng'}}</span>
                         </div>
-                        <div class="date-inspire mt-2">Tất cả hình thức thanh toán</div>
-                        <div class="date-inspire">Hạn sử dụng: Không thời hạn</div>
+                        <div class="date-inspire mt-2">Hạn sử dụng: Không thời hạn</div>
                     </div>
                 </div>
             </mat-card>

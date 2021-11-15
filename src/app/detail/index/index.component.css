@@ -97,6 +97,15 @@
     outline: none;
 }
 
+.btn-addcart.stock{
+    background-color: #e2e2e2;
+    color: #fff;
+}
+
+.btn-addcart.stock:hover{
+    background-color: #d6d6d6;
+}
+
 .btn-addcart{
     display: flex;
     justify-content: center;

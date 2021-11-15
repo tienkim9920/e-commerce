@@ -79,6 +79,12 @@ export class CartService {
     return token.userId
   }
 
+  //function get subjectId
+  getSubjectId(){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    return token.subjectId
+  }
+
   // function get name
   getName(){
     let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
@@ -306,7 +312,7 @@ export class CartService {
     localStorage.setItem('carts', JSON.stringify(delete_cart))
 
     this.TotalPayment()
-  }  
+  }
 
   deleteProductAnother (index: any) {
     //Lấy dữ diệu có sẵn trong state
@@ -318,7 +324,7 @@ export class CartService {
     localStorage.setItem('another', JSON.stringify(delete_cart))
 
     this.TotalPayment()
-  }  
+  }
 
   updateProduct(data: any) {
     const data_update_cart = data
@@ -334,6 +340,6 @@ export class CartService {
     localStorage.setItem('carts', JSON.stringify(update_cart))
 
     this.TotalPayment()
-  }  
+  }
 
 }

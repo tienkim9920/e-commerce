@@ -8,11 +8,13 @@ $(function () {
     });
 
     // init or load map
-    function initMap() {
+    async function initMap() {
+
         var myLatLng = {
-            lat: 13.7653693,
-            lng: 109.2010794,
+            lat: 10.7760195,
+            lng: 106.6652137,
         };
+
         map = new google.maps.Map(document.getElementById("map"), {
         zoom: 16,
         center: myLatLng,

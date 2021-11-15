@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
   user = new User(JSON.parse(localStorage.getItem('jwt')!).userId)
   order=Array<Order>();
   orderLength:Number = 0;
-  filter:any = { page: 1, pageSize: 4, query: this.filterOrder[0] , search: ""}
+  filter:any = { page: 1, pageSize: 6, query: this.filterOrder[0] , search: ""}
 
 
   constructor(private route: ActivatedRoute) {}

@@ -8,6 +8,7 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 
 
+
 @NgModule({
   declarations: [
     ProductComponent,
@@ -17,7 +18,7 @@ import { EditComponent } from './edit/edit.component';
   imports: [
     CommonModule,
     ProductRoutingModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class ProductModule { }

@@ -11,21 +11,21 @@ class Product {
     shopId: any
     categoryId: any
     name: any
+    price: any
     description: any
     image: any
-    price: any
     discount: any
-    count: any
     like: any
     comment: any
     expiredTime: any
+    stock: any
     likes: any = []
     comments: any = []
     option: any = []
     detail: any = []
 
     constructor (_id: any, shopId: any, categoryId: any, name: any, price: any, description: any, image: any,
-        discount: any, count: any, like: any, comment: any, expiredTime: any) {
+        discount: any, like: any, comment: any, expiredTime: any) {
         this._id = _id
         this.shopId = shopId
         this.categoryId = categoryId
@@ -34,9 +34,9 @@ class Product {
         this.description = description
         this.image = image
         this.discount = discount
-        this.count = count
         this.like = like
         this.comment = comment
+        this.stock = true
         this.expiredTime = expiredTime
     }
 
@@ -49,9 +49,9 @@ class Product {
             image: this.image,
             description: this.description,
             discount: this.discount,
-            count: this.count,
             like: this.like,
             comment: this.comment,
+            stock: this.stock,
             expiredTime: this.expiredTime
         }
     }
@@ -60,24 +60,11 @@ class Product {
     async postDetail(detail: Detail) {
       const data = await detail.POST_DETAIL()
       this.detail = [...this.detail, data]
-    }
-
-    // POST_PRODUCT_SHOP
-    async POST_PRODUCT_SHOP(){
-      const res = await fetch(API.POST_PRODUCT(), {
-          method: 'POST',
-          body: JSON.stringify(this.toJSON()),
-          headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-          }
-      })
-      const data = await res.json()
-      return data.result
-    }
-
+  }
     // POST_PRODUCT
     async POST_PRODUCT(){
-      const res = await fetch(API.POST_PRODUCT(), {
+      console.log(this.toJSON())
+        const res = await fetch(API.POST_PRODUCT(), {
           method: 'POST',
           body: JSON.stringify(this.toJSON()),
           headers: {
@@ -103,15 +90,15 @@ class Product {
 
     // DELETE_PRODUCT
     async DELETE_PRODUCT(id: any){
-      const res = await fetch(API.DELETE_PRODUCT(id), {
-          method: 'DELETE',
-          body: JSON.stringify(this.toJSON()),
-          headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-          }
-      })
-      const data = await res.json()
-      return data.result
+          const res = await fetch(API.DELETE_PRODUCT(id), {
+              method: 'DELETE',
+              body: JSON.stringify(this.toJSON()),
+              headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+              }
+          })
+          const data = await res.json()
+          return data.result
     }
 
     // DELETE_PRODUCT
@@ -128,9 +115,9 @@ class Product {
         this.description = data.description
         this.image = data.image
         this.discount = data.discount
-        this.count = data.count
         this.like = data.like
         this.comment = data.comment
+        this.stock = data.stock
         this.expiredTime = data.expiredTime
     }
 
@@ -142,10 +129,11 @@ class Product {
     }
 
     // GET List Comments Product by productId
-    async getCommentProduct(){
-        const res = await fetch(API.GET_COMMENT_PRODUCT(this._id))
+    async getCommentProduct(productId: any){
+        const res = await fetch(API.GET_COMMENT_PRODUCT(productId))
         const data = await res.json()
         this.comments = data.reverse()
+        console.log(this.comments)
     }
 
     // POST List Comment Product by productId
@@ -155,8 +143,8 @@ class Product {
     }
 
     // GET List Option
-    async getOptionProduct(){
-        const res = await fetch(API.GET_OPTION_PRODUCT(this._id))
+    async getOptionProduct(productId: any){
+        const res = await fetch(API.GET_OPTION_PRODUCT(productId))
         const data = await res.json()
         this.option = data
     }
@@ -182,13 +170,24 @@ class Product {
     }
 
     async patchLike(){
+        this.like += 1
         await fetch(API.PATCH_LIKE(this._id))
-        this.like = this.like + 1
     }
 
     async patchDislike(){
+        this.like -= 1
         await fetch(API.PATCH_DISLIKE(this._id))
-        this.like = this.like - 1
+    }
+
+    async checkingUserLikeProduct(userId: any){
+        const res = await fetch(API.CHECKING_LIKE_USER(userId, this._id))
+        const data = await res.json()
+        return data
+    }
+
+    async patchCountComment(){
+        this.comment += 1
+        await fetch(API.PATCH_COUNT_COMMENT(this._id))
     }
 
 }

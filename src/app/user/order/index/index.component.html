@@ -1,8 +1,8 @@
 <div>
     <app-query [filter]="filter" [filterOrder]="filterOrder"></app-query>
 
-    <div class="content-product-wrap-table container">
-        <table class="content-product-table">
+    <div class="container table-responsive my-4">
+        <table class="content-product-table ">
             <thead>
                 <th>Mã hóa đơn</th>
                 <th>Tên shop</th>
@@ -10,13 +10,13 @@
                 <th>Tình trạng</th>
                 <th>Thanh toán</th>
                 <th>Ngày đặt hàng</th>
-                <th>Hành động</th>
+                <th>Ngày đặt hàng</th>
             </thead>
             <tbody *ngFor="let item of order;index as i;">
                 <tr>
                     <td>{{item._id}}</td>
                     <td>
-                        <a [routerLink]="['/shop/{{item.shopId._id}}']">{{item.shopId.name}}</a>
+                        <a [routerLink]="['/shop', item.shopId._id]">{{item.shopId.name}}</a>
                     </td>
                     <td data-label="Tổng tiền">{{item.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
                     <td data-label="Tổng tiền" [ngSwitch]="item.status">
@@ -26,8 +26,8 @@
                         <p *ngSwitchCase="4">Đã giao</p>
                         <p *ngSwitchCase="5">Đã hủy</p>
                     </td>
-                    <td data-label="Loại sản phẩm">{{item.payId.payment}}</td>
-                    <td data-label="Giá thành">{{item.createTime|date:"dd/MM/YYYY, HH:mm:ss"}}</td>
+                    <td>{{ item.payId.payment }}</td>
+                    <td>{{ item.createTime }}</td>
 
                     <td>
                         <div class="content-product-table-action">

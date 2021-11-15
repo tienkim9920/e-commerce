@@ -12,7 +12,7 @@ export class AllComponent implements OnInit {
 
   shop = new Shop('', '', '', '', '', 0, '', '') // Để hiển thị
 
-  product = new Product('', '', '', '', '', [], 0, 0, 0, 0, 0, 0) // Để thêm
+  product = new Product('', '', '', '', '', [], 0, 0, 0, 0, 0) // Để thêm
 
 
   constructor(private cartService: CartService) {
@@ -38,5 +38,5 @@ export class AllComponent implements OnInit {
     await this.shop.deleteProduct(product)
   }
 
-  
+
 }

@@ -31,7 +31,7 @@
 }
 
 .section-item {
-    border-bottom: 3px solid rgb(247, 247, 247);
+    border-top: 3px solid rgb(247, 247, 247);
 }
 
 input.example-right-align::-webkit-outer-spin-button,

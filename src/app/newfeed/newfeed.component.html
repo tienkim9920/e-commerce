@@ -8,22 +8,25 @@
       [infiniteScrollThrottle]="50"
       (scrolled)="onScrollDown()"
     >
-    <div class="group-product-shop" *ngFor="let item of listNewFeed">
+    <div class="group-product-shop" *ngFor="let item of thamSo.listNewfeed">
         <div class="header-newfeed">
-            <div><img class="image-newfeed-header" src="https://cf.shopee.vn/file/8e96590a5d24415556a3c499129c197b_tn" alt=""></div>
+            <div>
+                <img *ngIf="item.shopId.image" class="image-newfeed-header" src="{{ item.shopId.image }}" alt="">
+                <img *ngIf="!item.shopId.image" class="image-newfeed-header" src="../../assets/avt.jpg" alt="">
+            </div>
             <div class="mt-1 ms-2">
-                <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">Shop Young Green</div>
-                <div style="font-size: .9rem;">Ngày 19/11/2021</div>
+                <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">{{ item.shopId.name }}</div>
+                <div style="font-size: .9rem;">{{ item.shopId.createTime }}</div>
             </div>
         </div>
         <div class="body-newfeed">
-            <div class="pb-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At laudantium earum error, dignissimos vitae nisi modi placeat odit explicabo animi quaerat est nostrum minus autem officia eum nulla corporis cupiditate?</div>
+            <div class="pb-3">{{ item.description }}</div>
             <div class="hover-detail">
-                <img class="image-newfeed-body" src="https://cf.shopee.vn/file/982288c945924c88183d6cc2149484e3_tn" alt="">
+                <img class="image-newfeed-body" src="{{ item.image[0] }}" alt="">
                 <div class="title-new-product">
                     Mới nhất
                 </div>
-                <div [routerLink]="['/detail', 123]">
+                <div [routerLink]="['/detail', item._id]">
                     <i class="fa fa-eye icon-eye"></i>
                 </div>
             </div>
@@ -31,18 +34,18 @@
                 <div>
                     <i class="fa fa-heart text-danger"
                     style="font-size: 22px; cursor: pointer;"></i>
-                    <span class="ms-1" style="font-family: 'Nunito Sans', sans-serif; font-size: 17px;">30 lượt</span>
+                    <span class="ms-1" style="font-family: 'Nunito Sans', sans-serif; font-size: 17px;">{{ item.like }} lượt</span>
                 </div>
                 <div class="ms-4">
                     <i class="fa fa-comments-o"
                     style="font-size: 22px; cursor: pointer; color: #323232;"></i>
-                    <span class="ms-1" style="font-family: 'Nunito Sans', sans-serif; font-size: 17px;">30 lượt</span>
+                    <span class="ms-1" style="font-family: 'Nunito Sans', sans-serif; font-size: 17px;">{{ item.comment }} lượt</span>
                 </div>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-3">
-            <div>Sản phẩm: {{ item.product }}</div>
-            <div>Giá: {{ item.price }}</div>
+            <div>Sản phẩm: {{ item.name }}</div>
+            <div>Giá: {{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
         </div>
     </div>
     <div *ngIf="loading">

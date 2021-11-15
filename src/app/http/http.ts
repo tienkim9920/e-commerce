@@ -134,13 +134,21 @@ const API = {
       return url + `/reputation`
     },
 
-    DELETE_REPUTATION: (id: any) => {
-      return url + `/reputation/${id}`
+    DELETE_REPUTATION: (userId: any, shopId: any) => {
+      return url + `/reputation/delete?userId=${userId}&shopId=${shopId}`
+    },
+
+    CHECKING_REPUTATION: (userId: any, shopId: any) => {
+      return url + `/reputation/checking?userId=${userId}&shopId=${shopId}`
     },
 
     // Newfeed
     POST_NEWFEED:()=>{
       return url + `/newfeed`
+    },
+
+    GET_PAGINATION_NEWFEED: (page: any) => {
+      return url + `/product/newfeed/pagination?page=${page}`
     },
 
 
@@ -153,6 +161,10 @@ const API = {
     // Option
     POST_OPTION: ()=>{
       return url + `/option`
+    },
+
+    PATCH_OPTION: (_id: any) => {
+      return url + `/option/${_id}`
     },
 
 
@@ -173,6 +185,9 @@ const API = {
       return url + `/order/user/${userId}`
     },
 
+    GET_ORDER_SHOP:(userId: any,query: any) => {
+      return url + `/order/shop/${userId}${query}`
+    },
 
 
     // Detail
@@ -227,6 +242,16 @@ const API = {
       return url + `/product/${id}`
     },
 
+    GET_PRODUCT_SEARCH: (word: any) => {
+      return url + `/product/search/word?word=${word}`
+    },
+
+    PATCH_COUNT_COMMENT: (_id: any) => {
+      return url + `/product/comment/${_id}`
+    },
+
+
+
     // Like
     GET_LIKE_PRODUCT: (productId: any) => {
         return url + `/like/list/productId?productId=${productId}`
@@ -240,8 +265,8 @@ const API = {
         return url + `/like`
     },
 
-    DELETE_LIKE: (id: any)=>{
-        return url + `/like/${id}`
+    DELETE_LIKE: (userId: any, productId: any)=>{
+        return url + `/like/delete?userId=${userId}&productId=${productId}`
     },
 
 
@@ -303,7 +328,7 @@ const API = {
     },
 
     GET_COUP_SHOP: (shopId: any) => {
-      return url + `/coup?shopId=${shopId}`
+      return url + `/coup/coup?shopId=${shopId}`
     },
 
     POST_COUP_SHOP: () => {
@@ -326,6 +351,9 @@ const API = {
       return url + `/shop/detail/${userId}`
     },
 
+    GET_PAGINATION_PRODUCT_SHOP: (page: any, shopId: any) => {
+      return url + `/product/shop/pagination?page=${page}&shopId=${shopId}`
+    },
 
     // Category
     GET_CATEGORY: () => {
@@ -333,12 +361,16 @@ const API = {
     },
 
     //Room
-    GET_ROOM_SHOP: (shopId:any)=>{
+    GET_ROOM_SHOP: (shopId: any)=>{
       return url + `/room/list/shopId/${shopId}`
     },
 
+    GET_CHECKING_ROOM: (clientId: any, shopId: any) => {
+      return url + `/room/checking?clientId=${clientId}&shopId=${shopId}`
+    },
+
     //Client
-    GET_ROOM_CLIENT:(clientId: any)=>{
+    GET_ROOM_CLIENT: (clientId: any)=>{
       return url + `/room/list/clientId/${clientId}`
     },
 
@@ -346,8 +378,8 @@ const API = {
       return url + `/client`
     },
 
-    GET_DETAIL_CLIENT:(userID: any)=>{
-      return url + `/client/${userID}`
+    GET_DETAIL_CLIENT:(_id: any)=>{
+      return url + `/client/${_id}`
     },
 
     PATCH_CLIENT_LIMIT: (userId: any) => {
@@ -370,6 +402,15 @@ const API = {
     // Note
     POST_NOTE: () => {
       return url + `/note`
+    },
+
+    // Checking
+    POST_CHECKING: () => {
+      return url + `/checking`
+    },
+
+    PATCH_CHECKING: (id: any) => {
+      return url + `/checking/${id}`
     }
 }
 

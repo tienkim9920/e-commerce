@@ -23,21 +23,14 @@ export class LoginComponent implements OnInit {
 
   async handlerSignIn(){
     
-    const checking = await this.user.signInUser()
+    const token = await this.user.signInUser()
 
-    if (!checking){
+    if (!token){
       this.error = true
       return
     }
 
-    const token = {
-      userId: checking.userId,
-      permission: checking.permission,
-      name: checking.name,
-      image: checking.image,
-      jwt: checking.jwt,
-      expiredTime: Date.now() + 600000
-    }
+    token.expiredTime = Date.now() + 600000
 
     this.cartService.setJWT(token)
     this.router.navigate(['/'])

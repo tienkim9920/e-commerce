@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/cart.service';
-import Shop from 'src/app/pattern/Shop';
-import Product from 'src/app/pattern/Product';
 import Category from 'src/app/pattern/Category';
+import Option from 'src/app/pattern/Option';
+import Product from 'src/app/pattern/Product';
 
 @Component({
   selector: 'app-add',
@@ -10,36 +9,71 @@ import Category from 'src/app/pattern/Category';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
+  option=new Option("", "","",0)
+  product= new Product("","","","","","",[],"","","","")
 
-  shop = new Shop('', '', '', '', '', 0, '', '') // Để hiển thị
+  category=new Category("")
+  listCategory=Array<Category>()
 
-  product = new Product('', '', '', '', '', [], 0, 0, 0, 0, 0, 0) // Để thêm
-
-  category = new Category('')
-
-
-  constructor(private cartService: CartService) {
-
-    this.shop.userId = cartService.getUserId()
-
-  }
+  constructor() {
+    this.product.option.push(this.option)
+   }
 
   async ngOnInit(): Promise<void> {
-
-    // Lấy address detail shop of user id
-    await this.shop.getDetailShopByUserId()
-    this.product.shopId = this.shop._id
-    this.product.categoryId = this.category._id
-    this.product.discount = 5
-    this.product.like = 10
-    this.product.comments = 5
-    this.product.expiredTime = 10
-
+    this.listCategory=await this.category.GET_CATEGORY();
   }
 
-  async handlerInsertAddress(){
-    this.shop.postProduct(this.product)
-    console.log(this.product)
+  removeOption(index: any): void {
+    this.product.option.splice(index,1)
   }
+
+  addOption(){
+    this.option=new Option("","","",0)
+    this.product.option.push(this.option)
+  }
+
+  onSelectImage(e: any){
+    if(this.product.image.length<4){
+      const files=e.target.files
+
+      if(files){
+        for(let i=0;i<File.length;i++){
+          let image={
+            url: "",
+            file:null,
+          }
+
+          image.file= files[i]
+          var reader= new FileReader();
+          reader.readAsDataURL(files[i])
+          reader.onload=(event:any) =>{
+
+            image.url=event.target.result
+
+            this.product.image.push(image)
+          }
+        }
+      }
+      e.srcElement.value=null
+    }
+  }
+
+  deleteImage(index: number) {
+    this.product.image.splice(index, 1)
+  }
+
+  onSubmitProduct(data: any){
+    this.product.POST_PRODUCT();
+  }
+
+   getFormData(object:any) {
+    const formData = new FormData();
+    Object.keys(object).forEach(key => formData.append(key, object[key]));
+    return formData;
+  }
+
+
+
+
 
 }

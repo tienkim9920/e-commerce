@@ -9,11 +9,13 @@ import Client from 'src/app/pattern/Client';
 export class SettingComponent implements OnInit {
 
   success: Boolean = false
-  client= new Client("","","","","");
+  client= new Client(JSON.parse(localStorage.getItem('jwt')!).subjectId, 
+    JSON.parse(localStorage.getItem('jwt')!).userId, "", "", "");
+    
   linkShare: string = ''
 
   constructor() {
-    this.client.getDetailClient(JSON.parse(localStorage.getItem('jwt')!).userId);
+    this.client.getDetailClient();
 
     setTimeout(() => {
       this.linkShare = `http://localhost:4200/cart/share/${this.client.code}`
