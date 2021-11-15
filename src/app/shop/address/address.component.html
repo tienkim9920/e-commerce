@@ -1,0 +1,12 @@
+<div class="layout-address container">
+    <div *ngFor="let item of shop.address" class="checkout-address">
+        <div class="color-checkout-address">
+            <i class="fa fa-map-marker" style="font-size: 30px;"></i>
+            Địa chỉ Cửa Hàng
+        </div>
+        <div class="flex-checkout-address">
+            <div>{{ item.address }}</div>
+            <div (click)="directAddress(item._id)" style="color: blue; cursor: pointer;">Chỉ Đường Cụ Thể</div>
+        </div>
+    </div>
+</div>

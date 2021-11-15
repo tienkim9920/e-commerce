@@ -1,0 +1,101 @@
+
+.layout-map{
+    margin: 2rem auto;
+    background-color: #fff;
+}
+
+.grid-checkout-map{
+    padding: 3rem 3rem;
+}
+
+.order-button-payment{
+    margin-top: 2rem;
+    
+}
+
+#from_places{
+    width: 100%;
+    padding: .4rem .6rem;
+    border: none;
+}
+
+#to_places{
+    width: 100%;
+    padding: .4rem .6rem;
+    border: none;
+    outline: none;
+    background-color: #fafafa;
+}
+
+#travel_mode{
+    width: 100%;
+    padding: .4rem .6rem;
+    border: none;
+    outline: none;
+    background-color: #fafafa;
+    color: gray;
+}
+
+.grid-btn-next-checkout{
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-button-payment{
+    padding: .6rem 1.4rem;
+    color: #fff;
+    background-color: #1c8ef1;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: .5px .5px 6px #f1f1f1;
+}
+
+.order-button-payment a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#result{
+    margin-top: 1.7rem;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.order-button-payment:hover{
+    background-color: #1a84e0;
+}
+
+.toast.show{
+	animation: moveIn .5s;
+}
+
+#map{
+    margin-top: 2rem;
+    height: 600px; 
+    width: 100%
+}
+
+@keyframes moveIn {
+	0%{
+		transform: translateX(300px);
+		opacity: 0;
+	}
+	100%{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+
+@media only screen and (max-width: 600px){
+    .grid-checkout-map{
+        grid-template-columns: 1fr;
+    }
+
+    #map{
+        height: 420px; 
+        width: 100%
+    }
+
+    .checkout-form-list{
+        padding: 2rem 1rem;
+    }
+}
