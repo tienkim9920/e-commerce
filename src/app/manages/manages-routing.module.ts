@@ -15,7 +15,7 @@ const routes: Routes = [
   },
 
   { path: 'product', component: ManagesComponent , loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
-  { path: 'order', component: ManagesComponent , loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
+  { path: 'order/:id', component: ManagesComponent , loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
   { path: 'setting', component: ManagesComponent , loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule) },
   { path: 'datacenter', component: ManagesComponent , loadChildren: () => import('./datacenter/datacenter.module').then(m => m.DatacenterModule) },
 ];

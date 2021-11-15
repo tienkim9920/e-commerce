@@ -6,3 +6,18 @@ a {
     color: blue;
     border-bottom: 1px solid blue;
 }
+
+.mat-tab-links {
+    justify-content: start;
+}
+
+.mat-tab-link {
+    font-size: 14px;
+    color: #333333;
+    opacity: 1!important;
+}
+
+.mat-tab-links .active {
+    color: #1274ca;
+    border-bottom: 1px solid #1274ca;
+}

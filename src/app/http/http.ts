@@ -173,6 +173,9 @@ const API = {
       return url + `/order/user/${userId}`
     },
 
+    GET_ORDER_SHOP:(userId: any,query: any) => {
+      return url + `/order/shop/${userId}${query}`
+    },
 
 
     // Detail

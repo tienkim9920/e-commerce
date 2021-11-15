@@ -36,6 +36,6 @@ class Option{
     const data = await res.json()
     return data.result
   }
-  
+
 }
 export default Option

@@ -228,6 +228,14 @@ class Shop{
     console.log(this.coup)
   }
 
+  async getOrderShop(userId:any,filter:any) {
+    const query ="?"+new URLSearchParams(filter)
+    const res = await fetch(API.GET_ORDER_SHOP(userId,query));
+    const data = await res.json();
+    this.order = data;
+    console.log(data);
+  }
+
 }
 
 export default Shop
