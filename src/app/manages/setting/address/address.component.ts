@@ -14,11 +14,12 @@ export class AddressComponent implements OnInit {
 
   address = new Address('', '', '', '', '', '', true) // Để thêm
 
+  newAddress : any
+
   constructor(private cartService: CartService) {
+
     // Lấy user id
     this.shop.userId = cartService.getUserId()
-
-
 
     setTimeout(() => {
       this.shop.getAddress()
@@ -27,6 +28,7 @@ export class AddressComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
     // Lấy detail shop of user id
     await this.shop.getDetailShopByUserId()
     this.address.shopId = this.shop._id
@@ -39,17 +41,13 @@ export class AddressComponent implements OnInit {
     console.log(this.address)
   }
 
-  async handlerPatchAddress(){
-    // this.shop.patchAddress(this.address)
-    console.log(this.address)
-  }
-
   async handlerDeleteAddress(address : Address){
     await this.shop.deleteAddress(address)
   }
 
-  async handlerGetDetailAddress(id : any){
-    this.address.getDetailAddressByAddressId(id)
-    console.log(this.address)
+
+  async handlerPatchAddress(data:any,index: any){
+    await this.shop.patchAddress(data,index)
   }
 }
+

@@ -80,7 +80,7 @@ const API = {
     },
 
     PATCH_ADDRESS_SHOP: (id: any) => {
-      return url + `/address/address/${id}`
+      return url + `/address/${id}`
     },
 
     DELETE_ADDRESS_SHOP: (id: any) => {
@@ -162,7 +162,7 @@ const API = {
     POST_OPTION: ()=>{
       return url + `/option`
     },
-    
+
     PATCH_OPTION: (_id: any) => {
       return url + `/option/${_id}`
     },
@@ -195,8 +195,11 @@ const API = {
         return url + `/detail/order?orderId=${orderId}`
     },
 
-
     // Product
+    GET_LIST_PRODUCT_BY_USERID: (shopId: any) => {
+      return url + `/product/listProduct/${shopId}`
+    },
+
     GET_PRODUCT_CATEGORY: (id: any, query: any)=>{
       return url + `/product/category/${id}${query}`
     },
@@ -223,7 +226,7 @@ const API = {
 
     POST_PRODUCT:()=>{
         return url + `/product`
-      },
+    },
 
     DELETE_PRODUCT:(productID: any)=>{
         return url + `/product/${productID}`
@@ -231,6 +234,12 @@ const API = {
 
     PATCH_PRODUCT:(productID: any)=>{
         return url + `/product/${productID}`
+    },
+    // POST_PRODUCT_SHOP: () => {
+    //   return url + `/product`
+    // },
+    DELETE_PRODUCT_SHOP: (id: any) => {
+      return url + `/product/${id}`
     },
 
     GET_PRODUCT_SEARCH: (word: any) => {

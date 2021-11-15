@@ -40,6 +40,7 @@ class Address {
     this.lat = data.lat
     this.lng = data.lng
     this.status = data.status
+    this._id=data._id
   }
 
   // POST_ADDRESS:TN
