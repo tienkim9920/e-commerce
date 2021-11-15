@@ -18,10 +18,10 @@ export class AppComponent {
   @ViewChild('sticky', { read: ElementRef }) sticky!: ElementRef<any>;
 
   // client
-  client = new Client(JSON.parse(localStorage.getItem('jwt')!).subjectId, '', '', '' ,'')
+  client = new Client('', '', '', '' ,'')
 
   // shop
-  shop = new Shop(JSON.parse(localStorage.getItem('jwt')!).subjectId, '', '', '' ,'', 0, '', '')
+  shop = new Shop('', '', '', '' ,'', 0, '', '')
 
   thamSo = new ThamSo()
 
@@ -65,8 +65,10 @@ export class AppComponent {
 
 
     if (this.cartService.getUserId() && this.cartService.getPermission() === 'client'){
+      this.client._id = JSON.parse(localStorage.getItem('jwt')!).subjectId
       this.client.getDetailClient()
     }else if (this.cartService.getUserId() && this.cartService.getPermission() === 'shop'){
+      this.shop._id = JSON.parse(localStorage.getItem('jwt')!).subjectId
       this.shop.getDetailShop()
     }
   

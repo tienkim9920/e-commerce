@@ -8,6 +8,7 @@ class ThamSo {
     productSearch: any = []
     listTick: any = []
     listPay: any = []
+    listNewfeed: any = []
 
     constructor () {}
 
@@ -41,10 +42,17 @@ class ThamSo {
         this.listPay = data
     }
 
-    async getListSearch(word: any){
+    async getListSearch(word: any) {
         const res = await fetch(API.GET_PRODUCT_SEARCH(word))
         const data = await res.json()
         this.productSearch = data
+    }
+
+    async getListNewfeed(page: any) {
+        const res = await fetch(API.GET_PAGINATION_NEWFEED(page))
+        const data = await res.json()
+        this.listNewfeed = this.listNewfeed.concat(data)
+        console.log(this.listNewfeed)
     }
 
 }
