@@ -147,6 +147,10 @@ const API = {
       return url + `/newfeed`
     },
 
+    GET_PAGINATION_NEWFEED: (page: any) => {
+      return url + `/product/newfeed/pagination?page=${page}`
+    },
+
 
     // Notification
     POST_NOTIFICATION:()=>{
@@ -231,6 +235,10 @@ const API = {
 
     GET_PRODUCT_SEARCH: (word: any) => {
       return url + `/product/search/word?word=${word}`
+    },
+
+    PATCH_COUNT_COMMENT: (_id: any) => {
+      return url + `/product/comment/${_id}`
     },
 
 

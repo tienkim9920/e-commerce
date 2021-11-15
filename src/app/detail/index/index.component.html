@@ -57,7 +57,14 @@
                     Hết hàng
                 </div>
                 <div class="count-detail-like mt-3">
-                    <div *ngIf="like !== null">
+                    <div>
+                        Số lượt đánh giá: &nbsp;
+                        <span style="font-family: 'Nunito Sans', sans-serif;">
+                            <i class="fa fa-comments"></i>
+                            {{ product.comment }} lượt
+                        </span>
+                    </div>
+                    <div *ngIf="like !== null" class="mt-2">
                         Số lượt thích: &nbsp;
                         <span *ngIf="like" style="font-family: 'Nunito Sans', sans-serif;">Bạn đã thích</span>
                         <span *ngIf="!like" style="font-family: 'Nunito Sans', sans-serif;">Bạn chưa thích</span>

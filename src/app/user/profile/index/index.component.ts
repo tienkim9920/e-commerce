@@ -35,6 +35,7 @@ export class IndexComponent implements OnInit {
   }
 
   saveInfor(){
+    
     // Cập nhật user
     this.user.PATCH_USER(this.file, this.checkingFile)
     this.cartService.setName(this.user.name)

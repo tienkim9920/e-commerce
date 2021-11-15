@@ -197,6 +197,10 @@ export class IndexComponent implements OnInit {
       return
     }
 
+    // Cập nhất số lượng Comment
+    this.product.patchCountComment()
+    
+    // Thêm Comment vào list
     const comment = new Comment(this.product._id, this.cartService.getUserId(), this.starComment, 
       this.textCommnent, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
 

@@ -170,12 +170,12 @@ class Product {
     }
 
     async patchLike(){
-        this.like = this.like + 1
+        this.like += 1
         await fetch(API.PATCH_LIKE(this._id))
     }
 
     async patchDislike(){
-        this.like = this.like - 1
+        this.like -= 1
         await fetch(API.PATCH_DISLIKE(this._id))
     }
 
@@ -183,6 +183,11 @@ class Product {
         const res = await fetch(API.CHECKING_LIKE_USER(userId, this._id))
         const data = await res.json()
         return data
+    }
+
+    async patchCountComment(){
+        this.comment += 1
+        await fetch(API.PATCH_COUNT_COMMENT(this._id))
     }
 
 }
