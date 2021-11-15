@@ -33,7 +33,7 @@ export class IndexComponent implements OnInit {
 
   index = 0
 
-  product = new Product('', '', '', '', '', '', [],'' , '', '', '')
+  product = new Product('', '', '', '', '', '', [], '', '', '', '')
 
   message: string = ''
 
