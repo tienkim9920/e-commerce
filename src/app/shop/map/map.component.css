@@ -1,16 +1,11 @@
 
-.hide{
-    display: none;
+.layout-map{
+    margin: 2rem auto;
+    background-color: #fff;
 }
 
 .grid-checkout-map{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 3rem 0;
-}
-
-.checkout-form-list{
-    padding: 0 3rem;
+    padding: 3rem 3rem;
 }
 
 .order-button-payment{
@@ -74,8 +69,9 @@
 }
 
 #map{
-    height: 420px; 
-    width: 600px
+    margin-top: 2rem;
+    height: 600px; 
+    width: 100%
 }
 
 @keyframes moveIn {

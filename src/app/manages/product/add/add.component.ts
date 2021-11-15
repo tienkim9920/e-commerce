@@ -9,7 +9,7 @@ import Product from 'src/app/pattern/Product';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  option=new Option("", "",0,0)
+  option=new Option("", "","",0)
   product= new Product("","","","","","",[],"","","","")
 
   category=new Category("")
@@ -28,7 +28,7 @@ export class AddComponent implements OnInit {
   }
 
   addOption(){
-    this.option=new Option("","",0,0)
+    this.option=new Option("","","",0)
     this.product.option.push(this.option)
   }
 

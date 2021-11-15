@@ -1,6 +1,7 @@
 import API from "../http/http"
 import Coup from "./Coup"
 import Address from "./Address"
+import Reputation from "./Reputation"
 
 
 class Shop{
@@ -169,20 +170,19 @@ class Shop{
   }
 
   // GET List Product by shopId ( Pagination Shop )
+  async getPaginationShop(page: any){
+    const res = await fetch(API.GET_PAGINATION_PRODUCT_SHOP(page, this._id))
+    const data = await res.json()
+    this.product = this.product.concat(data)
+  }
 
   // GET List Order by shopId
 
   // PATCH list Order by shopId
 
   // GET List Room
-  async getRoom(shopId: any) {
-    const res = await fetch(API.GET_ROOM_SHOP(shopId), {
-      method: 'GET',
-      body: JSON.stringify(this.toJSON()),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      }
-    })
+  async getRoom() {
+    const res = await fetch(API.GET_ROOM_SHOP(this._id))
     const data = await res.json()
     this.room = data
   }
@@ -190,15 +190,33 @@ class Shop{
   // GET List Reputation by shopId
   async getReputation(shopId: any) {
     const query = "?" + new URLSearchParams({shopId: shopId});
-    const res = await fetch(API.GET_REPUTATION_SHOP(query), {
-        method: 'GET',
-        body: JSON.stringify(this.toJSON()),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    })
+    const res = await fetch(API.GET_REPUTATION_SHOP(query))
     const data = await res.json()
     this.reputation = data
+  }
+
+  // POST list Reputation
+  async postRepuation(reputation: Reputation){
+    const data = await reputation.POST_REPUTATION()
+    this.reputation = [...this.reputation, data]
+  }
+
+  // DELETE list Reputation
+  async deleteReputation(reputation: Reputation){
+    const data = await reputation.DELETE_REPUTATION()
+
+    const index = this.reputation.findIndex((element: any) => {
+      return element._id === data._id
+    })
+
+    this.reputation.splice(index, 1)
+  }
+
+  // Checking Reputation
+  async checkingReputation(userId: any){
+    const res = await fetch(API.CHECKING_REPUTATION(userId, this._id))
+    const data = await res.json()
+    return data
   }
 
   // GET List Address by shopId

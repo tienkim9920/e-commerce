@@ -22,9 +22,6 @@ export class ManagesComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.id = this.route.snapshot.paramMap.get('id')
-    // console.log(this.id)
-
     window.scroll(0,0)
   }
 

@@ -32,7 +32,7 @@ class Like {
     }
 
     async DELETE_LIKE(){
-      const res = await fetch(API.DELETE_LIKE(this.id), {
+      const res = await fetch(API.DELETE_LIKE(this.userId, this.productId), {
           method: 'DELETE',
           body: JSON.stringify(this.toJSON()),
           headers: {

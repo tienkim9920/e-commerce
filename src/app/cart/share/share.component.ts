@@ -34,6 +34,7 @@ export class ShareComponent implements OnInit {
     socket.emit('joinCart', checking.code)
 
     const data = {
+      userId: Math.random().toString(),
       fullname: this.fullname,
       code: this.client.code,
       limit: checking.limit,

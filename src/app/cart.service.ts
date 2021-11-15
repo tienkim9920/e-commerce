@@ -79,6 +79,12 @@ export class CartService {
     return token.userId
   }
 
+  //function get subjectId
+  getSubjectId(){
+    let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')
+    return token.subjectId
+  }
+
   // function get name
   getName(){
     let token: any = JSON.parse(localStorage.getItem('jwt') || '{}')

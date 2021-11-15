@@ -143,39 +143,19 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                             <div *ngIf='listSearch' class="items-search">
-                                <div class="hover-sub-notification">
-                                    <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                                <div (click)="redirectSearch(item._id)" class="hover-sub-notification" *ngFor="let item of listSearch">
+                                    <img class="image-sub-notification" src="{{ item.image[0] }}" alt="">
                                     <div class="content-sub-notification">
-                                        <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                                        <span>Giá: 70000</span>, <span>size: Lớn</span>
+                                        <div style="font-family: 'Nunito Sans', sans-serif;">{{ item.name }}</div>
+                                        <span>Giá: {{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</span>, <span>size: Lớn</span>
                                     </div>
                                 </div>
-                                <div class="hover-sub-notification">
-                                    <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-                                    <div class="content-sub-notification">
-                                        <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                                        <span>Giá: 70000</span>, <span>size: Lớn</span>
-                                    </div>
-                                </div>
-                                <div class="hover-sub-notification active">
-                                    <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-                                    <div class="content-sub-notification">
-                                        <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                                        <span>Giá: 70000</span>, <span>size: Lớn</span>
-                                    </div>
-                                </div>
-                                <div class="hover-sub-notification">
-                                    <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-                                    <div class="content-sub-notification">
-                                        <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                                        <span>Giá: 70000</span>, <span>size: Lớn</span>
-                                    </div>
-                                </div>
-                                <div class="hover-sub-notification">
-                                    <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
-                                    <div class="content-sub-notification">
-                                        <div style="font-family: 'Nunito Sans', sans-serif;">Áo tay dài</div>
-                                        <span>Giá: 70000</span>, <span>size: Lớn</span>
+                                <div *ngIf="listSearch.length === 0" style="height: 100%;" class="d-flex justify-content-center align-items-center">
+                                    <div class="text-center" style="font-size: 1.2rem;">
+                                        <div class="searchNull"></div>
+                                        <div class="mt-1">
+                                            Không tìm thấy sản phẩm này!
+                                        </div>
                                     </div>
                                 </div>
                             </div>
