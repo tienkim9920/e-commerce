@@ -8,7 +8,7 @@
       [infiniteScrollThrottle]="50"
       (scrolled)="onScrollDown()"
     >
-    <div class="group-product-shop" *ngFor="let item of thamSo.listNewfeed">
+    <div class="group-product-shop" *ngFor="let item of thamSo.listNewfeed; let i = index">
         <div class="header-newfeed">
             <div>
                 <img *ngIf="item.shopId.image" class="image-newfeed-header" src="{{ item.shopId.image }}" alt="">
@@ -26,7 +26,7 @@
                 <div class="title-new-product">
                     Mới nhất
                 </div>
-                <div [routerLink]="['/detail', item._id]">
+                <div (click)="handlerModal(i)" data-bs-toggle="modal" data-bs-target="#show-product">
                     <i class="fa fa-eye icon-eye"></i>
                 </div>
             </div>
@@ -91,3 +91,5 @@
     </div>
     
 </div>
+
+<app-modal [product]="product"></app-modal>
