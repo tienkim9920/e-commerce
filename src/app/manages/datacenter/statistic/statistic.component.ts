@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import ThamSo from 'src/app/pattern/ThamSo';
 
 @Component({
   selector: 'app-statistic',
@@ -11,6 +12,8 @@ export class StatisticComponent implements OnInit {
   month: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   day: any = []
 
+  thamSo = new ThamSo()
+
   checking: number = 1
 
   getDay: number = 1
@@ -19,6 +22,8 @@ export class StatisticComponent implements OnInit {
 
   getYear: any = 2021
 
+  total: number = 0
+
   constructor( ) {
     this.forDay()
   }
@@ -26,29 +31,17 @@ export class StatisticComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Lọc theo ngày tháng năm
   handlerFilter(){
-    var sTable = (document.getElementById("customers") as HTMLDivElement).innerHTML;
+    const query = `checking=${this.checking}&getDay=${this.getDay}&getMonth=${this.getMonth}&getYear=${this.getYear}`
+    this.thamSo.getListStatistic(JSON.parse(localStorage.getItem('jwt')!).subjectId, query)
 
-    var style = "<style>";
-    style = style + "table {width: 100%;font: 17px Calibri;}";
-    style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
-    style = style + "padding: 2px 3px;text-align: center;}";
-    style = style + "</style>";
-
-    // CREATE A WINDOW OBJECT.
-    var win = window.open('', '', 'height=900,width=1000')!;
-
-    win.document.write('<html><head>');
-    win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
-    win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
-    win.document.write('</head>');
-    win.document.write('<body>');
-    win.document.write("<div>123</div>");         // THE TABLE CONTENTS INSIDE THE BODY TAG.
-    win.document.write('</body></html>');
-
-    win.document.close(); 	// CLOSE THE CURRENT WINDOW.
-
-    win.print();    // PRINT THE CONTENTS.         
+    setTimeout(() => {
+      this.total = 0
+      this.thamSo.listStatistic.forEach((element: any) => {
+        this.total += element.total
+      })
+    }, 1000)
   }
 
   handlerChecking(checking: any){

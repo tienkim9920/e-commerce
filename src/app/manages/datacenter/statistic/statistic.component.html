@@ -41,107 +41,47 @@
             <button class="btn btn-success" (click)="handlerFilter()">Lọc Hóa Đơn</button>
         </div>
         <div class="d-flex mt-3">
-            <button class="btn btn-primary">Thống Kê Hóa Đơn</button>
+            <button class="btn btn-primary"
+                [useExistingCss]="true"
+                styleSheetFile="../../../../assets/print.css"
+                printTitle="In Hóa Đon" 
+                printSectionId="customers" 
+                ngxPrint>
+            Thống Kê Hóa Đơn</button>
         </div>
     </div>
 </div>
 
-<div class="content-product-wrap-table" id="customers">
+<div *ngIf="thamSo.listStatistic.length === 0">
+    <div class="text-center mt-5" style="font-size: 1.5rem;">Vui lòng lọc hóa đơn hợp lệ!</div>
+</div>
+<div *ngIf="thamSo.listStatistic.length > 0" class="content-product-wrap-table" id="customers">
     <table class="content-product-table">
       <thead>
-        <th>#</th>
-        <th>Hình ảnh</th>
-        <th>Mã sản phẩm</th>
-        <th>Tên sản phẩm</th>
-        <th>Loại sản phẩm</th>
-        <th>Giá thành</th>
-        <th>Tình trạng</th>
+        <th>Mã Hóa Đơn</th>
+        <th>Tên Khách Hàng</th>
+        <th>Phương Thức Thanh Toán</th>
+        <th>Tổng Tiền</th>
+        <th>Ngày Đặt Hàng</th>
         <th>Action</th>
       </thead>
       <tbody>
-
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
+        <tr *ngFor="let item of thamSo.listStatistic">
+          <td>{{ item._id }}</td>
+          <td>{{ item.userId.name }}</td>
+          <td data-label="Mã sản phẩm">{{ item.payId.name }}</td>
+          <td data-label="Tên sản phẩm">{{ item.total | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+          <td data-label="Loại sản phẩm">{{ item.createTime }}</td>
+          <td>
+            <div class="content-product-table-action" [routerLink]="['/user/order/detail', item._id]">
+                <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
+              </div>
           </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Còn hàng</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
+          
         </tr>
-
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
-          </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Hết hàng</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
-          </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Giảm giá</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
-          </td>
-          <td data-label="Mã sản phẩm">001</td>
-          <td data-label="Tên sản phẩm">ROAR RUNNER PRINTED T-SHIRT</td>
-          <td data-label="Loại sản phẩm">Áo Thun</td>
-          <td data-label="Giá thành">350.000vnd</td>
-          <td data-label="Tình trạng">Giảm giá</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-
       </tbody>
     </table>
 
-    <h2 class="mt-3">- Số lượng đơn hàng: 123</h2>
-    <h2>- Tổng số tiền: 123</h2>
+    <h2 class="mt-3 ps-3">Số lượng đơn hàng: {{ thamSo.listStatistic.length }}</h2>
+    <h2 class="ps-3">Tổng số tiền: {{ total  | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</h2>
 </div>

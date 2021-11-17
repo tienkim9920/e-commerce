@@ -189,6 +189,10 @@ const API = {
       return url + `/order/shop/${userId}${query}`
     },
 
+    GET_STATISTIC_SHOP: (shopId: any, query: any) => {
+      return url + `/order/statistic/${shopId}?${query}`
+    },
+
 
     // Detail
     GET_DETAIL_BY_ORDER: (orderId: any) => {
@@ -353,6 +357,18 @@ const API = {
 
     GET_PAGINATION_PRODUCT_SHOP: (page: any, shopId: any) => {
       return url + `/product/shop/pagination?page=${page}&shopId=${shopId}`
+    },
+
+    GET_ALL_PRODUCT_SHOP: (shopId: any, query: any) => {
+      return url + `/product/listProduct/${shopId}?${query}`
+    },
+
+    GET_SALE_PRODUCT_SHOP: (shopId: any, query: any) => {
+      return url + `/product/list/onsale/${shopId}?${query}`
+    },
+
+    GET_OUTSALE_PRODUCT_SHOP: (shopId: any, query: any) => {
+      return url + `/product/list/outsale/${shopId}?${query}`
     },
 
     // Category

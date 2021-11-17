@@ -277,6 +277,7 @@ class Shop{
     this.product =updateProduct
   }
   
+  // Get list order shop
   async getOrderShop(userId:any,filter:any) {
     const query ="?"+new URLSearchParams(filter)
     const res = await fetch(API.GET_ORDER_SHOP(userId,query));
