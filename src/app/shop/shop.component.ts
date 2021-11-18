@@ -76,6 +76,11 @@ export class ShopComponent implements OnInit {
   }
 
   handlerReputation(){
+    if (!this.cartService.getUserId()){
+      this.router.navigate(['/login'])
+      return
+    }
+
     this.reputation = !this.reputation
     const reputation = new Reputation('', this.cartService.getUserId(), this.shop._id)
     this.shop.postRepuation(reputation)

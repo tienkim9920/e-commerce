@@ -434,6 +434,10 @@ const API = {
 
     PATCH_CHECKING: (id: any) => {
       return url + `/checking/${id}`
+    },
+
+    PATCH_CHECKING_NOTICE: (_id: any) => {
+      return url + `/checking/checking/${_id}`
     }
 }
 

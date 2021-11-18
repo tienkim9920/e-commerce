@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import Checking from '../pattern/Checking';
 import Client from '../pattern/Client';
 import Message from '../pattern/Message';
 import Room from '../pattern/Room';
@@ -60,11 +61,26 @@ export class ChatComponent implements OnInit {
     //   this.typingMessage()
     // }, 100)
 
+
+    // Cập nhật checking
+    const notice = new Checking(this.room.checkingId, 0, 0)
+    await notice.PATCH_CHECKING('client')    
+
   }
 
-  activeShop(item: any, roomId: any){
+  async activeShop(item: any, roomId: any, checkingId: any, index: any){
+
+    // Thay đổi checking
+    const checking = new Checking(checkingId, 0, 0)
+    await checking.PATCH_CHECKING_NOTICE()
+
+    // Thay đổi checking trong class
+    this.client.room[index].checkingId.noticeClient = 0
+    this.client.room[index].checkingId.noticeShop = 0    
+
     this.shop = item
     this.room._id = roomId
+    this.room.checkingId = checkingId
     this.room.getMessageByRoom()
     
     // Tham gia
