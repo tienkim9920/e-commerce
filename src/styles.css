@@ -302,18 +302,18 @@ h3{
 }
 
 .ticket{
-    color: #fff;
+    color: #fff !important;
     padding: .2rem .6rem;
     width: 100%;
     font-size: .95rem;
 }
 
 .ticket.active{
-    background-color: #1A94FF;
+    background-color: #1A94FF !important;
 }
 
 .ticket.unactive{
-    background-color: #df3a3a;
+    background-color: #df3a3a !important;
 }
 
 .fade-true{
@@ -338,4 +338,19 @@ h3{
     background-repeat: no-repeat;
     width: 100%;
     height: 6rem;
+}
+
+.box-order-ticket{
+    display: flex;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    border: 1px solid #f1f1f1 !important;
+    cursor: pointer;
+    box-shadow: .5px .5px 5px #e2e2e2;
+    transition: all .3s ease-in-out;
+}
+
+.box-order-ticket.active{
+    border-left: 13px solid #1A94FF !important;
+    background-color: #f5f5f5 !important;
 }

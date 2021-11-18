@@ -254,6 +254,13 @@ const API = {
       return url + `/product/comment/${_id}`
     },
 
+    PATCH_STOCK_PRODUCT: (productId: any) => {
+      return url + `/product/status/stock/${productId}`
+    },
+
+    CHECKING_COUNT_OPTION_PRODUCT: (productId: any) => {
+      return url + `/product/option/stock/${productId}`
+    },
 
 
     // Like

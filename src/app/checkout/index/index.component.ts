@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import Ticket from 'src/app/pattern/Ticket';
 import Coupon from 'src/app/pattern/Coupon';
 import Option from 'src/app/pattern/Option'
+import Product from 'src/app/pattern/Product';
 
 @Component({
   selector: 'app-index',
@@ -308,31 +309,11 @@ export class IndexComponent implements OnInit {
       const resultOrder = await order.POST_ORDER()
 
       // POST API chi tiết hóa đơn và cập nhật số lượng tồn
-      this.myCarts.forEach(async (cart: any) => {
-        if (cart.shopId._id === shop.shopId){
-          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
-          await detail.POST_DETAIL()
-          
-          // Cập nhật số lượng tồn
-          const option = new Option(cart.optionId, cart.productId, cart.size, 0)
-          option.count = cart.stock - cart.count
-          await option.PATCH_OPTION()
-        }
-      })
+      this.handlerDetailCheckingStock(this.myCarts, shop, resultOrder)
 
       // POST API chi tiết hóa đơn another và nhập nhật số lượng tồn
-      this.anotherCarts.forEach(async (cart: any) => {
-        if (cart.shopId._id === shop.shopId){
-          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
-          await detail.POST_DETAIL()
-
-          // Cập nhật số lượng tồn
-          const option = new Option(cart.optionId, cart.productId, cart.size, 0)
-          option.count = cart.stock - cart.count
-          await option.PATCH_OPTION()          
-        }
-      })
-
+      this.handlerDetailCheckingStock(this.anotherCarts, shop, resultOrder)
+      
     })
 
     // Cập nhật điểm tích lũy cho user
@@ -345,6 +326,29 @@ export class IndexComponent implements OnInit {
       this.router.navigate(['/checkout/success'])
     }, 3000)
 
+  }
+
+  // Hàm thêm vào detail hóa đơn, cập nhật số lượng tồn, kiểm tra số lượng tồn
+  handlerDetailCheckingStock(mycarts: any, shop: any, resultOrder: any){
+    mycarts.forEach(async (cart: any) => {
+      if (cart.shopId._id === shop.shopId){
+        const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
+        await detail.POST_DETAIL()
+
+        // Cập nhật số lượng tồn
+        const option = new Option(cart.optionId, cart.productId, cart.size, 0)
+        option.count = cart.stock - cart.count
+        await option.PATCH_OPTION()     
+        
+        // Kiểm tra số lượng tồn
+        const product = new Product(cart.productId, '', '', '', '', '', '', '', '', '', '')
+        const checking = await product.checkingCountOptionProduct()
+
+        if (checking){
+          await product.patchStatusStockProduct()
+        }          
+      }
+    })
   }
 
   private initConfig(): void {
