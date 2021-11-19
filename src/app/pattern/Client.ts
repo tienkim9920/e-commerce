@@ -1,4 +1,5 @@
 import API from "../http/http"
+import socket from "../socket/socket"
 
 class Client{
 
@@ -75,7 +76,6 @@ class Client{
     const res = await fetch(API.GET_ROOM_CLIENT(this._id))
     const data = await res.json()
     this.room = data
-    console.log(this.room)
   }
 
   // GET Client Status

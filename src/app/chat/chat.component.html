@@ -8,16 +8,20 @@
             <div class="list-chats">
                 <div *ngFor="let item of client.room; let i = index" 
                     [ngClass]="shop._id === item.shopId._id ? 'box-chats active' : 'box-chats'" 
-                    (click)="activeShop(item.shopId, item._id, item.checkingId._id, i)">
-                    <a [routerLink]="['/shop', shop._id]">
+                    (click)="activeShop(item, item._id, item.checkingId._id, i)">
+                    <a>
                         <img *ngIf="!item.shopId.image" class="image-box-chat" src="../../../assets/avt.jpg" />
                         <img *ngIf="item.shopId.image" class="image-box-chat" src="{{ item.shopId.image }}" alt="">
                     </a>
                     <div class="mt-1 ms-2 w-75" style="position: relative;">
                         <div style="font-family: 'Nunito Sans', sans-serif;">{{ item.shopId.name }}</div>
-                        <div class="d-flex" style="color: gray;">
+                        <div *ngIf="item.active === true" class="d-flex" style="color: gray;">
                             <div class="bg-success" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
                             Đang hoạt động
+                        </div>
+                        <div *ngIf="!item.active" class="d-flex" style="color: gray;">
+                            <div class="bg-secondary" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                            Không hoạt động
                         </div>
                         <div *ngIf="item.checkingId.noticeShop > 0" class="count-message">{{ item.checkingId.noticeShop }}</div>
                     </div>
@@ -59,9 +63,13 @@
                     </a>
                     <div class="mt-1 ms-2">
                         <div style="font-family: 'Nunito Sans', sans-serif;">{{ shop.name }}</div>
-                        <div class="d-flex" style="color: gray;">
+                        <div *ngIf="shop.active === true" class="d-flex" style="color: gray;">
                             <div class="bg-success" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
                             Đang hoạt động
+                        </div>
+                        <div *ngIf="!shop.active" class="d-flex" style="color: gray;">
+                            <div class="bg-secondary" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                            Không hoạt động
                         </div>
                     </div>
                 </div>

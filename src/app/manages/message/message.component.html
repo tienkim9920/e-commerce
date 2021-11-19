@@ -7,15 +7,19 @@
             <div class="list-chats">
                 <div *ngFor="let item of shop.room; let i = index" 
                     [ngClass]="item.clientId.userId._id === client._id ? 'box-chats active' : 'box-chats'"
-                    (click)="activeClient(item.clientId.userId, item._id, item.checkingId._id, i)">
+                    (click)="activeClient(item, item._id, item.checkingId._id, i)">
                     <img *ngIf="!item.clientId.userId.image" class="image-box-chat" src="../../../assets/avt.jpg" />
                     <img *ngIf="item.clientId.userId.image" class="image-box-chat" src="{{ item.clientId.userId.image }}"
                         alt="">
                     <div class="mt-1 ms-2 w-75" style="position: relative;">
                         <div style="font-family: 'Nunito Sans', sans-serif;">{{ item.clientId.userId.name }}</div>
-                        <div class="d-flex" style="color: gray;">
+                        <div *ngIf="item.active === true" class="d-flex" style="color: gray;">
                             <div class="bg-success" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
                             Đang hoạt động
+                        </div>
+                        <div *ngIf="!item.active" class="d-flex" style="color: gray;">
+                            <div class="bg-secondary" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                            Không hoạt động
                         </div>
                         <div *ngIf="item.checkingId.noticeClient > 0" class="count-message">{{ item.checkingId.noticeClient }}</div>
                     </div>
@@ -51,13 +55,19 @@
             </div>
             <div class="list-messages" *ngIf="client._id">
                 <div class="header-list-message">
-                    <img class="image-box-chat" src="{{ client.image }}"
+                    <img *ngIf="client.image" class="image-box-chat" src="{{ client.image }}"
+                        alt="">
+                    <img *ngIf="!client.image" class="image-box-chat" src="../../../assets/avt.jpg"
                         alt="">
                     <div class="mt-1 ms-2">
                         <div style="font-family: 'Nunito Sans', sans-serif;">{{ client.name }}</div>
-                        <div class="d-flex" style="color: gray;">
+                        <div *ngIf="client.active === true" class="d-flex" style="color: gray;">
                             <div class="bg-success" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
                             Đang hoạt động
+                        </div>
+                        <div *ngIf="!client.active" class="d-flex" style="color: gray;">
+                            <div class="bg-secondary" style="width: 12px; height: 12px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
+                            Không hoạt động
                         </div>
                     </div>
                 </div>

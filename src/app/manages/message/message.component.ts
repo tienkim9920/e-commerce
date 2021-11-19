@@ -25,13 +25,20 @@ export class MessageComponent implements OnInit {
   client: any = {}
 
   constructor() {
+    // Get list user online
+    this.getUserOnline()
+    
     setTimeout(() => {
       this.shop.getRoom()
-    }, 1000)
+    }, 1000) 
   }
 
   ngOnInit(){
+  }
 
+  ngDoCheck(){
+    // Get list user online
+    this.onUserOnline()
   }
 
   ngAfterContentChecked(){
@@ -75,7 +82,8 @@ export class MessageComponent implements OnInit {
     this.shop.room[index].checkingId.noticeShop = 0
 
     // Thay đổi checking trong class
-    this.client = item
+    this.client = item.clientId.userId
+    this.client.active = item.active // cập nhật active cho đối tượng
     this.room._id = roomId
     this.room.checkingId = checkingId
     this.room.getMessageByRoom()
@@ -127,6 +135,25 @@ export class MessageComponent implements OnInit {
 
   //   socket.emit('typing', data)
   // }
+
+  getUserOnline(){
+    socket.emit('getOnline')
+  }
+
+  onUserOnline(){
+    // Nhận socket và lọc xem user nào online
+    socket.on('getOnline', (data: any) => {
+      setTimeout(() => {
+        for (let i = 0; i < this.shop.room.length; i++) {
+          for (let j = 0; j < data.length; j++) {
+              if (this.shop.room[i].clientId.userId._id.toString() === data[j]._id.toString()) {
+                this.shop.room[i].active = true
+              }
+          }
+        }
+      }, 3000)
+    })
+  }
 
   onEnter(){
     if (!this.message){
