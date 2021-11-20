@@ -78,8 +78,7 @@ export class AddComponent implements OnInit {
   }
 
   async onSubmitProduct(data: any){
-    // this.inforAPI=""
-    // this.inforAPI=await this.product.POST_PRODUCT();
-    console.log(this.product)
+    this.inforAPI=""
+    this.inforAPI=await this.product.POST_PRODUCT();
   }
 }
