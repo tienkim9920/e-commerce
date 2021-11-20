@@ -31,7 +31,7 @@ export class OrderComponent implements OnInit {
 
   shop=new Shop("","","","","",0,"","");
   orderLength:Number = 0;
-  filter:any = { page: 1, pageSize: 1, search: "", status: "0"}
+  filter:any = { page: 1, pageSize: 4, search: "", status: "0"}
   params:any;
   status:boolean = false;
 

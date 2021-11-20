@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { AddComponent } from './add/add.component';
+import { UpdateComponent } from './update/update.component';
 
 
 
@@ -12,6 +13,7 @@ import { AddComponent } from './add/add.component';
   declarations: [
     ProductComponent,
     AddComponent,
+    UpdateComponent,
   ],
   imports: [
     CommonModule,

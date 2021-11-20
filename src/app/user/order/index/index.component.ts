@@ -22,7 +22,7 @@ export class IndexComponent implements OnInit {
   order=Array<Order>();
   orderLength:Number = 0;
   filter:any = { page: 1, pageSize: 6, query: this.filterOrder[0] , search: ""}
-
+  orderPatch=new Order("","","","","","","","","")
 
   constructor(private route: ActivatedRoute) {}
 
@@ -56,6 +56,16 @@ export class IndexComponent implements OnInit {
     this.orderLength=order.length
 
     this.order=order.slice(start,end)
+  }
+
+  async updateStatusOrder(item:any,index:any,option:boolean){
+    const query={
+      option:option,
+      status:item.status
+    }
+    const updateOrder=await this.orderPatch.PATCH_ORDER(item,query)
+
+    this.order[index].status="5"
   }
 
 }

@@ -1,35 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/cart.service';
-import Category from 'src/app/pattern/Category';
-import Option from 'src/app/pattern/Option';
+import { ActivatedRoute } from '@angular/router';
 import Product from 'src/app/pattern/Product';
-import Shop from 'src/app/pattern/Shop';
+import Option from 'src/app/pattern/Option';
+import Category from 'src/app/pattern/Category';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class AddComponent implements OnInit {
+export class UpdateComponent implements OnInit {
+  product = new Product('', '', '', '', '', '', [], '', '', '', '')
+  inforAPI:any=""
   option=new Option("", "","",0)
-  product= new Product("","","","","","",[],"","","","")
-  shop=new Shop("","","","","",0,"","")
-
   category=new Category("")
   listCategory=Array<Category>()
-  inforAPI:any=""
 
-  constructor(cartService:CartService) {
-    this.product.option.push(this.option)
-    this.shop.userId=cartService.getUserId()
-
-  }
+  constructor(private route: ActivatedRoute) {}
 
   async ngOnInit(): Promise<void> {
+    const paramsId=this.route.snapshot.paramMap.get('id')
     this.listCategory=await this.category.GET_CATEGORY();
-    await this.shop.getDetailShopByUserId()
-    this.product.shopId=this.shop._id
-    this.product.categoryId=this.listCategory[0]._id
+    await this.product.getDetailProduct(paramsId)
+    await this.product.getOptionProduct(paramsId)
+    this.option.productId=paramsId
   }
 
   removeOption(index: any): void {
@@ -38,6 +32,7 @@ export class AddComponent implements OnInit {
 
   addOption(){
     this.option=new Option("","","",0)
+    this.option.productId=this.route.snapshot.paramMap.get('id')
     this.product.option.push(this.option)
   }
 
@@ -79,6 +74,7 @@ export class AddComponent implements OnInit {
 
   async onSubmitProduct(data: any){
     this.inforAPI=""
-    this.inforAPI=await this.product.POST_PRODUCT();
+    this.inforAPI=await this.product.PATCH_PRODUCT(this.product._id);
   }
+
 }
