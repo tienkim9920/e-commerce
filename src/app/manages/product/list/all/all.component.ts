@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart.service';
+import Product from 'src/app/pattern/Product';
 import ListProduct from '../ListProduct';
 
 
@@ -12,11 +13,12 @@ export class AllComponent implements OnInit {
 
   product = new ListProduct()
 
+  productDelete=new Product("","","","","","","","","","","")
   search: string = ''
 
   page: number = 1
 
-  constructor(private cartService: CartService) { 
+  constructor(private cartService: CartService) {
     this.getProduct()
   }
 
@@ -35,6 +37,11 @@ export class AllComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  removeProduct(item:any,index: any){
+    this.productDelete.DELETE_PRODUCT(item._id);
+    this.product.products.splice(index, 1);
   }
 
 }
