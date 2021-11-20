@@ -162,7 +162,7 @@ const API = {
     POST_OPTION: ()=>{
       return url + `/option`
     },
-    
+
     PATCH_OPTION: (_id: any) => {
       return url + `/option/${_id}`
     },
@@ -177,8 +177,8 @@ const API = {
         return url + `/order`
     },
 
-    PATCH_ORDER: (_id: any) => {
-        return url + `/order/${_id}`
+    PATCH_ORDER: (_id: any,query: any) => {
+        return url + `/order/${_id}${query}`
     },
 
     GET_ORDER_USER:(userId: any) => {

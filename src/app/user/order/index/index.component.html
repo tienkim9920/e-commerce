@@ -33,8 +33,8 @@
                         <div class="content-product-table-action">
                             <button [routerLink]="['/user/order/detail/'+item._id]" class="content-product-table-btn btn-primary">Chi tiết</button>
                         </div>
-                        <div class="content-product-table-action">
-                            <button class="content-product-table-btn btn-danger">Hủy</button>
+                        <div class="content-product-table-action" *ngIf="item.status <4">
+                            <button class="content-product-table-btn btn-danger" (click)="updateStatusOrder(item,i,false)">Hủy</button>
                         </div>
                     </td>
                 </tr>
