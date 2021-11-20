@@ -11,10 +11,10 @@ class Notification {
   }
 
   toJSON(){
-      return {
-          userId: this.userId,
-          description: this.description
-      }
+        return {
+            userId: this.userId,
+            description: this.description
+        }
   }
 
   // POST_NOTIFICATION

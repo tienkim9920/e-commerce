@@ -1,4 +1,9 @@
 <nav mat-tab-nav-bar>
-    <a mat-tab-link *ngFor="let link of links" [routerLink]="[link.path]" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"> {{link.name}} </a>
+    <a mat-tab-link [routerLink]="['/user/profile']" 
+        [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"> Hồ sơ </a>
+    <a mat-tab-link [routerLink]="['/user/profile/changepassword']" 
+        [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"> Thay đổi mật khẩu </a>
+    <a *ngIf="permission === 'client'" mat-tab-link [routerLink]="['/user/profile/client']" 
+        [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"> Giỏ hàng chia sẽ </a>
 </nav>
 <router-outlet></router-outlet>

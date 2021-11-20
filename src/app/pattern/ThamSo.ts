@@ -9,6 +9,7 @@ class ThamSo {
     listTick: any = []
     listPay: any = []
     listNewfeed: any = []
+    listStatistic: any = []
 
     constructor () {}
 
@@ -52,7 +53,13 @@ class ThamSo {
         const res = await fetch(API.GET_PAGINATION_NEWFEED(page))
         const data = await res.json()
         this.listNewfeed = this.listNewfeed.concat(data)
-        console.log(this.listNewfeed)
+    }
+
+    async getListStatistic(shopId: any, query: any){
+        const res = await fetch(API.GET_STATISTIC_SHOP(shopId, query))
+        const data = await res.json()
+        console.log(data)
+        this.listStatistic = data
     }
 
 }

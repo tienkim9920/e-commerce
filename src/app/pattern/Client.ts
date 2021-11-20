@@ -1,4 +1,5 @@
 import API from "../http/http"
+import socket from "../socket/socket"
 
 class Client{
 

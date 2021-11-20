@@ -1,0 +1,44 @@
+<div class="modal fade" id="show-product" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông tin sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <div class="grid-modal-newfeed">
+                   <div class="modal-newfeed-left">
+                       <img class="image-modal-newfeed" src="{{ product.image[0] }}" alt="" />
+                   </div>
+                   <div class="modal-newfeed-right">
+                        <div style="font-size: 1.6rem;">{{ product.name }}</div>
+                        <div class="mt-4" 
+                        style="font-size: 1.6rem; color: #1A94FF; font-family: 'Nunito Sans', sans-serif;">
+                        {{ product.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</div>
+                        <div class="mt-4">
+                            <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1rem;">Mô tả:</div>
+                            {{ product.description }}
+                        </div>
+                        <div class="mt-4">
+                            <span style="font-family: 'Nunito Sans', sans-serif; font-size: 1rem;">Số lượt thích:</span>&nbsp;
+                            <i class="fa fa-heart text-danger"
+                            style="font-size: 22px; cursor: pointer;"></i>
+                            <span class="ms-1" style="font-size: 17px;">{{ product.like }} lượt</span>
+                        </div>
+                        <div class="mt-4">
+                            <span style="font-family: 'Nunito Sans', sans-serif; font-size: 1rem;">Số lượt đánh giá:</span>&nbsp;
+                            <i class="fa fa-comments-o"
+                            style="font-size: 22px; cursor: pointer; color: #323232;"></i>
+                            <span class="ms-1" style="font-size: 17px;">{{ product.comment }} lượt</span>
+                        </div>
+                        <div [routerLink]="['/detail', product._id]" class="mt-4" style="color: #1A94FF; cursor: pointer;"
+                            data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-long-arrow-right"></i>&nbsp;
+                            Xem chi tiết
+                        </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

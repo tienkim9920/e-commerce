@@ -25,7 +25,7 @@
     </button>
   </div>
 
-  <div class="address__list" *ngFor="let item of shop.address">
+  <div class="address__list" *ngFor="let item of shop.address;index as i">
 
     <div class="address__list-item">
       <div class="address__list-item-icon">
@@ -49,14 +49,102 @@
           <div class="address__list-item-content-address">
             <p>
               {{ item.address }}
-          </p>
+            </p>
           </div>
         </div>
       </div>
       <div class="address__list-item-action">
-        <div class="address__list-item-action-edit" data-bs-toggle="modal" data-bs-target="#address-patch" (click)="handlerGetDetailAddress(item._id)" >Sửa</div>
+        <div class="address__list-item-action-edit" data-bs-toggle="modal" [attr.data-bs-target]="'#address-patch'+ i" [attr.aria-controls]="'#address-patch'+ i"  >Sửa</div>
         <div class="address__list-item-action-delete" data-bs-toggle="modal" data-bs-target="#address-delete" (click)="handlerDeleteAddress(item)">Xóa</div>
       </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngFor="let item of shop.address;index as i">
+  <div class="modal mdl"  [attr.id]="'address-patch'+i" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <form #changeAddress="ngForm" (ngSubmit)="handlerPatchAddress(changeAddress.value,i)" class="modal-content mdl-container">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Sửa địa chỉ</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="address-edit__info">
+
+            <div class="address-edit__item" style="display:none">
+              <label for="user-address" class="address-edit__item-label">
+               Id
+              </label>
+              <input id="user-address" type="text" name="_id" [(ngModel)]="item._id" class="form-control address-edit__item-input" placeholder="Nhập số điện thoại của địa chỉ" />
+            </div>
+
+            <div class="address-edit__item">
+              <label for="user-address" class="address-edit__item-label">
+                Số điện thoại
+              </label>
+              <input id="user-address" type="text" name="phone" [(ngModel)]="item.phone" class="form-control address-edit__item-input" placeholder="Nhập số điện thoại của địa chỉ" />
+            </div>
+
+            <div class="address-edit__item">
+              <label for="detail-address" class="address-edit__item-label">
+                Địa chỉ
+              </label>
+              <input type="text" id="detail-address" aria-label="detail-address" name="address" [(ngModel)]="item.address" class="form-control address-edit__item-input" placeholder="Số nhà , phố phường , thành phố , tỉnh ...">
+            </div>
+
+            <div class="address-edit__item">
+              <div class="address-edit__item-location">
+                <label class="address-edit__item-label">
+                  Tọa độ của shop
+                </label>
+                <div class="address__help-modal" data-bs-toggle="modal" data-bs-target="#address-help">
+                  <i class="address__help-modal-icon fa fa-question-circle"></i>
+                  <div class="address__help-modal-title">Click vào để xem hướng dẫn cách lấy địa chỉ</div>
+                </div>
+              </div>
+
+              <label for="location-address" class="address-edit__item-label">
+                Vĩ độ
+              </label>
+              <input type="text" id="lat-address" name="lat" [(ngModel)]="item.lat" class="form-control address-edit__item-input" placeholder="Nhập vĩ độ đã lấy từ hướng dẫn (LATITUDE)">
+
+              <label for="location-address" class="address-edit__item-label">
+                Kinh độ
+              </label>
+              <input type="text" id="lng-address" name="lng" [(ngModel)]="item.lng" class="form-control address-edit__item-input" placeholder="Nhập kinh độ đã lấy từ hướng dẫn (LONGITUDE)">
+            </div>
+
+
+            <div class="address-edit__item ">
+              <div class="address-check-group">
+                <div class="mb-3 address-check-item form-check">
+                  <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck1">
+                  <label class="form-check-label address-check-label" for="exampleCheck1">Đặt làm địa chỉ mặc định</label>
+                </div>
+                <div class="mb-3 address-check-item form-check">
+                  <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck2">
+                  <label class="form-check-label address-check-label" for="exampleCheck2">Đặt làm địa chỉ lấy hàng</label>
+                </div>
+                <div class="mb-3 address-check-item form-check">
+                  <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck3">
+                  <label class="form-check-label address-check-label" for="exampleCheck3">Đặt làm địa chỉ trả hàng</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sửa địa chỉ</button>
+        </div>
+
+      </form>
     </div>
   </div>
 </div>
@@ -200,78 +288,4 @@
   </div>
 </div>
 
-<div class="modal mdl" id="address-patch" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-scrollable">
-    <div class="modal-content mdl-container">
-      <div class="modal-header">
-        <h5 class="modal-title">Thêm địa chỉ</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
 
-        <div class="address-edit__info">
-
-          <div class="address-edit__item">
-            <label for="user-address" class="address-edit__item-label">
-              Số điện thoại
-            </label>
-            <input id="user-address" type="text" [(ngModel)]="address.phone" class="form-control address-edit__item-input" placeholder="Nhập số điện thoại của địa chỉ" />
-          </div>
-
-          <div class="address-edit__item">
-            <label for="detail-address" class="address-edit__item-label">
-              Địa chỉ
-            </label>
-            <input type="text" id="detail-address" aria-label="detail-address" [(ngModel)]="address.address" class="form-control address-edit__item-input" placeholder="Số nhà , phố phường , thành phố , tỉnh ...">
-          </div>
-
-          <div class="address-edit__item">
-            <div class="address-edit__item-location">
-              <label class="address-edit__item-label">
-                Tọa độ của shop
-              </label>
-              <div class="address__help-modal" data-bs-toggle="modal" data-bs-target="#address-help">
-                <i class="address__help-modal-icon fa fa-question-circle"></i>
-                <div class="address__help-modal-title">Click vào để xem hướng dẫn cách lấy địa chỉ</div>
-              </div>
-            </div>
-
-            <label for="location-address" class="address-edit__item-label">
-              Vĩ độ
-            </label>
-            <input type="text" id="lat-address" [(ngModel)]="address.lat" class="form-control address-edit__item-input" placeholder="Nhập vĩ độ đã lấy từ hướng dẫn (LATITUDE)">
-
-            <label for="location-address" class="address-edit__item-label">
-              Kinh độ
-            </label>
-            <input type="text" id="lng-address" [(ngModel)]="address.lng" class="form-control address-edit__item-input" placeholder="Nhập kinh độ đã lấy từ hướng dẫn (LONGITUDE)">
-          </div>
-
-
-          <div class="address-edit__item ">
-            <div class="address-check-group">
-              <div class="mb-3 address-check-item form-check">
-                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck1">
-                <label class="form-check-label address-check-label" for="exampleCheck1">Đặt làm địa chỉ mặc định</label>
-              </div>
-              <div class="mb-3 address-check-item form-check">
-                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck2">
-                <label class="form-check-label address-check-label" for="exampleCheck2">Đặt làm địa chỉ lấy hàng</label>
-              </div>
-              <div class="mb-3 address-check-item form-check">
-                <input type="checkbox" class="form-check-input address-check-input" id="exampleCheck3">
-                <label class="form-check-label address-check-label" for="exampleCheck3">Đặt làm địa chỉ trả hàng</label>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" (click)="handlerPatchAddress()">Sửa địa chỉ</button>
-      </div>
-    </div>
-  </div>
-</div>

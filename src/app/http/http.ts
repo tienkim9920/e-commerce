@@ -80,7 +80,7 @@ const API = {
     },
 
     PATCH_ADDRESS_SHOP: (id: any) => {
-      return url + `/address/address/${id}`
+      return url + `/address/${id}`
     },
 
     DELETE_ADDRESS_SHOP: (id: any) => {
@@ -189,14 +189,21 @@ const API = {
       return url + `/order/shop/${userId}${query}`
     },
 
+    GET_STATISTIC_SHOP: (shopId: any, query: any) => {
+      return url + `/order/statistic/${shopId}?${query}`
+    },
+
 
     // Detail
     GET_DETAIL_BY_ORDER: (orderId: any) => {
         return url + `/detail/order?orderId=${orderId}`
     },
 
-
     // Product
+    GET_LIST_PRODUCT_BY_USERID: (shopId: any) => {
+      return url + `/product/listProduct/${shopId}`
+    },
+
     GET_PRODUCT_CATEGORY: (id: any, query: any)=>{
       return url + `/product/category/${id}${query}`
     },
@@ -223,7 +230,7 @@ const API = {
 
     POST_PRODUCT:()=>{
         return url + `/product`
-      },
+    },
 
     DELETE_PRODUCT:(productID: any)=>{
         return url + `/product/${productID}`
@@ -231,6 +238,12 @@ const API = {
 
     PATCH_PRODUCT:(productID: any)=>{
         return url + `/product/${productID}`
+    },
+    // POST_PRODUCT_SHOP: () => {
+    //   return url + `/product`
+    // },
+    DELETE_PRODUCT_SHOP: (id: any) => {
+      return url + `/product/${id}`
     },
 
     GET_PRODUCT_SEARCH: (word: any) => {
@@ -241,6 +254,13 @@ const API = {
       return url + `/product/comment/${_id}`
     },
 
+    PATCH_STOCK_PRODUCT: (productId: any) => {
+      return url + `/product/status/stock/${productId}`
+    },
+
+    CHECKING_COUNT_OPTION_PRODUCT: (productId: any) => {
+      return url + `/product/option/stock/${productId}`
+    },
 
 
     // Like
@@ -346,6 +366,18 @@ const API = {
       return url + `/product/shop/pagination?page=${page}&shopId=${shopId}`
     },
 
+    GET_ALL_PRODUCT_SHOP: (shopId: any, query: any) => {
+      return url + `/product/listProduct/${shopId}?${query}`
+    },
+
+    GET_SALE_PRODUCT_SHOP: (shopId: any, query: any) => {
+      return url + `/product/list/onsale/${shopId}?${query}`
+    },
+
+    GET_OUTSALE_PRODUCT_SHOP: (shopId: any, query: any) => {
+      return url + `/product/list/outsale/${shopId}?${query}`
+    },
+
     // Category
     GET_CATEGORY: () => {
         return url + `/category`
@@ -402,6 +434,10 @@ const API = {
 
     PATCH_CHECKING: (id: any) => {
       return url + `/checking/${id}`
+    },
+
+    PATCH_CHECKING_NOTICE: (_id: any) => {
+      return url + `/checking/checking/${_id}`
     }
 }
 
