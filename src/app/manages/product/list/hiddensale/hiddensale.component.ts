@@ -11,5 +11,6 @@ export class HiddensaleComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
 }
