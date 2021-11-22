@@ -110,6 +110,10 @@ export class AppComponent {
     window.scroll(0,0)
   }
 
+  ngOnInit(){
+    this.connectApplication()
+  }
+
   ngDoCheck(){
 
     this.getLocalStorage()
@@ -189,6 +193,12 @@ export class AppComponent {
   // Click tìm kiếm
   redirectSearch(_id: any){
     window.location.href = `/detail/${_id}`
+  }
+
+  connectApplication(){
+    if (this.cartService.getUserId()){
+      socket.emit('connectApplication', this.cartService.getUserId())
+    }
   }
 
 }

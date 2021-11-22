@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart.service';
-import Shop from 'src/app/pattern/Shop';
 import Product from 'src/app/pattern/Product';
+import ListProduct from '../ListProduct';
+
 
 @Component({
   selector: 'app-all',
@@ -10,33 +11,41 @@ import Product from 'src/app/pattern/Product';
 })
 export class AllComponent implements OnInit {
 
-  shop = new Shop('', '', '', '', '', 0, '', '') // Để hiển thị
+  product = new ListProduct()
 
-  product = new Product('', '', '', '', '', [], 0, 0, 0, 0, 0, 0) // Để thêm
+<<<<<<< HEAD
+  productDelete=new Product("","","","","","","","","","","","")
+=======
+  productDelete=new Product("","","","","","","","","","","")
+>>>>>>> origin
+  search: string = ''
 
+  page: number = 1
 
   constructor(private cartService: CartService) {
-
-    this.shop.userId = cartService.getUserId()
-
-    setTimeout(() => {
-      this.shop.getListProductByUserId()
-    }, 500)
-
+    this.getProduct()
   }
 
-  async ngOnInit(): Promise<void> {
-
-    // Lấy address detail shop of user id
-    await this.shop.getDetailShopByUserId()
-    this.product.shopId = this.shop._id
-    console.log(this.product)
-
+  handlerPage(item: any) {
+    this.page = item
+    this.getProduct()
   }
 
-  async handlerDeleteProduct(product : Product){
-    await this.shop.deleteProduct(product)
+  handlerSearch() {
+    this.getProduct()
   }
 
-  
+  getProduct(){
+    const query = `search=${this.search}&page=${this.page}`
+    this.product.getAllProductShop(this.cartService.getSubjectId(), query)
+  }
+
+  ngOnInit(): void {
+  }
+
+  removeProduct(item:any,index: any){
+    this.productDelete.DELETE_PRODUCT(item._id);
+    this.product.products.splice(index, 1);
+  }
+
 }

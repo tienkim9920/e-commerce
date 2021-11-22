@@ -49,7 +49,10 @@ class Checking {
   }
 
   // PATCH_CHECKING when user click checking
-
+  async PATCH_CHECKING_NOTICE(){
+    await fetch(API.PATCH_CHECKING_NOTICE(this._id))
+  }
+  
 }
 
 export default Checking

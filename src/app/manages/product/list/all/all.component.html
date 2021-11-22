@@ -1,80 +1,188 @@
 <div class="content-product">
+<<<<<<< HEAD
   <div class="content-product-header">
-    <div class="content-product__tab">
-      <i class="content-product__tab-icon fa fa-bar-chart"></i>
-      <span class="content-product__tab-label">Tất cả sản phẩm</span>
-    </div>
-
-    <div class="content-product__search">
-      <div class="content-product__search-input-wrap">
-          <input type="text" class="content-product__search-input" placeholder="Tìm kiếm sản phẩm ...">
-          <!-- content-product-search-history -->
-
-          <div class="content-product__search-history">
-              <h3 class="content-product__search-history-heading">Lịch sử tìm kiếm</h3>
-              <ul class="content-product__search-history-list">
-                  <li class="content-product__search-history-item">
-                      <a href="">Áo khoác hàng hiệu</a>
-                  </li>
-                  <li class="content-product__search-history-item">
-                      <a href="">Quần jean cao cấp</a>
-                  </li>
-                  <li class="content-product__search-history-item">
-                      <a href="">Đồng hồ Rolex</a>
-                  </li>
-              </ul>
-          </div>
+      <div class="content-product__tab">
+          <i class="content-product__tab-icon fa fa-bar-chart"></i>
+          <span class="content-product__tab-label">Tất cả sản phẩm</span>
       </div>
 
-      <button class="content-product__search-btn">
-          <i class="content-product__search-btn-icon fa fa-search"></i>
-      </button>
+      <div class="content-product__search">
+          <div class="content-product__search-input-wrap">
+              <input type="text" [(ngModel)]="search" class="content-product__search-input" placeholder="Tìm kiếm sản phẩm ...">
+              <div class="content-product__search-history">
+                  <h3 class="content-product__search-history-heading">Lịch sử tìm kiếm</h3>
+                  <ul class="content-product__search-history-list">
+                      <li class="content-product__search-history-item">
+                          <a href="">Áo khoác hàng hiệu</a>
+                      </li>
+                      <li class="content-product__search-history-item">
+                          <a href="">Quần jean cao cấp</a>
+                      </li>
+                      <li class="content-product__search-history-item">
+                          <a href="">Đồng hồ Rolex</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
 
-    </div>
+          <button class="content-product__search-btn" (click)="handlerSearch()">
+        <i class="content-product__search-btn-icon fa fa-search"></i>
+    </button>
+
+      </div>
   </div>
   <div class="content-product-wrap-table">
-    <table class="content-product-table">
-      <thead>
-        <th>#</th>
-        <th>Hình ảnh</th>
-        <th>Mã sản phẩm</th>
-        <th>Tên sản phẩm</th>
-        <th>Loại sản phẩm</th>
-        <th>Giá thành</th>
-        <th>Tình trạng</th>
-        <th>Action</th>
-      </thead>
-      <tbody>
+      <table class="content-product-table">
+          <thead>
+              <th>Mã sản phẩm</th>
+              <th>Hình ảnh</th>
+              <th>Tên sản phẩm</th>
+              <th>Loại sản phẩm</th>
+              <th>Giá thành</th>
+              <th>Tình trạng</th>
+              <th>Action</th>
+          </thead>
+          <tbody>
 
-        <tr *ngFor="let item of shop.product, let i = index">
-          <td data-label="#">{{ i + 1 }}</td>
-          <td data-label="Hình ảnh">
-            <img src="https://bizweb.dktcdn.net/100/369/010/products/1-fdcf09d2-7dfc-4d56-9bb8-c540817d0cfa.jpg?v=1622002179000" alt="đây là áo" class="content-product-table-image">
-          </td>
-          <td data-label="Mã sản phẩm"></td>
-          <td data-label="Tên sản phẩm">{{ item.name }}</td>
-          <td data-label="Loại sản phẩm">{{ item.categoryId }}</td>
-          <td data-label="Giá thành">{{ item.price }}</td>
-          <td data-label="Tình trạng">{{ item.count }}</td>
+              <tr *ngFor="let item of product.products;let i=index">
+                  <td data-label="Mã sản phẩm">{{ item._id }}</td>
+                  <td data-label="Hình ảnh">
+                      <img src="{{ item.image[0] }}" alt="đây là áo" class="content-product-table-image">
+                  </td>
+                  <td data-label="Tên sản phẩm">{{ item.name }}</td>
+                  <td data-label="Loại sản phẩm">{{ item.categoryId.name }}</td>
+                  <td data-label="Giá thành">{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                  <td data-label="Tình trạng">{{ item.stock ? 'Còn hàng' : 'Hết Hàng' }}</td>
 
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update" [routerLink]="['/manages/product/edit']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete" (click)="handlerDeleteProduct(item)">Xóa</button>
-            </div>
-          </td>
-        </tr>
+                  <td data-label="Action">
+                      <div class="content-product-table-action">
+                          <button [routerLink]="['/manages/product/update/'+item._id]" class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
+                          <button (click)="removeProduct(item,i)" class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
+                      </div>
+                  </td>
+              </tr>
 
-      </tbody>
-    </table>
+          </tbody>
+      </table>
   </div>
 
   <div class="content-product-page-controller">
-    <a class="prev">&#10094;</a>
-    <div class="dot active">1</div>
-    <div class="dot">2</div>
-    <div class="dot">3</div>
-    <a class="next">&#10095;</a>
+      <nav aria-label="Page navigation example">
+          <ul class="pagination" style="cursor: pointer;">
+              <li class="page-item">
+                  <a class="page-link" *ngIf="page > 1" (click)="handlerPage(page - 1)">
+                      <span aria-hidden="true">&laquo;</span>
+                  </a>
+                  <a class="page-link" *ngIf="page === 1">
+                      <span aria-hidden="true">&laquo;</span>
+                  </a>
+              </li>
+              <li [ngClass]="page === item ? 'page-item active' : 'page-item'" *ngFor="let item of product.count">
+                  <a class="page-link" (click)="handlerPage(item)">{{ item }}</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link" *ngIf="page < product.count.length" (click)="handlerPage(page + 1)">
+                      <span aria-hidden="true">&raquo;</span>
+                  </a>
+                  <a class="page-link" *ngIf="page === product.count.length">
+                      <span aria-hidden="true">&raquo;</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
   </div>
 </div>
+=======
+    <div class="content-product-header">
+        <div class="content-product__tab">
+            <i class="content-product__tab-icon fa fa-bar-chart"></i>
+            <span class="content-product__tab-label">Tất cả sản phẩm</span>
+        </div>
+
+        <div class="content-product__search">
+            <div class="content-product__search-input-wrap">
+                <input type="text" [(ngModel)]="search" class="content-product__search-input" placeholder="Tìm kiếm sản phẩm ...">
+                <div class="content-product__search-history">
+                    <h3 class="content-product__search-history-heading">Lịch sử tìm kiếm</h3>
+                    <ul class="content-product__search-history-list">
+                        <li class="content-product__search-history-item">
+                            <a href="">Áo khoác hàng hiệu</a>
+                        </li>
+                        <li class="content-product__search-history-item">
+                            <a href="">Quần jean cao cấp</a>
+                        </li>
+                        <li class="content-product__search-history-item">
+                            <a href="">Đồng hồ Rolex</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="content-product__search-btn" (click)="handlerSearch()">
+          <i class="content-product__search-btn-icon fa fa-search"></i>
+      </button>
+
+        </div>
+    </div>
+    <div class="content-product-wrap-table">
+        <table class="content-product-table">
+            <thead>
+                <th>Mã sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Loại sản phẩm</th>
+                <th>Giá thành</th>
+                <th>Tình trạng</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let item of product.products;let i=index">
+                    <td data-label="Mã sản phẩm">{{ item._id }}</td>
+                    <td data-label="Hình ảnh">
+                        <img src="{{ item.image[0] }}" alt="đây là áo" class="content-product-table-image">
+                    </td>
+                    <td data-label="Tên sản phẩm">{{ item.name }}</td>
+                    <td data-label="Loại sản phẩm">{{ item.categoryId.name }}</td>
+                    <td data-label="Giá thành">{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
+                    <td data-label="Tình trạng">{{ item.stock ? 'Còn hàng' : 'Hết Hàng' }}</td>
+
+                    <td data-label="Action">
+                        <div class="content-product-table-action">
+                            <button [routerLink]="['/manages/product/update/'+item._id]" class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
+                            <button (click)="removeProduct(item,i)" class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-product-page-controller">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination" style="cursor: pointer;">
+                <li class="page-item">
+                    <a class="page-link" *ngIf="page > 1" (click)="handlerPage(page - 1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    <a class="page-link" *ngIf="page === 1">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li [ngClass]="page === item ? 'page-item active' : 'page-item'" *ngFor="let item of product.count">
+                    <a class="page-link" (click)="handlerPage(item)">{{ item }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" *ngIf="page < product.count.length" (click)="handlerPage(page + 1)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    <a class="page-link" *ngIf="page === product.count.length">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+>>>>>>> origin

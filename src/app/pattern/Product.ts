@@ -63,46 +63,94 @@ class Product {
     async postDetail(detail: Detail) {
       const data = await detail.POST_DETAIL()
       this.detail = [...this.detail, data]
+<<<<<<< HEAD
     }
 
     // POST_PRODUCT_SHOP
     async POST_PRODUCT_SHOP(){
+=======
+  }
+    // POST_PRODUCT
+    async POST_PRODUCT(){
+      const formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('shopId', this.shopId);
+      formData.append('price', this.price);
+      formData.append('discount', this.discount);
+      formData.append('description', this.description);
+      formData.append('like', "0");
+      formData.append('comment', "0");
+      formData.append('stock', "true");
+      formData.append('expiredTime', "0");
+      formData.append('categoryId', this.categoryId);
+      formData.append('option', JSON.stringify(this.option));
+
+      for (let i = 0; i < this.image.length; i++) {
+        formData.append('file', this.image[i].file)
+        formData.append('fileName', this.image[i].fileName)
+      }
+>>>>>>> origin
       const res = await fetch(API.POST_PRODUCT(), {
           method: 'POST',
-          body: JSON.stringify(this.toJSON()),
-          headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-          }
+          body: formData,
       })
       const data = await res.json()
-      return data.result
+      return data.msg
     }
 
     // POST_PRODUCT
     async POST_PRODUCT(){
-      console.log(this.toJSON())
-        const res = await fetch(API.POST_PRODUCT(), {
+      const formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('shopId', this.shopId);
+      formData.append('price', this.price);
+      formData.append('discount', this.discount);
+      formData.append('description', this.description);
+      formData.append('like', "0");
+      formData.append('comment', "0");
+      formData.append('stock', "true");
+      formData.append('expiredTime', "0");
+      formData.append('categoryId', this.categoryId);
+      formData.append('option', JSON.stringify(this.option));
+
+      for (let i = 0; i < this.image.length; i++) {
+        formData.append('file', this.image[i].file)
+        formData.append('fileName', this.image[i].fileName)
+      }
+      const res = await fetch(API.POST_PRODUCT(), {
           method: 'POST',
-          body: JSON.stringify(this.toJSON()),
-          headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-          }
+          body: formData,
       })
       const data = await res.json()
-      return data.result
+      return data.msg
     }
 
     // PATCH_PRODUCT
     async PATCH_PRODUCT(id: any){
+      const formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('shopId', this.shopId._id);
+      formData.append('price', this.price);
+      formData.append('discount', this.discount);
+      formData.append('description', this.description);
+      formData.append('like', "0");
+      formData.append('comment', "0");
+      formData.append('stock', "true");
+      formData.append('expiredTime', "0");
+      formData.append('categoryId', this.categoryId);
+      formData.append('option', JSON.stringify(this.option));
+
+      for (let i = 0; i < this.image.length; i++) {
+        this.image[i].file? formData.append('file', this.image[i].file):""
+        this.image[i].fileName ? formData.append('fileName', this.image[i].fileName) : formData.append('fileName', this.image[i])
+      }
       const res = await fetch(API.PATCH_PRODUCT(id), {
           method: 'PATCH',
-          body: JSON.stringify(this.toJSON()),
-          headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-          }
+          body: formData,
+<<<<<<< HEAD
       })
       const data = await res.json()
-      return data.result
+      return data.msg
     }
 
     // DELETE_PRODUCT
@@ -113,9 +161,11 @@ class Product {
           headers: {
               'Content-type': 'application/json; charset=UTF-8',
           }
+=======
+>>>>>>> origin
       })
       const data = await res.json()
-      return data.result
+      return data.msg
     }
 
     // DELETE_PRODUCT
@@ -167,11 +217,13 @@ class Product {
         this.option = data
     }
 
+    // Thêm vào danh sách Like
     async postLike(like:Like) {
       const data = await like.POST_LIKE()
       this.likes = [...this.likes, data]
     }
 
+    // Xóa khỏi danh sách Like
     async deleteLike(like:Like) {
       const data = await like.DELETE_LIKE()
 
@@ -182,30 +234,46 @@ class Product {
       this.likes = updateLike
     }
 
+    // Thêm vào danh sách Option
     async postOption(optionPost:Option) {
       const data = await optionPost.POST_OPTION()
       this.option = [...this.option, data]
     }
 
+    // Thay đổi cộng 1 like
     async patchLike(){
         this.like += 1
         await fetch(API.PATCH_LIKE(this._id))
     }
 
+    // Thay đổi trừ 1 like
     async patchDislike(){
         this.like -= 1
         await fetch(API.PATCH_DISLIKE(this._id))
     }
 
+    // Kiểm tra đối tượng đó đã like hay chưa
     async checkingUserLikeProduct(userId: any){
         const res = await fetch(API.CHECKING_LIKE_USER(userId, this._id))
         const data = await res.json()
         return data
     }
 
+    // Thay đổi cộng 1 lượt comment
     async patchCountComment(){
         this.comment += 1
         await fetch(API.PATCH_COUNT_COMMENT(this._id))
+    }
+
+    // Checking status Stock Product => true = hết hàng || false = còn hàng
+    async checkingCountOptionProduct() {
+        const res = await fetch(API.CHECKING_COUNT_OPTION_PRODUCT(this._id))
+        const data = await res.json()
+        return data
+    }
+
+    async patchStatusStockProduct() {
+        await fetch(API.PATCH_STOCK_PRODUCT(this._id))
     }
 
 }

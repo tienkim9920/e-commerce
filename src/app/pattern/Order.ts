@@ -70,19 +70,21 @@ class Order{
   }
 
   // PATCH_ORDER
-  async PATCH_ORDER(status: any){
-    const query = {
-      status
-    }
-    const res = await fetch(API.PATCH_ORDER(this._id), {
+  async PATCH_ORDER(item:any,query: any){
+
+
+    let body ="?"+new URLSearchParams(query)
+
+    console.log(body)
+    const res = await fetch(API.PATCH_ORDER(item._id,body), {
       method: 'PATCH',
-      body: JSON.stringify(query),
       headers: {
           'Content-type': 'application/json; charset=UTF-8',
       }
     })
+
     const data = await res.json()
-    return data.result
+    return data.order
   }
 
   // GET List Detail by orderId

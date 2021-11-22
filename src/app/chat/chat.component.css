@@ -149,6 +149,17 @@ h6{
     display: flex;
 }
 
+.count-message{
+    padding: .3rem .7rem; 
+    background-color: rgb(228, 37, 37); 
+    border-radius: 50%;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 80%;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;

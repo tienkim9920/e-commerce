@@ -3,6 +3,7 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import User from '../pattern/User';
+import socket from '../socket/socket';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,16 @@ export class LoginComponent implements OnInit {
 
     this.cartService.setJWT(token)
     this.router.navigate(['/'])
+
+    // connect application
+    this.connectApplication()
     
+  }
+
+  connectApplication(){
+    if (this.cartService.getUserId()){
+      socket.emit('connectApplication', this.cartService.getUserId())
+    }
   }
 
 }
