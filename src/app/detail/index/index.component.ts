@@ -83,6 +83,11 @@ export class IndexComponent implements OnInit {
 
   // POST API Like product
   statusLike(){
+    if (!this.cartService.getUserId()){
+      this.router.navigate(['/login'])
+      return
+    }
+
     this.like = !this.like
     this.product.patchLike()
 

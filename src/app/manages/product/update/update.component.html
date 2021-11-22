@@ -1,0 +1,122 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb product-content-title">
+        <li class="breadcrumb-item previous"><a [routerLink]="['/manages/product/list/all']" [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Tất cả sản phẩm</a></li>
+        <li class="breadcrumb-item" aria-current="page">Sửa sản phẩm</li>
+    </ol>
+</nav>
+
+<div class="product-edit-wrapper mb-5">
+    <div class="product-grid">
+        <form #products="ngForm" (ngSubmit)="onSubmitProduct(products.value)" class="row">
+            <div class="col-8">
+                <div class="product-edit__heading">
+                    <p class="product-edit__heading-label">
+                        Thông tin sản phẩm
+                    </p>
+
+                    <p class="{{inforAPI=='Bạn đã thêm thành công' ? 'text-success' : 'text-danger'}}">{{inforAPI}}</p>
+                </div>
+                <div class="product-edit__section">
+                    <div class="product-edit__info">
+
+                        <div class="product-edit__item">
+                            <label id="name" for="product-name" class="product-edit__item-label">Tên sản phẩm</label>
+                            <input name="name" [(ngModel)]="product.name" type="text" id="product-name" class="product-edit__item-input" placeholder="Nhập tên sản phẩm" />
+                        </div>
+
+                        <div class="product-edit__item">
+                            <label id="price" for="product-price" class="product-edit__item-label"> Giá sản phẩm</label>
+                            <input name="price" [(ngModel)]="product.price" type="number" id="product-price" class="product-edit__item-input" placeholder="Nhập sản phẩm" />
+                        </div>
+
+                        <div class="product-edit__item">
+                            <label id="discount" for="product-desc" class="product-edit__item-label">Giảm giá sản phẩm</label>
+                            <input name="discount" [(ngModel)]="product.discount" type="number" id="product-desc" max="100" min="0" class="product-edit__item-input" placeholder="Nhập % giảm giá" />
+                        </div>
+
+                        <div class="product-edit__item" style="margin-top:-24px">
+                            <label class="product-edit__item-label">Loại sản phẩm</label>
+                            <select name="categoryId" [(ngModel)]="product.categoryId" class="form-select product-edit__item-select" aria-label="Default select example">
+                            <option *ngFor="let data of listCategory" [value]="data._id">
+                              {{data.name}}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div style="width: 100%;padding-right: 24px;">
+                            <label id="description" for="product-name" class="product-edit__item-label">Mô tả sản phẩm</label>
+                            <input name="description" [(ngModel)]="product.description" type="text" id="product-name" class="product-edit__item-input" placeholder="Nhập tên sản phẩm">
+                        </div>
+
+                        <div class="d-flex" *ngFor="let item of product.option;let i=index;" style="width:100%">
+                            <div class=" product-edit__item ">
+                                <label for="product-size{{i}}" class="product-edit__item-label">Tùy chọn sản phẩm</label>
+                                <input name="size{{i}}" [(ngModel)]="item.size" type="text" id="product-size{{i}}" class="product-edit__item-input " placeholder="Bạn có thể nhập size" />
+                            </div>
+
+                            <div class="product-edit__item ">
+                                <div class="d-flex" style="margin-right:-20px">
+                                    <div style="width: 100%;">
+                                        <label for="product-quantity{{i}}" class="product-edit__item-label "> Số lượng sản phẩm</label>
+
+                                        <input name="count{{i}}" [(ngModel)]="item.count" type="number" id="product-quantity{{i}}" class="product-edit__item-input " placeholder="Số lượng của sản phẩm " />
+                                    </div>
+                                    <i (click)="removeOption(i)" style="width: 16px;color: #1791f2;align-self: center; cursor: pointer;" class="shopee-icon"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero"><path d="M14.516 3.016h-4v-1a.998.998 0 0 0-.703-.955.99.99 0 0 0-.297-.045h-3a.998.998 0 0 0-.955.703.99.99 0 0 0-.045.297v1h-4a.5.5 0 1 0 0 1h1v10a.998.998 0 0 0 .703.955.99.99 0 0 0 .297.045h9a.998.998 0 0 0 .955-.703.99.99 0 0 0 .045-.297v-10h1a.5.5 0 1 0 0-1zm-8-1h3v1h-3v-1zm6 12h-9v-10h9v10z"></path><path d="M5.516 12.016a.5.5 0 0 0 .5-.5v-4a.5.5 0 1 0-1 0v4a.5.5 0 0 0 .5.5zM8.016 12.016a.5.5 0 0 0 .5-.5v-5a.5.5 0 1 0-1 0v5a.5.5 0 0 0 .5.5zM10.516 12.016a.5.5 0 0 0 .5-.5v-4a.5.5 0 1 0-1 0v4a.5.5 0 0 0 .5.5z"></path></g></svg></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%;padding-right: 20px;" (click)="addOption()">
+                            <button type="button" class="repeater-add shopee-button shopee-button--normal">
+                            <span>
+                              <i class="shopee-icon"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M512 1024A512.2 512.2 0 0 1 312.7 40.2a512.12 512.12 0 0 1 398.6 943.5A507.07 507.07 0 0 1 512 1024zm0-960a447.88 447.88 0 0 0-316.8 764.8A448 448 0 1 0 686.4 99.2 444.4 444.4 0 0 0 512 64z"></path><path d="M768 480H544V256a32 32 0 0 0-64 0v224H256a32 32 0 0 0 0 64h224v224a32 32 0 0 0 64 0V544h224a32 32 0 0 0 0-64z"></path></g></svg></i>
+                              Thêm tùy chọn sản phẩm
+                            </span>
+                          </button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="margin-top: 24px;">Sửa sản phẩm</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="product-edit__heading ">
+                    <p class="product-edit__heading-label ">
+                        File mô tả
+                    </p>
+                </div>
+                <div class="product-file__item">
+                    <label class="product-file__item-label">
+                  Hình ảnh sản phẩm
+                </label>
+                    <label style="cursor: pointer;" for="file-image" class="product-file__upload">
+                      <img src="https://sirv.sirv.com/website/img/ico_1_up.svg" alt="" class="product-file__upload-img">
+                      <input type="file" (change)="onSelectImage($event)" multiple id="file-image" class="product-file__upload-btn" placeholder="Tải hình ảnh">
+                      <div class="product-file__upload-btn-label">Tải hình ảnh</div>
+                      <div for="file-image" class="product-file__upload-label">Bạn có thể chọn nhiều hình (tối đa 4 hình)</div>
+                  </label>
+                </div>
+                <div class="row">
+                    <div *ngFor="let item of product.image;index as i;" class="col-6 mb-4">
+                        <div class="d-flex justify-content-center">
+                            <div class="shopee-image-manager__upload">
+                                <div class="shopee-file-upload">
+                                    <div class="shopee-upload">
+                                        <img style="height:75px;width:75px" src={{item.url?item.url:item}} />
+                                    </div>
+                                </div>
+                            </div>
+                            <i (click)="deleteImage(i)" style="color: #1791f2; cursor: pointer;" class="shopee-icon"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero"><path d="M14.516 3.016h-4v-1a.998.998 0 0 0-.703-.955.99.99 0 0 0-.297-.045h-3a.998.998 0 0 0-.955.703.99.99 0 0 0-.045.297v1h-4a.5.5 0 1 0 0 1h1v10a.998.998 0 0 0 .703.955.99.99 0 0 0 .297.045h9a.998.998 0 0 0 .955-.703.99.99 0 0 0 .045-.297v-10h1a.5.5 0 1 0 0-1zm-8-1h3v1h-3v-1zm6 12h-9v-10h9v10z"></path><path d="M5.516 12.016a.5.5 0 0 0 .5-.5v-4a.5.5 0 1 0-1 0v4a.5.5 0 0 0 .5.5zM8.016 12.016a.5.5 0 0 0 .5-.5v-5a.5.5 0 1 0-1 0v5a.5.5 0 0 0 .5.5zM10.516 12.016a.5.5 0 0 0 .5-.5v-4a.5.5 0 1 0-1 0v4a.5.5 0 0 0 .5.5z"></path></g></svg></i>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

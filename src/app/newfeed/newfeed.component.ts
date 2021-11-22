@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Product from '../pattern/Product';
 import ThamSo from '../pattern/ThamSo';
 
 @Component({
@@ -14,11 +15,17 @@ export class NewfeedComponent implements OnInit {
 
   page: any = 1
 
+  product = new Product('', '', '', '', '', '', '', '', '', '', '','')
+
   constructor() {
     this.thamSo.getListNewfeed(this.page)
   }
 
   ngOnInit(): void {
+  }
+
+  handlerModal(index: any){
+    this.product = this.thamSo.listNewfeed[index]
   }
 
   onScrollDown(){
@@ -32,7 +39,7 @@ export class NewfeedComponent implements OnInit {
     setTimeout(() => {
       this.page += 1
       this.thamSo.getListNewfeed(this.page)
-      
+
       this.loading = false
     }, 3000)
   }

@@ -54,4 +54,25 @@ export class IndexComponent implements OnInit {
 
 
 
+  // file: any
+  // uploadImage(newValue: any){
+  //   if (newValue.target.files && newValue.target.files[0]) {
+  //     this.file = newValue.target.files[0]
+  //   }
+  // }
+  // async submitImage(){
+  //   if (this.file){
+
+  //     const formData = new FormData()
+  //     formData.append('file', this.file);
+
+  //     const res = await fetch('http://localhost:8000/image', {
+  //       method: 'POST',
+  //       body: formData,
+  //     });
+  //     const data = await res.json();
+  //     console.log(data);
+  //   }
+  // }
+
 }

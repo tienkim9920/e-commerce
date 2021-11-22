@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import Ticket from 'src/app/pattern/Ticket';
 import Coupon from 'src/app/pattern/Coupon';
 import Option from 'src/app/pattern/Option'
+import Product from 'src/app/pattern/Product';
 
 @Component({
   selector: 'app-index',
@@ -207,7 +208,7 @@ export class IndexComponent implements OnInit {
     this.loading = true
 
     let shopList: any = []
-      
+
     // Tổng số tiền tất cả sản phẩm của Shop
     this.myCarts.forEach((element: any) => {
 
@@ -215,7 +216,7 @@ export class IndexComponent implements OnInit {
       const checking = shopList.some((shop: any) => {
         return shop.shopId === element.shopId._id
       })
-      
+
       if (checking){
 
         const index = shopList.findIndex((shop: any) => {
@@ -242,7 +243,7 @@ export class IndexComponent implements OnInit {
       const checking = shopList.some((shop: any) => {
         return shop.shopId === element.shopId._id
       })
-      
+
       if (checking){
 
         const index = shopList.findIndex((shop: any) => {
@@ -271,7 +272,7 @@ export class IndexComponent implements OnInit {
       const ticket = new Ticket(this.ticket._id, this.cartService.getUserId(), this.ticket.tickId._id, true)
       await ticket.PATCH_TICKET()
     }
-    
+
     // Nếu mà có áp dụng coupon
     if (this.coupon.length > 0){
       this.coupon.forEach(async (element: any) => {
@@ -280,7 +281,7 @@ export class IndexComponent implements OnInit {
             shop.total = shop.total - element.discount
           }
         })
-        
+
         // Kiểm tra xem người dùng đó đã lưu coupon vào thông tin hay chưa
         const checking = this.user.checkingExistCoupon(element._id)
         const coupon = new Coupon('', this.cartService.getUserId(), element._id, false)
@@ -308,30 +309,10 @@ export class IndexComponent implements OnInit {
       const resultOrder = await order.POST_ORDER()
 
       // POST API chi tiết hóa đơn và cập nhật số lượng tồn
-      this.myCarts.forEach(async (cart: any) => {
-        if (cart.shopId._id === shop.shopId){
-          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
-          await detail.POST_DETAIL()
-          
-          // Cập nhật số lượng tồn
-          const option = new Option(cart.optionId, cart.productId, cart.size, 0)
-          option.count = cart.stock - cart.count
-          await option.PATCH_OPTION()
-        }
-      })
+      this.handlerDetailCheckingStock(this.myCarts, shop, resultOrder)
 
       // POST API chi tiết hóa đơn another và nhập nhật số lượng tồn
-      this.anotherCarts.forEach(async (cart: any) => {
-        if (cart.shopId._id === shop.shopId){
-          const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
-          await detail.POST_DETAIL()
-
-          // Cập nhật số lượng tồn
-          const option = new Option(cart.optionId, cart.productId, cart.size, 0)
-          option.count = cart.stock - cart.count
-          await option.PATCH_OPTION()          
-        }
-      })
+      this.handlerDetailCheckingStock(this.anotherCarts, shop, resultOrder)
 
     })
 
@@ -340,11 +321,34 @@ export class IndexComponent implements OnInit {
     await this.user.PATCH_SCORE()
 
     setTimeout(() => {
-      this.cartService.resetLocalStorage() 
+      this.cartService.resetLocalStorage()
 
       this.router.navigate(['/checkout/success'])
     }, 3000)
 
+  }
+
+  // Hàm thêm vào detail hóa đơn, cập nhật số lượng tồn, kiểm tra số lượng tồn
+  handlerDetailCheckingStock(mycarts: any, shop: any, resultOrder: any){
+    mycarts.forEach(async (cart: any) => {
+      if (cart.shopId._id === shop.shopId){
+        const detail = new Detail(cart.productId, resultOrder._id, cart.count, cart.size, false)
+        await detail.POST_DETAIL()
+
+        // Cập nhật số lượng tồn
+        const option = new Option(cart.optionId, cart.productId, cart.size, 0)
+        option.count = cart.stock - cart.count
+        await option.PATCH_OPTION()
+
+        // Kiểm tra số lượng tồn
+        const product = new Product(cart.productId, '', '', '', '', '', '', '', '', '', '','')
+        const checking = await product.checkingCountOptionProduct()
+
+        if (checking){
+          await product.patchStatusStockProduct()
+        }
+      }
+    })
   }
 
   private initConfig(): void {

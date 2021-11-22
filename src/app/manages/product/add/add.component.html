@@ -13,6 +13,8 @@
                   <p class="product-edit__heading-label">
                       Thông tin sản phẩm
                   </p>
+
+                  <p class="{{inforAPI=='Bạn đã thêm thành công' ? 'text-success' : 'text-danger'}}">{{inforAPI}}</p>
               </div>
               <div class="product-edit__section">
                   <div class="product-edit__info">
@@ -35,7 +37,6 @@
                       <div class="product-edit__item" style="margin-top:-24px">
                           <label class="product-edit__item-label">Loại sản phẩm</label>
                           <select name="categoryId" [(ngModel)]="product.categoryId" class="form-select product-edit__item-select" aria-label="Default select example">
-                            <option value="">Chọn loại sản phẩm</option>
                             <option *ngFor="let data of listCategory" [value]="data._id">
                               {{data.name}}
                             </option>
@@ -47,10 +48,10 @@
                           <input name="description" [(ngModel)]="product.description" type="text" id="product-name" class="product-edit__item-input" placeholder="Nhập tên sản phẩm">
                       </div>
 
-                      <div class="d-flex" *ngFor="let item of product.option;index as i;" style="width:100%">
+                      <div class="d-flex" *ngFor="let item of product.option;let i= index;" style="width:100%">
                           <div class=" product-edit__item ">
                               <label for="product-size{{i}}" class="product-edit__item-label">Tùy chọn sản phẩm</label>
-                              <input name="size{{i}}" [(ngModel)]="item.size" type="number " id="product-size{{i}}" class="product-edit__item-input " placeholder="Bạn có thể nhập size" />
+                              <input name="size{{i}}" [(ngModel)]="item.size" type="text" id="product-size{{i}}" class="product-edit__item-input " placeholder="Bạn có thể nhập size" />
                           </div>
 
                           <div class="product-edit__item ">
@@ -58,7 +59,7 @@
                                   <div style="width: 100%;">
                                       <label for="product-quantity{{i}}" class="product-edit__item-label "> Số lượng sản phẩm</label>
 
-                                      <input name="count{{i}}" [(ngModel)]="item.count" type="number " id="product-quantity{{i}}" class="product-edit__item-input " placeholder="Số lượng của sản phẩm " />
+                                      <input name="count{{i}}" [(ngModel)]="item.count" type="number" id="product-quantity{{i}}" class="product-edit__item-input " placeholder="Số lượng của sản phẩm " />
                                   </div>
                                   <i (click)="removeOption(i)" style="width: 16px;color: #1791f2;align-self: center; cursor: pointer;" class="shopee-icon"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero"><path d="M14.516 3.016h-4v-1a.998.998 0 0 0-.703-.955.99.99 0 0 0-.297-.045h-3a.998.998 0 0 0-.955.703.99.99 0 0 0-.045.297v1h-4a.5.5 0 1 0 0 1h1v10a.998.998 0 0 0 .703.955.99.99 0 0 0 .297.045h9a.998.998 0 0 0 .955-.703.99.99 0 0 0 .045-.297v-10h1a.5.5 0 1 0 0-1zm-8-1h3v1h-3v-1zm6 12h-9v-10h9v10z"></path><path d="M5.516 12.016a.5.5 0 0 0 .5-.5v-4a.5.5 0 1 0-1 0v4a.5.5 0 0 0 .5.5zM8.016 12.016a.5.5 0 0 0 .5-.5v-5a.5.5 0 1 0-1 0v5a.5.5 0 0 0 .5.5zM10.516 12.016a.5.5 0 0 0 .5-.5v-4a.5.5 0 1 0-1 0v4a.5.5 0 0 0 .5.5z"></path></g></svg></i>
                               </div>
@@ -113,14 +114,6 @@
                       </div>
 
                   </div>
-
-
-
-
-
-
-
-
               </div>
 
           </div>

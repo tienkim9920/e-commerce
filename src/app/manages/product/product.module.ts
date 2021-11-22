@@ -6,6 +6,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { UpdateComponent } from './update/update.component';
 
 
 
@@ -14,6 +15,7 @@ import { EditComponent } from './edit/edit.component';
     ProductComponent,
     AddComponent,
     EditComponent,
+    UpdateComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 <div class="row m-2">
     <div class="col-6 col-md-4 col-xl-3 mb-4 section-content" *ngFor="let item of listProduct">
         <mat-card class="example-card" [routerLink]="['/detail', item._id]">
-            <img mat-card-image src={{item.image[0]}} alt="Photo of a Shiba Inu">
+            <img mat-card-image src={{item.image[0]}} style="width:250px;height:250px" alt="Photo of a Shiba Inu">
             <div class="discount" *ngIf="item.discount && item.discount > 0">
                 Giảm {{item.discount}}%
             </div>

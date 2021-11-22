@@ -104,12 +104,8 @@
         <div class="d-flex">
             <img *ngIf="!product.shopId.image" class="image-infor-shop" src="../../../assets/avt.jpg" />
             <img *ngIf="product.shopId.image" class="image-infor-shop" src="{{ product.shopId.image }}" alt="">
-            <div style="margin: 0 0 0 1rem;">
+            <div style="margin: 1rem 0 0 1rem;">
                 <div style="font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem;">{{ product.shopId.name }}</div>
-                <div class="d-flex" style="color: gray;">
-                    <div class="bg-success" style="width: 15px; height: 15px; border-radius: 50%; margin-top: .1rem;"></div> &nbsp;
-                    Đang hoạt động
-                </div>
                 <div class="d-flex mt-1">
                     <div class="padding-infor-shop" data-bs-toggle="modal" data-bs-target="#chat-shop">
                         <i class="fa fa-comments"></i>

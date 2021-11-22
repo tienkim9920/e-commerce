@@ -28,3 +28,8 @@
 .example-card {
     position: relative;
 }
+
+.mat-card>:first-child,
+.mat-card-content>:first-child {
+    height: 40px;
+}
