@@ -10,7 +10,11 @@ import Category from 'src/app/pattern/Category';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
+<<<<<<< HEAD
   product = new Product('', '', '', '', '', '', [], '', '', '', '','')
+=======
+  product = new Product('', '', '', '', '', '', [], '', '', '', '')
+>>>>>>> origin
   inforAPI:any=""
   option=new Option("", "","",0)
   category=new Category("")

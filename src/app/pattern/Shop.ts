@@ -295,7 +295,11 @@ class Shop{
     })
     this.product =updateProduct
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> origin
   // Get list order shop
   async getOrderShop(userId:any,filter:any) {
     const query ="?"+new URLSearchParams(filter)

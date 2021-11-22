@@ -63,19 +63,39 @@ class Product {
     async postDetail(detail: Detail) {
       const data = await detail.POST_DETAIL()
       this.detail = [...this.detail, data]
+<<<<<<< HEAD
     }
 
     // POST_PRODUCT_SHOP
     async POST_PRODUCT_SHOP(){
+=======
+  }
+    // POST_PRODUCT
+    async POST_PRODUCT(){
+      const formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('shopId', this.shopId);
+      formData.append('price', this.price);
+      formData.append('discount', this.discount);
+      formData.append('description', this.description);
+      formData.append('like', "0");
+      formData.append('comment', "0");
+      formData.append('stock', "true");
+      formData.append('expiredTime', "0");
+      formData.append('categoryId', this.categoryId);
+      formData.append('option', JSON.stringify(this.option));
+
+      for (let i = 0; i < this.image.length; i++) {
+        formData.append('file', this.image[i].file)
+        formData.append('fileName', this.image[i].fileName)
+      }
+>>>>>>> origin
       const res = await fetch(API.POST_PRODUCT(), {
           method: 'POST',
-          body: JSON.stringify(this.toJSON()),
-          headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-          }
+          body: formData,
       })
       const data = await res.json()
-      return data.result
+      return data.msg
     }
 
     // POST_PRODUCT
@@ -127,6 +147,7 @@ class Product {
       const res = await fetch(API.PATCH_PRODUCT(id), {
           method: 'PATCH',
           body: formData,
+<<<<<<< HEAD
       })
       const data = await res.json()
       return data.msg
@@ -140,9 +161,11 @@ class Product {
           headers: {
               'Content-type': 'application/json; charset=UTF-8',
           }
+=======
+>>>>>>> origin
       })
       const data = await res.json()
-      return data.result
+      return data.msg
     }
 
     // DELETE_PRODUCT

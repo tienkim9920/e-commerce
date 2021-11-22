@@ -13,7 +13,11 @@ export class AllComponent implements OnInit {
 
   product = new ListProduct()
 
+<<<<<<< HEAD
   productDelete=new Product("","","","","","","","","","","","")
+=======
+  productDelete=new Product("","","","","","","","","","","")
+>>>>>>> origin
   search: string = ''
 
   page: number = 1

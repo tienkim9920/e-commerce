@@ -15,7 +15,11 @@ export class NewfeedComponent implements OnInit {
 
   page: any = 1
 
+<<<<<<< HEAD
   product = new Product('', '', '', '', '', '', '', '', '', '', '','')
+=======
+  product = new Product('', '', '', '', '', '', '', '', '', '', '')
+>>>>>>> origin
 
   constructor() {
     this.thamSo.getListNewfeed(this.page)
