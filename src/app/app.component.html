@@ -68,10 +68,6 @@
                         <span>Thông Báo</span>
                     </div>
                     <div class="sub-notification">
-                        <!-- <div class="text-center">
-                <div class="bg-cart-empty"></div>
-                <span>Chưa có sản phẩm</span>
-              </div> -->
                         <div class="pt-2 pb-3">
                             Thông báo mới nhận
                         </div>
@@ -116,6 +112,60 @@
                     <li><a class="dropdown-item" [routerLink]="['/manages/product/list/all']"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Quản lý cửa hàng</a>
                     </li>
                     <li><a class="dropdown-item" [routerLink]="['/user/profile']"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Thông tin cá nhân</a>
+                    </li>
+                    <li><a class="dropdown-item" (click)="logOut()"><i class="fa fa-mail-forward icon-profile"></i>&nbsp;&nbsp;Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="user.permission === 'admin'" class="group-header-top d-flex justify-content-end">
+                <div class="header-notification">
+                    <div>
+                        <i class="fa fa-bell-o p-1"></i>
+                        <span>Thông Báo</span>
+                    </div>
+                    <div class="sub-notification">
+                        <div class="pt-2 pb-3">
+                            Thông báo mới nhận
+                        </div>
+                        <div class="hover-sub-notification active">
+                            <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                            <div class="content-sub-notification">
+                                <div style="font-family: 'Nunito Sans', sans-serif;">Áo Tay</div>
+                                <span>Vừa thả tim sản phẩm 123123213</span>
+                            </div>
+                        </div>
+                        <div class="hover-sub-notification">
+                            <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                            <div class="content-sub-notification">
+                                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                                <span>Vừa thả tim sản phẩm 123123213</span>
+                            </div>
+                        </div>
+                        <div class="hover-sub-notification">
+                            <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                            <div class="content-sub-notification">
+                                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                                <span>Vừa thả tim sản phẩm 123123213</span>
+                            </div>
+                        </div>
+                        <div class="hover-sub-notification">
+                            <img class="image-sub-notification" src="../assets/avt.jpg" alt="">
+                            <div class="content-sub-notification">
+                                <div style="font-family: 'Nunito Sans', sans-serif;">Nguyễn Kim Tiền</div>
+                                <span>Vừa thả tim sản phẩm 123123213</span>
+                            </div>
+                        </div>
+                        <div class="view-all">
+                            Xem tất cả
+                        </div>
+                    </div>
+                </div>
+                <div class="header-profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-user-circle-o p-1"></i>
+                    <span>{{ user.name }}</span>
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" [routerLink]="['/admin']"><i class="fa fa-gear icon-profile"></i>&nbsp;&nbsp;Quản lý hệ thông</a>
                     </li>
                     <li><a class="dropdown-item" (click)="logOut()"><i class="fa fa-mail-forward icon-profile"></i>&nbsp;&nbsp;Đăng xuất</a>
                     </li>
