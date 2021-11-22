@@ -49,5 +49,6 @@ export class AddressComponent implements OnInit {
   async handlerPatchAddress(data:any,index: any){
     await this.shop.patchAddress(data,index)
   }
+  
 }
 

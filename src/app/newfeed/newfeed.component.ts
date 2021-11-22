@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import ThamSo from '../pattern/ThamSo';
 
 @Component({
   selector: 'app-newfeed',
@@ -9,13 +10,13 @@ export class NewfeedComponent implements OnInit {
 
   loading: boolean = false
 
-  listNewFeed: any = [
-    { product: "Ao Thun Basic", price: '300000'},
-    { product: "Ao Thun Basic", price: '300000'},
-    { product: "Ao Thun Basic", price: '300000'},
-  ]
+  thamSo = new ThamSo()
 
-  constructor() { }
+  page: any = 1
+
+  constructor() {
+    this.thamSo.getListNewfeed(this.page)
+  }
 
   ngOnInit(): void {
   }
@@ -29,15 +30,8 @@ export class NewfeedComponent implements OnInit {
     this.loading = true
 
     setTimeout(() => {
-      const newfeed = [
-        { product: "Ao Thun Basic", price: '300000'},
-        { product: "Ao Thun Basic", price: '300000'},
-        { product: "Ao Thun Basic", price: '300000'},
-      ]
-  
-      const merge = [...this.listNewFeed, ...newfeed]
-  
-      this.listNewFeed = merge
+      this.page += 1
+      this.thamSo.getListNewfeed(this.page)
       
       this.loading = false
     }, 3000)

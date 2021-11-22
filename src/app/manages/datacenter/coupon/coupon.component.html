@@ -1,108 +1,58 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb product-content-title">
     <li class="breadcrumb-item" aria-current="page">Mã giảm giá</li>
-    <li class="breadcrumb-item previous"><a [routerLink]="['/manages/datacenter/addcoupon']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Thêm mã giảm giá</a></li>
+    <!-- <li class="breadcrumb-item previous"><a [routerLink]="['/manages/datacenter/addcoupon']"  [routerLinkActive]="['sidebar-submenu-item-link-active']" [routerLinkActiveOptions]="{exact: true}">Thêm mã giảm giá</a></li> -->
   </ol>
 </nav>
 
 <div class="content-product">
-  <div class="content-product-header">
-    <div class="content-product__tab">
-      <i class="content-product__tab-icon fa fa-bar-chart"></i>
-      <span class="content-product__tab-label">Mã giảm giá</span>
-    </div>
 
-    <div class="content-product__search">
-      <div class="content-product__search-input-wrap">
-          <input type="text" class="content-product__search-input" placeholder="Tìm kiếm mã giảm giá ...">
-          <!-- content-product-search-history -->
-
-          <div class="content-product__search-history">
-              <h3 class="content-product__search-history-heading">Lịch sử tìm kiếm</h3>
-              <ul class="content-product__search-history-list">
-                  <li class="content-product__search-history-item">
-                      <a href="">Áo khoác hàng hiệu</a>
-                  </li>
-                  <li class="content-product__search-history-item">
-                      <a href="">Quần jean cao cấp</a>
-                  </li>
-                  <li class="content-product__search-history-item">
-                      <a href="">Đồng hồ Rolex</a>
-                  </li>
-              </ul>
-          </div>
+  <div class="coup__header">
+    <div class="coup__caption">
+      <div class="coup__heading-wrap">
+        <div class="coup__title">
+          <h2>Quản lý các mã giảm giá riêng của shop</h2>
+        </div>
+        <!-- <div class="coup__help" data-bs-toggle="modal" data-bs-target="#coup-help">
+          <i class="coup__help-icon fa fa-question-circle"></i>
+          <div class="coup__help-title">Click vào để xem hướng dẫn cách lấy địa chỉ</div>
+        </div> -->
       </div>
+      <div class="coup__subtitle">Các mã giảm giá này chỉ được áp dụng tại shop 1 shop cụ thể</div>
     </div>
 
-    <button class="content-product__search-btn">
-      <i class="content-product__search-btn-icon fa fa-search"></i>
+    <button class="coup__create-btn" data-bs-toggle="modal" data-bs-target="#coup-post">
+      <i class="coup__create-icon fa fa-plus"></i>
+      <p class="coup__create-text">Thêm mã giảm giá mới</p>
     </button>
-
   </div>
+
   <div class="content-product-wrap-table">
     <table class="content-product-table">
       <thead>
         <th>#</th>
-        <th>ID</th>
-        <th>Tên sản phẩm</th>
+        <th>Code</th>
+        <th>Discount</th>
+        <th>Limit</th>
         <th>Action</th>
       </thead>
       <tbody>
 
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="ID">741852963</td>
-          <td data-label="Tên sản phẩm">Áo</td>
+        <tr *ngFor="let item of shop.coup, let i = index">
+          <td data-label="#">{{ i + 1 }}</td>
+          <td data-label="Code">{{ item.code }}</td>
+          <td data-label="Discount">{{ item.discount }}</td>
+          <td data-label="Limit">{{ item.limit }}</td>
 
           <td data-label="Action">
             <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="ID">741852963</td>
-          <td data-label="Tên sản phẩm">Áo</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
+              <button class="content-product-table-btn content-product-table-btn-update" data-bs-toggle="modal" [attr.data-bs-target]="'#coup-patch'+ i" [attr.aria-controls]="'#coup-patch'+ i">Thay đổi</button>
+              <button class="content-product-table-btn content-product-table-btn-delete" data-bs-toggle="modal" [attr.data-bs-target]="'#coup-delete'+ i" [attr.aria-controls]="'#coup-delete'+ i">Xóa</button>
             </div>
           </td>
         </tr>
 
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="ID">741852963</td>
-          <td data-label="Tên sản phẩm">Áo</td>
 
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td data-label="#">1</td>
-          <td data-label="ID">741852963</td>
-          <td data-label="Tên sản phẩm">Áo</td>
-
-          <td data-label="Action">
-            <div class="content-product-table-action">
-              <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-              <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-              <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-            </div>
-          </td>
-        </tr>
 
       </tbody>
     </table>
@@ -114,5 +64,127 @@
     <div class="dot">2</div>
     <div class="dot">3</div>
     <a class="next">&#10095;</a>
+  </div>
+</div>
+
+<!-- Post Coup -->
+<div class="modal mdl" id="coup-post" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content mdl-container">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm mã giảm giá</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="address-edit__info">
+
+          <div class="address-edit__item">
+            <label for="user-address" class="address-edit__item-label">
+              Mã giảm giá
+            </label>
+            <input id="user-address" type="text" [(ngModel)]="coup.code" class="form-control address-edit__item-input" placeholder="Nhập code cho mã giảm giá" />
+          </div>
+
+          <div class="address-edit__item">
+            <label for="detail-address" class="address-edit__item-label">
+              Mức giảm giá cho đơn hàng
+            </label>
+            <input type="text" id="detail-address" aria-label="detail-address" [(ngModel)]="coup.discount" class="form-control address-edit__item-input" placeholder="Nhập số tiền được giảm cho đơn hàng" />
+          </div>
+
+          <div class="address-edit__item">
+            <label for="detail-address" class="address-edit__item-label">
+              Giá trị đơn hàng tối thiểu
+            </label>
+            <input type="text" id="detail-address" aria-label="detail-address" [(ngModel)]="coup.limit" class="form-control address-edit__item-input" placeholder="Nhập giá trị tối thiểu của đơn hàng để có thể áp dụng mã giảm giá" />
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" (click)="handlerInsertCoup()">Thêm mã giảm giá</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Coup -->
+<div *ngFor="let item of shop.coup;index as i">
+  <div class="modal" [attr.id]="'coup-delete'+i" aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="modal-content" #coupDelete="ngForm" (ngSubmit)="handlerDeleteCoup(coupDelete.value)">
+
+        <div class="modal-header" name="_id" [(ngModel)]="item._id">
+          <h5 class="modal-title">Xóa mã giảm giá</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn muốn xóa mã giảm giá này của shop ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary">Xóa mã giảm giá</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Coup patch -->
+<div *ngFor="let item of shop.coup;index as i">
+  <div class="modal mdl"  [attr.id]="'coup-patch'+i" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <form #changeCoup="ngForm" (ngSubmit)="handlerPatchCoup(changeCoup.value,i)" class="modal-content mdl-container">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Sửa mã giảm giá</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="address-edit__info">
+
+            <div class="address-edit__item" style="display:none">
+              <label for="id-coup" class="address-edit__item-label">
+               Id
+              </label>
+              <input id="id-coup" type="text" name="_id" [(ngModel)]="item._id"/>
+            </div>
+
+            <div class="address-edit__item">
+              <label for="code-coup" class="address-edit__item-label">
+                Mã giảm giá
+              </label>
+              <input id="code-coup" type="text" name="code" [(ngModel)]="item.code" class="form-control address-edit__item-input" placeholder="Nhập code cho mã giảm giá" />
+            </div>
+
+            <div class="address-edit__item">
+              <label for="discount-coup" class="address-edit__item-label">
+                Mức giảm giá cho đơn hàng
+              </label>
+              <input type="text" id="discount-coup" name="discount" [(ngModel)]="item.discount" aria-label="discount-coup" class="form-control address-edit__item-input" placeholder="Nhập số tiền được giảm cho đơn hàng" />
+            </div>
+
+            <div class="address-edit__item">
+              <label for="limit-coup" class="address-edit__item-label">
+                Giá trị đơn hàng tối thiểu
+              </label>
+              <input type="text" id="limit-coup" name="limit" [(ngModel)]="item.limit" aria-label="limit-coup" class="form-control address-edit__item-input" placeholder="Nhập giá trị tối thiểu của đơn hàng để có thể áp dụng mã giảm giá" />
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sửa mã giảm giá</button>
+        </div>
+
+      </form>
+    </div>
   </div>
 </div>

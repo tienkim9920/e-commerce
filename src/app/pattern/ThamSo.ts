@@ -5,8 +5,10 @@ class ThamSo {
     productDiscount: any = []
     productHomePagination: any = []
     productCategory: any = []
+    productSearch: any = []
     listTick: any = []
     listPay: any = []
+    listNewfeed: any = []
 
     constructor () {}
 
@@ -19,7 +21,7 @@ class ThamSo {
     async getHomeProduct(page: any){
         const res = await fetch(API.GET_HOME_PRODUCT(page))
         const data = await res.json()
-        this.productHomePagination = data
+        this.productHomePagination = this.productHomePagination.concat(data)
     }
 
     async getDiscountProduct(){
@@ -38,6 +40,19 @@ class ThamSo {
         const res = await fetch(API.GET_PAYMENT())
         const data = await res.json()
         this.listPay = data
+    }
+
+    async getListSearch(word: any) {
+        const res = await fetch(API.GET_PRODUCT_SEARCH(word))
+        const data = await res.json()
+        this.productSearch = data
+    }
+
+    async getListNewfeed(page: any) {
+        const res = await fetch(API.GET_PAGINATION_NEWFEED(page))
+        const data = await res.json()
+        this.listNewfeed = this.listNewfeed.concat(data)
+        console.log(this.listNewfeed)
     }
 
 }

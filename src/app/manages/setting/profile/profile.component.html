@@ -20,10 +20,7 @@
                 Ảnh đại diện shop
               </label>
               <div class="product-file__upload">
-                <!-- <img src="https://cf.shopee.vn/file/6c1c9adf0bc9d0f0c20a18d1f5e8667d" alt="" class="product-file__upload-img">
-                <input type="file" id="file-image" class="product-file__upload-btn" placeholder="Tải hình ảnh">
-                <label for="file-image" class="product-file__upload-btn-label">Tải hình ảnh</label>
-                <label for="file-image" class="product-file__upload-label">Chọn hình ảnh từ trong máy</label> -->
+                <img src="{{imageDefault}}" alt="" class="product-file__upload-img">
               </div>
             </div>
           </div>
@@ -39,7 +36,7 @@
                 <span class="sidebar-menu-item-label">Giao diện shop</span>
               </div>
               <div class="sidebar-menu-item-direct">
-                <p class="sidebar-menu-item-site">Xem</p>
+                <a class="sidebar-menu-item-site" target="_blank" [routerLink]="['/shop/'+shop._id]">Xem</a>
                 <i class="fa fa-angle-right sidebar-menu-item-icon-right"></i>
               </div>
             </div>
@@ -151,7 +148,7 @@
                 Ảnh đại diện shop
               </label>
               <div class="product-file__upload">
-                <img src="{{image}}" alt="" class="product-file__upload-img">
+                <img src="{{ imageChange }}" alt="" class="product-file__upload-img">
                 <input (change)="onSelectImage($event)" type="file" id="file-image" class="product-file__upload-btn" placeholder="Tải hình ảnh">
                 <label for="file-image" class="product-file__upload-btn-label">Tải hình ảnh</label>
                 <label for="file-image" class="product-file__upload-label">Chọn hình ảnh & video từ trong máy</label>

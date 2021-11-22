@@ -1,141 +1,67 @@
 <div class="content-product">
-  <div class="content-product-header">
-    <div class="content-product__tab">
-      <i class="content-product__tab-icon fa fa-bar-chart"></i>
-      <span class="content-product__tab-label">Tất cả đơn hàng</span>
+    <div class="content-product-header row">
+        <div class="content-product__tab dropdown col-2">
+            <i class="content-product__tab-icon fa fa-bar-chart"></i>
+            <span class="content-product__tab-label">{{params.name}}</span>
+        </div>
+
+        <form class="content-product__search col-10">
+
+            <div class="content-product__search-input-wrap">
+                <input ngModel name="search" type="text" class="content-product__search-input" placeholder="Tìm kiếm ...">
+            </div>
+            <button class="content-product__search-btn"><i class="content-product__search-btn-icon fa fa-search"></i></button>
+        </form>
     </div>
 
-    <div class="content-product__search">
-      <div class="content-product__search-input-wrap">
-          <input type="text" class="content-product__search-input" placeholder="Tìm kiếm đơn hàng ...">
-          <!-- content-product-search-history -->
+    <div class="container table-responsive my-4">
+        <table class="content-product-table ">
+            <thead>
+                <th>Email</th>
+                <th>Tên người đặt</th>
+                <th>Số điện thoại</th>
+                <th>Tổng tiền</th>
+                <th>Tình trạng</th>
+                <th>Thanh toán</th>
+                <th>Ngày đặt hàng</th>
+                <th>Hành động</th>
+            </thead>
+            <tbody *ngFor="let item of order;index as i;">
+                <tr>
+                    <td>{{item.userId.email}}</td>
+                    <td>
+                        {{item.noteId.name}}
+                    </td>
+                    <td>
+                        {{item.noteId.phone}}
+                    </td>
+                    <td data-label="Tổng tiền">{{item.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
+                    <td data-label="Tổng tiền" [ngSwitch]="item.status">
+                        <p *ngSwitchCase="1">Đang xử lý</p>
+                        <p *ngSwitchCase="2">Đang xác nhận</p>
+                        <p *ngSwitchCase="3">Đang vận chuyển</p>
+                        <p *ngSwitchCase="4">Đã giao</p>
+                        <p *ngSwitchCase="5">Đã hủy</p>
+                    </td>
+                    <td data-label="Loại sản phẩm">{{item.payId.payment}}</td>
+                    <td data-label="Giá thành">{{item.createTime|date:"dd/MM/YYYY, HH:mm:ss"}}</td>
 
-          <div class="content-product__search-history">
-              <h3 class="content-product__search-history-heading">Lịch sử tìm kiếm</h3>
-              <ul class="content-product__search-history-list">
-                  <li class="content-product__search-history-item">
-                      <a href="">Áo khoác hàng hiệu</a>
-                  </li>
-                  <li class="content-product__search-history-item">
-                      <a href="">Quần jean cao cấp</a>
-                  </li>
-                  <li class="content-product__search-history-item">
-                      <a href="">Đồng hồ Rolex</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-
-      <button class="content-product__search-btn">
-          <i class="content-product__search-btn-icon fa fa-search"></i>
-      </button>
-
+                    <td>
+                        <div class="content-product-table-action">
+                            <button [routerLink]="['/user/order/detail/'+item._id]" class="content-product-table-btn btn-primary">Chi tiết</button>
+                        </div>
+                        <div class="content-product-table-action">
+                            <button class="content-product-table-btn btn-danger">Hủy</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
-  <div class="content-product-wrap-table">
-    <div class="content-product-overflow-table">
-      <table class="content-product-table">
-        <thead>
-          <th>#</th>
-          <th>ID</th>
-          <th>Tên người đặt</th>
-          <th>Email</th>
-          <th>Số điện thoại</th>
-          <th>Địa chỉ</th>
-          <th>Tổng đơn hàng</th>
-          <th>Tình trạng</th>
-          <th>Hình thức thanh toán</th>
-          <th>Action</th>
-        </thead>
-        <tbody>
 
-          <tr>
-            <td data-label="#">1</td>
-            <td data-label="ID">741852963</td>
-            <td data-label="Tên người đặt">Nguyen Quoc Toan</td>
-            <td data-label="Email">hahadaubo@gmail.com</td>
-            <td data-label="Số điện thoại">069696969</td>
-            <td data-label="Địa chỉ">342 Tân Hòa Đông</td>
-            <td data-label="Tổng đơn hàng">350.000vnd</td>
-            <td data-label="Tình trạng">Đang giao</td>
-            <td data-label="Hình thức thanh toán">Paypal</td>
-
-            <td data-label="Action">
-              <div class="content-product-table-action">
-                <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-                <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-                <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td data-label="#">1</td>
-            <td data-label="ID">741852963</td>
-            <td data-label="Tên người đặt">Nguyen Quoc Toan</td>
-            <td data-label="Email">hahadaubo@gmail.com</td>
-            <td data-label="Số điện thoại">069696969</td>
-            <td data-label="Địa chỉ">342 Tân Hòa Đông</td>
-            <td data-label="Tổng đơn hàng">350.000vnd</td>
-            <td data-label="Tình trạng">Đang giao</td>
-            <td data-label="Hình thức thanh toán">Paypal</td>
-
-            <td data-label="Action">
-              <div class="content-product-table-action">
-                <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-                <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-                <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td data-label="#">1</td>
-            <td data-label="ID">741852963</td>
-            <td data-label="Tên người đặt">Nguyen Quoc Toan</td>
-            <td data-label="Email">hahadaubo@gmail.com</td>
-            <td data-label="Số điện thoại">069696969</td>
-            <td data-label="Địa chỉ">342 Tân Hòa Đông</td>
-            <td data-label="Tổng đơn hàng">350.000vnd</td>
-            <td data-label="Tình trạng">Đang giao</td>
-            <td data-label="Hình thức thanh toán">Paypal</td>
-
-            <td data-label="Action">
-              <div class="content-product-table-action">
-                <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-                <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-                <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td data-label="#">1</td>
-            <td data-label="ID">741852963</td>
-            <td data-label="Tên người đặt">Nguyen Quoc Toan</td>
-            <td data-label="Email">hahadaubo@gmail.com</td>
-            <td data-label="Số điện thoại">069696969</td>
-            <td data-label="Địa chỉ">342 Tân Hòa Đông</td>
-            <td data-label="Tổng đơn hàng">350.000vnd</td>
-            <td data-label="Tình trạng">Đang giao</td>
-            <td data-label="Hình thức thanh toán">Paypal</td>
-
-            <td data-label="Action">
-              <div class="content-product-table-action">
-                <button class="content-product-table-btn content-product-table-btn-detail">Chi tiết</button>
-                <button class="content-product-table-btn content-product-table-btn-update">Thay đổi</button>
-                <button class="content-product-table-btn content-product-table-btn-delete">Xóa</button>
-              </div>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
+    <div class="mt-3">
+        <app-pagination [itemLength]="orderLength" [filter]="filter"></app-pagination>
     </div>
-  </div>
 
-  <div class="content-product-page-controller">
-    <a class="prev">&#10094;</a>
-    <div class="dot active">1</div>
-    <div class="dot">2</div>
-    <div class="dot">3</div>
-    <a class="next">&#10095;</a>
-  </div>
+
 </div>

@@ -30,6 +30,8 @@ export class IndexComponent implements OnInit {
 
   toastErrorVerify: boolean = false
 
+  errorMessage: boolean = false
+
   // Giỏ hàng của bạn
   myCarts: any
 
@@ -238,6 +240,7 @@ export class IndexComponent implements OnInit {
       this.toastCoupon = false
       this.toastVerifyAnother = false
       this.toastErrorVerify = false
+      this.errorMessage = false
     }, 3000)
   }
 
@@ -309,6 +312,17 @@ export class IndexComponent implements OnInit {
   }
 
   handlerOrder(){
+
+    // Kiểm tra số lượng tồn của sản phẩm
+    const checkingStockMyCart = this.cartService.getMyCarts().some((element: any) => {
+      return element.count > element.stock
+    })
+    if (checkingStockMyCart){
+      this.errorMessage = true
+      this.Toast()
+      return
+    }
+
     if (this.myCarts.length < 1){
 
       if (this.anotherCarts.length > 0){
@@ -343,19 +357,35 @@ export class IndexComponent implements OnInit {
       return
     }
 
+    if (this.cartService.getPermission() !== 'client'){
+      return
+    }
+
     this.router.navigate(['/cart/setting'])
   }
 
   // Hàm này dùng để xác nhận giao dịch
   verifyCartAnother(){
 
+    // Kiểm tra số lượng tồn của sản phẩm
+    const checkingStockMyCart = this.cartService.getMyCarts().some((element: any) => {
+      return element.count > element.stock
+    })
+    if (checkingStockMyCart){
+      this.errorMessage = true
+      this.Toast()
+      return
+    }    
+
     let cartSocket: any = []
 
     let totalBill = 0
 
+    // Tính điều kiện giới hạn số tiền giỏ hàng chia sẽ
     this.cartService.getMyCarts().forEach((element: any) => {
       totalBill += element.price * element.count
 
+      element.userId = this.anotherRoom.userId
       element.fullname = this.anotherRoom.fullname
       cartSocket.push(element)
     })
@@ -368,8 +398,11 @@ export class IndexComponent implements OnInit {
 
     const data = {
       room: this.anotherRoom.code,
-      cart: cartSocket
+      cart: cartSocket,
+      userId: this.anotherRoom.userId
     }
+
+    console.log(data)
 
     socket.emit('verifyCart', data)
 
@@ -378,8 +411,14 @@ export class IndexComponent implements OnInit {
   }
 
   receiveCartAnother(){
-    socket.on('verifyCart', async (data:any) => {
-      this.anotherCarts = data
+    socket.on('verifyCart', async (data: any) => {
+
+      // Lọc ra những giỏ hàng khác với người đã gửi socket
+      const newFilter = this.cartService.getAnotherCarts().filter((element: any) => {
+        return element.userId.toString() !== data.userId.toString()
+      })
+
+      this.anotherCarts = newFilter.concat(data.cart)
       this.cartService.setAnotherCart(this.anotherCarts)
       this.cartService.TotalPayment()
 

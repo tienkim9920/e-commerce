@@ -23,7 +23,6 @@
                     <tr>
                         <th>Tên cửa hàng</th>
                         <th>Tên sản phẩm</th>
-                        <th>Hình ảnh</th>
                         <th>Giá</th>
                         <th>Kích Thước</th>
                         <th>Số lượng</th>
@@ -33,8 +32,9 @@
                 <tbody>
                         <tr *ngFor="let item of myCarts; index as i">
                             <td>{{ item.shopId.name }}</td>
-                            <td>{{ item.name }}</td>
-                            <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
+                            <td [routerLink]="['/detail', item.productId]" style="cursor: pointer;">
+                                <img class="img-body-cart" src="{{ item.image }}" alt="">&nbsp; {{ item.name }}
+                            </td>
                             <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
                             <td>{{ item.size }}</td>
                             <td>
@@ -70,7 +70,6 @@
                     <tr>
                         <th>Người giao dịch</th>
                         <th>Tên sản phẩm</th>
-                        <th>Hình ảnh</th>
                         <th>Giá</th>
                         <th>Kích Thước</th>
                         <th>Số lượng</th>
@@ -80,8 +79,9 @@
                 <tbody>
                     <tr *ngFor="let item of anotherCarts; index as i">
                         <td>{{ item.fullname }}</td>
-                        <td>{{ item.name }}</td>
-                        <td><img class="img-body-cart" src="{{ item.image }}" alt=""></td>
+                        <td [routerLink]="['/detail', item.productId]" style="cursor: pointer;">
+                            <img class="img-body-cart" src="{{ item.image }}" alt="">&nbsp; {{ item.name }}
+                        </td>
                         <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN' }}</td>
                         <td>{{ item.size }}</td>
                         <td>{{ item.count }}</td>
@@ -251,6 +251,16 @@
     </div>
     <div class="toast-body">
         Đơn hàng không thể vượt quá giới hạn!
+    </div>
+  </div>
+</div>
+<div class="position-fixed top-0 end-0" style="margin-top: 5rem; z-index: 99998;">
+  <div id="liveToast" [ngClass]="errorMessage ? 'toast show' : 'toast hide'" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-danger">
+      <strong class="me-auto">Thông báo</strong>
+    </div>
+    <div class="toast-body">
+        Số lượng sản phẩm vượt quá giới hạn!
     </div>
   </div>
 </div>

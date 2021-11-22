@@ -1,6 +1,8 @@
 import { DatacenterComponent } from './datacenter.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 import { DatacenterRoutingModule } from './datacenter-routing.module';
 import { StatisticComponent } from './statistic/statistic.component';
@@ -17,7 +19,8 @@ import { AddcouponComponent } from './addcoupon/addcoupon.component';
   ],
   imports: [
     CommonModule,
-    DatacenterRoutingModule
+    DatacenterRoutingModule,
+    FormsModule
   ]
 })
 export class DatacenterModule { }

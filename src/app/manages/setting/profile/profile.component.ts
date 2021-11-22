@@ -11,44 +11,51 @@ import Shop  from '../../../pattern/Shop';
 export class ProfileComponent implements OnInit {
 
   shop = new Shop('', '', '', '', '', 0, '', '') // Để hiển thị
-  image = 'https://cf.shopee.vn/file/6c1c9adf0bc9d0f0c20a18d1f5e8667d'
+
+  imageChange:any='https://icons-for-free.com/iconfiles/png/512/add+photo+plus+upload+icon-1320184027779532643.png'
+
+  imageDefault:any
 
   constructor(private cartService: CartService) {
 
     // Lấy user id
     this.shop.userId = cartService.getUserId()
 
-    setTimeout(() => {
-      this.shop.getDetailShopByUserId()
-    }, 500)
-
   }
 
   async ngOnInit(): Promise<void> {
     // Lấy detail shop of user id
     await this.shop.getDetailShopByUserId()
-    // this.address.shopId = this.shop._id
+
+    this.imageDefault = this.shop.image
   }
 
   onSelectImage(e: any){
-      const files=e.target.files[0]
-      console.log(files)
 
-      this.shop.image= files
+      const files=e.target.files[0]
+
+      this.shop.image = files
+
       var reader= new FileReader();
+
       reader.readAsDataURL(files)
-      reader.onload=(event:any) =>{
-        this.image=event.target.result
+
+      reader.onload = (event:any) =>{
+
+        this.imageChange = event.target.result
+
       }
   }
 
-
   async handlerPatchDetailShop(){
-    var postData = JSON.stringify(this.shop);
+
     var formData = new FormData();
-    formData.append("postData",postData);
+
+    formData.append("name",this.shop.name);
+    formData.append('description', this.shop.description);
+    formData.append('file', this.shop.image);
+
     await this.shop.PATCH_SHOP(formData)
-    console.log(this.shop)
   }
 
 }

@@ -19,6 +19,7 @@ class Product {
     like: any
     comment: any
     expiredTime: any
+    stock: any
     likes: any = []
     comments: any = []
     option: any = []
@@ -37,6 +38,7 @@ class Product {
         this.count = count
         this.like = like
         this.comment = comment
+        this.stock = true
         this.expiredTime = expiredTime
     }
 
@@ -52,6 +54,7 @@ class Product {
             count: this.count,
             like: this.like,
             comment: this.comment,
+            stock: this.stock,
             expiredTime: this.expiredTime
         }
     }
@@ -77,7 +80,8 @@ class Product {
 
     // POST_PRODUCT
     async POST_PRODUCT(){
-      const res = await fetch(API.POST_PRODUCT(), {
+      console.log(this.toJSON())
+        const res = await fetch(API.POST_PRODUCT(), {
           method: 'POST',
           body: JSON.stringify(this.toJSON()),
           headers: {
@@ -131,6 +135,7 @@ class Product {
         this.count = data.count
         this.like = data.like
         this.comment = data.comment
+        this.stock = data.stock
         this.expiredTime = data.expiredTime
     }
 
@@ -142,10 +147,11 @@ class Product {
     }
 
     // GET List Comments Product by productId
-    async getCommentProduct(){
-        const res = await fetch(API.GET_COMMENT_PRODUCT(this._id))
+    async getCommentProduct(productId: any){
+        const res = await fetch(API.GET_COMMENT_PRODUCT(productId))
         const data = await res.json()
         this.comments = data.reverse()
+        console.log(this.comments)
     }
 
     // POST List Comment Product by productId
@@ -155,8 +161,8 @@ class Product {
     }
 
     // GET List Option
-    async getOptionProduct(){
-        const res = await fetch(API.GET_OPTION_PRODUCT(this._id))
+    async getOptionProduct(productId: any){
+        const res = await fetch(API.GET_OPTION_PRODUCT(productId))
         const data = await res.json()
         this.option = data
     }
@@ -182,13 +188,24 @@ class Product {
     }
 
     async patchLike(){
+        this.like += 1
         await fetch(API.PATCH_LIKE(this._id))
-        this.like = this.like + 1
     }
 
     async patchDislike(){
+        this.like -= 1
         await fetch(API.PATCH_DISLIKE(this._id))
-        this.like = this.like - 1
+    }
+
+    async checkingUserLikeProduct(userId: any){
+        const res = await fetch(API.CHECKING_LIKE_USER(userId, this._id))
+        const data = await res.json()
+        return data
+    }
+
+    async patchCountComment(){
+        this.comment += 1
+        await fetch(API.PATCH_COUNT_COMMENT(this._id))
     }
 
 }
