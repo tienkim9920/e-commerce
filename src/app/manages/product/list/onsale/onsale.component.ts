@@ -11,11 +11,7 @@ import ListProduct from '../ListProduct';
 export class OnsaleComponent implements OnInit {
 
   product = new ListProduct()
-<<<<<<< HEAD
-  productDelete=new Product("","","","","","","","","","","","")
-=======
   productDelete=new Product("","","","","","","","","","","")
->>>>>>> origin
 
   search: string = ''
 
