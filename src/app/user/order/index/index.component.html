@@ -21,7 +21,7 @@
                     <td data-label="Tổng tiền">{{item.total|currency:'VND':'VNĐ':'1.0-0':'vi-VN'}}</td>
                     <td data-label="Tổng tiền" [ngSwitch]="item.status">
                         <p *ngSwitchCase="1">Đang xử lý</p>
-                        <p *ngSwitchCase="2">Đang xác nhận</p>
+                        <p *ngSwitchCase="2">Đã xác nhận</p>
                         <p *ngSwitchCase="3">Đang vận chuyển</p>
                         <p *ngSwitchCase="4">Đã giao</p>
                         <p *ngSwitchCase="5">Đã hủy</p>

@@ -23,7 +23,8 @@ export class AllComponent implements OnInit {
   async updateStatusOrder(item:any,index:any,option:boolean){
     const query={
       option:option,
-      status:item.status
+      status:item.status,
+      userId: item.userId._id
     }
     const updateOrder=await this.orderPatch.PATCH_ORDER(item,query)
     if(option){
