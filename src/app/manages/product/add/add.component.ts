@@ -12,11 +12,7 @@ import Shop from 'src/app/pattern/Shop';
 })
 export class AddComponent implements OnInit {
   option=new Option("", "","",0)
-<<<<<<< HEAD
-  product= new Product("","","","","","",[],"","","","","")
-=======
   product= new Product("","","","","","",[],"","","","")
->>>>>>> origin
   shop=new Shop("","","","","",0,"","")
 
   category=new Category("")

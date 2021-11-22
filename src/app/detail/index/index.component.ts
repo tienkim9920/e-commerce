@@ -33,7 +33,7 @@ export class IndexComponent implements OnInit {
 
   index = 0
 
-  product = new Product('', '', '', '', '', '', [],'' , '', '', '', '')
+  product = new Product('', '', '', '', '', '', [],'' , '', '', '')
 
   message: string = ''
 
@@ -55,7 +55,7 @@ export class IndexComponent implements OnInit {
     setTimeout(async () => {
       this.like = await this.product.checkingUserLikeProduct(this.cartService.getUserId())
     }, 1500)
-    
+
     this.permission = this.cartService.getPermission()
   }
 
@@ -122,7 +122,7 @@ export class IndexComponent implements OnInit {
 
     // Kiểm tra số lượng tồn ở giỏ hàng
     const checking = this.cartService.getMyCarts().some((element: any) => {
-      return element.productId === this.product._id && element.size === this.size 
+      return element.productId === this.product._id && element.size === this.size
         && element.count + this.count > this.stock.count
     })
     if (checking){
@@ -160,9 +160,9 @@ export class IndexComponent implements OnInit {
     }
 
     const room = new Room('', this.cartService.getSubjectId(), this.product.shopId._id, '')
-    
+
     const checking = await room.checkingRoom()
-    
+
     // Kiểm tra xem đã có phòng chat hay chưa
     if (!checking){ // Nếu chưa
 
@@ -204,9 +204,9 @@ export class IndexComponent implements OnInit {
 
     // Cập nhất số lượng Comment
     this.product.patchCountComment()
-    
+
     // Thêm Comment vào list
-    const comment = new Comment(this.product._id, this.cartService.getUserId(), this.starComment, 
+    const comment = new Comment(this.product._id, this.cartService.getUserId(), this.starComment,
       this.textCommnent, `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`)
 
     this.product.postCommentProduct(comment)

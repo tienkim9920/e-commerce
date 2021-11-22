@@ -313,11 +313,7 @@ export class IndexComponent implements OnInit {
 
       // POST API chi tiết hóa đơn another và nhập nhật số lượng tồn
       this.handlerDetailCheckingStock(this.anotherCarts, shop, resultOrder)
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> origin
     })
 
     // Cập nhật điểm tích lũy cho user
@@ -342,26 +338,15 @@ export class IndexComponent implements OnInit {
         // Cập nhật số lượng tồn
         const option = new Option(cart.optionId, cart.productId, cart.size, 0)
         option.count = cart.stock - cart.count
-<<<<<<< HEAD
         await option.PATCH_OPTION()
 
         // Kiểm tra số lượng tồn
-        const product = new Product(cart.productId, '', '', '', '', '', '', '', '', '', '','')
-=======
-        await option.PATCH_OPTION()     
-        
-        // Kiểm tra số lượng tồn
         const product = new Product(cart.productId, '', '', '', '', '', '', '', '', '', '')
->>>>>>> origin
         const checking = await product.checkingCountOptionProduct()
 
         if (checking){
           await product.patchStatusStockProduct()
-<<<<<<< HEAD
         }
-=======
-        }          
->>>>>>> origin
       }
     })
   }
