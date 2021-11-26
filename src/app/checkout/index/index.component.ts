@@ -138,12 +138,15 @@ export class IndexComponent implements OnInit {
       }
     });
 
-    this.anotherCarts.forEach((element: any) => {
-      if (element.shopId._id !== this.anotherCarts[0].shopId._id) {
-        flag++;
-      }
-    });
-
+    if (this.anotherCarts.length > 0){
+      flag++
+      this.anotherCarts.forEach((element: any) => {
+        if (element.shopId._id !== this.anotherCarts[0].shopId._id) {
+          flag++;
+        }
+      });
+    }
+    
     return 30000 * flag;
   }
 

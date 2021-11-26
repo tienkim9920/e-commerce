@@ -105,7 +105,8 @@
                     </div>
                 </div>
                 <div class="header-profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-user-circle-o p-1"></i>
+                    <i *ngIf="!user.image" class="fa fa-user-circle-o p-1"></i>
+                    <img *ngIf="user.image" class="logo-mini-profile" src="{{ user.image }}" alt="">
                     <span>{{ user.name }}</span>
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

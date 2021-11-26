@@ -53,7 +53,7 @@
                         <div class="content-product-table-action" *ngIf="item.status<4">
                             <button class="content-product-table-btn btn-success" (click)="updateStatusOrder(item,i,true)">Xác nhận</button>
                         </div>
-                        <div class="content-product-table-action" *ngIf="item.status<4">
+                        <div class="content-product-table-action" *ngIf="item.status < 4 && !item.pay">
                             <button class="content-product-table-btn btn-danger" (click)="updateStatusOrder(item,i,false)">Hủy</button>
                         </div>
 

@@ -61,7 +61,6 @@ class Shop{
     const res = await fetch(API.GET_ADDRESS_SHOP(this._id))
     const data = await res.json()
     this.address = data
-    console.log(data)
   }
 
 
@@ -69,7 +68,6 @@ class Shop{
   async postAddress(address: Address) {
     const data = await address.POST_ADDRESS()
     this.address = [...this.address, data.address]
-    console.log(data)
     return data.address
   }
 

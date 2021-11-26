@@ -96,8 +96,8 @@ class Product {
       formData.append('price', this.price);
       formData.append('discount', this.discount);
       formData.append('description', this.description);
-      formData.append('like', "0");
-      formData.append('comment', "0");
+      formData.append('like', this.like);
+      formData.append('comment', this.comment);
       formData.append('stock', "true");
       formData.append('expiredTime', "0");
       formData.append('categoryId', this.categoryId);
