@@ -772,6 +772,26 @@ li{
     cursor: pointer;
   }
   
+  .padding-size{
+    padding: .2rem .8rem;
+    margin: .2rem .5rem;
+    border: 1px solid #f1f1ff;
+    font-family: 'Nunito Sans', sans-serif;
+    cursor: pointer;
+}
+
+.padding-size.active{
+    background-color: #1A94FF !important;
+    color: #fff !important;
+}
+
+.padding-size:first-child{
+    margin-left: 0rem !important;
+}
+
+.padding-size:last-child{
+    padding: .2rem .6rem;
+}
 
 @media only screen and (max-width: 600px){
     .layout-footer-responsive{
