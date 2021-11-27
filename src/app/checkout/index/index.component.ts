@@ -152,21 +152,21 @@ export class IndexComponent implements OnInit {
 
   // GET API Tinh
   async getTinh(){
-    const res = await fetch('http://localhost:4000/tinh')
+    const res = await fetch('https://tk-ecommerce.herokuapp.com/tinh')
     const data = await res.json()
     this.tinh = data.results
   }
 
   // GET API Quận
   async getQuan(code: any){
-    const res = await fetch(`http://localhost:4000/quan?code=${code}`)
+    const res = await fetch(`https://tk-ecommerce.herokuapp.com/quan?code=${code}`)
     const data = await res.json()
     this.quan = data.results
   }
 
   // GET API Phường
   async getPhuong(code: any){
-    const res = await fetch(`http://localhost:4000/phuong?code=${code}`)
+    const res = await fetch(`https://tk-ecommerce.herokuapp.com/phuong?code=${code}`)
     const data = await res.json()
     this.phuong = data.results
   }
