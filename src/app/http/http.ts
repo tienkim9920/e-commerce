@@ -1,4 +1,5 @@
-const url = 'http://localhost:4000'
+// const url = 'http://localhost:4000'
+const url = 'http://tk-ecommerce.herokuapp.com'
 
 const API = {
 
