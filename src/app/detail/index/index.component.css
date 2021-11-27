@@ -77,8 +77,8 @@
 }
 
 .padding-size.active{
-    border: 1px solid #1A94FF;
-    color: #1A94FF;
+    background-color: #1A94FF !important;
+    color: #fff !important;
 }
 
 .padding-size:first-child{
