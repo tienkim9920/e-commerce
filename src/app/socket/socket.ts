@@ -4,6 +4,7 @@ var connectionOptions = {
     "transports": ["websocket"]
 };
 
-const socket = io('http://localhost:4000', connectionOptions);
+// const socket = io('http://localhost:4000', connectionOptions);
+const socket = io('http://tk-ecommerce.herokuapp.com', connectionOptions);
 
 export default socket
