@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart.service';
 import Category from 'src/app/pattern/Category';
-import Newfeed from 'src/app/pattern/Newfeed';
 import Option from 'src/app/pattern/Option';
 import Product from 'src/app/pattern/Product';
 import Shop from 'src/app/pattern/Shop';
@@ -17,8 +16,6 @@ export class AddComponent implements OnInit {
   product= new Product("","","","","","",[],"","","","")
   shop=new Shop("","","","","",0,"","")
 
-  newFeed = new Newfeed('', '', '', 0, 0, '')
-
   category=new Category("")
   listCategory=Array<Category>()
   inforAPI:any=""
@@ -26,7 +23,6 @@ export class AddComponent implements OnInit {
   constructor(cartService:CartService) {
     this.product.option.push(this.option)
     this.shop.userId=cartService.getUserId()
-
   }
 
   async ngOnInit(): Promise<void> {
@@ -84,10 +80,5 @@ export class AddComponent implements OnInit {
   async onSubmitProduct(data: any){
     this.inforAPI=""
     this.inforAPI=await this.product.POST_PRODUCT();
-
-    this.newFeed.shopId = this.product.shopId
-    this.newFeed.productId = this.product._id
-    this.newFeed.createTime = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
-    this.newFeed.POST_NEWFEED()
   }
 }
