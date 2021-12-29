@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   async handlerSignIn(){
     
     const token = await this.user.signInUser()
+    console.log(token)
 
     if (!token){
       this.error = true

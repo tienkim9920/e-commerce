@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   user = new User('')
 
-  permission: any
+  permission: any = 'client'
 
   success: Boolean = false
 
