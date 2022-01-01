@@ -16,16 +16,19 @@ export class OrderComponent implements OnInit {
       name: 'Tất cả', path: '/manages/order/0'
     },
     {
-      name: 'Chờ xác nhận', path: '/manages/order/1'
+      name: 'Đang xử lý', path: '/manages/order/1'
     },
     {
-      name: 'Đang giao', path: '/manages/order/2'
+      name: 'Đã xác nhận', path: '/manages/order/2'
     },
     {
-      name: 'Đã giao', path: '/manages/order/3'
+      name: 'Đang giao', path: '/manages/order/3'
     },
     {
-      name: 'Đã hủy', path: '/manages/order/4'
+      name: 'Đã giao', path: '/manages/order/4'
+    },
+    {
+      name: 'Đã hủy', path: '/manages/order/5'
     },
   ];
 
