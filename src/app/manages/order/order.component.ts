@@ -49,6 +49,7 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.shop.order)
   }
 
   setFilter(params:any, queryParams: any){

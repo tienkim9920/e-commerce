@@ -18,6 +18,7 @@ export class AllComponent implements OnInit {
   constructor() { }
 
   ngOnInit(){
+    console.log(this.order)
   }
 
   async updateStatusOrder(item:any,index:any,option:boolean){
