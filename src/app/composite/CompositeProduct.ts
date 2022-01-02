@@ -15,8 +15,14 @@ class CompositeProduct{
         const index = this.listProduct.findIndex((element: Product) => {
             return element.id === product.id
         })
-
         this.listProduct.splice(index, 1)
+    }
+
+    updateProduct(product: Product){
+        const index = this.listProduct.findIndex((element: Product) => {
+            return element.id === product.id
+        })
+        this.listProduct[index] = product
     }
 
     HienThiThongTin(){

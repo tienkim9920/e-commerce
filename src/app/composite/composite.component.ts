@@ -14,6 +14,8 @@ export class CompositeComponent implements OnInit {
 
   product: Product = new Product('', '', '', '', '')
 
+  updateProduct: Product = new Product('', '', '', '', '')
+
   compositeTraSua: CompositeProduct = new CompositeProduct()
 
   compositeTrangPhuc: CompositeProduct = new CompositeProduct()
@@ -29,21 +31,7 @@ export class CompositeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (JSON.parse(localStorage.getItem('composite')!)){
-      const cloneComposite = JSON.parse(localStorage.getItem('composite') || '[]')
-
-      cloneComposite.forEach((element: Product) => {
-        if (element.category === this.categoryList[0].id){
-          this.compositeTraSua.addProduct(new Product(element.id, element.category, element.name,
-            element.price, element.description))
-        }else{
-          this.compositeTrangPhuc.addProduct(new Product(element.id, element.category, element.name,
-            element.price, element.description))
-        }
-      });
-
-      this.handleShowData()
-    }
+    this.initLocalStorage()
   }
 
   changeCategory(item: any){
@@ -93,12 +81,47 @@ export class CompositeComponent implements OnInit {
     this.handleShowData()
   }
 
+  updateTraSua(){
+    this.compositeTraSua.updateProduct(this.updateProduct)
+    this.updateLocalStorage(this.updateProduct)
+    this.handleShowData()
+  }
+
+  updateTrangPhuc(){
+    this.compositeTrangPhuc.updateProduct(this.updateProduct)
+    this.updateLocalStorage(this.updateProduct)
+    this.handleShowData()
+  }
+
+  handleUpdate(item: Product){
+    this.updateProduct = item
+    console.log(this.updateProduct)
+  }
+
   resetProduct(){
     this.product.id = ''
     this.product.category = 1
     this.product.name = ''
     this.product.price = ''
     this.product.description = ''
+  }
+
+  initLocalStorage(){
+    if (JSON.parse(localStorage.getItem('composite')!)){
+      const cloneComposite = JSON.parse(localStorage.getItem('composite') || '[]')
+
+      cloneComposite.forEach((element: Product) => {
+        if (String(element.category) === String(this.categoryList[0].id)){
+          this.compositeTraSua.addProduct(new Product(element.id, element.category, element.name,
+            element.price, element.description))
+        }else{
+          this.compositeTrangPhuc.addProduct(new Product(element.id, element.category, element.name,
+            element.price, element.description))
+        }
+      });
+
+      this.handleShowData()
+    }
   }
 
   saveLocalStorage(){
@@ -114,6 +137,15 @@ export class CompositeComponent implements OnInit {
       return element.id === item.id
     })
     cloneComposite.splice(index, 1)
+    localStorage.setItem('composite', JSON.stringify(cloneComposite))
+  }
+
+  updateLocalStorage(item: Product){
+    const cloneComposite = JSON.parse(localStorage.getItem('composite') || '[]')
+    const index = cloneComposite.findIndex((element: Product) => {
+      return element.id === item.id
+    })
+    cloneComposite[index] = item
     localStorage.setItem('composite', JSON.stringify(cloneComposite))
   }
 }
