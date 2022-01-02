@@ -64,7 +64,7 @@ export class IndexComponent implements OnInit {
       status:item.status
     }
     const updateOrder=await this.orderPatch.PATCH_ORDER(item,query)
-
+    console.log(updateOrder)
     this.order[index].status="5"
   }
 

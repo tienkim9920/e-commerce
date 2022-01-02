@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { Factory } from '../factory/Factory';
 import User from '../pattern/User';
 import socket from '../socket/socket';
 
@@ -35,7 +36,10 @@ export class LoginComponent implements OnInit {
     token.expiredTime = Date.now() + 600000
 
     this.cartService.setJWT(token)
-    this.router.navigate(['/'])
+    
+    var factory = new Factory();
+ 
+    this.router.navigate([factory.RedirectLogin(token.jwt).getLink()])
 
     // connect application
     this.connectApplication()
