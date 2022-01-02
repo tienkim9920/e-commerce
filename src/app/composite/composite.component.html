@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="mt-5 mb-5">
+        <form>
+            <div class="mb-3">
+                <label>Loại Sản Phẩm: </label>
+                <select class="form-select w-25" 
+                    [(ngModel)]="product.category" 
+                    (ngModelChange)="changeCategory($event)" name="Loại Sản Phẩm">
+                    <option *ngFor="let item of categoryList" 
+                        [value]="item.id" >{{ item.description }}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tên Sản Phẩm</label>
+                <input type="text" class="form-control w-25" [(ngModel)]="product.name" name="name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Giá Sản Phẩm</label>
+                <input type="text" class="form-control w-25" [(ngModel)]="product.price" name="price">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mô Tả</label>
+                <input type="text" class="form-control w-25" [(ngModel)]="product.description" name="description">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="handleAddProduct()">Submit</button>
+        </form>
+        <div class="mt-5">
+            <h3 class="form-label">{{ categoryList[0].description }}</h3>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Mã Sản Phẩm</th>
+                        <th scope="col">Tên Sản Phẩm</th>
+                        <th scope="col">Giá Sản Phẩm</th>
+                        <th scope="col">Mô Tả</th>
+                        <th scope="col">Chỉnh Sửa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of compositeTraSua.listProduct">
+                        <th>{{ item.id }}</th>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN'  }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-danger" (click)="deleteTraSua(item)">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-5">
+            <h3 class="form-label">{{ categoryList[1].description }}</h3>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Mã Sản Phẩm</th>
+                        <th scope="col">Tên Sản Phẩm</th>
+                        <th scope="col">Giá Sản Phẩm</th>
+                        <th scope="col">Mô Tả</th>
+                        <th scope="col">Chỉnh Sửa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of compositeTrangPhuc.listProduct">
+                        <th>{{ item.id }}</th>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.price | currency:'VND':'VNĐ':'1.0-0':'vi-VN'  }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-danger" (click)="deleteTrangPhuc(item)">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-5">
+            <h3 class="form-label">Quản Lý</h3>
+            <table class="table w-25">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Tên Sản Phẩm</th>
+                        <th scope="col">Loại Sản Phẩm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of quanLy">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.category }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+</div>
