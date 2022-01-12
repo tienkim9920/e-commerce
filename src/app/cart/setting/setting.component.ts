@@ -18,7 +18,7 @@ export class SettingComponent implements OnInit {
     this.client.getDetailClient();
 
     setTimeout(() => {
-      this.linkShare = `http://localhost:4200/cart/share/${this.client.code}`
+      this.linkShare = `https://tthshop.netlify.app/cart/share/${this.client.code}`
     }, 500)
   }
 
